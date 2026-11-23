@@ -171,7 +171,7 @@ theorem proof (hF : FiniteFibreGermIntegral.Statement) (hH : HolGermsIntegrallyC
 
   let _ : Algebra (holGerms (A w)) (germsAlong X w) := (alongPull X w A).toAlgebra
   have hα : Function.Injective (algebraMap (holGerms (A w)) (germsAlong X w)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro φ hφ
     obtain ⟨h, hh, hφh⟩ := φ.2
     have h1 : ((h ∘ A : (σ → ℂ) → ℂ) : Germ (𝓝[X] w) ℂ) = ((0 : (σ → ℂ) → ℂ) : Germ (𝓝[X] w) ℂ) := by

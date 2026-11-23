@@ -89,7 +89,7 @@ private theorem ext_integral {R S K : Type} [CommRing R] [CommRing S] [IsDomain 
     have : a ∈ RingHom.ker y := hQc' ▸ ha
     exact this)
   have hg : Function.Injective g := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a
     obtain ⟨x, rfl⟩ := Ideal.Quotient.mk_surjective a
     intro h

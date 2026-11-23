@@ -155,7 +155,7 @@ theorem exists_pow_smul_mem_of_isMaximal
       obtain ⟨H, rfl⟩ := ih G hG
       exact ⟨H, by rw [pow_succ, map_mul, mul_assoc, mul_left_comm]⟩
   have hφinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro F hF
     ext m
     rw [MvPolynomial.coeff_zero]

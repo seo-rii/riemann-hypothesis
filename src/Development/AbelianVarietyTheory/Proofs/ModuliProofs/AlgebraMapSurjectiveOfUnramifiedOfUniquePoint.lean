@@ -103,7 +103,7 @@ private lemma algebraMap_injective_of_denseP_unique_lift {R B : Type} [CommRing 
     (hpt : ∀ q ∈ P, ∃ (K : Type) (_ : Field K) (_ : IsAlgClosed K) (x : R →+* K),
       RingHom.ker x = q ∧ ∃! y : B →+* K, y.comp (algebraMap R B) = x) :
     Function.Injective (algebraMap R B) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   apply hP a
   intro p hp _
@@ -131,7 +131,7 @@ private lemma algebraMap_surjective_of_unique_algHom (K A : Type) [Field K] [IsA
     ⟨RingHom.ker φ₀, RingHom.ker_isMaximal_of_surjective _ hφ₀s, fun m hm => hmax m hm⟩
   have hfield := IsArtinianRing.isField_of_isReduced_of_isLocalRing A
   have hinj : Function.Injective φ₀ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     by_contra hne
     obtain ⟨b, hb⟩ := hfield.mul_inv_cancel hne

@@ -163,7 +163,7 @@ theorem under_eq_of_mem_associatedPrimes_tensor_quotient (p : Ideal A) [hp : p.I
     obtain ⟨n, hn⟩ := ha
     rw [Submodule.mem_colon_singleton, Submodule.mem_bot, key] at hn
     have hinj : Function.Injective (a ^ n • LinearMap.id : (A ⧸ p) →ₗ[A] (A ⧸ p)) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro z hz
       rw [LinearMap.smul_apply, LinearMap.id_apply, Algebra.smul_def, mul_eq_zero,
         Ideal.Quotient.algebraMap_eq, Ideal.Quotient.eq_zero_iff_mem] at hz
@@ -229,7 +229,7 @@ theorem associatedPrimes_tensor_residueField (p : Ideal A) [hp : p.IsPrime] :
         smul_smul, smul_smul, mul_comm s r]
   have hreg : ∀ r ∉ p, ∀ x : M ⊗[A] p.ResidueField, r • x = 0 → x = 0 := fun r hr x hx ↦ by
     have h1 : Function.Injective (r • LinearMap.id : p.ResidueField →ₗ[A] p.ResidueField) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro z hz
       simpa [Algebra.smul_def, hr] using hz
     exact Module.Flat.lTensor_preserves_injective_linearMap (M := M) _ h1 (by simpa using hx)

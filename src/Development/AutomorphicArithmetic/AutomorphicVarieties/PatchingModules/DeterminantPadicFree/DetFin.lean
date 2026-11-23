@@ -145,7 +145,7 @@ private theorem charK (l : ℕ) [Fact l.Prime] (K : Type) [Field K] [Finite K] [
   have hl : (algebraMap ℤ_[l] K) (l : ℤ_[l]) = 0 := by
     by_contra hne
     have hinj : Function.Injective (algebraMap ℤ_[l] K) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro a ha
       by_contra ha0
       have hker : RingHom.ker (algebraMap ℤ_[l] K) ≠ ⊥ := by

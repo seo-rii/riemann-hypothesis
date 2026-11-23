@@ -76,7 +76,7 @@ theorem exists_analytic_zero (f : W × ℂ → ℂ) (p : W × ℂ) (hf : Analyti
   set A := fderiv ℂ f p with hA
   let Lm : W × ℂ →L[ℂ] W × ℂ := (ContinuousLinearMap.fst ℂ W ℂ).prod A
   have hinj : Function.Injective Lm := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨h, τ⟩ hv
     have h1 : h = 0 := congrArg Prod.fst hv
     have h2 : A (h, τ) = 0 := congrArg Prod.snd hv

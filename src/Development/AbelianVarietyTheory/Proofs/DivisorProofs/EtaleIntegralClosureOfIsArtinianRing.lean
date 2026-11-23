@@ -135,7 +135,7 @@ theorem etale_integralClosure_of_isArtinianRing : ∀ (A E : Type) [CommRing A] 
   let Φ : integralClosure A E ≃ₐ[A] ∀ I, C I := AlgEquiv.ofBijective Ψ hΨ
   have hinjF : ∀ I, Function.Injective (algebraMap A (F I)) := by
     intro I
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have hne : ψ.symm (Pi.single I 1) ≠ 0 := by
       intro h0

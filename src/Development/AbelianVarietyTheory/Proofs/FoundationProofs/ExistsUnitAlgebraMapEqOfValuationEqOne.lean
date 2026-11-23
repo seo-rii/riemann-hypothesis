@@ -144,7 +144,7 @@ theorem range_inf_range (hπ : π ≠ 0) :
 
 omit [(Ideal.span {π}).IsPrime] in
 theorem algebraMap_away_injective (hπ : π ≠ 0) : Function.Injective (algebraMap A K) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   have hinj := FaithfulSMul.algebraMap_injective R K
   obtain ⟨⟨a, s⟩, rfl⟩ := IsLocalization.mk'_surjective (Submonoid.powers π) y

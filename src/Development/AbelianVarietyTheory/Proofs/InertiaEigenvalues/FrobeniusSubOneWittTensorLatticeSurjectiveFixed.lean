@@ -174,7 +174,7 @@ theorem baseChange_flat {R W O : Type} [CommRing R] [CommRing W] [Algebra R W] [
 theorem algebraMap_WCb_injective (l : ℕ) [Fact l.Prime] :
     Function.Injective (algebraMap ℤ_[l] (WCb l)) := by
 
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra hne
   have hker : RingHom.ker (algebraMap ℤ_[l] (WCb l)) ≠ ⊥ := by

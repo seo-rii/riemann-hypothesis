@@ -102,7 +102,7 @@ def kapL (κ : FractionRing R →+* FractionRing R')
 lemma inj_one (κ : FractionRing R →+* FractionRing R')
     (hκ : κ.comp (algebraMap R _) = (algebraMap R' _).comp (algebraMap R R')) :
     Function.Injective ((kapL κ hκ).liftBaseChange R') := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro u hu
   obtain ⟨r, d, hd, rfl⟩ := tensor_frac_form u
   rw [LinearMap.liftBaseChange_tmul] at hu
@@ -119,7 +119,7 @@ lemma inj_one (κ : FractionRing R →+* FractionRing R')
 lemma inj_pi {T : Type} [Fintype T] [DecidableEq T] (κ : FractionRing R →+* FractionRing R')
     (hκ : κ.comp (algebraMap R _) = (algebraMap R' _).comp (algebraMap R R')) :
     Function.Injective (((kapL κ hκ).compLeft T).liftBaseChange R') := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   have key : ∀ (y : R' ⊗[R] (T → FractionRing R)) (h : T),
       (kapL κ hκ).liftBaseChange R' (TensorProduct.piRight R R' R' (fun _ : T => FractionRing R) y h) =
@@ -395,7 +395,7 @@ theorem val_mem_span [Finite T] [Module.Flat R R'] (Γ : QFGroup R T) (Γ' : QFG
     exact Submodule.add_mem _ hp hq
 
 lemma flat_inj [Module.Flat R R'] : Function.Injective (algebraMap R R') := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro r hr
   by_contra hr0
   have hreg : IsSMulRegular R' r :=

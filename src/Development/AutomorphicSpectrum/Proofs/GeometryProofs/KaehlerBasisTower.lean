@@ -118,7 +118,7 @@ theorem kaehler_basis_tower : ∀ (R S T : Type) [CommRing R] [CommRing S] [Comm
     Submodule.span T (Set.range fun i => KaehlerDifferential.D R T (Fin.append (fun i => algebraMap S T (z i)) w i)) = ⊤ := by
   intro R S T _ _ _ _ _ _ _ _ e m z w hz hzs hw hws
   have hinj : Function.Injective (KaehlerDifferential.mapBaseChange R S T) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨y, rfl⟩ := (Algebra.H1Cotangent.exact_δ_mapBaseChange R S T x).mp hx
     have : Subsingleton (Algebra.H1Cotangent S T) :=

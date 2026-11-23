@@ -93,7 +93,7 @@ theorem finrank_add_le_of_image_mem {K V W : Type} [Field K] [AddCommGroup V] [M
         have : A x = -(r : W) := eq_neg_of_add_eq_zero_left hx
         rw [this]; exact R'.neg_mem r.2)
     refine LinearMap.finrank_le_finrank_of_injective (f := φ) ?_
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨⟨x, r⟩, hx⟩ h0
     simp only [LinearMap.mem_ker, g, LinearMap.coprod_apply, LinearMap.comp_apply,
       Submodule.subtype_apply] at hx

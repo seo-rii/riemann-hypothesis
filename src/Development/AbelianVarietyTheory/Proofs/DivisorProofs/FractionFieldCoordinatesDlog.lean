@@ -63,7 +63,7 @@ theorem kaehler_map_bijective (p : ℕ) (L : Type) [CommRing L] [Algebra (ZMod p
     exact ⟨m, by simp⟩
   have hs : Subsingleton Ω[ZMod p⁄ℤ] := KaehlerDifferential.subsingleton_of_surjective ℤ (ZMod p) hsurj
   have hex := KaehlerDifferential.exact_mapBaseChange_map ℤ (ZMod p) L
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨y, rfl⟩ := (hex x).1 hx
   clear hx

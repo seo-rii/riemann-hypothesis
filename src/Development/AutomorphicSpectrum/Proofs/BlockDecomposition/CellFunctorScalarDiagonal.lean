@@ -65,7 +65,7 @@ theorem evalOne_injective {G W : Type} [Group G] [TopologicalSpace G] [IsTopolog
     [AddCommGroup W] [Module ℂ W] (H : Subgroup G) (hH : H = ⊤) (σ : Representation ℂ H W) :
     Function.Injective (evalOne H σ) := by
   subst hH
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro v hv
   have h0 : (v : GlobalTheory.PRep.indSpace (⊤ : Subgroup G) σ).1 1 = 0 := hv
   have hmem : ∀ (h : (⊤ : Subgroup G)) (x : G),

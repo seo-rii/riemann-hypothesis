@@ -113,7 +113,7 @@ theorem mem_of_dual_dual {V' : Type} [AddCommGroup V'] [Module LL V'] [FiniteDim
     (x : V) (hx : ∀ y ∈ M', ∃ a : O, P x y = algebraMap O LL a) : x ∈ M := by
   obtain ⟨ι, _, b, hb⟩ := exists_basis M hfg hfree hspan
   have hi : Function.Injective P.flip := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     exact hinj y fun x => by simpa using LinearMap.congr_fun hy x
   have hs : Function.Surjective P.flip :=

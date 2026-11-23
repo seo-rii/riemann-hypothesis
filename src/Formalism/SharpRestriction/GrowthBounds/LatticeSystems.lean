@@ -94,7 +94,7 @@ theorem inj_clause {O X : Type} [CommRing O] [AddCommGroup X] [Module O X]
     (Nst M M' : Submodule O X) (h : M' ≤ M) :
     Function.Injective (Submodule.mapQ (Submodule.comap M'.subtype Nst) (Submodule.comap M.subtype Nst)
       (Submodule.inclusion h) (fun _ hx => hx)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x
   induction x using Submodule.Quotient.induction_on with
   | H x =>
@@ -2090,7 +2090,7 @@ theorem lc_snf {W Qq : Type} [CommRing W] [IsDomain W] [IsPrincipalIdealRing W] 
   have hφr : LinearMap.range φ = e.tgt := by
     rw [hL, hφ]; exact Fintype.range_linearCombination W _
   have hφi : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have h1 : gL.mulVec (fun c => algebraMap W Qq (x c)) = 0 := by
       funext i
@@ -2371,7 +2371,7 @@ theorem mna_finite_of (G : GAtP p) (hH : RestHfin G) (h2 : G.FinClasses) : Modul
   have : ∀ x : (Σ i : G.comp, ↥(R i)), IsNoetherian G.O ↥(Submodule.span G.O (↑(S x) : Set G.P.Xsp)) :=
     fun x => isNoetherian_of_fg_of_noetherian _ (Submodule.fg_span (Finset.finite_toSet _))
   apply Module.Finite.of_injective f
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro F hF0
   apply Subtype.ext
   funext i L
@@ -3549,7 +3549,7 @@ theorem jm_count {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O
   let ψ : (Fin n → O) →ₗ[O] ({i : Fin nS // a i ∣ q} → O) :=
     (Matrix.of fun (i : {i : Fin nS // a i ∣ q}) (k : Fin n) => X i.1 k).mulVecLin
   have hψ : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have hx' : ∀ i : Fin nS, a i ∣ q → ∑ k, X i k * x k = 0 := by
       intro i hi
@@ -3617,7 +3617,7 @@ theorem jm_basis {I : Type} [Finite I] (b0 : Module.Basis I Kf V) (c : O) (hc : 
       (fun x => hHP x x.2)
   have h2 : Module.finrank O (Submodule.span O (Set.range b0)) ≤ Module.finrank O P := by
     refine LinearMap.finrank_le_finrank_of_injective (f := φ) ?_
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have : c • (x : V) = 0 := congrArg Subtype.val hx
     exact Subtype.ext (jm_tors (Kf := Kf) c hc _ this)

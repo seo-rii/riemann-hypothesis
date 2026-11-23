@@ -464,7 +464,7 @@ theorem chart (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Spec (CommRingCat.of
           rw [map_mul, hι, Algebra.smul_def, Algebra.TensorProduct.algebraMap_apply]
           rfl
         rw [map_add (f := _), hb, hb, e₁, e₂, map_mul, smul_add, smul_smul, smul_smul, mul_comm (val ξ W hne b₁)]
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨b, hb, z, hz⟩ := key x
     have h0 : val ξ' W' hne' (E z) = val ξ' W' hne' 0 := by

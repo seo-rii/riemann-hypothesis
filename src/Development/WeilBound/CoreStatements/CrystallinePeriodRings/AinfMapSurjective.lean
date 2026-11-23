@@ -86,7 +86,7 @@ theorem ιCD_aB (a : Ainf l) :
   rfl
 
 theorem wittTo_injective : Function.Injective (wittToBDeRhamPlus ↥(normInteger ℂ_[l]) l) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro w hw
   obtain ⟨ξ, hξ, h1⟩ := IsPerfectoidField.exists_mem_ker_fontaineTheta_isUnit_coeff_one ℂ_[l] l
   have hker := IsPerfectoidField.ker_fontaineTheta_eq_span hξ h1

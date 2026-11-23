@@ -151,7 +151,7 @@ theorem exists_retraction_near_of_unique_point :
   obtain ⟨K, _, _, x, hker, y, hy, hu⟩ := hP q₀ hq₀
   obtain ⟨f, hfk, hfB⟩ := exists_smul_mem_range_of_unique_point R B K x y hy hu
   have hinj : Function.Injective (algebraMap R B) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     refine hD a fun p hp _ => ?_
     obtain ⟨K', _, _, x', hker', y', hy', -⟩ := hP p hp

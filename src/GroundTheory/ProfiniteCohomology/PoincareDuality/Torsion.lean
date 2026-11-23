@@ -71,7 +71,7 @@ theorem zmodToQZ_intCast (m : ℤ) : zmodToQZ n (m : ZMod n) = QZ.mk (m / n) := 
 variable [NeZero n]
 
 theorem zmodToQZ_injective : Injective (zmodToQZ n) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   obtain ⟨m, rfl⟩ := ZMod.intCast_surjective a
   rw [zmodToQZ_intCast, QZ.mk_eq_zero_iff] at ha
@@ -164,7 +164,7 @@ theorem bijective_of_bijective_flip {X Y Z : Type*} [AddCommGroup X] [AddCommGro
       right_inv := fun g => by ext; simp }
   have : Finite (Y →+ ZMod n) := Finite.of_equiv _ e'.symm
   have hinj : Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra hne
     obtain ⟨χ, hχ⟩ := zmod_exists_apply_ne_zero hX hne

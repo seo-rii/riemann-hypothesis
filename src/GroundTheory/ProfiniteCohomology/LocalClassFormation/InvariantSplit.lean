@@ -201,7 +201,7 @@ theorem unramifiedLevelInv_injective (n : ℕ+) : Function.Injective (unramified
   (unramifiedInv_injective F (unramifiedLevel F Ω n)).comp (h2GalUnitsAddEquiv F _).injective
 
 theorem brauerInv_injective : Function.Injective (brauerInv F Ω) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨n, y, rfl⟩ := exists_brauerInflation_unramifiedLevel F Ω x
   rw [brauerInv_brauerInflation] at hx

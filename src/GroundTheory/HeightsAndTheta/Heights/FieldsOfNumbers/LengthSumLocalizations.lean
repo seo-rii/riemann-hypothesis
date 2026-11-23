@@ -136,7 +136,7 @@ omit [Fintype ι] [DecidableEq ι] in
 theorem pi_mk_injective (hall : ∀ M : Ideal B, M.IsMaximal → ∃ i, M = 𝔪 i) (N : Type*)
     [AddCommGroup N] [Module B N] :
     Function.Injective (LinearMap.pi fun i => TensorProduct.mk B (C i) N 1) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro n hn
   by_contra hne
   have hlt : LinearMap.ker (LinearMap.toSpanSingleton B N n) ≠ ⊤ := by

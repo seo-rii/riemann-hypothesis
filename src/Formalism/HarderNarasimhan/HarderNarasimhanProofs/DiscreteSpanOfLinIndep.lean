@@ -79,7 +79,7 @@ theorem realize_apply1 (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι 
 
 theorem realize_injective (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ)
     (hX : ∀ v, IsUnit (X v).det) : Function.Injective (Formalism.HermitianLatticesTheory.realize b X) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have hf : ∀ v i, Formalism.HermitianLatticesTheory.fcoord b X v x i = 0 := by
     intro v i

@@ -133,7 +133,7 @@ theorem finrank_derivation_le (o k R S C : Type) [CommRing o] [CommRing k]
       map_add' := fun _ _ ↦ by ext; rfl
       map_smul' := fun _ _ ↦ by ext; rfl }
   refine LinearMap.finrank_le_finrank_of_injective (f := f) ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro D hD
   have h0 : ∀ r, D (algebraMap R S r) = 0 := fun r ↦ congr($hD r)
   ext s

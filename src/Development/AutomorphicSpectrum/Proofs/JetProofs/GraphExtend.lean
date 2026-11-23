@@ -83,7 +83,7 @@ theorem graph_extend {n : ℕ} {ε : Fin n → Bool} {V V' : Type} [NormedAddCom
     ∃ T : V →ₗ[ℂ] V', (∀ g ∈ G, T g.1 = g.2) ∧ KMap ε D D' T := by
   let A : G →ₗ[ℂ] V := (LinearMap.fst ℂ V V').comp G.subtype
   have hA : Function.Injective A := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro g hg
     have h1 : g.1.1 = 0 := hg
     exact Subtype.ext (Prod.ext h1 (hG _ g.2 h1))

@@ -439,7 +439,7 @@ theorem exists_complexStructure (ξ : E) (Gm : Matrix (Fin r) (Fin r) E)
   obtain ⟨J, hJ2, hJinv, hJpos, hJ⟩ := D.dom
   have hform := baseChange_EF D Φ φ ξ Gm hEF
   have hinj : Function.Injective (realMap D Φ φ) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra h
     have := hJpos x h

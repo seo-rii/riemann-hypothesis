@@ -60,7 +60,7 @@ theorem exists_intCast_mem_of_isMaximal (R : Type*) [CommRing R] [Algebra.Finite
   by_contra h
   push Not at h
   have hinj : Function.Injective (algebraMap ℤ (R ⧸ m)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     by_contra ha0
     apply h a ha0
@@ -106,7 +106,7 @@ theorem exists_horizontal_prime_le_of_isMaximal :
       apply hpq
       have h2 : p ∈ q.comap (algebraMap ℤ R) := this ▸ hpm
       exact h2
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have : a ∈ q.comap (algebraMap ℤ R) := by
       rw [Ideal.mem_comap, ← Ideal.Quotient.eq_zero_iff_mem]

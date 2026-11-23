@@ -76,7 +76,7 @@ theorem length_loc_step (I q : Ideal R) (f : R) (hq : ∀ g, g ∈ q ↔ g * f �
   let π : (R ⧸ I) →ₗ[R] (R ⧸ (I ⊔ Ideal.span {f})) :=
     Submodule.mapQ I (I ⊔ Ideal.span {f}) LinearMap.id (by intro x hx; exact Ideal.mem_sup_left hx)
   have hg : Function.Injective g := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     obtain ⟨x, rfl⟩ := Submodule.Quotient.mk_surjective _ z
     change Submodule.Quotient.mk (p := I) (x * f) = 0 at hz

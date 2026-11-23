@@ -127,7 +127,7 @@ theorem jr_mk (L' : Formalism.WeaklyAdmissibleFiltrations.Lattice (O := O) ρ') 
 
 theorem jr_inj (L' : Formalism.WeaklyAdmissibleFiltrations.Lattice (O := O) ρ') {ϖ : O} (hϖ : algebraMap O LL ϖ ≠ 0) (r : ℕ) :
     Function.Injective (jr L' hϖ r) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨t, rfl⟩ := Submodule.Quotient.mk_surjective _ x
   rw [jr_mk, Submodule.Quotient.mk_eq_zero] at hx

@@ -158,7 +158,7 @@ def evalReps (Hv : P.Tup → Submodule O P.Xsp) {ι : Type} {rep : ι → P.Tup}
 
 theorem evalReps_injective (Hv : P.Tup → Submodule O P.Xsp) {ι : Type} {rep : ι → P.Tup} (hr : IsReps C rep) :
     Function.Injective (evalReps C Hv hr) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro F hF
   obtain ⟨-, h0, hγ⟩ := (mem_funMod_iff C Hv F.1).1 F.2
   apply Subtype.ext

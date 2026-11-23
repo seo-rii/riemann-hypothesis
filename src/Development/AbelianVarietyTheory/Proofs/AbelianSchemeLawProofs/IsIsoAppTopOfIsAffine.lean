@@ -127,7 +127,7 @@ theorem eq_zero_of_fibres (hI : FibreInjective) (hD : SmoothDescent) {R B C : Ty
   have : Module.Flat R₀ (C₀ × R₀) := flat_prod
   have hφ : Function.Injective (φ.baseChange R) := by
     refine hI R₀ R B₀ (C₀ × R₀) φ fun k _ _ _ _ ↦ ?_
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     have h1 : (f₀.toLinearMap - g₀.toLinearMap).baseChange k y = 0 := by
       have : f₀.toLinearMap - g₀.toLinearMap = (LinearMap.fst R₀ C₀ R₀) ∘ₗ φ := rfl

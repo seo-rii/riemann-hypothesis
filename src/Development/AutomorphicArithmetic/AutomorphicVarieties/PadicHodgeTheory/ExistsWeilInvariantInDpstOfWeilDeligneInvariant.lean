@@ -90,7 +90,7 @@ private theorem UpperTheory.fixed_vector_descends_weil_group {Γ I K D W : Type}
   have hS : ∀ x, S x = a φ (E x) - E x + n • x - E x := fun x => rfl
   have hS' : ∀ x, S' x = b φ (E' x) - E' x + n • x - E' x := fun x => rfl
   have hinj : Function.Injective S := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have h1 : ∀ s, a (j s) (a φ (E x)) = a φ (E x) := fun s => by
       obtain ⟨t, ht⟩ := hn s

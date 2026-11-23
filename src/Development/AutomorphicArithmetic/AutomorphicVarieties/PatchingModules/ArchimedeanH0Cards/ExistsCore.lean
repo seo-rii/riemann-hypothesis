@@ -148,7 +148,7 @@ private theorem odd_kill {A : Type} [CommRing A] [IsDomain A] {n : ℕ} (a : ℕ
     (LinearMap.mulLeft A S - LinearMap.mulRight A S) ∘ₗ (LinearMap.id - evP A n a) + evP A n a
   have hΦ : ∀ Z, Φ Z = S * (Z - evP A n a Z) - (Z - evP A n a Z) * S + evP A n a Z := fun _ => rfl
   have hinj : Function.Injective Φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro Z hZ
     have od : ∀ i j : Fin n, (((i : ℕ) < a) ↔ ((j : ℕ) < a)) → (Z - evP A n a Z) i j = 0 := fun i j e => by
       rw [Matrix.sub_apply, localComponent_apply₂, if_pos e, sub_self]

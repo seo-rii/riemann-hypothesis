@@ -63,7 +63,7 @@ theorem isArithVar_charZero_functionField_and_injective :
   have := h.isDomain
   have := h.finite
   have hint : Algebra.IsIntegral ℤ k := inferInstance
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   have hker : RingHom.ker (GlobalTheory.toFunctionField p) = ⊥ := by
     apply Ideal.eq_bot_of_comap_eq_bot (R := ℤ)

@@ -268,7 +268,7 @@ theorem hypersurfacePresentation_of (hKS : ∀ s : MvPolynomial σ ℂ, C s ∈ 
   let 𝔸 := (MvPolynomial ι (MvPolynomial σ ℂ)) ⧸ K
   have hmkC : ∀ s, Ideal.Quotient.mk K (C s) = algebraMap (MvPolynomial σ ℂ) 𝔸 s := fun s => rfl
   have hSinj : Function.Injective (algebraMap (MvPolynomial σ ℂ) 𝔸) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro s hs
     rw [← hmkC, Ideal.Quotient.eq_zero_iff_mem] at hs
     exact hKS s hs

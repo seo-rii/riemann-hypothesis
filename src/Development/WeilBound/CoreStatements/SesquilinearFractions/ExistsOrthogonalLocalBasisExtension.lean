@@ -105,7 +105,7 @@ theorem finrank_orthogonal_family (D : Datum H) {p q : ℕ} (x' : Fin p → D.La
   set L2 := orthogonalFamilyAlt D x' with hL2
   let ψ : ((Fin p → 𝓞 E) × L2) →ₗ[𝓞 E] D.La := (familyCombination D x').coprod L2.subtype
   have hψ : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨c, z⟩ h
     obtain ⟨hc, hz⟩ := family_orthogonal_sum_injective D x' hdet c z h
     rw [hc, hz]
@@ -118,7 +118,7 @@ theorem finrank_orthogonal_family (D : Datum H) {p q : ℕ} (x' : Fin p → D.La
     (integralCoeffs D x' m hm).prod
       ((orthogonalComponent D x' m hm).codRestrict L2 (fun y => orthogonalComponent_mem D x' m hm hdet y))
   have hφ : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     have h1 : integralCoeffs D x' m hm y = 0 := congrArg Prod.fst hy
     have h2 : orthogonalComponent D x' m hm y = 0 := by

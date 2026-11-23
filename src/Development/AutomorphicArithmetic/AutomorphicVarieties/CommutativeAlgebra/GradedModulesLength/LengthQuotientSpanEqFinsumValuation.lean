@@ -97,7 +97,7 @@ private theorem algHom_finite_domain_injective {O : Type} [CommRing O] [IsDomain
     {D : Type} [CommRing D] [IsDomain D] [Algebra O D] [Module.Finite O D] (σ : D →ₐ[O] K) :
     Function.Injective σ := by
   have : Algebra.IsIntegral O D := Algebra.IsIntegral.of_finite O D
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have hker : (RingHom.ker σ).comap (algebraMap O D) = ⊥ := by
     ext c

@@ -300,7 +300,7 @@ theorem ioE_injective : Function.Injective E.ioE := by
     exact not_subsingleton _ ((Module.finrank_eq_zero_iff_of_free O _).1 h1.symm)
   let b := Module.Free.chooseBasis W.EE (W.DD W.one)
   obtain ⟨i⟩ := b.index_nonempty
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have h1 : x • b i = 0 := by
     apply E.jD_inj

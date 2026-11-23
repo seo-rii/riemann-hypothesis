@@ -106,7 +106,7 @@ theorem SegreFlagClosureTrdeg.proof (halg : SegreFlagConeAlg.Statement) : SegreF
       (fun _ : Unit => C (z ⟨none, m'⟩) * X none)
 
   have hOΩ : Function.Injective (algebraMap O Ω) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have hmem : a ∈ (pointIdeal O y).comap (C : O →+* MRing ι O) := by
       rw [Ideal.mem_comap, pointIdeal, RingHom.mem_ker, pointConeMap, aeval_C, MvPolynomial.algebraMap_apply, ha,

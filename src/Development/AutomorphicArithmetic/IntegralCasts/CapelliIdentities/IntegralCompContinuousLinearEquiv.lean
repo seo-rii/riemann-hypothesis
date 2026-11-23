@@ -267,7 +267,7 @@ private lemma UpperTheory.Reformulated.B.Yzb9.exists_strictHenselian_absolutely_
         rw [hT0, real_inner_smul_left, hT0, hsym u, hsym u a, h1] }
   have hTl : ∀ v, Tl v = T0 v := fun v => rfl
   have hinj : Function.Injective Tl := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     apply hnd v
     intro w

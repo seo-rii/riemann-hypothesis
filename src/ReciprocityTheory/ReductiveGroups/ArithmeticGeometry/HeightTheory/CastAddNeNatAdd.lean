@@ -217,7 +217,7 @@ theorem psi_injective (sg : K →+* ℂ) (tt : Fin D × Fin (N + 1) → ℂ)
     (hG : ∀ (a : Fin D → ℕ) (p : MvPolynomial (Fin D × Fin (N + 1)) K),
       IsMultiHomogeneous a p → p ≠ 0 → eval₂ sg tt p ≠ 0) :
     Function.Injective (psi sg tt) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro q hq
   apply homog_injective (K := K) (D := D) (N := N)
   rw [map_zero]

@@ -66,7 +66,7 @@ theorem injective_of_injective_comp_aeval_of_trdeg_le {k A κ ι : Type} [Field 
     exact Function.Injective.of_comp (f := χ) hχ
   have hT := hb.isTranscendenceBasis_of_trdeg_le_of_finite hA
   have := hT.isAlgebraic
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   by_contra hne
   have hmem : a ∈ RingHom.ker χ := ha

@@ -137,7 +137,7 @@ theorem exists_eventually_int_eq_zero {X V J : Type*} [TopologicalSpace X] [Norm
 variable {n a g : ℕ} {Λ : Type} [AddCommGroup Λ] (L : Flat.LogPeriods n a g Λ)
 
 theorem P_injective {w : Fin n → ℂ} (hw : w ∈ logCover L.a_le) : Function.Injective (L.P w) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   apply L.unimod.1
   rw [map_zero]

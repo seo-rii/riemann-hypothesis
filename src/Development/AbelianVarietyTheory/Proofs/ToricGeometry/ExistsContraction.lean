@@ -789,7 +789,7 @@ theorem isPeriod_add (P : D.La →+ (Fin g → ℂ)) (hl : ∀ (a : 𝓞 E) x, P
   have hT : ∀ z, T z = z + anti Z z := fun z => rfl
 
   have hTi : Function.Injective T := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     by_contra hne
     have hN : anti Z z = -z := eq_neg_of_add_eq_zero_right (by rw [← hT]; exact hz)
@@ -838,7 +838,7 @@ theorem exists_contraction (P : D.La →+ (Fin g → ℂ)) (hl : ∀ (a : 𝓞 E
     simpa using this
 
   have hAi : Function.Injective A := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     by_contra hne
     have e1 : T z = C z := by rw [hAC', hz, zero_add]

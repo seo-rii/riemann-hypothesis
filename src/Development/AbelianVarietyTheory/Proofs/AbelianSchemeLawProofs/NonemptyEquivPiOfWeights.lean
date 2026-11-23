@@ -101,7 +101,7 @@ theorem nonempty_equiv_pi_of_weights {R M N G : Type} [CommRing R] [IsDomain R] 
   let F : ((G →* Rˣ) → N) →ₗ[R] M := ∑ χ, (f χ).comp (LinearMap.proj χ)
   have hF : ∀ x, F x = ∑ χ, f χ (x χ) := fun x => by simp [F, LinearMap.sum_apply]
   have hinj : Function.Injective F := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     funext c
     apply hf c
@@ -413,7 +413,7 @@ theorem Descends.weight (hL : L.IsLB) {q : Y ⟶ Y} {τ : G → (Y ⟶ Y)} (H : 
   · rw [Submodule.coe_add, map_add (f := _), add_mul]
   · show pl L q hq (c • x.1) * u.val = c • (pl L q hq x.1 * u.val)
     rw [map_smul, smul_mul_assoc]
-  · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  · rw [injective_iff_map_eq_zero]
     intro x hx
     exact Subtype.ext (H.injective hL hq x.2 (u.mul_left_eq_zero.1 hx))
   · rintro ⟨x, rfl⟩

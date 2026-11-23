@@ -233,7 +233,7 @@ theorem exists_split (hnf : ¬ IsField (K ⊗[F] E)) :
     rw [h1, map_one, sub_self] at this
     exact hnt this
   have hinj : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro p hp
     rw [hψ] at hp
     have h1 : algebraMap K (K ⊗[F] E) p.1 * e = 0 := by

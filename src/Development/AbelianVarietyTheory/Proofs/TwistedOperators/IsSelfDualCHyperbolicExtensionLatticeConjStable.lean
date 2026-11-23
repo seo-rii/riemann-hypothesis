@@ -287,7 +287,7 @@ theorem isHyp_flatSp {Y X : HSp D} {ι : X.V →ₗ[D.host.E] Y.V} {z : Y.V} {ρ
     simp only [HSpace.hD] at h1 h2
     simp [h1.1, h1.2, h2.1, h2.2]
   · have hinj : Function.Injective ι := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro x hx
       refine X.nondeg.1 x fun y => ?_
       rw [← H.isom x y, hx]

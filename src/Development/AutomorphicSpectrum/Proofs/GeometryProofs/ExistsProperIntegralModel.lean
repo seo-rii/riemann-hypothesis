@@ -142,7 +142,7 @@ lemma bijective_coeAddMonoidHom :
     Function.Bijective (DirectSum.coeAddMonoidHom (grading o x)) := by
   classical
   constructor
-  · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  · rw [injective_iff_map_eq_zero]
     intro y hy
     refine DFinsupp.ext fun n => ?_
     refine Subtype.ext (Subtype.ext ?_)
@@ -242,7 +242,7 @@ lemma chartVal_mk {g : rees o x} (hu : IsUnit (ev g)) {d : ℕ} (hg : g ∈ grad
 
 lemma chartVal_injective {g : rees o x} (hu : IsUnit (ev g)) {d : ℕ} (hg : g ∈ grading o x d) :
     Function.Injective (chartVal g hu) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro z hz
   obtain ⟨n, a, ha, rfl⟩ := Away.mk_surjective (grading o x) hg z
   have h1 := chartVal_mk hu hg n a ha
@@ -572,7 +572,7 @@ theorem tie_of_charts (o : Type) [CommRing o] [Algebra o Ω] {κ : Type} (x : κ
     rintro ⟨q, hq⟩
     obtain ⟨c, p, rfl⟩ := hcover q
     obtain ⟨φ, h1, h2, h3⟩ := chart_stalk (θ c) (j c) ξ (hξ c) p hq
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro t ht
     obtain ⟨u, s, hs, hts⟩ := h3 t
     have h4 := congrArg (genMap ξ ⟨j c p, hq⟩) hts

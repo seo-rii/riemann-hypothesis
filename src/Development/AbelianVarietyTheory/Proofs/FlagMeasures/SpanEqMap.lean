@@ -189,7 +189,7 @@ theorem index_rmul : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace
     rw [Finset.sum_comm]
     simp only [mul_comm]
   have hinj : Function.Injective (Fintype.linearCombination E y).toAddMonoidHom := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     exact funext (Fintype.linearIndependent_iff.1 hy v hv)
   rw [span_eq_map, span_eq_map, ← hW0, hcomp, ← AddSubgroup.map_map,

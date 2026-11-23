@@ -165,7 +165,7 @@ theorem pure_injective {B : ι → (X → ℂ) → (X → ℂ)} {c : ι → ℂ}
       by_cases h : i = j
       · subst h; simp
       · simp [h, Pi.single_apply, Ne.symm h]
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   refine eq_zero_of_pderiv_stable (K := fun Q => pureTensorL A f Q = 0) (fun Q i h => ?_) fun a h => ?_
   · have h1 := key i Q
     have h2 := Bsm i 0 f hf

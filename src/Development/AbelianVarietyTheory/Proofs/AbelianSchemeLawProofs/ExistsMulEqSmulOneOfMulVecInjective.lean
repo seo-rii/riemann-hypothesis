@@ -82,7 +82,7 @@ theorem exists_mul_eq_smul_one_of_mulVec_injective {R K : Type} [CommRing R] [Fi
     simpa using this
   have h2 : Fintype.card l ≤ Fintype.card κ := by
     have hinj : Function.Injective (Matrix.mulVecLin ((M.map g).submatrix a id)) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro x hx
       apply hM
       funext i

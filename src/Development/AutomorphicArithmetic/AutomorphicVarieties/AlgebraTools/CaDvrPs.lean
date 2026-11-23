@@ -217,7 +217,7 @@ theorem UpperTheory.V.AlgebraTools.powerSeries_equiv_of_complete_dvr :
       simp [PowerSeries.coeff_X]
     rwa [h2] at h1
   have hinj : Function.Injective e0 := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro f hf
     by_contra hne
     have hdec := PowerSeries.X_pow_order_mul_divXPowOrder (f := f)

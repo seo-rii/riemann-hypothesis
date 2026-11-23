@@ -151,7 +151,7 @@ theorem finrank_eq_card (E : Submodule K (Fin n → K))
     (LinearMap.funLeft K K Subtype.val).comp E.subtype
   have hf : ∀ (v : E) s, f v s = v.1 s.1 := fun _ _ => rfl
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v h0
     have hv := (hE _).1 v.2
     ext i

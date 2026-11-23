@@ -64,7 +64,7 @@ abbrev phiZ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra (O0 p) Ω] 
   (algebraMap (O0 p) Ω).comp (algebraMap ℤ_[p] (O0 p))
 
 theorem phiZ_injective [CharZero Ω] : Function.Injective (phiZ p Ω) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro c hc
   by_contra h0
   rw [PadicInt.unitCoeff_spec h0, map_mul, map_pow, map_natCast] at hc

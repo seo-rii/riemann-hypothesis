@@ -245,7 +245,7 @@ theorem exists_generic [IsIntegral X] : ∃ (K : Type) (_ : Field K) (y : Sp K �
 theorem valHom_injective [IsIntegral X] {K : Type} [Field K] (y : Sp K ⟶ X)
     (hy : ∀ U : X.Opens, (U : Set X).Nonempty → ⊤ ≤ y ⁻¹ᵁ U) (U : X.Opens) (h : ⊤ ≤ y ⁻¹ᵁ U) :
     Function.Injective (valHom y U h) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro f hf
   by_contra h0
   have hne : ((X.basicOpen f : X.Opens) : Set X).Nonempty := by

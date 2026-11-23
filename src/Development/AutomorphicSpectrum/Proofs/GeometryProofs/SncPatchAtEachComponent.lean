@@ -154,7 +154,7 @@ theorem exists_kill {ξ : Sp Ω ⟶ X} (hξ : IsCptGen ξ) {V : X.Opens} (hV : I
 theorem ev_basicOpen_injective (ξ : Sp Ω ⟶ X) {V : X.Opens} (hV : IsAffineOpen V) (g : Γ(X, V))
     (hη : genPt ξ ∈ X.basicOpen g) (hk : ∀ a, ev ξ V (X.basicOpen_le g hη) a = 0 → g * a = 0) :
     Function.Injective (ev ξ (X.basicOpen g) hη) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   haveI := hV.isLocalization_basicOpen g
   obtain ⟨n, a, ha⟩ := IsLocalization.Away.surj g x
@@ -179,7 +179,7 @@ theorem coords_rat {F R : Type} [Field F] [Algebra ℚ F] [Algebra.FormallyEtale
       Submodule.span R (Set.range fun i => KaehlerDifferential.D ℚ R (z i)) = ⊤ := by
   haveI : Subsingleton (Ω[F⁄ℚ]) := inferInstance
   have hinj : Function.Injective (KaehlerDifferential.map ℚ F R R) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨y, rfl⟩ := (KaehlerDifferential.exact_mapBaseChange_map ℚ F R x).1 hx
     have hall : ∀ y : TensorProduct F R Ω[F⁄ℚ], y = 0 := fun y => by

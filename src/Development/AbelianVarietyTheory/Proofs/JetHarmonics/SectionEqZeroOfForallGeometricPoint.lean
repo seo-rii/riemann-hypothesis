@@ -96,7 +96,7 @@ theorem affine_case (O F : Type) [CommRing O] [Field F] [IsAlgClosed F] [Algebra
   have := finite_algHom O F A
   let Φ : A →ₐ[O] ((A →ₐ[O] F) → F) := Pi.algHom O (fun _ => F) (fun φ => φ)
   have hΦ : Function.Injective Φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     exact eq_zero_of_forall_point O F hinj A a fun φ => congrFun ha φ
   let q : specO O ((A →ₐ[O] F) → F) ⟶ H := ptMap Φ ≫ e.hom

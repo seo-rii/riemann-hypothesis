@@ -164,7 +164,7 @@ theorem flat_coh [Module.Flat R R'] {A₀ A₁ A₂ B₀ B₁ B₂ : Type} [AddC
     apply Subtype.ext
     rw [hg, ht, e₁.apply_symm_apply]
   have hLi : Function.Injective L := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro t ht
     obtain ⟨t₀, rfl⟩ : ∃ t₀, (LinearMap.range d₀).mkQ.baseChange R' t₀ = t := by
       have := LinearMap.lTensor_surjective R' (g := (LinearMap.range d₀).mkQ)

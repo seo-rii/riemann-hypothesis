@@ -194,7 +194,7 @@ theorem injective_zero (M : Rep.{u} (ULift.{u} ℤ) Γ) [IsDiscreteRep M] [Finit
   have := H.finite_D
   obtain ⟨I, Q, _, _, _, _, i, p, w, hS, hnI, hnQ, hI0, hI1⟩ := H.exists_devissage M hM
   have hi : Function.Injective i.hom := (Rep.mono_iff_injective i).1 hS.mono_f
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have h1 : dualityMap D (rfl : 0 + 2 = 2) t I ((cohomologyMap i 0).hom x) = 0 := by
     ext y
@@ -250,7 +250,7 @@ theorem injective_one (M : Rep.{u} (ULift.{u} ℤ) Γ) [IsDiscreteRep M] [Finite
   let S := ShortComplex.mk i p w
   have hT : (dualShortComplex D S).ShortExact :=
     dualShortComplex_shortExact H.nonempty_addEquiv hS hnI
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have h1 : dualityMap D (rfl : 1 + 1 = 2) t I ((cohomologyMap i 1).hom x) = 0 := by
     ext y

@@ -106,7 +106,7 @@ theorem nonempty_equiv_range {ρ : Representation ℂ G V} {σ : Representation 
     (f.toLinearMap.comp q.toSubmodule.subtype).codRestrict f.range.toSubmodule
       (fun v => LinearMap.mem_range_self _ _)
   have hinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have ha' : f.toLinearMap (a : V) = 0 := congrArg Subtype.val ha
     have hk : (a : V) ∈ f.ker.toSubmodule := ha'

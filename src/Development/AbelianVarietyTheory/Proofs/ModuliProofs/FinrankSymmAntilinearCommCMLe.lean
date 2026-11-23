@@ -195,7 +195,7 @@ theorem finrank_symm_comm_le (E : Type) [Field E] [NumberField E] [IsCMField E] 
         apply Subtype.ext
         simp [Matrix.smul_mulVec] }
   have hinj : Function.Injective Ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro Θ hΘ
     obtain ⟨hs, hc⟩ := hS Θ.1 Θ.2
     have k1 : ∀ τ : E →+* ℂ, τ (H.rt : E) = ρ₀ → ∀ v ∈ Eig F τ, Θ.1.mulVec (star v) = 0 := by

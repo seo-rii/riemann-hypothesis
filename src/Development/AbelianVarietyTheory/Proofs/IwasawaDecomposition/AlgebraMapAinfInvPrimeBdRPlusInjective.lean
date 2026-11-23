@@ -95,7 +95,7 @@ theorem eq_zero_of_mem_span_pow_away {A B : Type*} [CommRing A] [CommRing B] [Al
 theorem algebraMap_AinfP_BdRp_injective (l : ℕ) [Fact l.Prime] :
     Function.Injective (algebraMap (Per.AinfP l) (Per.BdRp l)) := by
   obtain ⟨e, he⟩ := exists_isEps_for_inj l
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   refine eq_zero_of_mem_span_pow_away (l : Per.Ainf l) (xi e)
     (fun n a h => XiHaus.xi_sat he n a h) (GlobalTheory.MemLoc.eq_zero_of_forall_xi_pow_dvd l e he) x fun n => ?_

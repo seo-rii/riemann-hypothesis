@@ -131,7 +131,6 @@ theorem tendsto_card_div_pow {s : Set E} (hs₁ : IsBounded s) (hs₂ : Measurab
   rw [hlim, hcard] at key
   exact key
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem covolume_div_covolume (L₁ L₂ : Submodule ℤ E) [DiscreteTopology L₁] [IsZLattice ℝ L₁]
     [DiscreteTopology L₂] [IsZLattice ℝ L₂] (h : L₁ ≤ L₂) :
     ZLattice.covolume L₁ μ / ZLattice.covolume L₂ μ =

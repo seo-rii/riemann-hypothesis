@@ -214,7 +214,7 @@ theorem injective_of_exact {A : Type} [CommRing A] [IsLocalRing A] [IsNoetherian
   let Z := LinearMap.range a.dualMap
   have flat : Module.Flat A (Module.Dual R F₀) := Module.Flat.trans A R _
   have hinj : Injective ((Z.subtype.restrictScalars A).rTensor (A ⧸ maximalIdeal A)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro t ht
     obtain ⟨z, hz⟩ := TensorProduct.mk_surjective A Z (A ⧸ maximalIdeal A) Ideal.Quotient.mk_surjective
       (TensorProduct.comm A _ _ t)

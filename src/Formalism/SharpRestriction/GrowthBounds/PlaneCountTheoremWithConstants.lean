@@ -615,7 +615,7 @@ theorem cmp_expand (hs : ∀ a x, cmp (a • x) = φ a • cmp x) (x : V) :
 
 theorem cmp_inj (hs : ∀ a x, cmp (a • x) = φ a • cmp x) (hli : LinearIndependent Kf (fun a => cmp (b a))) :
     Function.Injective cmp := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   rw [cmp_expand b φ cmp hs x] at hx
   have h := Fintype.linearIndependent_iff.1 hli _ hx

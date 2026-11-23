@@ -85,7 +85,7 @@ theorem finrank_fixedField {E : Type} [Field E] [CharZero E] (c : E ≃+* E) (hc
         change _ = (a : E) * _
         ring }
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨a, b⟩ h
     have h1 : (a : E) + (b : E) * d = 0 := h
     have h2 := congrArg c h1

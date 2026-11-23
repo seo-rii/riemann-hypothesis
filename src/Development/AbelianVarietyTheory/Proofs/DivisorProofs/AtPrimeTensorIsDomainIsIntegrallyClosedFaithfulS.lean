@@ -68,7 +68,7 @@ theorem atPrime_tensor_isDomain_isIntegrallyClosed_faithfulSMul : ∀ (R A : Typ
   refine ⟨hdom, isIntegrallyClosed_of_isLocalization B _ hle, ?_⟩
   have hAB : Function.Injective (algebraMap A B) := IsLocalization.injective B hle
   refine (faithfulSMul_iff_algebraMap_injective Rp B).mpr ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨⟨r, s⟩, rfl⟩ := IsLocalization.mk'_surjective p.primeCompl x
   have hcomp : ∀ r : R, algebraMap Rp B (algebraMap R Rp r) = algebraMap A B (algebraMap R A r) := by

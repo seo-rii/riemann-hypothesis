@@ -110,7 +110,7 @@ theorem decomp_unique (h : O⟦X⟧ →ₐ[O] O⟦X⟧) (hX : h X = g) (c c' : F
 
 theorem injective (hD : 1 ≤ wd g) (h : O⟦X⟧ →ₐ[O] O⟦X⟧) (hX : h X = g) :
     Function.Injective h := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   have := eq_zero_of_sum_eq_zero hg h hX (fun i => if (i : ℕ) = 0 then a else 0) (by
     rw [Finset.sum_eq_single ⟨0, hD⟩ (fun j _ hj => by

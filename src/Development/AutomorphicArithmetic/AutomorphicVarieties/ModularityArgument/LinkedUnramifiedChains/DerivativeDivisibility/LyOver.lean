@@ -85,7 +85,7 @@ private theorem ext_integral {R S K : Type} [CommRing R] [CommRing S] [Field K] 
     rw [hQc'] at ha
     exact ha)
   have hφ' : Function.Injective φ' := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective x
     rw [Ideal.Quotient.eq_zero_iff_mem, hQc']

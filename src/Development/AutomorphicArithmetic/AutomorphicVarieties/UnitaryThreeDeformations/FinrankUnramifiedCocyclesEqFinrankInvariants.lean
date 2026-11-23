@@ -137,7 +137,7 @@ theorem UpperTheory.finrank_unramified_cocycles_eq_finrank_invariants :
     group
   let ev : W →ₗ[k] N := ((LinearMap.proj φ).comp W.subtype).codRestrict N (fun y => hev y.1 y.2)
   have hinj : Function.Injective ev := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     have hyφ : y.1 φ = 0 := congrArg Subtype.val hy
     obtain ⟨⟨hcont, hc⟩, h0⟩ := (hW y.1).1 y.2

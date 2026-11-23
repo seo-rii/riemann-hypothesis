@@ -140,7 +140,7 @@ lemma cyclic_solvable (l : ℝ) (d : ℕ) [NeZero d] (X : ZMod d → ℝ) (hl : 
       map_add' := fun y z => by ext a; simp; ring
       map_smul' := fun c y => by ext a; simp; ring }
   have hinj : Function.Injective T := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     have hy' : ∀ a, l * y a + y (a - 1) = 0 := fun a => congrFun hy a
     ext a

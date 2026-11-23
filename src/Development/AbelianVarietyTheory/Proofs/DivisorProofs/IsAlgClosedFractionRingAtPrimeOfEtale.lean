@@ -70,7 +70,7 @@ theorem isAlgClosed_fractionRing_atPrime_of_etale : ∀ (T E : Type) [CommRing T
   intro T E _ _ _ _ _ P _ _ hK
   haveI : Module.Flat T (Localization.AtPrime P) := Module.Flat.trans T E (Localization.AtPrime P)
   have hTEp : Function.Injective (algebraMap T (Localization.AtPrime P)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro t ht
     by_contra h0
     have hreg := Module.Flat.isSMulRegular_of_nonZeroDivisors (M := (Localization.AtPrime P))

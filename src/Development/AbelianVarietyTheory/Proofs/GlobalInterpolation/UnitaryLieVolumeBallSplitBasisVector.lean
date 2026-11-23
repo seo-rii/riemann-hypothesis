@@ -229,7 +229,7 @@ theorem row_eq (e : Option (Fin P' ⊕ Fin Q') ≃ (Fin P ⊕ Fin Q)) (X : lieU 
 
 theorem coord_injective (e : Option (Fin P' ⊕ Fin Q') ≃ (Fin P ⊕ Fin Q)) (he : SignCompat e) :
     Function.Injective (coord e he) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro X h
   have h1 : (X.val (e none) (e none)).im = 0 := congrArg (fun t => t.1.1) h
   have h2 : ∀ a, X.val (e (some a)) (e none) = 0 := fun a => congrArg (fun t => t.1.2 a) h

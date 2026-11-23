@@ -166,7 +166,7 @@ theorem injective_of_constantCoeff {R S V : Type*} [CommRing R] [CommRing S]
     (ψ : MvPolynomial V R →+* MvPolynomial V S) (hX : ∀ v, ψ (X v) = X v)
     (h : ∀ r, constantCoeff (ψ (C r)) = 0 → r = 0) : Function.Injective ψ := by
   classical
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro P hP
   by_contra hne
   obtain ⟨a, ha, hmin⟩ := P.support.exists_minimal (support_nonempty.2 hne)
@@ -279,7 +279,7 @@ theorem elimIdeal_ne_bot {p : Ideal (MvPolynomial σ K)} [hP : p.IsPrime]
       MvPolynomial {v : β × σ // v ∉ elimIndices Set.univ j₀} B :=
     ((linFormElim u hu Set.univ).restrictScalars K).comp (mapAlgHom (Algebra.ofId K B))
   have hχ : Function.Injective χ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro f hf
     have h1 : map (algebraMap K B) f ∈ Ideal.span (Set.range (linForm u : β → _)) := by
       rw [← Set.image_univ, ← ker_linFormElim u hu]

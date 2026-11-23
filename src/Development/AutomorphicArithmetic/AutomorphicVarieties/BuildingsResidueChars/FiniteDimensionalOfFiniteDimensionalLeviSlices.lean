@@ -91,7 +91,7 @@ theorem UpperTheory.finiteDimensional_of_finiteDimensional_levi_slices :
     · intro m hm x
       exact hV m hm (emb (e1 r s) x.1 * emb (e2 r s) x.2)
   refine FiniteDimensional.of_injective (Φ.submoduleMap S) ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have hx' : ∀ p, Φ x p = 0 := fun p => congrFun (congrArg Subtype.val hx) p
   apply Subtype.ext

@@ -100,7 +100,7 @@ theorem exists_linearEquiv_comp_eq_and_apply_eq [FiniteDimensional K V] {E E' : 
   have hEf (x) : E' (f x) = E x := by
     rw [hf, map_add (f := _), hs1', LinearMap.mem_ker.mp (e (π x)).2, add_zero]
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have h0 : E x = 0 := by rw [← hEf, hx, map_zero]
     rw [hf, h0, map_zero, zero_add, ZeroMemClass.coe_eq_zero, map_eq_zero_iff _ e.injective] at hx

@@ -171,7 +171,7 @@ theorem exists_seq_emb {B Ω : Type} [CommRing B] [IsDomain B] [Algebra.FiniteTy
       fun g => RingHom.liftOfSurjective_comp_apply _ _ _ g⟩
   choose r hr using hex
   have hinj : ∀ m, Function.Injective (r m) := fun m => by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro b hb
     obtain ⟨g, rfl⟩ := hπ b
     exact (hker m g).1 ((hr m g).symm.trans hb)

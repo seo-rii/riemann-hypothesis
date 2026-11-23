@@ -58,7 +58,7 @@ theorem hermFam_isometry_injective {K : Type*} [Field K] [NumberField K] {V V' :
     [AddCommGroup V] [Module K V] [AddCommGroup V'] [Module K V']
     (h : HermFam K V) (h' : HermFam K V') (M : V →ₗ[K] V')
     (hM : ∀ s a b, h'.form s (M a) (M b) = h.form s a b) : Function.Injective M := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra h0
   obtain ⟨s⟩ : Nonempty (K →+* ℂ) := inferInstance

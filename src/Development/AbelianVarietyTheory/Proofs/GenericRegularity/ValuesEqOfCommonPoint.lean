@@ -157,7 +157,7 @@ theorem away_lift {K R T : Type} [Field K] [CommRing R] [Algebra K R] [Field T] 
 theorem away_inj {K R T : Type} [Field K] [CommRing R] [Algebra K R] [CommRing T] [Algebra K T] (g : R)
     (m : Localization.Away g →ₐ[K] T)
     (h : Function.Injective (m.comp (IsScalarTower.toAlgHom K R (Localization.Away g)))) : Function.Injective m := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro s hs
   obtain ⟨⟨a, n⟩, hm⟩ := IsLocalization.surj (Submonoid.powers g) s
   have h1 : m (algebraMap R _ a) = 0 := by

@@ -314,7 +314,7 @@ theorem s5b7_ideal (p : Ideal O) [hp : p.IsMaximal] (hp0 : p ≠ ⊥) [Finite (O
   apply le_antisymm
   · let ev : (p →ₗ[O] X) →ₗ[O] X := LinearMap.applyₗ (⟨t, htp⟩ : p)
     have hev : Function.Injective ev := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro ψ hψ
       ext c
       have h1 := hcomm ψ ⟨t, htp⟩ c
@@ -326,7 +326,7 @@ theorem s5b7_ideal (p : Ideal O) [hp : p.IsMaximal] (hp0 : p ≠ ⊥) [Finite (O
       (LinearMap.lcomp O X (Submodule.subtype p)) ∘ₗ
         (LinearMap.ringLmapEquivSelf O O X).symm.toLinearMap
     have hj : Function.Injective j := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro x hx
       have h1 : j x ⟨t, htp⟩ = 0 := by rw [hx]; rfl
       have h2 : t • x = 0 := by simpa [j] using h1
@@ -463,7 +463,7 @@ theorem s5b7_main (hO : ¬ IsField O) (X : Type) [AddCommGroup X] [Module O X] [
     have h1 := ih _ hlt P N ι1 hι1 hA rfl
     have h2 := s5b7_step hO M X N hN
     have hinj : Function.Injective (LinearMap.lcomp O X ι1) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro φ hφ
       ext y
       obtain ⟨a, b, hab, hEq⟩ := Finite.exists_ne_map_eq_of_infinite

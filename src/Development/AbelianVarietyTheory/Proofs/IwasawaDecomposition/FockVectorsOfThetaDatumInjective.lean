@@ -121,7 +121,7 @@ theorem pure_X_mul (hadd : ∀ f f', P f → P f' → P (f + f')) (hsm : ∀ (a 
 theorem injective_of_pderiv {Y : Type} [AddCommGroup Y] [Module ℂ Y] (L : MvPolynomial ι ℂ →ₗ[ℂ] Y)
     (hd : ∀ Q, L Q = 0 → ∀ i, L (MvPolynomial.pderiv i Q) = 0) (hC : ∀ c : ℂ, L (MvPolynomial.C c) = 0 → c = 0) :
     Function.Injective L := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   have h0 : ∀ Q : MvPolynomial ι ℂ, Q.totalDegree = 0 → L Q = 0 → Q = 0 := by
     intro Q h hL
     have e := MvPolynomial.totalDegree_eq_zero_iff_eq_C.1 h

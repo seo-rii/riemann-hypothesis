@@ -107,7 +107,7 @@ theorem finrank_skewHermitian_eq :
         simp only [Prod.smul_fst, Prod.smul_snd, Submodule.coe_smul, smul_add, RingHom.id_apply,
           smul_comm δ c] }
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨A, B⟩ h
     have hA := (hW' _).mp A.2
     have hB := (hW' _).mp B.2

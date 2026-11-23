@@ -118,7 +118,7 @@ theorem exists_dvr_in_finite_ext (O : Type) [CommRing O] [IsDomain O] [IsDiscret
   have hf : ∀ a, f (algebraMap (integralClosure O L) (Localization.AtPrime P) a) =
       algebraMap (integralClosure O L) L a := fun a => IsLocalization.lift_eq hunit a
   have hfinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨⟨a, s⟩, h⟩ := IsLocalization.surj P.primeCompl x
     have h1 := congrArg f h

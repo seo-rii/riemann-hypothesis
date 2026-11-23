@@ -114,7 +114,7 @@ private theorem card_H0dual {R k Γ Γ' M : Type} [Field R] [Field k] [Finite k]
       map_add' := fun f f' => by ext; simp }
   have hT : ∀ f m, T f m = Algebra.trace R k (f m) := fun _ _ => rfl
   have hinj : Function.Injective T := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro f hf
     ext m
     refine (traceForm_nondegenerate R k).1 (f m) fun a => ?_

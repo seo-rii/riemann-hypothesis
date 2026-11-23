@@ -108,7 +108,7 @@ theorem curveUnit_unit_gen [Fintype ι]
     have h2 := Ideal.mul_mem_right (↑v⁻¹ : RZs X la N (Ω Z) (gF Z) w) _ h1
     rwa [mul_assoc, Units.mul_inv, mul_one] at h2
   have hinj : Function.Injective (LinearMap.mulRight (Kp X la N) (toOsK X la w u)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     obtain ⟨b, rfl⟩ := toOsK_surjective X la w y
     rw [LinearMap.mulRight_apply, ← map_mul, toOsK_eq_zero_iff] at hy

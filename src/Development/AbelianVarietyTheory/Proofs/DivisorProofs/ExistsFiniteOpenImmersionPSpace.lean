@@ -69,7 +69,7 @@ theorem finite_integralClosure_field (R L : Type*) [CommRing R] [Algebra.FiniteT
     letI : Algebra R' L := (Ideal.Quotient.lift I (algebraMap R L) fun _ h => h).toAlgebra
     haveI : IsScalarTower R R' L := .of_algebraMap_eq fun _ => rfl
     have hinj : Function.Injective (algebraMap R' L) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro a ha
       obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective a
       exact Ideal.Quotient.eq_zero_iff_mem.mpr ha

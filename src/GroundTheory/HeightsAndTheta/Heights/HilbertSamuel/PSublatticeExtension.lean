@@ -137,7 +137,7 @@ theorem SublatticeExtension.proof : SublatticeExtension.Statement := by
   have hvR := SublatticeExtension.linearIndependent_real_of_discrete (imageLattice φ) _
     (fun i => (mem φ _).2 ⟨ψ (g i), rfl⟩) hvZ
   refine ⟨Ψ, hext, hall, ?_⟩
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   have hc := Fintype.linearIndependent_iff.1 hvR (bR.equivFun y)
     (by rw [← bR.constr_apply_fintype ℝ]; exact hy)

@@ -59,7 +59,7 @@ noncomputable def homToH1 {O G M : Type} [CommRing O] [Group G] [AddCommGroup M]
 theorem homToH1_injective {O G M : Type} [CommRing O] [Group G] [AddCommGroup M] [Module O M]
     (U : Submodule O (G → M)) (hU : ∀ c ∈ U, ∀ g h, c (g * h) = c g + c h) :
     Function.Injective (homToH1 U hU) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro c hc
   obtain ⟨v, hv⟩ := (Submodule.Quotient.mk_eq_zero _).1 hc
   apply Subtype.ext

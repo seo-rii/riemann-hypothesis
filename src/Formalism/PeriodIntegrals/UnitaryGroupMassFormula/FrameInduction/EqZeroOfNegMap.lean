@@ -115,7 +115,7 @@ lemma eq_zero_of_negMap (k r : ℕ) (x : Fin (2 * r + k + 1) → ℂ) (hx : negM
 theorem negBound (k r : ℕ) (W : Submodule ℂ (Fin (2 * r + k + 1) → ℂ))
     (hW : ∀ x ∈ W, (herm (Hpk k r) x x).re ≤ 0) : Module.finrank ℂ W ≤ r + 1 := by
   have hinj : Function.Injective ((negMap k r).comp W.subtype) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have h1 : (a : Fin (2 * r + k + 1) → ℂ) = 0 :=
       eq_zero_of_negMap k r a ha (hW a a.2)

@@ -71,7 +71,7 @@ variable {O k}
 
 theorem toPi_bij : Function.Bijective (toPi O k) := by
   constructor
-  · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  · rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨v, rfl⟩ := Submodule.Quotient.mk_surjective _ x
     have h : ∀ a, ∃ c, algebraMap O (FractionRing O) c = v a := fun a =>
@@ -293,7 +293,7 @@ theorem length_le (Q : Finset (PlE D.host))
     · trivial
     · exact cH_mem_H1ur _ _ _ _ _ _ _ hv
   refine Module.length_le_of_injective (c.restrict hc) ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   refine Subtype.ext (eq_zero_of_cH (ι := Unit) (Gen.Trep i s k ψ) _ (fun _ => toPi _ _)
     (fun _ => continuous_of_discreteTopology) (fun _ => equivariant D i s k ψ) ⟨?_, ?_⟩ x.1 fun _ => ?_)

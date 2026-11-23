@@ -84,7 +84,7 @@ theorem exists_dual (R : RiemLat E g Λ) (i : Fin (2 * g)) :
   simp [Module.Basis.coord_apply, Finsupp.single_apply]
 
 theorem perExt_injective (R : RiemLat E g Λ) : Function.Injective (C.perExt R) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   have hc : ∀ i, C.bas.repr y i = 0 := by
     intro i

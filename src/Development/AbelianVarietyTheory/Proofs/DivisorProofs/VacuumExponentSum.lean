@@ -108,7 +108,7 @@ theorem le_rank_half {m : ℕ} {G s t : Matrix ι ι ℂ} (hpos : (G * s).PosDef
     m ≤ ((1 / 2 : ℂ) • (1 + t)).rank := by
   refine le_trans ?_ (Matrix.rank_mul_le_left _ B)
   have hinj : Function.Injective (((1 / 2 : ℂ) • (1 + t)) * B).mulVecLin := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have h1 : B *ᵥ a + t *ᵥ (B *ᵥ a) = 0 := by
       rw [Matrix.mulVecLin_apply, ← Matrix.mulVec_mulVec, Matrix.smul_mulVec, Matrix.add_mulVec, Matrix.one_mulVec] at ha

@@ -180,7 +180,7 @@ theorem injective_of_flat_of_ker_le_map {A B C : Type} [CommRing A] [CommRing B]
         _ = I ^ (k + 1) • K := by rw [pow_succ, Submodule.mul_smul]
   have h3 := hle' n
   rw [hn, Ideal.zero_eq_bot, Submodule.bot_smul] at h3
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro b hb
   exact (Submodule.mem_bot A).mp (h3 hb)
 

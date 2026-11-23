@@ -73,7 +73,7 @@ theorem exists_generization {o : Type} [CommRing o] [IsDomain o] [CharZero o] {S
   let β : o →+* K := (Spec.preimage (x ≫ s)).hom
   have hβ : x ≫ s = spMap β := (Spec.map_preimage (x ≫ s)).symm
   have hinj : Function.Injective β := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have e : spMap β (default : PrimeSpectrum K) = ξ := by
       rw [← hβ]

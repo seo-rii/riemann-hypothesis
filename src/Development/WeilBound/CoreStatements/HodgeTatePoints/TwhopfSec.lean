@@ -223,7 +223,7 @@ theorem sub_order : ∀ (R : Type) [CommRing R] [IsDomain R] [IsIntegrallyClosed
     · rintro ⟨s, hs⟩
       exact ⟨s, funext fun t => inj ((hΦ s t t.2).symm.trans (hs t t.2))⟩
   have hinj : Function.Injective Φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro s hs
     refine sec_inj R T Γ U s fun t h => ?_
     have := hΦ s ⟨t, h⟩ h

@@ -238,7 +238,7 @@ theorem norm_sq_scaledR (y : X.Ψ → Fin r → ℂ) :
     Real.sq_sqrt (c_pos X _).le]
 
 theorem scaledR_injective : Function.Injective (scaledR X x) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   funext τ
   by_contra h

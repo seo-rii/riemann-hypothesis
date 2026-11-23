@@ -70,7 +70,7 @@ theorem localization_subalgebra_frac :
         rfl }
   have hφ : ∀ x, φ x = φ0 x := fun _ => rfl
   have hinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨⟨c, s⟩, rfl⟩ := IsLocalization.mk'_surjective P.primeCompl x
     rw [hφ, hmk, IsLocalization.mk'_eq_zero_iff] at hx

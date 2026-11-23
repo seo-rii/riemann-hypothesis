@@ -112,7 +112,7 @@ lemma finOf_tangent (B : BX R₀) (p : ℕ) (hp : p ≠ 0) (C : Type) [Field C] 
     (by rw [map_nsmul, hv, smul_sub, hz, hz', sub_self, map_zero])
   have hinj : Function.Injective
       (p • LinearMap.id : (finOf_fst (R₀ := R₀) C).ker →ₗ[R₀] (finOf_fst (R₀ := R₀) C).ker) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have ha' : p • (a.1 : DualNumber C) = 0 := congrArg Subtype.val ha
     apply Subtype.ext

@@ -142,7 +142,7 @@ theorem eq_zero_of_op_eq_zero (c : ℂ) {y : ℝ → ℂ} (hy : Differentiable �
 
 theorem stepMap_injective (c : ℂ) (S : Submodule ℂ (ℝ → ℂ)) :
     Function.Injective (stepMap c S) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   have h1 : op c y.1 = 0 := congrArg (fun p : S × ℂ => (p.1 : ℝ → ℂ)) hy
   have h2 : y.1 0 = 0 := congrArg Prod.snd hy

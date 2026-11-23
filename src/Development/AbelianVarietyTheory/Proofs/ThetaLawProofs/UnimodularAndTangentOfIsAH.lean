@@ -66,7 +66,7 @@ lemma mem_iff (u u₀ : HolUnif A L g) (F : (Fin g → ℂ) →ₗ[ℂ] (Fin g �
 
 lemma injective (u u₀ : HolUnif A L g) (F : (Fin g → ℂ) →ₗ[ℂ] (Fin g → ℂ))
     (hF : ∀ z, u₀.ex (F z) = u.ex z) : Function.Injective F := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro z hz
   have hm : ∀ t : ℂ, t • z ∈ u.Λ := fun t => by
     rw [← mem_iff u u₀ F hF, map_smul, hz, smul_zero]

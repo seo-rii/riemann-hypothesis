@@ -118,7 +118,7 @@ theorem exists_tensor_equiv (A : Subalgebra R (X → R)) (B : Subalgebra R (Y �
       exact mul_mem_pspan a.2 b.2
     | add a b ha hb => rw [map_add (f := _)]; exact C.add_mem ha hb
   have hinj : Function.Injective m := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro w hw
     obtain ⟨n, l, b, h⟩ := exists_dual_family (R := R) A
     let c : (A →ₗ[R] R) → A ⊗[R] B →ₗ[R] B := fun l => (TensorProduct.lid R B).toLinearMap ∘ₗ l.rTensor B

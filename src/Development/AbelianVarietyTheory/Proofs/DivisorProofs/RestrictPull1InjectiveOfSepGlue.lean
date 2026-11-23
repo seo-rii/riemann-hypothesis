@@ -62,7 +62,7 @@ theorem restrict_pull1_injective_of_sep_glue {R : Type} [CommRing R] {C : Type} 
       (∀ t t' (u : T ⟶ G.obj t) (a : t ⟶ t'), s t' (u ≫ G.map a) = mp F (G.map a) (s t u)) →
       ∃ x : F.obj T, ∀ t u, mp F u x = s t u) :
     Function.Injective (CoefMap.restrict F G).pull1 := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro c hc
   obtain ⟨f, rfl⟩ := H1.mk_surjective F c
   rw [CoefMap.pullCohomologyOne_class, H1.mk_eq_zero] at hc

@@ -534,7 +534,7 @@ namespace GlobalTheory.PicDiv
 theorem injective_of_finite_not_field (k B : Type) [Field k] [IsAlgClosed k] [CommRing B] [IsDomain B]
     [Algebra k B] (y : B) (hfin : (Polynomial.aeval (R := k) y).Finite) (hB : ¬ IsField B) :
     Function.Injective (Polynomial.aeval (R := k) y) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro p hp
   by_contra hp0
   have hint : IsIntegral k y := (isAlgebraic_iff_isIntegral).mp ⟨p, hp0, hp⟩

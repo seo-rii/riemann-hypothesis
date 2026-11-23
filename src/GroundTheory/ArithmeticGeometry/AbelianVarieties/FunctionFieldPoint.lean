@@ -140,7 +140,7 @@ instance : Algebra.IsIntegral F[X] W.toAffine.CoordinateRing := Algebra.IsIntegr
 
 theorem evalAt_injective (h : (W.baseChange L).toAffine.Equation u v) (hu : Transcendental F u) :
     Function.Injective (evalAt W h) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   have hker : RingHom.ker (evalAt W h) = ⊥ := by
     apply Ideal.eq_bot_of_comap_eq_bot (R := F[X])
     ext p

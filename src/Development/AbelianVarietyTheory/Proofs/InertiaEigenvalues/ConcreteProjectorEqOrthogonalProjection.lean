@@ -84,7 +84,7 @@ theorem semi_expand (y : Fin n → K) : J y = ∑ i, σ (y i) • J (Pi.single i
   rw [this, LinearMap.map_smulₛₗ]
 
 theorem semi_injective (hli : LinearIndependent ℂ fun i => J (Pi.single i 1)) : Function.Injective J := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   rw [semi_expand σ J y] at hy
   have h0 := (Fintype.linearIndependent_iff.1 hli) (fun i => σ (y i)) hy

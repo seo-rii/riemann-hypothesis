@@ -96,7 +96,7 @@ theorem homLat_fg {K : Type} [Field K] [NumberField K] {a b : ℕ}
       map_add' := fun y z => by ext1 x; simp [toMat_add, Matrix.add_mulVec]
       map_smul' := fun c y => by ext1 x; simp [toMat_smul, Matrix.smul_mulVec] }
   have hF : Function.Injective F := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     rw [Submodule.span_span_of_tower] at hAs
     have : Matrix.toLin' (toMat y) = 0 := by

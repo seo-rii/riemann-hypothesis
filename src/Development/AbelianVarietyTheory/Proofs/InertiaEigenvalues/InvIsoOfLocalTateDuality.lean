@@ -105,7 +105,7 @@ theorem colim_equiv {O : Type} [CommRing O] [TopologicalSpace O] {G : Type} [Gro
         rfl }
   have hΨ : ∀ n (y : N n), Ψ y = ψ n y := fun n y => hind _ n y (hnn _) y.2
   have hΨi : Function.Injective Ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     obtain ⟨n, hn⟩ := hcov y
     have h1 : ψ n ⟨y, hn⟩ = 0 := (hΨ n ⟨y, hn⟩).symm.trans hy

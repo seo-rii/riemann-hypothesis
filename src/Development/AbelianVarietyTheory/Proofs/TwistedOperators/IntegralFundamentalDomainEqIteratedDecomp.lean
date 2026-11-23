@@ -136,7 +136,7 @@ theorem integral_fundamentalDomain_eq_iterated : ∀ (D : D7) (V W : HSp D) (a b
     ((hc₁.comp continuous_fst).add (hc₂.comp (continuous_fst.comp continuous_snd))).add
       (hc₃.comp (continuous_snd.comp continuous_snd))
   have hEi : Function.Injective Ehom := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨s, z, y⟩ h
     obtain ⟨h1, h2, h3⟩ := hinj s z y h
     simp [h1, h2, h3]

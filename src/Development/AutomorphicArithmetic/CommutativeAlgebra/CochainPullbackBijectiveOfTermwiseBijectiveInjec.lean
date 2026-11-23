@@ -198,7 +198,7 @@ private theorem conn_of_coneAt {K L I : Cx R} (g : K ⟶ L) (M : ℤ)
     (∀ n, n < M → Function.Bijective (cpull g I n)) ∧ Function.Injective (cpull g I M) := by
   have inj : ∀ n, n ≤ M → Function.Injective (cpull g I n) := by
     intro n hn
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     obtain ⟨x, rfl⟩ := CohomologyClass.mk_surjective c
     have hpx : δ n (n + 1) (pre g I n x) = 0 := by

@@ -84,7 +84,7 @@ theorem exists_ext_zmod {N : ℕ} [NeZero N] {A B : Type} [AddCommGroup A] [AddC
   let ι : ZMod N →+ AddCircle (1 : ℚ) := ZMod.lift N ⟨e, heN⟩
   have hι : ∀ k : ℤ, ι (k : ZMod N) = e k := fun k => ZMod.lift_coe N ⟨e, heN⟩ k
   have hinj : Function.Injective ι := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     obtain ⟨k, rfl⟩ := ZMod.intCast_surjective c
     rw [hι, he, AddCircle.coe_eq_zero_iff] at hc

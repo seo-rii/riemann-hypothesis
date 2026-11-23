@@ -141,7 +141,7 @@ theorem pull_restrict_small_injective (P : ObjectProperty C) (hP : ∀ S S', (S 
     (sep : ∀ T, Sep F fun S (_ : T ⟶ S) ↦ P S) (glue : ∀ T, Glue F fun S (_ : T ⟶ S) ↦ P S)
     (van : ∀ T, Van1 F fun S (_ : T ⟶ S) ↦ P S) :
     Function.Injective (CoefMap.restrict F P.ι).pull2 := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro c hc
   obtain ⟨z, rfl⟩ := H2.mk_surjective F c
   rw [CoefMap.pullCohomologyTwo_class, H2.mk_eq_zero] at hc

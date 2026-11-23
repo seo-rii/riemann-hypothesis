@@ -81,7 +81,7 @@ theorem inner_of_norm_sq {H : Type} [NormedAddCommGroup H] [InnerProductSpace �
 omit [FiniteDimensional ℂ M] in
 theorem inj_of_norm_sq {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] (f : M →ₗ[ℂ] H) {n : ℝ} (hn : 0 < n)
     (h : ∀ x, ‖f x‖ ^ 2 = n * ‖x‖ ^ 2) : Function.Injective f := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have := h x
   rw [hx, norm_zero] at this

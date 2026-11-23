@@ -140,7 +140,7 @@ theorem relLength_read (h : Induces emb v) (rd : V →ₛₗ[emb] W) {ι : Type}
       refine Finset.sum_congr rfl fun a _ => ?_
       simp only [Pi.add_apply, Pi.smul_apply, TensorProduct.add_tmul, TensorProduct.smul_tmul']
   have hinj : Function.Injective g := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro t ht
     obtain ⟨c, hc, s, hs⟩ := hnorm t
     have h1 : ∑ a, algebraMap O' (FractionRing O') (s a) • rd (b a) = 0 := by

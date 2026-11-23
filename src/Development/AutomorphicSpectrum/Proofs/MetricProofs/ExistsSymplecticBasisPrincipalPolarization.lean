@@ -85,7 +85,7 @@ theorem imForm_smul_I {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (z : Fin g →
 theorem imForm_injective {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ)
     (hpos : ∀ z : Fin g → ℂ, z ≠ 0 → 0 < (ReciprocityTheory.ChartRestriction.G.Geo.Tor.hermForm Hm z z).re) :
     Function.Injective (imForm Hm) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro z hz
   by_contra h0
   have h1 := imForm_smul_I Hm z
@@ -138,7 +138,7 @@ theorem exists_symplectic_basis : ∀ (g : ℕ) (Λ : Submodule ℤ (Fin g → �
     have := hanti l l
     omega
   have hinj : Function.Injective Ef := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro l hl
     have hle : Submodule.span ℝ (Λ : Set (Fin g → ℂ)) ≤
         LinearMap.ker (imForm Hm (l : Fin g → ℂ)) := by

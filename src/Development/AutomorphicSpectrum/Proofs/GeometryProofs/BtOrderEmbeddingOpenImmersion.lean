@@ -81,7 +81,7 @@ theorem btEmb_localData (R : Type) [CommRing R] [IsDomain R] [IsIntegrallyClosed
         IsLocalRing.closedPoint R' → x ∈ U := by
   have hA := GlobalTheory.CompanionTheory.Relay.btOrder_isHopfOrder_noetherian R T Γ
   have hinj : Function.Injective (algebraMap R R') := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro r hr
     by_contra hr0
     have hreg : IsSMulRegular R' r :=

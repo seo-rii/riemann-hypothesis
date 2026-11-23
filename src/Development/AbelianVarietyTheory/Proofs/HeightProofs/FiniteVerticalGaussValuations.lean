@@ -148,7 +148,7 @@ theorem injective_of_dvr {R Ω : Type} [CommRing R] [IsDomain R] [Field Ω] (φ 
     obtain ⟨c, hc⟩ := hm
     apply ha0
     rw [← hψ, hc, map_mul, h, zero_mul]
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro r hr
   by_contra hr0
   have hinj := IsLocalization.injective (Localization.AtPrime P) (M := P.primeCompl)

@@ -124,7 +124,7 @@ theorem isIntegralElem_coneMap (v : J → Ω) (e : Fin (D + 1) → J) (hf : IsPr
     (coneMap ℤ (v ∘ e) : MvPolynomial (Fin (D + 1)) ℤ →+* Polynomial Ω).IsIntegralElem
       (coneMap ℤ v q) := by
   have hinj : Function.Injective (coneMap ℤ (v ∘ e)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro p hp
     have : p ∈ coordIdeal ℤ (v ∘ e) := by simpa [coordIdeal, RingHom.mem_ker] using hp
     rw [hf.free] at this

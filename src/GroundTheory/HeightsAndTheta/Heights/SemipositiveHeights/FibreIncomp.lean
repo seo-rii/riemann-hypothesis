@@ -83,7 +83,7 @@ theorem card_add_card_forgottenBlocks [Fintype K] {κ : K → K'} (hκ : Functio
 omit [Fintype K] [∀ k, Fintype (ι k)] in
 theorem algebraMap_injective_of_horizontal (I : Ideal (MRing ι)) (h : IsHorizontal I) :
     Function.Injective (algebraMap ℤ (MRing ι ⧸ I)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   rw [← Ideal.Quotient.mk_algebraMap, MvPolynomial.algebraMap_eq, Ideal.Quotient.eq_zero_iff_mem] at ha
   have h' : a ∈ I.comap (C : ℤ →+* MRing ι) := ha

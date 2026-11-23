@@ -176,7 +176,7 @@ theorem exists_cyclic_vector : ∀ (K : Type) [Field K] (n : ℕ) (γ : Matrix (
   let F : (Fin n → K) →ₗ[K] (Fin n → K) :=
     T ∘ₗ (degreeLT K n).subtype ∘ₗ (degreeLTEquiv K n).symm.toLinearMap
   have hinj : Function.Injective F := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     have hd : γ.charpoly ∣ (((degreeLTEquiv K n).symm c : degreeLT K n) : K[X]) := hv _ hc
     have hdeg : (((degreeLTEquiv K n).symm c : degreeLT K n) : K[X]).degree < γ.charpoly.degree := by

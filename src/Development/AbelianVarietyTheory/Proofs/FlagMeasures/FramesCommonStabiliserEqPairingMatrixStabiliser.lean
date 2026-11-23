@@ -276,7 +276,7 @@ theorem stab_eq : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
       rw [Submodule.span_union, Submodule.span_eq, hco'.sup_eq_top] at h1
       exact fun x y => h1 x trivial y trivial
     have hinj : Function.Injective φ := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro v hv
       apply Matrix.vecMul_injective_of_isUnit ((Matrix.isUnit_iff_isUnit_det _).2 S.herm.2)
       funext j

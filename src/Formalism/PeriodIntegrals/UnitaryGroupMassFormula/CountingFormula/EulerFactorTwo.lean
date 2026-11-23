@@ -139,7 +139,7 @@ theorem locE_isUnit_or_exists_algEquiv_prod_swap {F E : Type} [Field F] [Valuati
         simp only [Prod.algebraMap_apply, Algebra.algebraMap_self, RingHom.id_apply]
         rw [← smul_add, hpq, Algebra.algebraMap_eq_smul_one] }
   have ginj : Function.Injective g := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     have hz' : z.1 • p + z.2 • q = 0 := hz
     have h1 : z.1 • p = 0 := by

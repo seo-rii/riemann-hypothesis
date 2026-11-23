@@ -69,7 +69,7 @@ private lemma exists_roots {A : Type} [CommRing A] [Nontrivial A] {g : A[X]} (hg
     simp [h1]
   | succ N ih =>
     have hinj : Function.Injective (AdjoinRoot.of g) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro a ha
       by_contra h
       exact AdjoinRoot.mk_ne_zero_of_natDegree_lt hg (C_ne_zero.mpr h)

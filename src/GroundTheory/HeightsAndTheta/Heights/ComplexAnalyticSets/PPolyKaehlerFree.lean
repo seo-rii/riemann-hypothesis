@@ -57,7 +57,7 @@ theorem PolyKaehlerFree.proof : PolyKaehlerFree.Statement := by
   set B := MvPolynomial (Fin n) k
 
   have hinj : Function.Injective (mapBaseChange R k B) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨y, rfl⟩ := (Algebra.H1Cotangent.exact_δ_mapBaseChange R k B x).mp hx
     rw [Subsingleton.elim y 0, map_zero]

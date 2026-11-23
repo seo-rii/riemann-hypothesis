@@ -98,7 +98,7 @@ theorem eval_bijective : Function.Bijective (Module.Dual.eval (ZMod n) M) := by
   have := finite_dual (n := n) (M := M)
   have := finite_dual (n := n) (M := Module.Dual (ZMod n) M)
   have hinj : Function.Injective (Module.Dual.eval (ZMod n) M) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra h
     obtain ⟨φ, hφ⟩ := exists_dual_ne_zero (n := n) h
@@ -326,7 +326,7 @@ theorem h2_equiv_of_torsion_character [CompactSpace G] {c : G × G → ℤ_[l]} 
       map_add' := fun x y => Subtype.ext (funext fun p => smul_add _ _ _)
       map_smul' := fun a x => Subtype.ext (funext fun p => smul_comm _ _ _) }
   refine ⟨(LinearEquiv.ofBijective ((Submodule.mkQ _).comp Φ) ⟨?_, fun y => ?_⟩).symm⟩
-  · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  · rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨b, hb, hbx⟩ := (Submodule.Quotient.mk_eq_zero _).1 hx
     rw [hd] at hbx

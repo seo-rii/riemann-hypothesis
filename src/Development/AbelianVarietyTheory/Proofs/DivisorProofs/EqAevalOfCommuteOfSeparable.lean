@@ -75,7 +75,7 @@ theorem exists_ne_zero_aeval_eq_zero {K V : Type} [Field K] [AddCommGroup V] [Mo
   by_contra hcon
   push_neg at hcon
   have hinj : Function.Injective (aeval g p) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro w hw
     by_contra hw0
     exact hcon w hw0 hw
@@ -174,7 +174,7 @@ theorem exists_cyclic {K V : Type} [Field K] [AddCommGroup V] [Module K V]
   have hφ : ∀ p, φ p = aeval g p e := fun p => rfl
   let ψ : degreeLT K (Module.finrank K V) →ₗ[K] V := φ ∘ₗ (degreeLT K (Module.finrank K V)).subtype
   have hinj : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro q hq
     have h1 : g.charpoly ∣ (q : K[X]) := he _ hq
     have h2 : (q : K[X]).degree < g.charpoly.degree := by

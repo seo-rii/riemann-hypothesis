@@ -137,7 +137,7 @@ theorem cechComplex_homology_isZero_of_colimit :
   | zero =>
     rw [cochainComplex_exactAt_zero_iff, cechComplex_d B 0]
     change Function.Injective (Cube.d B 1)
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     obtain ⟨C, hC⟩ := CubeColim.exists_cocycle_lift μ ρ h1 h2 h3 h4 one_pos z hz
     obtain ⟨a, ha, hda⟩ := hC (max C N) (le_max_left _ _)

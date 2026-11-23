@@ -559,7 +559,7 @@ theorem rows_bijective (hP : ProjRowsR) (hUn : UnimodGf) : RowsBij := by
     rfl
   constructor
   ·
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨S, hS⟩ h0
     obtain ⟨A, hA, rfl⟩ := (hmemE S).1 hS
     have h0' : (Re.comp A) tw = 0 := h0

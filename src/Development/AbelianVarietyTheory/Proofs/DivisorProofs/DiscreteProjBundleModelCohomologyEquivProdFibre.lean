@@ -317,7 +317,7 @@ theorem model : ∀ (R : Type) [CommRing R] (q N : ℕ) (I : Cx R) (F : PSh) (n 
     rw [hc', ← jsec_res, hc', ev_res]
     rfl
   have hΦinj : Function.Injective Φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     obtain ⟨γ, rfl⟩ := c.mk_surjective
     change CohomologyClass.mk _ = 0 at hc

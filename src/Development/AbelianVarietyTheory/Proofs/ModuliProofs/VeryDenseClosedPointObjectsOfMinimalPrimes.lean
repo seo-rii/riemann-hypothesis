@@ -175,7 +175,7 @@ theorem veryDense_objPrimes_of_minimalPrimes : Out.Laws → Out.Laws2 → (∀ (
     rw [← hx, RingHom.mem_ker] at ha
     simp [ha]
   have hx₀ : Function.Injective x₀ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective a
     have : algebraMap K Ω (x a) = 0 := ha

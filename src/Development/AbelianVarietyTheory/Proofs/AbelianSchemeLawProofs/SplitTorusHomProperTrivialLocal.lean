@@ -105,7 +105,7 @@ theorem pt_ext_of_quotients {A C : Type} [CommRing A] [CommRing C] [Algebra A C]
     a = b := by
   have : IsAffine (sp A C).left := inferInstanceAs (IsAffine (Spec (CommRingCat.of C)))
   have hinj : Function.Injective (equalizer.ι a b).left.appTop := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have hb := ConcreteCategory.bijective_of_isIso (Scheme.ΓSpecIso (CommRingCat.of C)).hom
     apply hb.1

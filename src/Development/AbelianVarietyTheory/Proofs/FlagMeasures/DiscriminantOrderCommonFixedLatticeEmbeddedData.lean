@@ -269,7 +269,7 @@ theorem exists_proj_aut {H : HermSpace K V} (hK : IsCMUnram K) (hP : PD H.B.flip
   set F₀ : V →ₗ[K] V := (fixSp η).subtype ∘ₗ p + (g : K)⁻¹ • (LinearMap.id - (η : V →ₗ[K] V)) with hF₀
   have f1 : ∀ x, F₀ x = p x + (g : K)⁻¹ • (x - η x) := fun x => rfl
   have hinj : Function.Injective F₀ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have a1 := congrArg p hx
     rw [f1, map_add (f := _), map_smul, (p2 _).2 (p4 x), p1, smul_zero, add_zero, map_zero] at a1

@@ -93,7 +93,7 @@ theorem isLattice_capX_and_exists_glue (D : D7) (u : D.what₂.Word) (Y X : HSp 
   obtain ⟨hfg, hsp, hsd⟩ := hL
   have hT := Tu_ne_zero u
   have hinj : Function.Injective ι := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     refine X.nondeg.1 x fun y => ?_
     rw [← hi, hx, map_zero, LinearMap.zero_apply]

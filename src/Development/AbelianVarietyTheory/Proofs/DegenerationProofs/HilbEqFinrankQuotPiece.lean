@@ -62,7 +62,7 @@ theorem hilb_eq_finrank_quotPiece {k J : Type} [Field k] [Finite J] (C : Set (J 
     funext fun v => ha v.1 v.2
   let φ := Ideal.Quotient.liftₐ (MvPolynomial.vanishingIdeal k C) ev hker
   have hφ : Function.Injective φ.toLinearMap := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨x, rfl⟩ := Ideal.Quotient.mk_surjective x
     exact Ideal.Quotient.eq_zero_iff_mem.2 fun v hv => congrFun (show ev x = 0 from hx) ⟨v, hv⟩

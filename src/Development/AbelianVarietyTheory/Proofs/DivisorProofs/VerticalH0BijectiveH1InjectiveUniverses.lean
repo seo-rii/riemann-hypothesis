@@ -82,7 +82,7 @@ variable {C : Type a} [Category.{0} C] {C' : Type b} [Category.{0} C']
 
 theorem vertical_h0_injective {K : Cx C} {K' : Cx C'} (m : CxMap K K') (hq : m.QAll) :
     Function.Injective m.vert.h0 := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   rintro ⟨g, hg⟩ h
   have hg' := components_of_D0_eq_zero _ g (AddMonoidHom.mem_ker.1 hg)
   apply Subtype.ext
@@ -104,7 +104,7 @@ theorem vertical_h0_surjective {K : Cx C} {K' : Cx C'} (m : CxMap K K') (hq : m.
 
 theorem vertical_h1_injective {K : Cx C} {K' : Cx C'} (m : CxMap K K') (hq : m.QAll) :
     Function.Injective m.vert.h1 := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro c hc
   obtain ⟨⟨⟨f, ω⟩, hfω⟩, rfl⟩ := QuotientAddGroup.mk_surjective c
   rw [CxMap.h1, QuotientAddGroup.map_mk, QuotientAddGroup.eq_zero_iff,

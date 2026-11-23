@@ -142,7 +142,7 @@ theorem extend_isAlt (h : IsLatticeEmb φ) {β : LinearMap.BilinForm ℤ M} (hβ
 
 theorem extend_nondegenerate_iff (h : IsLatticeEmb φ) (β : LinearMap.BilinForm ℤ M) :
     (h.extend β).Nondegenerate ↔ Function.Injective β := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   constructor
   · intro hn x hx
     apply h.1

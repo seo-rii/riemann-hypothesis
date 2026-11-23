@@ -96,7 +96,7 @@ theorem isLocallyConstant_cochain_zero (w : (Fin 0 → G) → A) : IsLocallyCons
 
 theorem cohomologyToGroupCohomology_one_injective :
     Function.Injective (cohomologyToGroupCohomology A 1).hom := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro h hh
   obtain ⟨z, rfl⟩ := homologyπ_surjective (cochainsComplex A) 1 h
   have hh' : (HomologicalComplex.homologyMap (cochainsComplexι A) 1).hom

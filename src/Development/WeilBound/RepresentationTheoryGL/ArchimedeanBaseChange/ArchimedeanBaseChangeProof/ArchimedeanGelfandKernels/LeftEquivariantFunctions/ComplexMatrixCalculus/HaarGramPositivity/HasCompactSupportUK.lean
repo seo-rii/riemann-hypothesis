@@ -147,7 +147,7 @@ theorem gram_isPositive (hF : MatrixFrechetDerivativeAtZeroLaws) (lam : Fin n �
 
 theorem gram_isUnit (hF : MatrixFrechetDerivativeAtZeroLaws) (lam : Fin n → ℤ) : IsUnit (gramQ (n := n) lam) := by
   have hinj : Function.Injective (gramQ (n := n) lam) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     by_contra hne
     have h1 := inner_gram hF lam v

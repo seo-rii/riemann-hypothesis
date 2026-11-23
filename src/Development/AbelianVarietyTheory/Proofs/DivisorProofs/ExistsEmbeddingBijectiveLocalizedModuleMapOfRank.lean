@@ -204,7 +204,7 @@ theorem exists_embedding_bijective_localizedModule_map_of_rankAtStalk :
     intro P hP hfP
     exact localizedModule_map_injective_of_surjective_of_rankAtStalk r ⟨P, hP⟩ (hrank ⟨P, hP⟩) φ
       (localizedModule_map_surjective_of_smul_mem_range _ φ f hfP hfr)
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   induction y using LocalizedModule.induction_on with
   | h x s =>

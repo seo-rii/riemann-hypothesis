@@ -74,7 +74,7 @@ theorem exists_away_of_fg {R K : Type} [CommRing R] [IsDomain R] [Field K] [Alge
     ⟨IsLocalization.lift (M := Submonoid.powers f) (S := Localization.Away f) hpow,
       fun r => IsLocalization.lift_eq hpow r⟩
   have hl : Function.Injective l := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     obtain ⟨⟨a, s⟩, rfl⟩ := IsLocalization.mk'_surjective (Submonoid.powers f) z
     have h1 := congrArg l (IsLocalization.mk'_spec (Localization.Away f) a s)

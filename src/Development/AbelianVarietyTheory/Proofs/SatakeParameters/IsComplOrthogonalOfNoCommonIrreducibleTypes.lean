@@ -129,7 +129,7 @@ lemma restr_injective (B : V →ₗ[ℂ] V →ₗ[ℂ] ℂ) (hB : ∀ k φ ψ, B
     {S₁ S : Subrepresentation ρ} (h₁ : IsAtom S₁)
     (hn : ∃ x ∈ S₁.toSubmodule, ∃ y ∈ S.toSubmodule, B x y ≠ 0) :
     Function.Injective (B.domRestrict₁₂ S₁.toSubmodule S.toSubmodule) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   apply Subtype.ext
   refine left_ker_zero B hB h₁ hn a a.2 fun y hy => ?_
@@ -141,7 +141,7 @@ lemma restr_flip_injective (hσ : Function.Surjective σ) (B : V →ₗ[ℂ] V �
     {S₁ S : Subrepresentation ρ} (h : IsAtom S)
     (hn : ∃ x ∈ S₁.toSubmodule, ∃ y ∈ S.toSubmodule, B x y ≠ 0) :
     Function.Injective (B.domRestrict₁₂ S₁.toSubmodule S.toSubmodule).flip := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   apply Subtype.ext
   refine right_ker_zero hσ B hB h hn a a.2 fun x hx => ?_

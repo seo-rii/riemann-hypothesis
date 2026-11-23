@@ -107,7 +107,7 @@ theorem aic_of_isAlgClosed (K : Type) [Field K] [IsAlgClosed K] : GlobalTheory.E
 theorem algebraMap_injective_of_indEt {A O : Type} [CommRing A] [IsDomain A] [CommRing O]
     [Nontrivial O] [Algebra A O] (h : GlobalTheory.EtC.IndEt A O) : Function.Injective (algebraMap A O) := by
   haveI : Module.Flat A O := GlobalTheory.IndEtaleLocal.flat_of_isIndEtale h
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   by_contra ha0
   have hmem : (1 : O) ∈ Submodule.torsion A O := by

@@ -417,7 +417,7 @@ theorem main : ∀ (K V : Type) [Field K] [NumberField K] [StarRing K] [AddCommG
   set M := move H e y e' y' with hM
   have hiso : ∀ v w, H.B (M v) (M w) = H.B v w := move_isom hy hy' fun a => hX ▸ heX' a
   have hinj : Function.Injective M := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     exact H.nondeg v fun w => by rw [← hiso, hv]; simp
   have hbij : Function.Bijective M := ⟨hinj, LinearMap.injective_iff_surjective.1 hinj⟩

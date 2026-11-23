@@ -187,7 +187,7 @@ theorem Reading.nonempty (i : X.Tw) (b : Bool) : Nonempty (Reading X i b) := by
   let f : ℤ_[X.l i] →+* FractionRing (X.O0 i) :=
     (algebraMap (X.O0 i) (FractionRing (X.O0 i))).comp (algebraMap ℤ_[X.l i] (X.O0 i))
   have hf : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     by_contra h0
     rw [PadicInt.unitCoeff_spec h0, map_mul, map_pow, map_natCast] at hz

@@ -236,7 +236,7 @@ theorem transition_comp_groupCohomologyQuotientGalUnitsIso {U V : OpenNormalSubg
 
 theorem unitsInflation_fixedField_two_injective (U : OpenNormalSubgroup Gal(L/K)) :
     Function.Injective (unitsInflation (fixedField (U : Subgroup Gal(L/K))) 2).hom := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   obtain ⟨y₀, rfl⟩ : ∃ y₀, (groupCohomologyQuotientGalUnitsIso U 2).hom.hom y₀ = y :=
     ⟨(groupCohomologyQuotientGalUnitsIso U 2).inv.hom y, by

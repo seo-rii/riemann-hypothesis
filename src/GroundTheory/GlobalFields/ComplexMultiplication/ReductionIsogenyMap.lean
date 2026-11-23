@@ -66,7 +66,7 @@ section E1
 theorem injective_eval₂_residue_gaussX₂ :
     Function.Injective (eval₂RingHom (ResidueField.map (liftJ₂ W W'))
       (residue _ (gaussX (gaussCurve W W')))) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro p hp
   have h1 := congrArg (gaussResidue (gaussCurve W W')) hp
   have hc : (gaussResidue (gaussCurve W W')).comp (ResidueField.map (liftJ₂ W W')) =

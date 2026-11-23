@@ -101,7 +101,7 @@ theorem pt_matrices {v : Valuation C NNReal} (hv : v.Integers O) (P : HTPoint C 
   have hnd : ∀ x, (∀ y, P.e x y = 0) → x = 0 := fun x hx =>
     P.nondeg x fun y => by rw [pt_swap, hx, neg_zero]
   have hei : Function.Injective (P.e : V →ₗ[C] Module.Dual C V) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     exact hnd x fun y => by rw [hx]; rfl
   have hes := (LinearMap.injective_iff_surjective_of_finrank_eq_finrank

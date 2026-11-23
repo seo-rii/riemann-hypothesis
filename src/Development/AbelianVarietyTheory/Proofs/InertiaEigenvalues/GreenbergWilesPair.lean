@@ -140,7 +140,7 @@ theorem greenbergWiles_pair : PoitouTateTotallyComplex → LocalFiniteness → G
     (fun y => TDual.mk ((P.flip y).toZModLinearMap (l ^ n))) (fun y y' => by refine DFunLike.ext _ _ fun x => ?_; simp)
   have hf : ∀ y x, f y x = P x y := fun _ _ => rfl
   have inj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     refine h2 y fun x => ?_
     rw [← hf, hy]

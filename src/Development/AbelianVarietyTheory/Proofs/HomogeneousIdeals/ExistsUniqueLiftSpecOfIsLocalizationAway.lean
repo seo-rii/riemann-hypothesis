@@ -283,7 +283,7 @@ theorem isIntegrallyClosedIn_of_isLocalization {R : Type*} [CommRing R] [IsInteg
   have : IsScalarTower R R' K :=
     IsLocalization.localization_isScalarTower_of_submonoid_le R' K M (nonZeroDivisors R) hM
   refine isIntegrallyClosedIn_of_injective_fractionRing R R' K ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨⟨r, m⟩, rfl⟩ := IsLocalization.mk'_surjective M x
   have h0 : algebraMap R K r = 0 := by

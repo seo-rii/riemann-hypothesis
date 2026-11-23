@@ -88,7 +88,7 @@ private theorem semi_bij (R : Type) [CommRing R] (L B : Cx R) [L.IsStrictlyGE 0]
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by ring⟩
   constructor
   · have ex := (GlobalTheory.T.hypercohomology_mappingCone_second_variable_exact ℤ ((chains ℤ).obj E) ρ.toZ m).2.2
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨y, rfl⟩ := (ex x).1 hx
     rw [Subsingleton.elim y 0, map_zero]

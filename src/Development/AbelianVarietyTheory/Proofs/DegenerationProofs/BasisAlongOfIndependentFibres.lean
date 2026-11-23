@@ -116,7 +116,7 @@ theorem exists_comb_of_independent {F : Type} [Field F] {Y : Scheme.{0}} {M : LB
     Finset.mul_sum, Finset.sum_mul, Matrix.of_apply, _root_.mul_assoc]
     exact Finset.sum_comm
   have inj : Function.Injective (Matrix.vecMulLinear (Matrix.of m)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     refine ind c fun j => ?_
     have hc' : Matrix.vecMul c (Matrix.of m) = 0 := hc

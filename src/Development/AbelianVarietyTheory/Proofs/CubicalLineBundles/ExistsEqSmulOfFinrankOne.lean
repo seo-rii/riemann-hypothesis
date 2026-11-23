@@ -81,7 +81,7 @@ theorem finrank_add_le_of_disjoint {A B : Submodule R M} (h : Disjoint A B) :
   have h1 := A.finrank_quotient_add_finrank
   have h2 : Module.finrank R B ≤ Module.finrank R (M ⧸ A) := by
     refine LinearMap.finrank_le_finrank_of_injective (f := A.mkQ ∘ₗ B.subtype) ?_
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro b hb
     exact Subtype.ext (Submodule.disjoint_def.1 h _ ((Submodule.Quotient.mk_eq_zero A).1 hb) b.2)
   omega

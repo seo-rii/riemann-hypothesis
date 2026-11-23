@@ -163,7 +163,7 @@ theorem mem_eigenspace_of_mem_ker (D : Derivation k R R) {z : R} (hz : D z = z)
 
 theorem powerSum_injective (p : ℕ) [CharP k p] (D : Derivation k R R) {z w : R}
     (hz : D z = z) (hw : z * w = 1) : Function.Injective (powerSum D z p) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   have hinj : Function.Injective (fun i : Fin p => ((i : ℕ) : k)) := fun i j hij =>
     Fin.ext (CharP.natCast_injOn_Iio k p i.2 j.2 hij)

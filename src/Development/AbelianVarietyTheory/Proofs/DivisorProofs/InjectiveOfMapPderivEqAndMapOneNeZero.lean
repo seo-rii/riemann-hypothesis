@@ -105,7 +105,7 @@ theorem injective_of_pderiv {V : Type} [AddCommGroup V] [Module ℂ V] {ι : Typ
       rcases hc with hc | hc
       · exact (mem_support_iff.1 hm) hc
       · exact (Nat.cast_add_one_ne_zero _) hc
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro p hp
   exact key (p.support.sup fun m => m.degree) p
     (fun m hm => Finset.le_sup (f := fun m : ι →₀ ℕ => m.degree) hm) hp

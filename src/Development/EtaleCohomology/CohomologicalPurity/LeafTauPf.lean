@@ -117,7 +117,7 @@ theorem LeafTau_of (hBd : LeafBd) (hG : LeafGeo) (hPB : LeafPB) (hTl : LeafTail)
   have hinj : ∀ n i, Function.Injective (Hs.fgt q (pr d R) n i) := by
     intro N i
     obtain ⟨n, rfl⟩ : ∃ n, N = n + 1 := ⟨N - 1, by ring⟩
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro σ hσ
     obtain ⟨u, rfl⟩ := ((hδ q _ hm n i).2.2 σ).1 hσ
     obtain ⟨a, ha⟩ := (hUb n i).2 u

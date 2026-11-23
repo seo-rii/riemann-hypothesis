@@ -201,7 +201,7 @@ theorem index_unscale {R W : Type} [CommRing R] [IsDomain R] [IsDiscreteValuatio
     (hB : IsLatIn B V) (hT : IsLatIn T V) (hL : IsLatIn L V) {c : R} (hc : c ≠ 0) {e : ℝ}
     (h : sIdx l B (L.map (c • LinearMap.id)) ≤ sIdx l B (T.map (c • LinearMap.id)) + e) : sIdx l T L ≤ e := by
   have hi : Function.Injective (c • (LinearMap.id : W →ₗ[R] W)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro w hw
     exact htf c w hc hw
   rw [(sIdx_add_and_mono R _ l _ _ _ _ hB (isLatIn_smul hT hc) (isLatIn_smul hL hc)).1, sIdx_map _ hi] at h

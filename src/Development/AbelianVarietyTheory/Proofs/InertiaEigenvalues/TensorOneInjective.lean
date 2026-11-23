@@ -61,7 +61,7 @@ theorem bcris_nontrivial (l : ℕ) [Fact l.Prime] : Nontrivial (Per.Bcris l) := 
 theorem algebraMap_injective (l : ℕ) [Fact l.Prime] :
     Function.Injective (algebraMap ℤ_[l] (Per.Bcris l)) := by
   have := bcris_nontrivial l
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra h0
   rw [PadicInt.unitCoeff_spec h0, map_mul, map_pow, map_natCast] at hx

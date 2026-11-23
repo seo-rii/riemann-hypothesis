@@ -72,7 +72,7 @@ def skewPair (σ : L →+* L) (θ d : L) :
 
 theorem skewPair_injective (σ : L →+* L) (θ : L) {d : L} (hd : d ≠ 0) :
     Function.Injective (skewPair (n := n) σ θ d) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro X hX
   have h1 : X - θ • (X + adjJ σ X) = 0 := congrArg Prod.fst hX
   have h2 : d • (X + adjJ σ X) = 0 := congrArg Prod.snd hX

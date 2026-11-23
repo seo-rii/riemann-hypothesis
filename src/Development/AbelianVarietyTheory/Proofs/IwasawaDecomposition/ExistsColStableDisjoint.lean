@@ -71,7 +71,7 @@ theorem exists_sub_perp {E : Type*} [AddCommGroup E] [Module ℂ E] (B : E →�
     rw [map_smul, map_smulₛₗ]
     exact smul_eq_zero_of_right _ (congrFun h i)
   have hinj : Function.Injective (L ∘ₗ W.subtype) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     exact Subtype.ext (hB _ (hL x hx x x.2))
   obtain ⟨x, hx⟩ := (LinearMap.injective_iff_surjective_of_finrank_eq_finrank (by simp)).mp hinj

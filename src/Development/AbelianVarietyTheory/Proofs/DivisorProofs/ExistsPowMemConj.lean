@@ -66,7 +66,7 @@ theorem jM_root (P : Pair G) : jM P (AdjoinRoot.root P.pol) = P.γ := by
   rw [← AdjoinRoot.mk_X, jM_mk, aeval_X]
 
 theorem jM_injective (P : Pair G) : Function.Injective (jM P) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   obtain ⟨f, rfl⟩ := AdjoinRoot.mk_surjective a
   rw [jM_mk] at ha

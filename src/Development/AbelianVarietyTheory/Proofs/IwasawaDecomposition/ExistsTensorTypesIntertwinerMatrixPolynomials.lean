@@ -77,7 +77,7 @@ theorem exists_bilinear {G G' H H' P : Type} [AddCommGroup H] [Module ℂ H] [Ad
   let ev : 𝓗 →ₗ[ℂ] P := (LinearMap.applyₗ v₀).comp 𝓗.subtype
   have hev : ∀ A : 𝓗, ev A = (A : H →ₗ[ℂ] P) v₀ := fun _ => rfl
   have hinj : Function.Injective ev := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro A hA
     rcases hirr (LinearMap.ker (A : H →ₗ[ℂ] P)) (fun g hg v hv => by
       rw [LinearMap.mem_ker] at hv ⊢

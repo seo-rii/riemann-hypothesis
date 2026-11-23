@@ -93,7 +93,7 @@ theorem relIndex_span {R S M W : Type} [CommRing R] [CommRing S] [Algebra R S] [
     | tmul a x => rw [← tmul_smul]; exact Submodule.tmul_mem_baseChange_of_mem a (hme x)
     | add x y hx hy => rw [smul_add]; exact add_mem hx hy
   have hinj : Function.Injective θ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     have h1 := hmz z
     rw [hP, Submodule.mem_span_range_iff_exists_fun] at h1

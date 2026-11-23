@@ -214,7 +214,7 @@ theorem coe_logValBallHom (n : ℕ) (hn : (absRamificationIndex (K := K) : ℤ) 
 
 theorem logValBallHom_injective (n : ℕ) (hn : (absRamificationIndex (K := K) : ℤ) < (p - 1 : ℤ) * n) :
     Function.Injective (logValBallHom p n hn) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro u hu
   have h := congrArg Subtype.val hu
   rw [coe_logValBallHom] at h

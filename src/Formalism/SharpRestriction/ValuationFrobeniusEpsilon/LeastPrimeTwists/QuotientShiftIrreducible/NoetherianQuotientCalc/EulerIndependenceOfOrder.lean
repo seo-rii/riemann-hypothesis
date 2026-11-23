@@ -128,7 +128,7 @@ theorem gK_mk (z : Z1 (M := M) s t) :
     gK s t (Submodule.Quotient.mk z) = cK s t z := rfl
 
 theorem fK_inj : Function.Injective (fK (M := M) s t) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨a, rfl⟩ := Submodule.Quotient.mk_surjective _ x
   rw [fK_mk, Submodule.Quotient.mk_eq_zero] at hx

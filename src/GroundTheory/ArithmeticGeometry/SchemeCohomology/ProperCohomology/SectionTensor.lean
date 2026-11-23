@@ -70,7 +70,7 @@ lemma bijective_app_of_factor {A B : X.Modules} (φ : A ⟶ B) {P : PMod X}
     fun i σ => NatTrans.naturality_apply φ.mapPresheaf (homOfLE i).op σ
   have inj : ∀ V ≤ W, Function.Injective (φ.app V) := by
     intro V hV
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     rw [hφapp] at ha
     have hS := hq₁ (op V) _ ha

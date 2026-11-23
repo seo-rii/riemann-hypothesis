@@ -111,7 +111,7 @@ theorem lTensor_map_injective {R A M : Type*} [CommRing R] [CommRing A] [Algebra
     induction y with
     | add a b ha hb => simp only [map_add (f := _), ha, hb]
     | tmul m r => simp [hφ, c]
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨y, rfl⟩ := hsurj x
   have h0 := hcomp y

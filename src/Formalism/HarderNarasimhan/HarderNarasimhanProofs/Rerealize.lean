@@ -156,7 +156,7 @@ theorem covol_rk_eq (α : G →+ E) (β : G →+ F) (hn : ∀ g, ‖β g‖ = �
     intro y
     rw [hval y _ (ex y).choose_spec.2, hn, (ex y).choose_spec.2]
   have hinj : Function.Injective τf := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     have : ‖(y : E)‖ = 0 := by rw [← hnorm, hy]; simp
     exact Subtype.ext (norm_eq_zero.mp this)

@@ -373,7 +373,7 @@ theorem exists_initial_completion :
     rw [h0, map_zero] at h1
     exact hπ.ne_zero (Subtype.ext ((map_eq_zero io).1 h1.symm))
   have ginj : Function.Injective g := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra hx0
     obtain ⟨n, u, rfl⟩ := adicCompletion_eq_unit_mul_pow hπ x hx0

@@ -90,7 +90,7 @@ private theorem finite_quotient_of_pow_le {A S : Type} [CommRing A] [CommRing S]
 private theorem injective_of_ringKrullDim_eq {A S : Type} [CommRing A] [IsDomain A] [CommRing S]
     [Algebra A S] [Module.Finite A S] {n : ℕ} (hA : ringKrullDim A = n) (hS : ringKrullDim S = n) :
     Function.Injective (algebraMap A S) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro r hr
   by_contra hr0
   letI : Algebra (A ⧸ Ideal.span {r}) S :=

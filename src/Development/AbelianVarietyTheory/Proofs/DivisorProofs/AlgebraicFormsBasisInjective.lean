@@ -60,7 +60,7 @@ variable {K X E W : Type} [Field K] [AddCommGroup X] [Module K X] [NormedAddComm
 theorem lin_injective (hj : IsForm j) {n : ℕ} (f : (Fin n → K) →ₗ[K] X) (hf : Function.Injective f)
     (hZ : ∀ y, j (f y) ∈ LinearMap.range (LinearMap.adjoint θ)) :
     Function.Injective (Formalism.IndefR.Cx.lin fun k => θ (j (f (Pi.single k 1)))) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro c hc
   have h1 : LinearIndependent K fun k : Fin n => f (Pi.single k 1) := by
     have := (Pi.basisFun K (Fin n)).linearIndependent.map' f (LinearMap.ker_eq_bot.2 hf)

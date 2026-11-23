@@ -65,7 +65,7 @@ variable [IsNoetherianRing R]
 
 theorem CompletionNormalDescent.algebraMap_injective (hJ : J ≤ (⊥ : Ideal R).jacobson) :
     Function.Injective (algebraMap R (AdicCompletion J R)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   have H : IsHausdorff J R := IsHausdorff.of_le_jacobson J R (by simpa only [Ideal.jacobson_bot] using hJ)
   refine H.haus a fun n => ?_

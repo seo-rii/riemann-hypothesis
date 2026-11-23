@@ -84,7 +84,7 @@ theorem beta_apply (A : Et F E) (x : A.K) (y' y : A.L) :
 theorem algMap_inj (A : Et F E) (hK : IsField A.K) (hL : IsField A.L) :
     Function.Injective (algebraMap A.K A.L) := by
   haveI : Nontrivial A.L := ⟨hL.exists_pair_ne⟩
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro k hk
   by_contra hne
   obtain ⟨k', hk'⟩ := hK.mul_inv_cancel hne

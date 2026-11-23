@@ -132,7 +132,7 @@ theorem coinv_cInd (H U : Subgroup G) (hUH : U ≤ H) (hUn : U.Normal) (θ : U �
     exact (hker _).2 (Submodule.subset_span ⟨⟨_, hv⟩, _, rfl⟩)
   let Tq := (twKer (cInd H σ) U θ).liftQ Tl hkill
   have hinj : Function.Injective Tq := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     obtain ⟨f, rfl⟩ := Submodule.Quotient.mk_surjective _ y
     have h0 : Tl f = 0 := hy

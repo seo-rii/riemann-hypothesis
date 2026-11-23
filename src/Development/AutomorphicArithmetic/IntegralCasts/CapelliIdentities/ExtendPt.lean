@@ -67,7 +67,7 @@ theorem UpperTheory.Reformulated.B.Qi4.extendPt :
     exact ha
   let ybar : (Λ ⧸ Q.comap (algebraMap Λ T)) →+* K := Ideal.Quotient.lift _ (y : Λ →+* K) hker
   have hinj : Function.Injective ybar := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective a
     rw [Ideal.Quotient.eq_zero_iff_mem, hQc]

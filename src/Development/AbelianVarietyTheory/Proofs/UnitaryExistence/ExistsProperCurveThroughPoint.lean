@@ -236,7 +236,7 @@ theorem isDedekindDomain_sections [PerfectField k] (s : X ⟶ Sp k) [LocallyOfFi
   let g : Γ(f.normalization, U) →ₐ[k] Γ(Z, ⊤) :=
     { (f.toNormalization.appLE U ⊤ e).hom with commutes' := fun a => congr($hc a) }
   have hg : Function.Injective g := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     by_contra h0
     have h : f.normalization.basicOpen a ≠ ⊥ := fun h => h0 ((basicOpen_eq_bot_iff a).mp h)

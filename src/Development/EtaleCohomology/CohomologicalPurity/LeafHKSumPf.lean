@@ -99,7 +99,7 @@ theorem LeafHKSum_of : LeafHKSum := by
   constructor
   · let Φ : HK R c.pt F n →+ (∀ a, HK R (K a) F n) := AddMonoidHom.pi fun a => HK.pull R (c.inj a) F n
     change Function.Injective Φ
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨z, rfl⟩ := x.mk_surjective
     have h1 : ∀ a, ∃ β : Cochain (K a) (res R F) (n - 1),

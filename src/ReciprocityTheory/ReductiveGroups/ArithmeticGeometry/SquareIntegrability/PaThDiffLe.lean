@@ -270,7 +270,7 @@ theorem propA_core (hP : Ext.PackingCount) (hA : Ext.GaussianTailBound) (Y : GT 
     have h3 := hsq F
     nlinarith
   have hinj : Function.Injective T := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro F hF0
     have h0 : paJet c (paTh Y q F) = 0 := congrArg Subtype.val hF0
     have h1 := hlow F.2

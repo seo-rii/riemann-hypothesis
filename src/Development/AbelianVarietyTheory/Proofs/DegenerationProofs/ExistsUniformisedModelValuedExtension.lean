@@ -62,7 +62,7 @@ namespace GlobalTheory.Ex.ExtModel
 theorem exists_extend {F : Type} [Field F] [CharZero F] [Algebra.IsAlgebraic ℚ F] (V : ValuationSubring F)
     {K : Type} [Field K] [CharZero K] (b : V →+* K) : ∃ bF : F →+* K, ∀ x : V, bF x = b x := by
   have hb : Function.Injective b := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra h0
     have h1 : IsAlgebraic ℤ (x : F) := (IsFractionRing.isAlgebraic_iff ℤ ℚ F).2 (Algebra.IsAlgebraic.isAlgebraic _)

@@ -137,7 +137,7 @@ def constMap (d : ℕ) : (Fin d → O) →ₗ[O] (Fin d → (noPlaces p O Kf).Tu
 
 theorem constMap_injective (d : ℕ) (hinj : Function.Injective (algebraMap O Kf)) :
     Function.Injective (constMap p O Kf d) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro c hc
   funext i
   have h : c i • (1 : (noPlaces p O Kf).Xsp) = 0 := congrFun (congrFun hc i) (fun v => isEmptyElim v)

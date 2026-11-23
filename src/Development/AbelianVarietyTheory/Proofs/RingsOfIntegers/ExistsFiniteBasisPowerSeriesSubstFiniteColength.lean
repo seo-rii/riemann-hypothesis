@@ -64,7 +64,7 @@ theorem finrank_quotient_eq_of_existsUnique {R : Type} [CommRing R] [Nontrivial 
   have hL : ∀ a, L a = Ideal.Quotient.mk I (∑ i, algebraMap R _ (a i) * e i) := fun a => by
     simp [L, Fintype.linearCombination_apply, Algebra.smul_def]
   have hinj : Function.Injective L := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     rw [hL, Ideal.Quotient.eq_zero_iff_mem, hI, Ideal.mem_span_range_iff_exists_fun] at ha
     obtain ⟨g, hg⟩ := ha

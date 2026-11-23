@@ -69,7 +69,7 @@ theorem exists_hom_of_ker_eq {R K K' : Type} [CommRing R] [Field K] [Field K'] (
     exact ⟨Ideal.Quotient.mk _ a, Ideal.Quotient.mk _ b, h⟩
   let g : (R ⧸ RingHom.ker φ) →+* K' := Ideal.Quotient.lift _ θ (fun a ha => by rw [← hk] at ha; exact ha)
   have hg : Function.Injective g := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective a
     rw [Ideal.Quotient.eq_zero_iff_mem, ← hk]

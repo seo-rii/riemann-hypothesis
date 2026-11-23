@@ -185,7 +185,7 @@ theorem quot_iso {N : ℕ} {n m : ℕ} {G : Matrix (Fin n) (Fin n) E} {V w : Mat
   have hUV : U * (W * G * Vᴴ) = 0 := by ext i j; exact congrFun (hz _ (u i).2).1 j
   refine ⟨U * (W * S), Matrix.vecMul_injective_iff.1 ?_, ?_⟩
   · change Function.Injective (U * (W * S)).vecMulLinear
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     refine hUi ?_
     have := (hz (c ᵥ* U) (by rw [vecMul_vecMul, hU, vecMul_zero])).2

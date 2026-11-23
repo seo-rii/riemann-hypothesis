@@ -234,7 +234,7 @@ theorem exists_hermitian_of_trace : ∀ (E : Type) [Field E] [NumberField E] [Is
     let g : (Fin N → E) →ₗ[ℚ] (Fin N → E) := g0.toRatLinearMap
     have gapp : ∀ u i, g u i = S u (Pi.single i 1) := fun _ _ => rfl
     have ginj : Function.Injective g := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro u hu
       have : S u = S 0 := by
         apply (Pi.basisFun E (Fin N)).ext

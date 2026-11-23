@@ -88,7 +88,7 @@ theorem mem_range_of_closed (a : A₀ →ₗ[R] A₁) (b : A₁ →ₗ[R] A₂) 
 theorem lTensor_liftQ_injective (b : A₁ →ₗ[R] A₂) (S : Submodule R A₁) (hSb : S ≤ LinearMap.ker b)
     (h : ∀ x, b.lTensor k x = 0 → x ∈ LinearMap.range (S.subtype.lTensor k)) :
     Function.Injective ((S.liftQ b hSb).lTensor k) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨y, rfl⟩ := LinearMap.lTensor_surjective k (Submodule.mkQ_surjective S) x
   rw [← LinearMap.comp_apply, ← LinearMap.lTensor_comp, Submodule.liftQ_mkQ] at hx
@@ -246,7 +246,7 @@ theorem phi_injective {A₀ A₁ A₂ : Type} [AddCommGroup A₀] [Module R A₀
     (hθa : ∀ x, mk (q ⟨a x, hab x⟩) = 0)
     (hqk : ∀ x, b.lTensor k x = 0 → (∃ y, d.lTensor k y = ψ.lTensor k x) → ∃ y, a.lTensor k y = x)
     (hinj : Function.Injective ((LinearMap.ker b).subtype.lTensor k)) : Function.Injective Φ := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro t ht
   obtain ⟨v, rfl⟩ := LinearMap.lTensor_surjective k hθ t
   obtain ⟨w, h1, h2⟩ := exists_cocycle Z Z' mk mk' e₁ he₁ hz Φ hΦ q v

@@ -76,7 +76,7 @@ theorem phi_quot_pow_injective :
     rw [hϖ.maximalIdeal_eq, Ideal.span_singleton_pow]
   have hπ : ϖ ^ k ≠ 0 := pow_ne_zero k hϖ.ne_zero
   generalize IsLocalRing.maximalIdeal O ^ k = I at hI hdisc
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro m hm
   obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective m
   obtain ⟨z₀, rfl⟩ := Submodule.Quotient.mk_surjective _ z

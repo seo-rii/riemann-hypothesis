@@ -74,7 +74,7 @@ omit [IsDiscreteValuationRing O'] in
 theorem flat_of (hϖ : Irreducible ϖ) (hϖ' : Irreducible ϖ') (h : algebraMap O O' ϖ = u * ϖ' ^ e) :
     Module.Flat O O' := by
   have hinj : Function.Injective (algebraMap O O') := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     by_contra h0
     obtain ⟨n, v, rfl⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible h0 hϖ

@@ -389,7 +389,7 @@ theorem satake_coeff (h : SphericalHecke μ (F := F) (n := n)) (l : Fin n → �
 
 theorem satakeHom_injective : Function.Injective (satakeHom μ (F := F) (n := n)) := by
   classical
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro h h0
   by_contra hne
   obtain ⟨g, hg⟩ : ∃ g, (h : HeckeAlgebra μ) g ≠ 0 := by

@@ -67,7 +67,7 @@ theorem exists_rightInverse {X : Matrix A D k} (hX : IsPrimFrame (SplitFlip.stdL
   have hf : ∀ v j, ((f v j : 𝒪[k]) : k) = (∑ i, (v i : k) • X.row i) j := fun v j => by
     simp [f, X', vecMul, dotProduct, Finset.sum_apply]
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     have h1 : ∑ i, (v i : k) • X.row i = 0 := by
       funext j; rw [← hf, hv]; rfl

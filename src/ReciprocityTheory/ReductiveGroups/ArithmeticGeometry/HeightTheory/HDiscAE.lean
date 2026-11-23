@@ -75,7 +75,7 @@ private theorem op_isFractionRing' (D N : ℕ) (la : HeightOneSpectrum (𝓞 K))
     exact MvPolynomial.map_injective _ (IsFractionRing.injective (𝓞 K) K)
   have hinj : Function.Injective (algebraMap (Op D N la) (KTf K D N)) := by
     show Function.Injective (OpToKT D N la)
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨⟨a, s⟩, rfl⟩ := IsLocalization.mk'_surjective (laT D N la).primeCompl x
     unfold OpToKT at hx

@@ -64,7 +64,7 @@ theorem mk_eq_zero_iff (z : Z1 ρ) :
 theorem mapH1_injective (u : M' →ₗ[R] M) (hu : ∀ g m, u (ρ' g m) = ρ g (u m)) (hinj : Function.Injective u)
     (h0 : ∀ m : M, (∀ g, ∃ m', ρ g m - m = u m') → ∃ m', m = u m') :
     Function.Injective (mapH1 ρ' ρ u continuous_of_discreteTopology hu) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨z, rfl⟩ := Submodule.Quotient.mk_surjective _ x
   obtain ⟨m, hm⟩ := (mk_eq_zero_iff ρ (cocycles1MapOfEquivariant ρ' ρ u continuous_of_discreteTopology hu z)).1 hx

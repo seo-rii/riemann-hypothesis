@@ -47,7 +47,6 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-set_option backward.isDefEq.respectTransparency false
 open MvPolynomial
 
 namespace GlobalTheory.CompanionTheory.TraceDerivation

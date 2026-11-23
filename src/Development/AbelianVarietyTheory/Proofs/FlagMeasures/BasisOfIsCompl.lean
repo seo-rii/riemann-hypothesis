@@ -295,7 +295,7 @@ theorem split_of_gram (L : LocE F E) [IsArtinianRing E] {n : ℕ} {H : Matrix (F
   have hφ : ∀ α j, φ α j = hf L H (∑ i, α i • g i) (g j) := fun α j => by
     simp only [φ, LinearMap.pi_apply, LinearMap.comp_apply, Fintype.linearCombination_apply]; rfl
   have hinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro α hα
     refine hg α fun j => ?_
     rw [← key, ← hφ, hα]; rfl

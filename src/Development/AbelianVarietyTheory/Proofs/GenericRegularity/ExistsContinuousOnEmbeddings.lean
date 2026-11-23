@@ -187,7 +187,7 @@ theorem exists_continuousOn_embeddings (K : Type) [Field K] [CharZero K] (σ : T
       (∀ f, τ f = ev f t) ∧ p.map (MvPolynomial.eval (cf t)) = (minpoly F pb.gen).map τ := by
     intro t ht
     have hinj : Function.Injective (MvPolynomial.eval₂Hom sg t : R →+* ℂ) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro q hq
       by_contra h
       exact hG t ht q h hq

@@ -84,7 +84,7 @@ theorem slope_eq_of_norm_eq {R V E F : Type*} [Ring R] [AddCommGroup V] [Module 
     intro y
     rw [f0_apply, hn, pre_eq]
   have hinj : Function.Injective f0 := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     have h0 : ‖(y : E)‖ = 0 := by
       rw [← f0_norm, hy]

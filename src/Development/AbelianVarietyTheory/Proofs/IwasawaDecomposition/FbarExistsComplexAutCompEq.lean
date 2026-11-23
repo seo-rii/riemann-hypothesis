@@ -181,7 +181,7 @@ theorem exists_ringEquiv_comp_eq : ∀ (g : ℕ) [Fact g.Prime] (t t' : Formalis
   let β' : Q →+* ℂ := Ideal.Quotient.lift (RingHom.ker α) β hker
   have hα' : Function.Injective α' := RingHom.kerLift_injective α
   have hβ' : Function.Injective β' := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro q hq
     obtain ⟨f, rfl⟩ := Ideal.Quotient.mk_surjective q
     have : β f = 0 := hq

@@ -124,7 +124,7 @@ private theorem hc_tame :
   haveI : Module.Finite k W := by
     let r' : W →ₗ[k] B1 (ρ.comp I.subtype : Representation k I M) := r.codRestrict _ fun z => hr ▸ ⟨z, rfl⟩
     refine Module.Finite.of_injective (r'.prod ((LinearMap.proj φ).comp W.subtype)) ?_
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     have z1 := ((hW _).1 z.2).1
     have e1 : r z = 0 := congrArg (fun p => p.1.1) hz

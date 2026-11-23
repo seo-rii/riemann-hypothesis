@@ -251,7 +251,7 @@ theorem card_basis_eq (htf : ∀ (n : ℕ) (x : Λ), n ≠ 0 → n • x = 0 →
   have h1 : Function.Injective i1.toIntLinearMap := fun x y h =>
     Subtype.ext (congrArg (fun z : I => (z : Λ)) h)
   have h2 : Function.Injective i2.toIntLinearMap := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have hx' : J.toAddSubgroup.relIndex I.toAddSubgroup • (x : Λ) = 0 := congrArg (fun z : J => (z : Λ)) hx
     exact Subtype.ext (htf _ _ hidx hx')

@@ -266,7 +266,7 @@ def FinGradedSub.embedH (n : ℕ) :
 
 set_option synthInstance.maxHeartbeats 100000 in
 theorem FinGradedSub.embedH_injective (n : ℕ) : Function.Injective (M.embedH c n) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   obtain ⟨z, rfl⟩ := Submodule.Quotient.mk_surjective _ y
   change Submodule.Quotient.mk _ = 0 at hy

@@ -188,7 +188,7 @@ theorem liftb_res_nat (H : Subgroup G) {T T' : LocLat G Qp LL O} (F : LatHom T.L
 
 theorem liftb_res_inj (H : Subgroup G) (hH : H = ⊤) (T : LocLat G Qp LL O) :
     Function.Injective (Formalism.MainNotions.DeltaInvariantLattices.res H T) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro κ
   induction κ using Submodule.Quotient.induction_on with
   | H c =>
@@ -2909,7 +2909,7 @@ theorem hstr_CompleteB (W : LocWach PD LL O v n) [IsAdicComplete (hstrI₀ O PD.
   refine ⟨hstrI O n PD.p, hstr_Q_mem W, hstr_φ_mem W, ?_⟩
   choose r b hb huniq using hfree.2
   have hinj : Function.Injective (hstrSyn W T r b hb) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     funext κ
     obtain ⟨i, j⟩ := κ
@@ -3013,7 +3013,7 @@ theorem hstra_abs {A' R D ι₁ ι₂ : Type} [CommRing A'] [CommRing R] [AddCom
     rw [hg, Submodule.coe_sum]
     rfl
   have hinj : Function.Injective g := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     have h0 : ∑ j, Θ (fun i => c (j, i)) • b j = 0 := by
       rw [← hgc, hc]

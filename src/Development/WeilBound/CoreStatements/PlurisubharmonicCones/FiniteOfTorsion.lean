@@ -252,7 +252,7 @@ theorem relIndex_matrix {r : ℕ} {v w : Fin r → M} (hv : LinearIndependent (�
 
 private theorem ringOfIntegers_ringHom_complex_injective {E : Type} [Field E] [NumberField E] (s : 𝓞 E →+* ℂ) :
     Function.Injective s := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   have hker : RingHom.ker s = ⊥ := by
     apply Ideal.eq_bot_of_comap_eq_bot (R := ℤ)

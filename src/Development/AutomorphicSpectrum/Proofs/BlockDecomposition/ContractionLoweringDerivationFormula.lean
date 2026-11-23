@@ -311,7 +311,7 @@ theorem exteriorSquare_equiv {R : Type} [CommRing R] (H : ℕ → Type) [∀ n, 
       D 0 l' (D 1 l (φ t)) = GlobalTheory.CompanionTheory.HopfC.Wedge.form l l' t • one := fun l l' t =>
     LinearMap.congr_fun (hext l l') t
   have hinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro t ht
     apply GlobalTheory.CompanionTheory.HopfC.Wedge.eq_zero_of_form b t
     intro l l'

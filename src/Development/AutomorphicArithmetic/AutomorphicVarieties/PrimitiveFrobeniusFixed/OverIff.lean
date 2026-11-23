@@ -362,7 +362,7 @@ theorem UpperTheory.V.ML.recip :
   have hι : ∀ u, ι (mk u) = u • w₀ := fun _ => rfl
   have hιm : ∀ u x, ι (mk u * x) = u • ι x := fun u x => map_smul ι u x
   have hinj : Function.Injective ι := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨u, rfl⟩ := Ideal.Quotient.mk_surjective x
     exact Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.mem_span_singleton.2 ((hw u).1 hx))

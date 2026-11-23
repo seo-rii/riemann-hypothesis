@@ -170,7 +170,7 @@ theorem exists_section (large₂ : Submodule k ((κ → k) × (κ → k)))
       (fun a b c => by
         simp only [Submodule.coe_smul, Prod.smul_fst, Prod.smul_snd, smul_dotProduct, dotProduct_smul, smul_eq_mul]; ring)
   have hinj : Function.Injective B := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     refine hXL x (mem_of_orth large₂ hiso hdim _ fun w hw => ?_)
     exact (sub_eq_zero.1 (LinearMap.congr_fun hx ⟨w, hw⟩)).symm

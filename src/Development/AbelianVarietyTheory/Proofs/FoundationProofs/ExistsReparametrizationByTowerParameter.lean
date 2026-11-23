@@ -295,7 +295,7 @@ theorem phiInv_mk_eq (g : Polynomial (O0 p)) :
 
 theorem phiInv_bij : Function.Bijective (phiInv p n) := by
   constructor
-  · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  · rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨g, rfl⟩ := AdjoinRoot.mk_surjective x
     rw [phiInv_mk_eq] at hx
@@ -338,7 +338,7 @@ theorem exists_isReb : ∀ (p : ℕ) [Fact p.Prime], ∀ (Ω : Type) [Field Ω] 
   haveI : IsDomain (AdjoinRoot (fY p n)) := Function.Injective.isDomain (phiInv p n) (phiInv_bij p n).1
   haveI : Module.Finite (O0 p) (AdjoinRoot (fY p n)) := (AdjoinRoot.powerBasis' (fY_monic p n)).finite
   have hιinj : Function.Injective ι := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra hne
     have hI := Ideal.comap_ne_bot_of_integral_mem (R := O0 p) hne (show x ∈ RingHom.ker ι from hx)

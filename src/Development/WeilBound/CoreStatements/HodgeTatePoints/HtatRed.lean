@@ -195,7 +195,7 @@ theorem injective_of_isBaseChange {R K L Ω : Type} [CommRing R] [IsDomain R] [F
     [IsFractionRing R K] [AddCommGroup L] [Module R L] [AddCommGroup Ω] [Module K Ω] [Module R Ω]
     [IsScalarTower R K Ω] {j : Module.Dual R L →ₗ[R] Ω} (hj : IsBaseChange K j) : Function.Injective j := by
   haveI := (isLocalizedModule_iff_isBaseChange (nonZeroDivisors R) K j).2 hj
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro w hw
   obtain ⟨c, hc⟩ := (IsLocalizedModule.eq_zero_iff (nonZeroDivisors R) j).1 hw
   refine LinearMap.ext fun e => ?_

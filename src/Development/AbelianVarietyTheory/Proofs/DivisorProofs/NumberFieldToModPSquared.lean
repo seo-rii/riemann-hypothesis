@@ -124,7 +124,7 @@ theorem nonempty_closure_ringHom_of_mul_mem : ∀ (K : Type) [Field K] [CharZero
   let φ : B →+* K := IsLocalization.lift (M := Submonoid.powers (N : O)) hunits
   have hφa : ∀ a : O, φ (algebraMap O B a) = (a : K) := fun a => IsLocalization.lift_eq hunits a
   have hinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro b hb
     obtain ⟨⟨a, m⟩, rfl⟩ := IsLocalization.mk'_surjective (Submonoid.powers (N : O)) b
     have h1 := congrArg φ (IsLocalization.mk'_spec B a m)

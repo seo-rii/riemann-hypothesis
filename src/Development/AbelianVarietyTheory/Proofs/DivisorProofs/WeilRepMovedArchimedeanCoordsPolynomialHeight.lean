@@ -104,7 +104,7 @@ def readC (M : Model σ X W) : Zs F n d →ₗ[ℝ] (InfinitePlace F → Fin n �
     rw [GlobalTheory.RealScalar.piInf_realAd_smul, Complex.real_smul]
 
 theorem readC_injective (hCM : IsCMExt F E σ) (M : Model σ X W) : Function.Injective (readC τ M) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro ζ hζ
   have hA := (liftI_at_movI F E σ n d X W M 1 ζ).1
   have h0 : liftI M ζ = 0 := by

@@ -105,7 +105,7 @@ theorem finrank_fixed {R G M K L : Type} [Field R] [Group G] [AddCommGroup M] [M
   have hΦ : ∀ x, Φ₀ x = ∑ i, m (b i) (x i) := fun x => by
     simp [Φ₀]
   have hinj : Function.Injective Φ₀ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have h3 : ∀ σ : L ≃ₐ[K] L, ∑ i, m (σ (b i)) (x i) = 0 := fun σ => by
       have := congrArg (A (s σ)) hx

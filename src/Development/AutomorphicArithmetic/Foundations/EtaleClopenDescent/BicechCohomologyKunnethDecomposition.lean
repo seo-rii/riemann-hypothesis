@@ -461,7 +461,7 @@ theorem sum_iL [Fintype ι] (F : Finset ι → Submodule k E) (a : coch F) : ∑
 
 theorem phi_inj [Fintype ι] [Fintype κ] (μ : E →ₗ[k] E' →ₗ[k] E'') (A : Finset ι → Submodule k E)
     (B : Finset κ → Submodule k E') (h : Disjoint₂ μ A B) : Function.Injective (phi μ A B) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro t ht
   have ev : ∀ I J, (TensorProduct.lift (μ.compl₁₂ (A I).subtype (B J).subtype)) ∘ₗ TensorProduct.map (rL A I) (rL B J) =
       LinearMap.proj (I, J) ∘ₗ phi μ A B := by

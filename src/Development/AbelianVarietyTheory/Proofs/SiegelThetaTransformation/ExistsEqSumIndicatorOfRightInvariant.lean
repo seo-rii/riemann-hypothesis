@@ -81,7 +81,7 @@ theorem exists_injective_comp_eq_of_surjective {k V W : Type*} [Field k] [AddCom
   have key : ∀ v, g (s (f v) + (θ (p v) : V)) = f v := fun v => by
     rw [map_add (f := _), hgs, (θ (p v)).2, add_zero]
   refine ⟨s ∘ₗ f + (LinearMap.ker g).subtype ∘ₗ θ.toLinearMap ∘ₗ p, ?_, LinearMap.ext key⟩
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro v hv
   have hv' : s (f v) + (θ (p v) : V) = 0 := hv
   have hfv : f v = 0 := by rw [← key v, hv', map_zero]

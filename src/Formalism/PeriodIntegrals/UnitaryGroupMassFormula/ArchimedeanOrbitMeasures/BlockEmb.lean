@@ -146,7 +146,6 @@ theorem continuous_embed (e : Fin k ≃ S) : Continuous (emb0 e) := by
     exact continuous_const
 
 
-set_option backward.isDefEq.respectTransparency false in
 theorem exp_embed (e : Fin k ≃ S) (X : Matrix (Fin k) (Fin k) ℂ) :
     NormedSpace.exp (emb0 e X) = emb0 e (NormedSpace.exp X) + (1 - emb0 e 1) := by
   letI : NormedRing (Matrix (Fin k) (Fin k) ℂ) := Matrix.linftyOpNormedRing

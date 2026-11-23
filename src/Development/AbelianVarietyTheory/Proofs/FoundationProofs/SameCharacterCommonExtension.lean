@@ -167,7 +167,7 @@ theorem common : ∀ (Γ O₀ A B : Type) [Group Γ] [CommRing O₀] [IsDomain O
     (hker F).1 (congrArg Subtype.val (RingHom.mem_ker.1 hF))⟩
   have hφ : ∀ F, φ (q F) = αB F := fun F => RingHom.liftOfRightInverse_comp_apply _ _ _ _ F
   have φi : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro r hr
     obtain ⟨F, rfl⟩ := hq r
     exact Subtype.ext ((hker F).2 (by rw [← hφ, hr]))

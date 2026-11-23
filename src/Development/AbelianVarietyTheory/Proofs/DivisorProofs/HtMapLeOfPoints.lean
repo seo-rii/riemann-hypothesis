@@ -137,7 +137,7 @@ theorem descent : ∀ (K V W : Type) [Field K] [NumberField K] [_root_.NumberFie
   have hBnfg : Bn.FG := Submodule.fg_pi fun _ => hBfg
   let Φ : V →ₗ[K] (Fin n → W) := LinearMap.pi φ
   have hΦinj : Function.Injective Φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     exact fun f hf => hinj f fun h => congrFun hf h
   have hΦle : A.map (Φ.restrictScalars (𝓞 K)) ≤ Bn := by
     rintro _ ⟨f, hf, rfl⟩ h -

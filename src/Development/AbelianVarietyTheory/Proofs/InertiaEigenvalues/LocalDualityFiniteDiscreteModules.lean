@@ -144,7 +144,7 @@ theorem exists_dual_equiv {n : ℕ} [NeZero n] {k : Type} [Field k] [Finite k]
     (fun y y' => by refine DFunLike.ext _ _ fun x => ?_; simp)
   have hf : ∀ y x, f y x = t (P x y) := fun _ _ => rfl
   have inj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     refine h2 y fun x => ht _ fun a => ?_
     have := hf y (a • x)
@@ -158,7 +158,7 @@ theorem exists_dual_equiv {n : ℕ} [NeZero n] {k : Type} [Field k] [Finite k]
   have c3 : Nat.card M ≤ Nat.card M' := by
     rw [← c2]
     refine Nat.card_le_card_of_injective (P : M → Module.Dual k M') ?_
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     exact fun x hx => h1 x fun y => by rw [hx]; rfl
   exact ⟨AddEquiv.ofBijective f (inj.bijective_of_nat_card_le (c1 ▸ c3)), hf⟩
 

@@ -110,7 +110,7 @@ theorem be_sq_le (x y : A.X) : A.be x y ^ 2 ≤ A.be x x * A.be y y :=
 
 theorem exists_sq_le_be (n : A.X →ₗ[ℤ] ℤ) : ∃ C : ℤ, 0 ≤ C ∧ ∀ μ, n μ ^ 2 ≤ C * A.be μ μ := by
   have hinj : Function.Injective A.be := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra h
     have := A.be_pos x h

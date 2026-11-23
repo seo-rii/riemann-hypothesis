@@ -192,7 +192,7 @@ lemma algebraMap_mk (a : ∀ i, V i) :
 
 instance [∀ i, IsFractionRing (V i) (K i)] : IsFractionRing (Ult U V) (Ult U K) := by
   have hinj : Function.Injective (algebraMap (Ult U V) (Ult U K)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨a, rfl⟩ := mk_surjective U x
     rw [algebraMap_mk, mk_eq_zero_iff] at hx

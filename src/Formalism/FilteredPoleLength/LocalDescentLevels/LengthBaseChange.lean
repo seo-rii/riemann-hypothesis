@@ -98,7 +98,7 @@ end LengthBaseChangeAlt
 theorem lengthBaseChangeLocal : LengthBaseChangeLocal := by
   intro O O₁ Q _ _ _ _ _ _ _ _ _ ϖ ϖ₁ u ε hϖ hϖ₁ hu hQ
   have hinj : Function.Injective (algebraMap O O₁) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra hx0
     obtain ⟨k, v, rfl⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hx0 hϖ

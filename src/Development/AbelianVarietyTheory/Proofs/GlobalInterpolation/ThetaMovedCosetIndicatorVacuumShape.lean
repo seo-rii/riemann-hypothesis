@@ -212,7 +212,7 @@ variable {X : Fields} (A : Amb X) {a b : ℕ}
 theorem embH_injective (hδ : A.δ ≠ 0) (hT : Nonempty X.Tau) :
     Function.Injective (embH (a := a) (b := b) (X.embC A.σ₀) A.δ) := by
   obtain ⟨τ⟩ := hT
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   apply LinearMap.pi_ext'
   intro j

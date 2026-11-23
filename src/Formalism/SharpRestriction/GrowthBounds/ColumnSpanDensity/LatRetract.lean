@@ -112,7 +112,7 @@ private theorem lrt_den (b : Module.Basis ι K V) (F : V) :
 private theorem lrt_inj (b : Module.Basis ι K V) (b' : Module.Basis ι' K V') (io : V →ₗ[K] V')
     (h : ∀ F, io F ∈ Submodule.span O (Set.range b') ↔ F ∈ Submodule.span O (Set.range b)) :
     Function.Injective io := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro F hF
   by_contra hne
   have h0 : b.repr F ≠ 0 := by simpa using hne

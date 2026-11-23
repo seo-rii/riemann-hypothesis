@@ -106,7 +106,7 @@ theorem IsTopologicalGenerator.exists_hom_zmod_orderOf {σ : G} (hσ : IsTopolog
     change m • Additive.ofMul τ = _
     rw [← ofMul_zpow]
   have hinj : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro k hk
     obtain ⟨m, rfl⟩ := ZMod.intCast_surjective k
     rw [hψ, ← ofMul_one, Additive.ofMul.injective.eq_iff] at hk

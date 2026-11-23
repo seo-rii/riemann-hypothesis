@@ -99,7 +99,7 @@ theorem UpperTheory.ConvolutionTheory.H.psDim :
       map_add' := fun _ _ => rfl
       map_smul' := fun _ _ => rfl }
   have hL : Function.Injective L := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro f hf
     refine Subtype.ext (funext fun g => ?_)
     obtain ⟨p, σ, y, hy, rfl⟩ := psDim_decomp g

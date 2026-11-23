@@ -229,7 +229,7 @@ theorem reduceFF_map_genEval
     exact (WeierstrassCurve.Affine.map_equation (W'.map j).toAffine
       (IsFractionRing.injective _ (W.baseChange K).toAffine.FunctionField) x y).mp h₁
   have hx : Function.Injective (eval₂RingHom (ResidueField.map j) (residue _ x)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro p hp
     by_contra hp0
     have hT : Transcendental (ResidueField 𝒪) (gaussResidue W (residue _ x)) := hR''

@@ -85,7 +85,7 @@ theorem GlobalTheory.EtC.a10 : GlobalTheory.EtC.A10 := by
   intro n
   constructor
   · obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by ring⟩
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨y, rfl⟩ := ((ex m).2.2 x).1 hx
     rw [Subsingleton.elim y 0, map_zero]

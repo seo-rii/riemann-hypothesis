@@ -77,7 +77,7 @@ theorem PolynomialChartInjective.full : PolynomialChartInjective.Statement := by
   have hspan : Submodule.span ℂ (Set.range r) = ⊤ :=
     hlin.span_eq_top_of_card_eq_finrank' (by simp [Module.finrank_fintype_fun_eq_card, hk])
   have hinj : Function.Injective L := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     let ψ : (σ → ℂ) →ₗ[ℂ] ℂ :=
       { toFun := fun u ↦ ∑ i, u i * v i

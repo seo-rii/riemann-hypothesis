@@ -100,7 +100,7 @@ def HermitianForm.ofGram (H : Matrix ι ι A) (hH : IsHermitianFor (conjHom F A)
     ring⟩
   nonsingular := by
     refine bijective_of_injective_sesq _ ?_
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have hv : Matrix.vecMul (fun i => conj F A (x i)) H = 0 := by
       funext j

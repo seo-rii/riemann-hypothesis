@@ -132,7 +132,7 @@ theorem nonempty_cInd_of_top [TopologicalSpace G] [IsTopologicalGroup G] (H : Su
     rw [hR]
     exact this
   have hinj : Function.Injective ev := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro f hf
     apply Subtype.ext; apply Subtype.ext; apply Subtype.ext
     funext g

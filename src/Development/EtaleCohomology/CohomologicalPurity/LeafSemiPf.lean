@@ -65,7 +65,7 @@ theorem LeafSemi_of : LeafSemi := by
     · obtain ⟨m, rfl⟩ : ∃ m, N = m + 2 * d := ⟨N - 2 * d, by ring⟩
       have hm : m < 0 := by omega
       have := hsub m j hm
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro a ha
       obtain ⟨b, rfl⟩ := ((hex m j).2.2 a).1 ha
       rw [Subsingleton.elim b 0, map_zero]
@@ -78,7 +78,7 @@ theorem LeafSemi_of : LeafSemi := by
     obtain ⟨m, rfl⟩ : ∃ m, N = m + 2 * d := ⟨N - 2 * d, by ring⟩
     have hm : m < 0 := by omega
     have := hsub m j hm
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     obtain ⟨b, rfl⟩ := ((hex m j).2.2 a).1 ha
     rw [Subsingleton.elim b 0, map_zero]

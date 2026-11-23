@@ -133,7 +133,6 @@ def IsHolFam (e : (Fin g → ℂ) → (Sp ℂ ⟶ Y)) : Prop :=
 
 variable (e : (Fin g → ℂ) → (Sp ℂ ⟶ Y)) (hol : IsHolFam e)
 
-set_option backward.isDefEq.respectTransparency false in
 theorem top_le_of_mem {x : Sp ℂ ⟶ Y} {U : Y.Opens} (h : x cpt ∈ U) : ⊤ ≤ x ⁻¹ᵁ U :=
   (Scheme.preimage_eq_top_of_closedPoint_mem x h).ge
 

@@ -87,7 +87,7 @@ def tau : H1 (repOn ρ κ K) →ₛₗ[(φ : Λ →+* K)] H1 (repOn ρ (1 : Γ �
   slH1 _ _ (idVec φ hs r) continuous_of_discreteTopology (idVec_repOn φ hs ρ κ hκ)
 
 theorem tau_injective : Function.Injective (tau φ hs ρ κ hκ) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   induction x using Submodule.Quotient.induction_on with
   | H z =>

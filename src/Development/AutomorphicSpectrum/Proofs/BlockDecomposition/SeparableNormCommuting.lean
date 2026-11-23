@@ -142,7 +142,7 @@ theorem exists_cyclic_vec (γ : Matrix (Fin n) (Fin n) K) (hs : γ.charpoly.Sepa
       map_smul' := fun c a => by rw [map_smul, Matrix.smul_mulVec]; rfl }
   let φ : degreeLT K n →ₗ[K] (Fin n → K) := L.domRestrict (degreeLT K n)
   have hinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨p, hp⟩ h0
     have hd : γ.charpoly ∣ p := hv p h0
     have hlt : p.degree < γ.charpoly.degree := by

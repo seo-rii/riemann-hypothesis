@@ -687,7 +687,7 @@ theorem aeval_injective [CharZero K] : Function.Injective
     rw [monomial_eq_prod, map_multiset_prod, ← Multiset.prod_coe, ← Multiset.map_coe, hΛ,
       Multiset.map_map, Multiset.map_map]
     simp
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro p hp
   by_contra hne
   obtain ⟨d₀, hd₀, hmax⟩ := p.support.exists_max_image (fun d => (Λ d).flatten)

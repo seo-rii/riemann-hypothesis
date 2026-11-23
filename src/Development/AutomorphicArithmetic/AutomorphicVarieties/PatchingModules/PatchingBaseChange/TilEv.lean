@@ -113,7 +113,7 @@ private theorem UpperTheory.V.Pa.BC.ev_bij [IsNoetherianRing R] (M : Type) [AddC
   haveI := Module.finitePresentation_of_finite R M
   refine ⟨?_, UpperTheory.V.Pa.BC.ev_surj N M⟩
   obtain ⟨n, m, f, g, hf, hfg⟩ := Module.FinitePresentation.exists_fin' R M
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨y, rfl⟩ := LinearMap.rTensor_surjective (ι → N) hf x
   have hex := rTensor_exact N hfg hf

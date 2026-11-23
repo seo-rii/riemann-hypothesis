@@ -75,7 +75,7 @@ theorem inertia_le {α β : Type} [Fintype α] [DecidableEq α] [Fintype β] [De
   let f : ({a // 0 < d a} → ℂ) →ₗ[ℂ] ({b // 0 < e b} → ℂ) :=
     (LinearMap.funLeft ℂ ℂ Subtype.val) ∘ₗ G.mulVecLin ∘ₗ ext
   have hf : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     have hw : ∀ b, 0 < e b → (G *ᵥ ext v) b = 0 := fun b hb => congrFun hv ⟨b, hb⟩
     have h1 : star (ext v) ⬝ᵥ (Matrix.diagonal (fun a => (d a : ℂ))) *ᵥ ext v =

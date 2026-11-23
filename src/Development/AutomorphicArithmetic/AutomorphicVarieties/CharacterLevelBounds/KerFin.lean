@@ -117,7 +117,7 @@ private theorem kerFin_triv {R G M : Type} [CommRing R] [Group G] [TopologicalSp
       ((LinearMap.proj q : (U ⧸ K → M) →ₗ[R] M) ∘ₗ Φ ∘ₗ (LinearMap.ker (resU ρ h)).subtype)
       (fun x => key x.1 x.2 q))
   have hΨ : Function.Injective Ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨x, hxk⟩ hx0
     obtain ⟨z, rfl⟩ := Submodule.Quotient.mk_surjective _ x
     have hq : ∀ q : U ⧸ K, (z : U → M) (Quotient.out q) = 0 := by

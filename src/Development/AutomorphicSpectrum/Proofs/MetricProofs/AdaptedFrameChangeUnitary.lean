@@ -108,7 +108,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {Ψ : Type} [Fintype
   [AddCommGroup Λ] [Module (𝓞 E) Λ] {F : UnivFam E Ψ j j' n g Λ} (C : LatEmb F) (R : RiemLat E g Λ)
 
 theorem perExt_injective : Function.Injective (C.perExt R) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   have hcoord : ∀ l, C.bas.equivFun y l = 0 := by
     intro l

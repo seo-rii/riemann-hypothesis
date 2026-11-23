@@ -105,7 +105,7 @@ theorem injective_cohomologyMapAlong_zero {K : Type u} [Group K] [TopologicalSpa
     [IsTopologicalGroup K] (ψ : K →* G) (hψ : Continuous ψ) (A : Rep.{u} k G) [IsDiscreteRep A]
     [IsDiscreteRep (Rep.res ψ A)] :
     Function.Injective (cohomologyMapAlong ψ hψ (𝟙 (Rep.res ψ A)) 0).hom := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨z, rfl⟩ := cohomologyπ_surjective A 0 x
   have hx' : cohomologyπ (Rep.res ψ A) 0 (cocyclesMapAlong ψ hψ (𝟙 _) 0 z) = 0 :=
@@ -567,7 +567,7 @@ theorem nsmul_local_cohomology_D (hD' : ∀ d : D, n • d = 0) (q : ℕ)
 omit [CompactSpace G] [TotallyDisconnectedSpace G] [Nonempty ι] in
 theorem injective_two (h : 2 + 1 = 3) : Function.Injective (compactZmodDualityMap φ D hD T h) := by
   classical
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have hx' : ∀ y : compactCohomologyRes φ D 1,
       T (compactCupRes φ (zmodMulPairingRight n D hD) ((Nat.add_comm 1 2).trans h) y x) = 0 :=

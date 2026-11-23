@@ -79,7 +79,7 @@ theorem exists_gen_of_summand {A E : Type} [CommRing A] [IsLocalRing A] [AddComm
   have hdP : Disjoint P M := hd.mono_left inf_le_left
   let f : (P × M) →ₗ[A] M' := LinearMap.coprod (Submodule.inclusion hPM') (Submodule.inclusion hMM)
   have hfinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨x, y⟩ h
     have h' : (x : E) + (y : E) = 0 := by
       have := congrArg Subtype.val h

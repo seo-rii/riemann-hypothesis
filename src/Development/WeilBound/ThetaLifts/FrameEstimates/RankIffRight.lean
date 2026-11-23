@@ -118,7 +118,7 @@ theorem rank_of_map {E : Type} [Field E] (t : E →+* k) (x : Matrix (Fin n) (Fi
     have h2 : Module.finrank k (LinearMap.range ((x.map t)ᵀ.mulVecLin)) = n := (Matrix.finrank_range_mulVecLin _).trans h
     omega
   have hinj2 : Function.Injective (xᵀ.mulVecLin) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     have h3 : (x.map t)ᵀ.mulVecLin (⇑t ∘ c) = 0 := by
       funext j

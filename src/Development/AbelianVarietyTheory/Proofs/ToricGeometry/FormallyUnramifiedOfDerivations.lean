@@ -226,7 +226,7 @@ theorem formallyUnramified_of_fderiv (hsm : SmoothOfRelativeDimension g X.hom) [
   let T : (Fin g → ℂ) →ₗ[ℂ] (Fin g → ℂ) :=
     LinearMap.pi fun i => (fderiv ℂ (fun y => valAt' (ex y).left U₀ (t i)) z).toLinearMap
   have hT : Function.Injective T := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro ξ hξ
     have h0 := hdet _ (hc ξ) (hol.der_mul hz₀ ξ) fun i => congrFun hξ i
     refine htan z ξ fun V' b hV' => ?_

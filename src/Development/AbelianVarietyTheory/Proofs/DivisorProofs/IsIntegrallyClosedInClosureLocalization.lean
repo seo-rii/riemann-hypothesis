@@ -96,7 +96,7 @@ theorem isIntegrallyClosedIn_closure_localization : ∀ (A R : Type) [CommRing A
   have hφ : φ.comp (algebraMap (closure A R D) _) = g := IsLocalization.lift_comp _
 
   have hφinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     obtain ⟨⟨c, n⟩, rfl⟩ := IsLocalization.mk'_surjective
       (Algebra.algebraMapSubmonoid (closure A R D) (nonZeroDivisors R)) z

@@ -451,7 +451,7 @@ theorem phiA_injective : Function.Injective (phiA l) := by
   obtain ⟨q, hq⟩ := (GlobalTheory.RingBasics.isUnit_l l).exists_right_inv
   have hq' : algebraMap (Per.Ainf l) (Per.AinfP l) (l : Per.Ainf l) * q = 1 := by rwa [map_natCast]
   obtain ⟨j, hj⟩ := GlobalTheory.T.exists_canonical_acris_to_bdRPlus l
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   apply GlobalTheory.T.acrisToBdRPlus_injective l j hj
   rw [map_zero]
@@ -483,7 +483,7 @@ theorem algebraMap_acris_bcris_injective : Function.Injective (algebraMap (Per.A
   rw [← hι, ← hι, h]
 
 theorem φB_inj : Function.Injective (Per.φB l) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro b hb
   obtain ⟨e, he, hne⟩ := GlobalTheory.CrisLoc.exists_root_ne_one l
   obtain ⟨n, x, h⟩ := GlobalTheory.CrisLoc.exists_mul_pow_eq l e he hne b

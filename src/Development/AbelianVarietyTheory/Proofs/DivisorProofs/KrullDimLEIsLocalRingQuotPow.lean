@@ -91,7 +91,7 @@ theorem projective_coker_of_approx [IsNoetherianRing R] {A B : Type} [AddCommGro
   have hinjq : ∀ (m : Ideal R) [m.IsMaximal],
       Function.Injective ((LinearMap.range f).subtype.lTensor (R ⧸ m)) := by
     intro m _
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro t ht
     obtain ⟨⟨_, a, rfl⟩, rfl⟩ := exists_one_tmul m t
     rw [LinearMap.lTensor_tmul, Submodule.subtype_apply, one_tmul_eq_zero_iff] at ht

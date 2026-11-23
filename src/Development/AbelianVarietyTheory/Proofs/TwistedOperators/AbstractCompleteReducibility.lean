@@ -67,7 +67,7 @@ theorem exists_mem_sub_orth_of_finiteDimensional {E : Type} [AddCommGroup E] [Mo
       bs.ext fun i => by simpa [F] using congrFun hx i
     exact LinearMap.congr_fun h1 ⟨t, ht⟩
   have hinj : Function.Injective (F ∘ₗ T.subtype) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     exact Subtype.ext (hT z z.2 (key z hz z z.2))
   have hsurj : Function.Surjective (F ∘ₗ T.subtype) :=

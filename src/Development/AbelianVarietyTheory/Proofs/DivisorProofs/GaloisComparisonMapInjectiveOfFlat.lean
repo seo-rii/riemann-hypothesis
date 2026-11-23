@@ -71,7 +71,7 @@ theorem GlobalTheory.GoodEtale.galMap_injective_of_flat : ∀ (A R C O : Type) [
   let L := LinearMap.lTensor O (LinearMap.mulLeft R b)
   have hL : Function.Injective L := by
     apply Module.Flat.lTensor_preserves_injective_linearMap
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     exact htf a ha c (by rw [Algebra.smul_def]; simpa using hc)
   let Φ : (G → O) → O ⊗[R] C := fun f => ∑ i, (∑ g, σ (act g (y i)) * f g) ⊗ₜ x i
@@ -91,7 +91,7 @@ theorem GlobalTheory.GoodEtale.galMap_injective_of_flat : ∀ (A R C O : Type) [
     | add m m' hm hm' =>
       rw [map_add (f := _), map_add (f := _), ← hm, ← hm']
       simp only [Φ, Pi.add_apply, mul_add, Finset.sum_add_distrib, TensorProduct.add_tmul]
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro m hm
   apply hL
   rw [← hΦ, hm, map_zero]
