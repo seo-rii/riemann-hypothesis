@@ -53,7 +53,6 @@ public import Mathlib.RingTheory.UniqueFactorizationDomain.Multiplicity
 
 @[expose] public section
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.CompanionTheory.TraceJac
 

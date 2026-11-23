@@ -61,7 +61,6 @@ open scoped CategoryTheory.Obj TensorProduct
 
 namespace GlobalTheory.PolSpread
 
-set_option backward.isDefEq.respectTransparency false
 
 variable {K : Type} [Field K]
 

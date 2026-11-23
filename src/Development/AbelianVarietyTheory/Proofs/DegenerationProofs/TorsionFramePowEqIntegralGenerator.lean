@@ -67,7 +67,6 @@ open Classical
 open ReciprocityTheory.ChartRestriction.G.Out
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.TorsFrameInt
 

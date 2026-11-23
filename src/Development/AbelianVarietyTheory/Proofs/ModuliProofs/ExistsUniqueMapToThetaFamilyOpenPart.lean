@@ -62,7 +62,6 @@ open GlobalTheory.ZM
 
 namespace GlobalTheory.ZM.UnivProp
 
-set_option backward.isDefEq.respectTransparency false
 
 variable {o : Type} [CommRing o] {g n N' : ℕ} {J : Type} {b : TBase o (N' ^ 2)}
 
