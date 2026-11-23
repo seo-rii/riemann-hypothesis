@@ -116,7 +116,7 @@ lemma pair_all (Wa Wb K : Submodule ℝ H) [Wa.HasOrthogonalProjection] [Wb.HasO
   have h0 : 0 ≤ ‖(q Wa y + q Wb y) - (4 / 5 : ℝ) • y‖ ^ 2 := by positivity
   rw [norm_sub_sq_real, real_inner_smul_right, norm_smul, hT, Real.norm_eq_abs,
     abs_of_pos (by norm_num : (0 : ℝ) < 4 / 5)] at h0
-  nlinarith [sq_nonneg ‖y‖]
+  linarith [sq_nonneg ‖y‖]
 
 lemma three (u₁ u₂ u₃ : H) : ‖u₁ + u₂ + u₃‖ ^ 2 =
     ‖u₁ + u₂‖ ^ 2 + ‖u₃ + u₁‖ ^ 2 + ‖u₃ + u₂‖ ^ 2 - (‖u₁‖ ^ 2 + ‖u₂‖ ^ 2 + ‖u₃‖ ^ 2) := by
@@ -133,10 +133,10 @@ lemma form_cs (D : H →L[ℝ] H) (hsym : ∀ x y, ⟪D x, y⟫_ℝ = ⟪x, D y�
     simp only [map_add (f := _), map_smul, inner_add_left, inner_add_right, real_inner_smul_left,
       real_inner_smul_right] at this
     rw [e] at this
-    nlinarith [this]
+    linarith [this]
   have := discrim_le_zero h
   unfold discrim at this
-  nlinarith [this]
+  linarith [this]
 
 lemma range_bound (D : H →L[ℝ] H) (hsym : ∀ x y, ⟪D x, y⟫_ℝ = ⟪x, D y⟫_ℝ) (hpos : ∀ x, 0 ≤ ⟪D x, x⟫_ℝ)
     (hsum : ∀ x, 3 / 5 * ⟪D x, x⟫_ℝ ≤ ‖D x‖ ^ 2) (x : H) :
@@ -153,7 +153,7 @@ lemma range_bound (D : H →L[ℝ] H) (hsym : ∀ x y, ⟪D x, y⟫_ℝ = ⟪x, 
     mul_le_mul_of_nonneg_right (by linarith) h3
   have h5 : ‖D x‖ ^ 2 * ⟪D (D x), D x⟫_ℝ < ‖D x‖ ^ 2 * (3 / 5 * ‖D x‖ ^ 2) :=
     mul_lt_mul_of_pos_left hne hY
-  nlinarith
+  linarith
 
 lemma closure_bound [CompleteSpace H] (D : H →L[ℝ] H) (W : Submodule ℝ H)
     (hker : ∀ u, ⟪D u, u⟫_ℝ = 0 → u ∈ W) (hr : ∀ x, 3 / 5 * ‖D x‖ ^ 2 ≤ ⟪D (D x), D x⟫_ℝ)
@@ -221,7 +221,7 @@ lemma upper (W₁ W₂ W₃ : Submodule ℝ H) [W₁.HasOrthogonalProjection] [W
     rw [n3]; ring
   have key : 3 / 5 * (2 * (‖v‖ * ‖w‖) ^ 2 + 2 * (‖v‖ * ‖w‖) * ⟪v, w⟫_ℝ) ≤
       2 * (‖v‖ * ‖w‖) ^ 2 - 2 * ⟪v, w⟫_ℝ ^ 2 := by
-    nlinarith [h, s2, s3, m2, m3]
+    linarith [h, s2, s3, m2, m3]
   have hcs : -(‖v‖ * ‖w‖) ≤ ⟪v, w⟫_ℝ := (abs_le.1 (abs_real_inner_le_norm v w)).1
   have hA : 0 ≤ ‖v‖ * ‖w‖ := by positivity
   nlinarith [key, hcs, hA]

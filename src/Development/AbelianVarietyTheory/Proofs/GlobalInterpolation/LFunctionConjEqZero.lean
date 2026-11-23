@@ -163,7 +163,7 @@ theorem log_two_le (q : ℕ) [NeZero q] (t : ℝ) :
   apply Real.log_le_log (by positivity)
   rw [abs_mul, abs_two]
   have h1 : (q : ℝ) ≤ q * q := by nlinarith
-  have h2 : 2 * |t| + 2 ≤ (|t| + 2) * (|t| + 2) := by nlinarith
+  have h2 : 2 * |t| + 2 ≤ (|t| + 2) * (|t| + 2) := by linarith [mul_nonneg (sub_nonneg.2 ht) (sub_nonneg.2 ht)]
   calc (q : ℝ) * (2 * |t| + 2) ≤ (q * q) * ((|t| + 2) * (|t| + 2)) :=
         mul_le_mul h1 h2 (by positivity) (by positivity)
     _ = (q * (|t| + 2)) ^ 2 := by ring
@@ -256,7 +256,7 @@ theorem inv_le_log : ∃ K : ℝ, 0 < K ∧ ∀ (q : ℕ) [NeZero q] (χ : Diric
       have hlow : 2 / 27 * (1 / δ) ≤ T := by
         rw [hT]
         rw [div_mul_eq_mul_div, mul_one_div, div_div, div_le_div_iff₀ (by positivity) (by positivity)]
-        nlinarith
+        linarith
       rw [neg_sq] at h
       have H := GlobalTheory.TwoRealCharacters.neg_sum_logDeriv_nonneg q χ χ (1 + 8 * δ) h2 h2 hσ1
       rw [show χ * χ = 1 by rw [← sq]; exact h2] at H
@@ -274,7 +274,7 @@ theorem inv_le_log : ∃ K : ℝ, 0 < K ∧ ∀ (q : ℕ) [NeZero q] (χ : Diric
           ((8 * δ : ℝ) : ℂ) + ((2 * γ : ℝ) : ℂ) * I by push_cast; ring, re_one_div] at h
         have e : 8 * δ / ((8 * δ) ^ 2 + (2 * γ) ^ 2) ≤ 4 / 81 * (1 / δ) := by
           rw [div_mul_eq_mul_div, mul_one_div, div_div, div_le_div_iff₀ (by positivity) (by positivity)]
-          nlinarith
+          linarith [sq_nonneg (δ : ℝ)]
         push_cast at h ⊢
         linarith [mul_le_mul_of_nonneg_left hL2 hC0.le]
       have H := GlobalTheory.logDerivativeThreeFourOne.three_four_one q χ (1 + 8 * δ) γ hσ1
@@ -311,11 +311,11 @@ theorem zero_free_region : ∃ c : ℝ, 0 < c ∧ ∀ (q : ℕ) [NeZero q] (χ :
       have hm : min (1 / (2 * K)) (1 / 42) ≤ 1 / (2 * K) := min_le_left _ _
       have hk : 1 / (2 * K) < (1 - s.re) * L := by
         rw [div_lt_iff₀ (by positivity)]
-        nlinarith
+        linarith
       linarith
     · push Not at hsmall
       have hm : min (1 / (2 * K)) (1 / 42) ≤ 1 / 42 := min_le_right _ _
-      nlinarith
+      linarith [mul_pos (by linarith : (0 : ℝ) < 2 * L - 1) (sub_pos.2 hre)]
   linarith
 
 end GlobalTheory.ZeroFreeComplex

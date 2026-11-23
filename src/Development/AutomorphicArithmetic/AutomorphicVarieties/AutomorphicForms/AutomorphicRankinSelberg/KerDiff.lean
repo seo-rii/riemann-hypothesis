@@ -37,7 +37,7 @@ private lemma kd_pow {a b t m : ℝ} (hm : 1 ≤ m) (hb : m / 2 ≤ b) (hab : b 
         apply mul_le_mul_of_nonneg_left _ (by linarith)
         rw [one_sub_div ha0.ne']
         exact div_le_div_of_nonneg_left (by linarith) hb0 hab
-      nlinarith
+      linarith
     rw [h1]
     exact div_le_div_of_nonneg_right h2 hBpos.le
   have hbB : m ^ 3 / 32 ≤ b * B := by
@@ -56,7 +56,7 @@ private lemma kd_pow {a b t m : ℝ} (hm : 1 ≤ m) (hb : m / 2 ≤ b) (hab : b 
       have hm3 : 0 ≤ m ^ 3 := by positivity
       rw [← e7] at hm3 ⊢
       rw [e6] at e5
-      nlinarith
+      linarith [mul_nonneg (sub_nonneg.2 e5) (sub_nonneg.2 hm3)]
     linarith
   have hm3pos : 0 < m ^ 3 := by positivity
   have hmneg : m ^ (-3 : ℝ) = (m ^ 3)⁻¹ := by
@@ -67,7 +67,7 @@ private lemma kd_pow {a b t m : ℝ} (hm : 1 ≤ m) (hb : m / 2 ≤ b) (hab : b 
   have hbBpos : 0 < b * B := by positivity
   rw [div_le_iff₀ hbBpos]
   have hab' : 0 ≤ a - b := by linarith
-  have : t * (a - b) ≤ 4 * (a - b) := by nlinarith
+  have : t * (a - b) ≤ 4 * (a - b) := by linarith [mul_nonneg (sub_nonneg.2 hab) (sub_nonneg.2 ht')]
   have h32 : 128 * (a - b) * (m ^ 3)⁻¹ * (m ^ 3 / 32) = 4 * (a - b) := by
     field_simp
     ring
@@ -98,7 +98,7 @@ private lemma kd_fd {z : ℍ} (hz : z ∈ ModularGroup.fd) :
   rw [Complex.normSq_apply] at h1
   simp only [UpperHalfPlane.coe_re, UpperHalfPlane.coe_im] at h1 h2
   rw [abs_le] at h2
-  refine ⟨by nlinarith, h2.1, h2.2, by nlinarith⟩
+  refine ⟨by linarith, h2.1, h2.2, by nlinarith⟩
 
 private lemma kd_low (x : Fin 2 → ℤ) {z : ℍ} (hz : z ∈ ModularGroup.fd) :
     ‖x‖ / 2 ≤ ‖(x 0 : ℂ) * z + (x 1 : ℂ)‖ := by
@@ -121,10 +121,10 @@ private lemma kd_low (x : Fin 2 → ℤ) {z : ℍ} (hz : z ∈ ModularGroup.fd) 
     rcases le_max_iff.mp hmax with h | h
     · have : ‖x‖ ^ 2 ≤ |c| ^ 2 := pow_le_pow_left₀ hN0 h 2
       rw [sq_abs] at this
-      nlinarith
+      linarith [sq_nonneg (d : ℝ)]
     · have : ‖x‖ ^ 2 ≤ |d| ^ 2 := pow_le_pow_left₀ hN0 h 2
       rw [sq_abs] at this
-      nlinarith
+      linarith [sq_nonneg (c : ℝ)]
   have hcd : |2 * c * d * z.re| ≤ |c * d| := by
     rw [show 2 * c * d * z.re = (c * d) * (2 * z.re) by ring, abs_mul]
     have : |2 * z.re| ≤ 1 := by rw [abs_le]; constructor <;> linarith
@@ -133,7 +133,7 @@ private lemma kd_low (x : Fin 2 → ℤ) {z : ℍ} (hz : z ∈ ModularGroup.fd) 
   have hcd2 : 2 * |c * d| ≤ c ^ 2 + d ^ 2 := by
     rw [abs_mul]
     have := sq_nonneg (|c| - |d|)
-    nlinarith [sq_abs c, sq_abs d]
+    linarith [sq_abs c, sq_abs d, sq_nonneg (|c| - |d| : ℝ)]
   have hlow : (‖x‖ / 2) ^ 2 ≤ ‖(x 0 : ℂ) * z + (x 1 : ℂ)‖ ^ 2 := by
     rw [hsq]
     have e : (c * z.re + d) ^ 2 + (c * z.im) ^ 2 = c ^ 2 * (z.re ^ 2 + z.im ^ 2) + 2 * c * d * z.re + d ^ 2 := by ring
@@ -141,7 +141,7 @@ private lemma kd_low (x : Fin 2 → ℤ) {z : ℍ} (hz : z ∈ ModularGroup.fd) 
     have := neg_abs_le (2 * c * d * z.re)
     have hc2 : c ^ 2 ≤ c ^ 2 * (z.re ^ 2 + z.im ^ 2) := by
       nlinarith [sq_nonneg c]
-    nlinarith
+    linarith [sq_nonneg (c * z.re + d : ℝ), sq_nonneg (c * z.im : ℝ)]
   have hw0 := norm_nonneg ((x 0 : ℂ) * z + (x 1 : ℂ))
   nlinarith [norm_nonneg x]
 
@@ -163,7 +163,7 @@ private lemma kd_up (x : Fin 2 → ℤ) {z : ℍ} (hz : z ∈ ModularGroup.fd) :
         have a1 := kd_abs x 1
         have := norm_nonneg (z : ℂ)
         nlinarith [abs_nonneg ((x 0 : ℤ) : ℝ)]
-    _ ≤ 4 * ‖x‖ * z.im := by nlinarith
+    _ ≤ 4 * ‖x‖ * z.im := by linarith [mul_nonneg (by linarith : (0 : ℝ) ≤ 2 * z.im - 1) (sub_nonneg.2 hN0)]
 
 private lemma kd_ker (s : ℝ) (x : Fin 2 → ℤ) (z : ℍ) :
     ker s x z = z.im ^ s * ‖(x 0 : ℂ) * z + (x 1 : ℂ)‖ ^ (-(2 * s)) := by
@@ -224,10 +224,10 @@ theorem UpperTheory.V.Af.Rs.kerDiff :
     rcases le_total z.im 1 with h | h
     · have h1 : z.im ^ s ≤ z.im ^ (1 : ℝ) := Real.rpow_le_rpow_of_exponent_ge hy h hs1
       rw [Real.rpow_one] at h1
-      nlinarith
+      linarith [mul_nonneg (by linarith : (0 : ℝ) ≤ 2 * z.im - 1) (by linarith : (0 : ℝ) ≤ 2 * z.im - 1)]
     · have h1 : z.im ^ s ≤ z.im ^ (2 : ℝ) := Real.rpow_le_rpow_of_exponent_le h hs2
       rw [Real.rpow_two] at h1
-      nlinarith
+      linarith [sq_nonneg (z.im : ℝ)]
   have hyspos : 0 ≤ z.im ^ s := Real.rpow_nonneg hy.le _
   rw [← mul_sub, abs_mul, abs_of_nonneg hyspos]
   calc z.im ^ s * |‖w‖ ^ (-(2 * s)) - ‖w'‖ ^ (-(2 * s))|

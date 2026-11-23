@@ -174,15 +174,15 @@ lemma tail_step (y : ℝ) (hy : 3 ≤ y) : Real.log y / y ^ 2 ≤ 2 * (gT (y - 1
     have : 1 / (y - 1) ≤ 1 / 2 := by
       rw [div_le_div_iff₀ hy1 (by norm_num)]; linarith
     linarith
-  have hDy : y * (L - L1) ≤ 3 / 2 := by nlinarith
+  have hDy : y * (L - L1) ≤ 3 / 2 := by linarith
   have hG : L * (y - 1) ≤ 2 * y * (y * (L1 + 1) - (y - 1) * (L + 1)) := by
-    nlinarith [mul_le_mul_of_nonneg_left hDy hy0.le]
+    linarith [mul_le_mul_of_nonneg_left hDy hy0.le, mul_nonneg (sub_nonneg.2 hy) (sub_nonneg.2 hL1)]
   have e2 : 2 * ((L1 + 1) / (y - 1) - (L + 1) / y) =
       2 * (y * (L1 + 1) - (y - 1) * (L + 1)) / (y * (y - 1)) := by
     field_simp
   rw [e2, div_le_div_iff₀ (by positivity) (by positivity)]
   have := mul_le_mul_of_nonneg_left hG hy0.le
-  nlinarith [this]
+  linarith [this]
 
 lemma gT_nonneg (y : ℝ) (hy : 1 ≤ y) : 0 ≤ gT y := by
   unfold gT
@@ -253,7 +253,7 @@ lemma geom_odd (I : Finset ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq : q ≤ 1 / 2) (hI
   rw [Finset.sum_image (by intro a _ b _ h; simpa using h)] at h1
   have h2 : ∑ k ∈ Finset.range K, q ^ (2 * k + 1) = q * ∑ k ∈ Finset.range K, (q ^ 2) ^ k := by
     rw [Finset.mul_sum]; apply Finset.sum_congr rfl; intro k _; rw [pow_succ, pow_mul]; ring
-  have hq2 : q ^ 2 ≤ 1 / 4 := by nlinarith
+  have hq2 : q ^ 2 ≤ 1 / 4 := by linarith [mul_nonneg (sub_nonneg.2 hq0) (by linarith : (0 : ℝ) ≤ 1 - 2 * q)]
   have h3 : ∑ k ∈ Finset.range K, (q ^ 2) ^ k ≤ 4 / 3 := by
     have := geom_sum_Ico_le_of_lt_one (x := q ^ 2) (m := 0) (n := K) (sq_nonneg q) (by linarith)
     rw [Finset.range_eq_Ico]
@@ -261,7 +261,7 @@ lemma geom_odd (I : Finset ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq : q ≤ 1 / 2) (hI
     rw [pow_zero, div_le_iff₀ (by linarith)]
     linarith
   rw [h2] at h1
-  nlinarith [mul_le_mul_of_nonneg_left h3 hq0]
+  linarith [mul_le_mul_of_nonneg_left h3 hq0]
 
 lemma geom_pos (I : Finset ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq : q < 1) (hI : ∀ i ∈ I, 1 ≤ i) :
     ∑ i ∈ I, q ^ i ≤ q / (1 - q) := by
@@ -342,7 +342,7 @@ theorem interval_count : IntervalCount := by
 
 theorem band_count : BandCount := by
   intro P c s hP hc hs
-  have h := interval_count (P * (1 - c)) (P * (1 + c)) s (by nlinarith) hs
+  have h := interval_count (P * (1 - c)) (P * (1 + c)) s (by linarith [mul_nonneg (sub_nonneg.2 hP) (sub_nonneg.2 hc)]) hs
   linarith
 
 theorem band_sum : BandSum := by
@@ -357,10 +357,10 @@ theorem band_sum : BandSum := by
     intro n hn
     obtain ⟨h1, h2, h3⟩ := hs n hn
     have hn0 : (0 : ℝ) < n := by linarith
-    have hlog : Real.log n ≤ Real.log (2 * P) := Real.log_le_log hn0 (by nlinarith)
+    have hlog : Real.log n ≤ Real.log (2 * P) := Real.log_le_log hn0 (by linarith [mul_nonneg (sub_nonneg.2 hP) (by linarith : (0 : ℝ) ≤ 1 - 2 * c)])
     have hinv : 1 / (n : ℝ) ≤ μ := by
       apply le_min
-      · rw [div_le_div_iff₀ hn0 hP0]; nlinarith
+      · rw [div_le_div_iff₀ hn0 hP0]; linarith [mul_nonneg (sub_nonneg.2 hP) (by linarith : (0 : ℝ) ≤ 1 - 2 * c)]
       · exact one_div_le_one_div_of_le hp0 h1
     calc Real.log n / n = Real.log n * (1 / (n : ℝ)) := by ring
       _ ≤ Real.log (2 * P) * μ :=
@@ -374,7 +374,7 @@ theorem band_sum : BandSum := by
       mul_le_mul_of_nonneg_left (min_le_left _ _) (by positivity)
     have h3 : μ ≤ 1 / p₀ := min_le_right _ _
     have e : 2 * c * P * (2 / P) = 4 * c := by field_simp; ring
-    nlinarith
+    linarith
   calc ∑ n ∈ s, Real.log n / n ≤ s.card * (Real.log (2 * P) * μ) := hsum
     _ = (s.card * μ) * Real.log (2 * P) := by ring
     _ ≤ (4 * c + 1 / p₀) * Real.log (2 * P) := mul_le_mul_of_nonneg_right hcμ hl2P
@@ -421,7 +421,7 @@ theorem high_bucket_bound : HighBucket := by
         split_ifs with hlt
         · have h2 : at_ / (p : ℝ) ≤ at_ / X'' := div_le_div_of_nonneg_left hat0 hX0 hpX.le
           have h3 : at_ / X'' ≤ w'' * (1 + th) := by
-            rw [div_le_iff₀ hX0]; rw [← ha] at hat; nlinarith
+            rw [div_le_iff₀ hX0]; rw [← ha] at hat; linarith
           linarith [hw p hp 1 hiI]
         · have hge : X'' * (1 + th) ≤ p := not_lt.1 hlt
           have h2 : at_ / (p : ℝ) ≤ w'' := by
@@ -454,12 +454,12 @@ theorem high_bucket_bound : HighBucket := by
     split_ifs with hlt
     · have hlog : Real.log p ≤ Real.log (2 * X'') := Real.log_le_log hp0 (by nlinarith)
       have : 0 ≤ w'' * th := by positivity
-      nlinarith
+      linarith [mul_nonneg (sub_nonneg.2 hlog) (sub_nonneg.2 this)]
     · simp
   refine (Finset.sum_le_sum hper).trans ?_
   rw [← Finset.sum_filter, Finset.sum_const, nsmul_eq_mul]
   have hcard := interval_count X'' (X'' * (1 + th))
-    (s.filter (fun p : ℕ => (p : ℝ) < X'' * (1 + th))) (by nlinarith) (by
+    (s.filter (fun p : ℕ => (p : ℝ) < X'' * (1 + th))) (by linarith [mul_nonneg (sub_nonneg.2 hth0) (sub_nonneg.2 hX)]) (by
       intro n hn
       rw [Finset.mem_filter] at hn
       exact ⟨(hs n hn.1).le, hn.2.le⟩)
@@ -523,7 +523,7 @@ theorem pr_bucket_bound : PrBucket := by
     intro p _
     have hl : 0 ≤ Real.log p := Real.log_natCast_nonneg p
     split_ifs
-    · nlinarith [mul_nonneg hQ₂ hl]
+    · linarith [mul_nonneg hQ₂ hl]
     · linarith
   refine (Finset.sum_le_sum hterm).trans ?_
   rw [Finset.sum_add_distrib, ← Finset.sum_filter, ← Finset.mul_sum, ← Finset.mul_sum]
@@ -620,7 +620,7 @@ theorem loss_bound : SecondKindLoss := by
   have hat32 : ∀ t ∈ TT, at_ t ≤ 3 / 2 * a := by
     intro t ht
     have := (hat t ht).2
-    nlinarith
+    linarith [mul_nonneg (by linarith : (0 : ℝ) ≤ 1 - 2 * th) (sub_nonneg.2 ha1)]
   have hTop : ∀ j ∈ J, ∀ t ∈ TT, ∀ p ∈ Ps,
       2 * Real.log p * vonMangoldtClassSum j t p ≤ 4 * a * Real.log p / p := by
     intro j hj t ht p hp
@@ -786,7 +786,7 @@ theorem band_exponent_bound : BandExponent := by
   have hp0 : (0 : ℝ) < p := by linarith
   have hpow0 : (0 : ℝ) < (p : ℝ) ^ i := by positivity
   have h1 : Real.log ((p : ℝ) ^ i) ≤ Real.log (2 * X') :=
-    Real.log_le_log hpow0 (by nlinarith)
+    Real.log_le_log hpow0 (by linarith [mul_nonneg (sub_nonneg.2 hX) (sub_nonneg.2 hρ)])
   rw [Real.log_pow, Real.log_mul (by norm_num) (by linarith)] at h1
   have h2 : Real.log 2 ≤ Real.log X' := Real.log_le_log (by norm_num) hX
   have h8 : Real.log 8 ≤ Real.log p := Real.log_le_log (by norm_num) hp8

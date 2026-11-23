@@ -65,14 +65,14 @@ lemma y_sq_le (W : WeierstrassCurve K) (hW : IntegralModel W) {x y : K}
   push_neg at hy
   have hx0 : (0 : ℝ) < ‖x‖ := by linarith
   have hx2 : ‖x‖ ^ 2 < ‖x‖ ^ 3 := by
-    nlinarith [mul_pos (mul_pos hx0 hx0) (by linarith : (0 : ℝ) < ‖x‖ - 1)]
+    linarith [mul_pos (mul_pos hx0 hx0) (by linarith : (0 : ℝ) < ‖x‖ - 1)]
   have hx1 : ‖x‖ ≤ ‖x‖ ^ 3 := by
-    nlinarith [mul_pos hx0 (by linarith : (0 : ℝ) < ‖x‖ - 1)]
+    linarith [mul_pos hx0 (by linarith : (0 : ℝ) < ‖x‖ - 1)]
   have hxy : ‖x‖ < ‖y‖ := by
     by_contra hc
     push_neg at hc
     have := mul_le_mul hc hc (norm_nonneg y) hx0.le
-    nlinarith
+    linarith
   have hR : ‖x ^ 3 + W.a₂ * x ^ 2 + W.a₄ * x + W.a₆‖ ≤ ‖x‖ ^ 3 := by
     refine add_le (add_le (add_le (le_of_eq (norm_pow _ _)) ?_) ?_) ?_
     · exact (mul_le h2 (le_of_eq (norm_pow x 2))).trans (by linarith)
@@ -135,12 +135,12 @@ lemma addX_norm [DecidableEq K] (W : WeierstrassCurve K) (hW : IntegralModel W)
   have hMsq : M ^ 2 ≤ ‖x₁‖ := by
     rcases le_total 1 ‖ℓ‖ with h | h
     · rw [hM, max_eq_right h]; exact hℓsq
-    · rw [hM, max_eq_left h]; nlinarith
+    · rw [hM, max_eq_left h]; linarith
   have ht : ‖x₃ + 1‖ ≤ 1 := add_le hC (by simp)
   have hu : ‖ℓ * (x₃ + 1 - x₁) + y₁‖ ≤ M := by
     have e : ℓ * (x₃ + 1 - x₁) + y₁ = y₃ + ℓ := by rw [hy3def]; ring
     rw [e]; exact add_le (hy3.trans hM1) hMℓ
-  have hM2 : M ≤ M ^ 2 := by nlinarith
+  have hM2 : M ≤ M ^ 2 := by linarith [mul_nonneg (sub_nonneg.2 hM1) (sub_nonneg.2 hM1)]
   have hLHS : ‖(ℓ * (x₃ + 1 - x₁) + y₁) ^ 2 + W.a₁ * (x₃ + 1) * (ℓ * (x₃ + 1 - x₁) + y₁)
       + W.a₃ * (ℓ * (x₃ + 1 - x₁) + y₁)
       - ((x₃ + 1) ^ 3 + W.a₂ * (x₃ + 1) ^ 2 + W.a₄ * (x₃ + 1) + W.a₆)‖ ≤ ‖x₁‖ := by
@@ -150,7 +150,7 @@ lemma addX_norm [DecidableEq K] (W : WeierstrassCurve K) (hW : IntegralModel W)
       refine add_le (add_le (add_le ht3 ?_) ?_) a6
       · simpa using mul_le a2 ht2
       · simpa using mul_le a4 ht
-    refine sub_le (add_le (add_le ?_ ?_) ?_) (hc.trans (by nlinarith))
+    refine sub_le (add_le (add_le ?_ ?_) ?_) (hc.trans (by linarith))
     · rw [norm_pow]; exact (pow_le_pow_left₀ (norm_nonneg _) hu 2).trans hMsq
     · have := mul_le (mul_le a1 ht) hu
       linarith

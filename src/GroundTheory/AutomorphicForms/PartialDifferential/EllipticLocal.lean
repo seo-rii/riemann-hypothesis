@@ -206,7 +206,7 @@ theorem exists_qSymb_small (hm : 1 ≤ m) {ε : ℝ} (hε : 0 < ε) :
   set lam := max 1 (2 * CQ / ε)
   have hlam1 : 1 ≤ lam := le_max_left _ _
   set S0 := Real.sqrt (1 + lam ^ 2)
-  have hS01 : 1 ≤ S0 := by rw [Real.one_le_sqrt]; nlinarith
+  have hS01 : 1 ≤ S0 := by rw [Real.one_le_sqrt]; linarith [sq_nonneg (lam : ℝ)]
   set D := (Cu + 1) * S0 ^ (2 * m)
   have hD : 0 < D := by positivity
   refine ⟨min 1 (ε / (2 * D)), lt_min one_pos (by positivity), min_le_left _ _, fun ξ ↦ ?_⟩
@@ -751,11 +751,11 @@ theorem exists_small (hm : 1 ≤ m) (hN : HasOrder N ((m : ℝ) - 1)) (k : ℕ) 
     have hpos : 0 < 4 * (k + 1) * (∑ s ∈ S, X s + 1) := by positivity
     rw [hε_def, show (k : ℝ) * (1 / (4 * (k + 1) * (∑ s ∈ S, X s + 1))) * X s =
       (k * X s) / (4 * (k + 1) * (∑ s ∈ S, X s + 1)) by ring, div_le_iff₀ hpos]
-    nlinarith
+    linarith
   have hηSP : CQ * (η * SP) ≤ 1 / 4 := by
     rw [hη_def, show CQ * (1 / (4 * (CQ * SP + 1)) * SP) = (CQ * SP) / (4 * (CQ * SP + 1)) by ring,
       div_le_iff₀ (by positivity)]
-    nlinarith
+    linarith
   have hQ : ∀ t, OpBound (Qop a w x₀ μ k) (t - m) t CQ := fun t ↦ by
     rw [hCQ_def]; exact opBound_Qop a w x₀ hcl hCu hlow hup hμ0.le hμ1 k t
   have hQs : ∀ t, OpBound (Qop a w x₀ μ k) (t - m + 1) t (k * ε) :=

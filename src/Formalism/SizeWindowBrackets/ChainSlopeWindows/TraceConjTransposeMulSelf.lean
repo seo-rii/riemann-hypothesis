@@ -465,14 +465,14 @@ theorem compressDiagDefectBound : CompressDiagDefectBound := by
     exact (hsSq_compress (V u) (hV' u) (V u) (hV' u) _).trans (hK u)
   have hTd := Rs_nonneg d
   have h2 : Rs d ≤ 2 * Rs r := by
-    nlinarith [mul_nonneg (sub_nonneg.2 hde) hTd]
+    linarith [mul_nonneg (sub_nonneg.2 hde) hTd]
   unfold F2
   calc ∑ u, hsSq (Kd (Bram B V) ga u - 1)
       ≤ ∑ u, e0 * (d u : ℝ) := Finset.sum_le_sum fun u _ => hb u
     _ = e0 * Rs d := by
         unfold Rs
         rw [Finset.mul_sum]
-    _ ≤ 2 * e0 * Rs r := by nlinarith [mul_le_mul_of_nonneg_left h2 he]
+    _ ≤ 2 * e0 * Rs r := by linarith [mul_le_mul_of_nonneg_left h2 he]
 
 end RamMain
 
@@ -486,9 +486,9 @@ lemma num_main {s η0 η1 a : ℝ} (hs0 : 0 < s) (hs : s ≤ 1 / 4) (hη0 : -1 �
   have hX0 : 0 ≤ (1 + η0) + (1 + a) ^ 2 * s :=
     add_nonneg (by linarith) (mul_nonneg (sq_nonneg _) hs0.le)
   have hsq : (1 + a) ^ 2 ≤ (1 + s / 2) ^ 2 := by
-    nlinarith [mul_nonneg (sub_nonneg.2 ha') (by linarith : (0:ℝ) ≤ 2 + a + s / 2)]
+    linarith [mul_nonneg (sub_nonneg.2 ha') (by linarith : (0:ℝ) ≤ 2 + a + s / 2)]
   have hXY : (1 + η0) + (1 + a) ^ 2 * s ≤ (1 + s / 2) + (1 + s / 2) ^ 2 * s := by
-    nlinarith [mul_le_mul_of_nonneg_right hsq hs0.le]
+    linarith [mul_le_mul_of_nonneg_right hsq hs0.le]
   have s1 : (1 + η1) * ((1 + η0) + (1 + a) ^ 2 * s) ≤ (1 + s / 2) * ((1 + η0) + (1 + a) ^ 2 * s) :=
     mul_le_mul_of_nonneg_right (by linarith) hX0
   have s2 : (1 + s / 2) * ((1 + η0) + (1 + a) ^ 2 * s)
@@ -532,10 +532,10 @@ lemma num_step {T2 T1 R Dst D X L c b : ℝ} (hD : 0 < D) (hDs : 0 < Dst) (hDD :
   have k3 : R ^ 2 * (L * X) ≤ R ^ 2 * (c * b ^ 2) := mul_le_mul_of_nonneg_left hc (sq_nonneg R)
   have k3' := mul_le_mul_of_nonneg_right k3 hDs.le
   have k4 : (b * R) ^ 2 ≤ T1 ^ 2 := by
-    nlinarith [mul_nonneg (sub_nonneg.2 hT1) (by linarith : (0:ℝ) ≤ T1 + b * R)]
+    linarith [mul_nonneg (sub_nonneg.2 hT1) (by linarith : (0:ℝ) ≤ T1 + b * R)]
   have k5 : c * (b * R) ^ 2 ≤ c * T1 ^ 2 := mul_le_mul_of_nonneg_left k4 hc0
   have k5' := mul_le_mul_of_nonneg_right k5 hDs.le
-  have k6 : T2 * D * Dst ≤ c * T1 ^ 2 * Dst := by nlinarith
+  have k6 : T2 * D * Dst ≤ c * T1 ^ 2 * Dst := by linarith
   have key : T2 * D ≤ c * T1 ^ 2 := le_of_mul_le_mul_right k6 hDs
   exact le_div_of_mul_le_of_pos hD key
 
@@ -579,7 +579,7 @@ lemma cor_common (B : ∀ u, Matrix (Fin D) (Fin (d u)) ℂ) (ga : ι → ℝ) (
   have hTT : Rs d ≤ Rs d ^ 2 / Dstar * sg := by
     rw [div_mul_eq_mul_div]
     apply le_div_of_mul_le_of_pos hD
-    nlinarith [mul_le_mul_of_nonneg_left hDle hT.le]
+    linarith [mul_le_mul_of_nonneg_left hDle hT.le]
   have he2 : Rs d ^ 2 / Dstar * ((1 + η0) + (1 + Real.sqrt e0) ^ 2 * sg)
       = (1 + η0) * Rs d ^ 2 / Dstar + (1 + Real.sqrt e0) ^ 2 * (Rs d ^ 2 / Dstar * sg) := by
     ring
@@ -617,7 +617,7 @@ theorem compressTraceSquareBound : CompressTraceSquareBound := by
     linarith
   have hb0 : 0 ≤ (1 - Real.sqrt e0 - Real.sqrt de ^ 2 - Real.sqrt de * Real.sqrt e0) * Rs d := by
     refine mul_nonneg ?_ hT.le
-    nlinarith [mul_nonneg (sub_nonneg.2 ht1) ht0, mul_nonneg (sub_nonneg.2 ht1) ha0]
+    linarith [mul_nonneg (sub_nonneg.2 ht1) ht0, mul_nonneg (sub_nonneg.2 ht1) ha0]
   have hX0 : 0 ≤ (1 + η0) + (1 + Real.sqrt e0) ^ 2 * sg :=
     add_nonneg (by linarith) (mul_nonneg (sq_nonneg _) hs0.le)
   have hc1 := num_main hs0 (by linarith : sg ≤ 1 / 4) hη0 hη0' hη1' hL ha0 ha'

@@ -77,7 +77,7 @@ theorem characters_of_nearestPlane_of_short_integers (hNP : Ext.NearestPlane)
     have hμ := (hred s s.2).1
     have h3 : 0 ≤ ((dstar (E := E) P.m : ℝ) ^ 2 * PT.rd E) * μ s := by positivity
     have := mul_le_mul_of_nonneg_right h2 h3
-    nlinarith
+    linarith
   refine ⟨fun s => w s, fun s => (hχX s s.2).choose, fun s => χ s, fun s => R s,
     fun s s' => ε s s', ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · intro s
@@ -148,7 +148,7 @@ theorem characters_of_nearestPlane_of_short_integers (hNP : Ext.NearestPlane)
     have e15 : (1.5 : ℝ) = 3 / 2 := by norm_num
     rw [e15]
     constructor
-    · nlinarith
+    · linarith
     · nlinarith [Real.pi_gt_three]
   · intro s y hy uy hU
     show |2 * inner ℝ (χ s) uy| ≤ M1 (E := E) P.m * ‖uy‖ ^ 2
@@ -158,7 +158,7 @@ theorem characters_of_nearestPlane_of_short_integers (hNP : Ext.NearestPlane)
       rw [M1]
       have h1 : (ρ : ℝ) ^ 2 ≤ (P.m : ℝ) ^ 2 := pow_le_pow_left₀ (Nat.cast_nonneg _) hρmR 2
       have h2 := mul_le_mul_of_nonneg_right h1 hK0.le
-      nlinarith
+      linarith
     have hK1 : 1 ≤ ((dstar (E := E) P.m : ℝ) ^ 2 * PT.rd E) := by nlinarith
     have hM1 : 1 ≤ M1 (E := E) P.m := by nlinarith
     have e1 : |2 * inner ℝ (χ s) uy| ≤ 2 * (‖χ s‖ * ‖uy‖) := by
@@ -172,7 +172,7 @@ theorem characters_of_nearestPlane_of_short_integers (hNP : Ext.NearestPlane)
         le_trans hn (mul_le_mul_of_nonneg_left h (by positivity))
       have h3 := mul_le_mul_of_nonneg_right h2 (norm_nonneg uy)
       have h4 := mul_le_mul_of_nonneg_right hM (sq_nonneg ‖uy‖)
-      nlinarith
+      linarith
   · intro s
     show ‖χ s‖ ^ 2 ≤ Cchi (E := E) P.m * P.ph
     have hn := hχn s
@@ -188,15 +188,15 @@ theorem characters_of_nearestPlane_of_short_integers (hNP : Ext.NearestPlane)
       rw [hdR]
       have h5 : 16 * (PT.f E : ℝ) ^ 4 * (P.m : ℝ) ^ 4 ≤ 16 * (PT.f E : ℝ) ^ 5 := by
         have := mul_le_mul_of_nonneg_left hmf (by positivity : (0 : ℝ) ≤ 16 * (PT.f E : ℝ) ^ 4)
-        nlinarith
+        linarith
       have h6 : (PT.f E : ℝ) ^ 4 ≤ PT.rd E ^ 2 := by
         have := pow_le_pow_left₀ (by positivity) hf2 2
-        nlinarith
+        linarith
       have h7 : 16 * (PT.f E : ℝ) ^ 4 ≤ PT.rd E * PT.rd E ^ 2 := by nlinarith
       have h8a := mul_le_mul_of_nonneg_left h7 hFpos.le
       have h8b : 0 ≤ (PT.f E : ℝ) * PT.rd E ^ 3 := by positivity
-      have h8 : 16 * (PT.f E : ℝ) ^ 5 ≤ 8 * (PT.f E : ℝ) * PT.rd E ^ 3 := by nlinarith
-      nlinarith
+      have h8 : 16 * (PT.f E : ℝ) ^ 5 ≤ 8 * (PT.f E : ℝ) * PT.rd E ^ 3 := by linarith
+      linarith
     have hρ4 : (ρ : ℝ) ^ 4 ≤ (P.m : ℝ) ^ 4 := pow_le_pow_left₀ (Nat.cast_nonneg _) hρmR 4
     have hdF : (dstar (E := E) P.m : ℝ) ^ 4 / (PT.f E : ℝ) ≤ 8 * PT.rd E ^ 3 := by rw [div_le_iff₀ hFpos]; linarith
     have hC : 0 ≤ 2025 / 2 * (dstar (E := E) P.m : ℝ) ^ 4 * PT.rd E ^ 4 * P.ph := mul_nonneg (by positivity) hph

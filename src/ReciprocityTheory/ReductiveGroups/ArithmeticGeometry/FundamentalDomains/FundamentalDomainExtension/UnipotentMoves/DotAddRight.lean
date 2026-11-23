@@ -64,9 +64,9 @@ lemma key_ineq {A Bn u w D ρ : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ Bn) (hu0 : 0 ≤
         (1 + ρ) * (A ^ 2 - u ^ 2 + Bn ^ 2 - w ^ 2) ∧
       (1 - ρ) * (A ^ 2 - u ^ 2 + Bn ^ 2 - w ^ 2) ≤
         (1 + ρ) * (A ^ 2 + w ^ 2 + 2 * D + (u ^ 2 + Bn ^ 2 + 2 * D)) := by
-  have hD1 : |D| ≤ ρ * A * Bn := h1.trans (by nlinarith)
-  have hD2 : |D| ≤ ρ * A * Bn := h2.trans (by nlinarith)
-  have hAB : 2 * (A * Bn) ≤ A ^ 2 + Bn ^ 2 := by nlinarith [sq_nonneg (A - Bn)]
+  have hD1 : |D| ≤ ρ * A * Bn := h1.trans (by linarith [mul_nonneg (sub_nonneg.2 hB) (sub_nonneg.2 hu)])
+  have hD2 : |D| ≤ ρ * A * Bn := h2.trans (by linarith [mul_nonneg (sub_nonneg.2 hA) (sub_nonneg.2 hw)])
+  have hAB : 2 * (A * Bn) ≤ A ^ 2 + Bn ^ 2 := by linarith [sq_nonneg (A - Bn)]
   have hu2 : u ^ 2 ≤ ρ ^ 2 * A ^ 2 := by nlinarith
   have hw2 : w ^ 2 ≤ ρ ^ 2 * Bn ^ 2 := by nlinarith
   have hDa := abs_le.1 hD1
@@ -76,18 +76,19 @@ lemma key_ineq {A Bn u w D ρ : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ Bn) (hu0 : 0 ≤
       nlinarith [sq_nonneg (A - Bn), sq_nonneg (u - w)]
     have hkey : (1 + ρ) * (-D) ≤ ρ * (A * Bn) + u * w := by
       rcases le_or_gt (-D) 0 with hd | hd
-      · nlinarith [mul_nonneg hA hB, mul_nonneg hu0 hw0]
+      · linarith [mul_nonneg hA hB, mul_nonneg hu0 hw0,
+          mul_nonneg ((sub_pos.2 hρ0).le) (sub_nonneg.2 hd)]
       · have hd1 : -D ≤ u * Bn := (neg_le_abs D).trans h1
         have hd2 : -D ≤ A * w := (neg_le_abs D).trans h2
-        have hdAB : -D ≤ ρ * (A * Bn) := by nlinarith [mul_le_mul_of_nonneg_right hu hB]
+        have hdAB : -D ≤ ρ * (A * Bn) := by linarith [mul_le_mul_of_nonneg_right hu hB]
         have hAB0 : 0 < A * Bn := pos_of_mul_pos_right (by linarith : 0 < ρ * (A * Bn)) hρ0.le
         have hsq : (-D) * (-D) ≤ (u * Bn) * (A * w) := mul_le_mul hd1 hd2 hd.le (mul_nonneg hu0 hB)
         have hq : 0 ≤ (-D - ρ * (A * Bn)) * (-D - A * Bn) :=
           mul_nonneg_of_nonpos_of_nonpos (by linarith) (by nlinarith)
         have hmain : (A * Bn) * ((1 + ρ) * (-D)) ≤ (A * Bn) * (ρ * (A * Bn) + u * w) := by
-          nlinarith
+          linarith
         exact le_of_mul_le_mul_left hmain hAB0
-    nlinarith
+    linarith
 
 section Frames
 
@@ -220,7 +221,7 @@ lemma en_adj_le (Z : X.Coord) (τ : X.Ψ) {ρ : ℝ} (hρ : 0 ≤ ρ) (hZ : X.zN
   rcases hy0.eq_or_lt with h | h
   · rw [← h]
     positivity
-  · exact le_of_mul_le_mul_right (by nlinarith) h
+  · exact le_of_mul_le_mul_right (by linarith) h
 
 private lemma hermC_sum_smul_left_fin_p0 (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E)
     (α : Fin X.p0 → ℂ) (w : Fin X.p0 → Fin r → ℂ) (z : Fin r → ℂ) :
@@ -378,9 +379,9 @@ theorem maj_xZ' {x : Frame X.Ψ r} (hx : x ∈ X.dom) (ho : X.IsOrtho x) {ρ : �
   rw [hmajx, hmajy, hnt, hns, ← hen2 α, ← hen2 (Matrix.of (Z τ) *ᵥ α)]
   constructor
   · rw [div_mul_eq_mul_div, div_le_iff₀ (by linarith)]
-    nlinarith [k1]
+    linarith [k1]
   · rw [div_mul_eq_mul_div, le_div_iff₀ (by linarith)]
-    nlinarith [k2]
+    linarith [k2]
 
 end Frames
 

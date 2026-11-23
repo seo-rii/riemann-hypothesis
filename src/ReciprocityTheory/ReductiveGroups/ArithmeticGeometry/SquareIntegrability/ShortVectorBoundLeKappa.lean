@@ -82,10 +82,10 @@ theorem tof_inv_sqrt_le [IsCMField E] {X : PT E} {DF : ℕ} (P : Par X DF) (hph 
     set Y : ℝ := 2 * (PT.f E : ℝ) / (PT.rd E ^ 2 * X.la1 ^ 2) with hYd
     have hY0 : 0 < Y := hph2
     have h5 : 2 * (PT.f E : ℝ) ≤ Y * PT.rd E ^ 2 := by
-      nlinarith [mul_nonneg (sub_nonneg.mpr hth.le) (mul_pos hY0 (pow_pos hR0 2)).le]
+      linarith [mul_nonneg (sub_nonneg.mpr hth.le) (mul_pos hY0 (pow_pos hR0 2)).le]
     have h6 : (1 : ℝ) ≤ PT.rd E ^ 5 * ((dstar (E := E) P.m : ℕ) : ℝ) ^ 2 :=
       one_le_mul_of_one_le_of_one_le (one_le_pow₀ (by linarith)) (one_le_pow₀ hd1)
-    nlinarith [mul_le_mul h6 h5 (by positivity) (by linarith)]
+    linarith [mul_le_mul h6 h5 (by positivity) (by linarith)]
   set K : ℝ := P.ka0 * P.ph with hKd
   have hK0 : 0 ≤ K := by linarith
   have hsK : 1 ≤ √K := by
@@ -117,7 +117,7 @@ theorem tof_inv_sqrt_le [IsCMField E] {X : PT E} {DF : ℕ} (P : Par X DF) (hph 
     have hnd : (n : ℝ) ≤ ((dstar (E := E) P.m : ℕ) : ℝ) := by exact_mod_cast hn
     have hn0 : (0 : ℝ) ≤ n := Nat.cast_nonneg n
     push_cast
-    nlinarith [mul_le_mul_of_nonneg_right hl2 hn0]
+    linarith [mul_le_mul_of_nonneg_right hl2 hn0]
   have hc2 : 0 < c * (2 : ℝ) ^ (-(n : ℝ) / 2) := mul_pos hc (Real.rpow_pos_of_pos (by norm_num) _)
   have hA : 0 < √(c * (2 : ℝ) ^ (-(n : ℝ) / 2)) := Real.sqrt_pos.mpr hc2
   rw [div_le_iff₀ hA]

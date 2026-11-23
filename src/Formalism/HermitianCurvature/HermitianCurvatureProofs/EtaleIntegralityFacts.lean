@@ -1104,7 +1104,7 @@ theorem arith (a b q j m : ℕ) (hj : j ≤ q) (cW τ : ℝ) (hcW : 1 ≤ cW) (h
   have h1 : a + b * j ≤ a + b * q := Nat.add_le_add_left (Nat.mul_le_mul_left b hj) a
   have h2 : 4 * (m + 2) * (a + b * j) ≤ 4 * (a + b) * (m + 2) * (j + 1) := by
     calc 4 * (m + 2) * (a + b * j) ≤ 4 * (m + 2) * ((a + b) * (j + 1)) :=
-          Nat.mul_le_mul_left _ (by nlinarith [Nat.zero_le (a * j), Nat.zero_le b])
+          Nat.mul_le_mul_left _ (by linarith [Nat.zero_le (a * j), Nat.zero_le b])
       _ = 4 * (a + b) * (m + 2) * (j + 1) := by ring
   exact mul_le_mul (pow_le_pow_right₀ hcW h1) (pow_le_pow_right₀ hτ h2) (by positivity) (by positivity)
 
@@ -1375,8 +1375,8 @@ theorem cof_lower (m : ℕ) {δ c ε : ℝ} (hδ : 0 < δ) (hc : 2 ≤ c) (hε0 
     calc δ ^ (m + 1) = ∏ _k : Fin (m + 1), δ := by simp
       _ ≤ ∏ k, ‖p.1 k‖ := Finset.prod_le_prod₀ (fun _ _ => hδ.le) fun k _ => hxl k
   refine ⟨hprod, ?_⟩
-  have hR : 1 ≤ c * T := by nlinarith
-  have h1 := first_cofactor_norm_le m t p hR ht1 (fun k => (hx k).trans (by nlinarith)) (hy.trans (by nlinarith))
+  have hR : 1 ≤ c * T := by linarith [mul_nonneg (sub_nonneg.2 hc) (sub_nonneg.2 hT)]
+  have h1 := first_cofactor_norm_le m t p hR ht1 (fun k => (hx k).trans (by linarith [mul_nonneg (sub_nonneg.2 hc) (sub_nonneg.2 hT)])) (hy.trans (by linarith [mul_nonneg (sub_nonneg.2 hc) (sub_nonneg.2 hT)]))
   have h2 : T ^ m * ‖t‖ ≤ Real.sqrt ‖t‖ := by
     refine le_trans ?_ (G6.rpow_bound m htp ht1 hε)
     exact mul_le_mul_of_nonneg_right (pow_le_pow_right₀ hT (by omega)) htp.le
@@ -1692,12 +1692,12 @@ theorem geom (m : ℕ) (Kc : Set ℂ) (hK : IsCompact Kc) (h0 : (0 : ℂ) ∉ Kc
     rw [← Real.rpow_mul hRb0.le] at h1
     have h2 : -(1 / ε) * -ε = 1 := by field_simp
     rwa [h2, Real.rpow_one] at h1
-  have hR1 : 1 ≤ 2 * Rz * T := by nlinarith
-  have hzR : ‖z‖ ≤ 2 * Rz * T := by nlinarith
+  have hR1 : 1 ≤ 2 * Rz * T := by linarith [mul_nonneg (sub_nonneg.2 hRz1) (sub_nonneg.2 hT1)]
+  have hzR : ‖z‖ ≤ 2 * Rz * T := by linarith [mul_nonneg (sub_nonneg.2 hRz1) (sub_nonneg.2 hT1)]
   have hcof : ∀ (y : UT (m + 2) → ℂ) (τ' : ℂ), ‖y‖ ≤ 2 * T → ‖τ'‖ ≤ ‖t‖ →
       c / 2 ≤ ‖cofXY m τ' (fun _ => z, y)‖ := by
     intro y τ' hy hτ'
-    refine cof_lower m z τ' y hR1 (hτ'.trans ht1) hzR (by nlinarith) hcz ?_
+    refine cof_lower m z τ' y hR1 (hτ'.trans ht1) hzR (by linarith [mul_nonneg (sub_nonneg.2 hRz1) (sub_nonneg.2 hT1)]) hcz ?_
     calc ‖τ'‖ * (((m : ℝ) + 1) ^ (m + 1) * (2 * Rz * T) ^ m)
         ≤ ‖t‖ * (((m : ℝ) + 1) ^ (m + 1) * (2 * Rz * T) ^ m) :=
           mul_le_mul_of_nonneg_right hτ' (by positivity)
@@ -1708,7 +1708,7 @@ theorem geom (m : ℕ) (Kc : Set ℂ) (hK : IsCompact Kc) (h0 : (0 : ℂ) ∉ Kc
       _ = c / 2 := by field_simp
   refine ⟨hz0, hzu, (hRD D hD).trans (le_max_right _ _), hcz, hcof, ?_⟩
   intro y hy
-  have hyR : ‖y‖ ≤ 2 * Rz * T := by nlinarith
+  have hyR : ‖y‖ ≤ 2 * Rz * T := by linarith [mul_nonneg (sub_nonneg.2 hRz1) (sub_nonneg.2 hT1)]
   have hcl := hcof y t (by linarith) le_rfl
   have hρ : ‖rhoXY m D t (fun _ => z, y)‖ ≤ (2 * Rz + Rz + C₂) * (2 / c) := by
     rw [rhoXY_eq, norm_mul, norm_inv]
@@ -2027,14 +2027,14 @@ theorem arith (a b m : ℕ) {ε A : ℝ} (hε0 : 0 < ε) (hε : ε ≤ 1 / (2 * 
   have key : ((4 * (m + 2) * (a + b) : ℕ) : ℝ) + ((m : ℝ) + 2) * ((m : ℝ) + 1) + u ≤ A := by
     refine le_trans ?_ hA
     push_cast
-    nlinarith
+    linarith
   have hE0 : (0 : ℝ) ≤ ((4 * (m + 2) * (a + b) : ℕ) : ℝ) := Nat.cast_nonneg _
   refine ⟨?_, by linarith, ?_⟩
   · have : (0 : ℝ) ≤ ((m : ℝ) + 2) * ((m : ℝ) + 1) := by positivity
     linarith
   · have h1 : ε * u ≤ ε * (A - ((4 * (m + 2) * (a + b) : ℕ) : ℝ) - ((m : ℝ) + 2) * ((m : ℝ) + 1)) :=
       mul_le_mul_of_nonneg_left (by linarith) hε0.le
-    nlinarith
+    linarith
 
 set_option maxHeartbeats 1000000 in
 theorem ampLimit : AmpLimit := by

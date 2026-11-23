@@ -91,7 +91,7 @@ theorem kap_lb (C c U : ℝ) (hc : 0 < c) (z w : P) (hz : |z.1.re| ≤ C ∧ c �
   rw [hnorm]
   have habs : z.1.im * w.1.im = |z.1.im| * |w.1.im| := by rw [← abs_mul, abs_of_pos hzw]
   have hp : c ^ 2 ≤ z.1.im * w.1.im := by
-    rw [habs]; nlinarith [mul_le_mul hzi1 hwi1 hc.le (abs_nonneg _)]
+    rw [habs]; linarith [mul_le_mul hzi1 hwi1 hc.le (abs_nonneg _)]
   have hU0 : 0 ≤ U := le_trans (abs_nonneg _) hzi2
   have hU : 0 < U := by linarith
   have hzr' := abs_le.mp hzr
@@ -167,7 +167,7 @@ theorem near_of (hB : B1b) (hC : B1c) (γ1 γ2 : PG F) (z1 z2 : D.Xs) (h1 : γ1 
     mul_le_mul (hk v) hk2 hδ (le_trans hδ (hk v))
   show δ ^ 2 / 4 ≤ kap ((z1 : X I) v) (((γ1⁻¹ * γ2) • z1 : D.Xs) v)
   rw [k1]
-  nlinarith
+  linarith
 
 theorem bound_im [Nonempty I] {C c : ℝ} (hc : 0 < c) (z : X I) (hz : Sg C c z) (B : ℝ)
     (hB : ∏ v, |(z v).1.im| ≤ B) (v : I) : |(z v).1.im| ≤ C * max 1 B := by
@@ -283,12 +283,12 @@ theorem htBound (hE : E0d) (hD : D.Ax) (a : Gf) (Cm : ℝ) (hCm : ∀ s, s ≠ 0
   have hP0 : 0 ≤ ∏ v, |((z : X I) v).1.im| := Finset.prod_nonneg fun _ _ => abs_nonneg _
   have k1 : (∏ v, |((z : X I) v).1.im|) * D.hf ![0, 1] (D.rep ω)
       ≤ Cm * ((∏ v, |((z : X I) v).1.im|) * D.hf ![0, 1] (D.rep ω * h * a)) := by
-    nlinarith [mul_le_mul_of_nonneg_left hf2 hP0]
+    linarith [mul_le_mul_of_nonneg_left hf2 hP0]
   have hCm0 : 0 ≤ Cm := by
     by_contra hneg
     push Not at hneg
-    nlinarith [mul_neg_of_neg_of_pos hneg hpos2]
-  nlinarith [mul_le_mul_of_nonneg_right k1 hpos1.le, mul_le_mul_of_nonneg_left hprod hCm0]
+    linarith [mul_neg_of_neg_of_pos hneg hpos2]
+  linarith [mul_le_mul_of_nonneg_right k1 hpos1.le, mul_le_mul_of_nonneg_left hprod hCm0]
 
 end UpperTheory.Esk.ImaginaryPartBound
 

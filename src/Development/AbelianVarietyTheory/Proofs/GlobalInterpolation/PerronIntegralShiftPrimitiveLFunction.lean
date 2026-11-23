@@ -103,7 +103,7 @@ private theorem exists_norm_logDeriv_LFunction_neg_half_le_log_conductor :
       exact hsum.trans (by linarith)
     rw [him] at key
     simp only [Nat.cast_one, one_mul]
-    nlinarith [mul_nonneg hC₁.le (by linarith : (0:ℝ) ≤ Real.log (|t| + 2))]
+    linarith [mul_nonneg hC₁.le (by linarith : (0:ℝ) ≤ Real.log (|t| + 2))]
   · have hLs := LFunction_ne_zero_of_re_eq_neg_half χ hχ hre
     obtain ⟨hfin, hcnt, hbd⟩ := H₁ N χ h1 s (by rw [hre]; norm_num) (by rw [hre]; norm_num) hLs
     rw [him] at hcnt hbd
@@ -118,7 +118,9 @@ private theorem exists_norm_logDeriv_LFunction_neg_half_le_log_conductor :
     rw [e]
     refine (norm_add_le _ _).trans ?_
     have := add_le_add hbd (hsum.trans (by linarith : _ ≤ 2 * (C₁ * Real.log (N * (|t| + 2)))))
-    nlinarith
+    linarith [mul_pos (sub_pos.2 hC₂) (by linarith : (0 : ℝ) < 3 * Real.log 2 - 2),
+      mul_nonneg ((sub_pos.2 hC₂).le) (sub_nonneg.2 ht2),
+      mul_nonneg ((sub_pos.2 hC₂).le) (sub_nonneg.2 hlogN)]
 
 open Complex DirichletCharacter ArithmeticFunction MeasureTheory Filter Topology in
 private theorem norm_neg_mul_ofReal_cpow_div_eq (a s : ℂ) {u : ℝ} (hu : 0 < u) :
@@ -195,7 +197,7 @@ private theorem rpow_one_add_inv_log_le_three_mul (u : ℝ) (hu : 1 < u) :
   rw [Real.rpow_add (by linarith), Real.rpow_one, Real.rpow_def_of_pos (by linarith),
     mul_one_div_cancel hl.ne']
   have := Real.exp_one_lt_d9
-  nlinarith
+  linarith [mul_pos (sub_pos.2 hu) (by linarith : (0 : ℝ) < 13591409143 - 5000000000 * Real.exp 1)]
 
 open Complex DirichletCharacter ArithmeticFunction MeasureTheory Filter Topology in
 private theorem inv_two_pi_mul_sub_add_eq_of_contour_identity (H₁ H₂ V W M S E : ℂ)
@@ -258,24 +260,25 @@ theorem _root_.GlobalTheory.PerronShift.perron_shift : ∃ C : ℝ, 0 < C ∧ �
   have hlogP : 0 ≤ Real.log (N * u * T) := Real.log_nonneg (by linarith)
   have hP2 : Real.log (((N : ℝ) * u * T) ^ 2) = 2 * Real.log (N * u * T) := by
     rw [Real.log_pow]; norm_num
-  have hNuT : (N : ℝ) * u * T * (N * u * T) ≥ 4 * (N * u * T) := by nlinarith
+  have hNuT : (N : ℝ) * u * T * (N * u * T) ≥ 4 * (N * u * T) := by linarith [mul_nonneg (sub_nonneg.2 hP4) (sub_nonneg.2 hP4)]
   have hNT : (N : ℝ) * T ≤ N * u * T := by nlinarith
   have hNT2 : 2 * ((N : ℝ) * T) ≤ N * u * T := by
-    nlinarith [mul_nonneg (by positivity : (0 : ℝ) ≤ N * T) (by linarith : (0 : ℝ) ≤ u - 2)]
-  have hsq : 4 * ((N : ℝ) * u * T) ≤ ((N : ℝ) * u * T) ^ 2 := by nlinarith
+    linarith [mul_nonneg (by positivity : (0 : ℝ) ≤ N * T) (by linarith : (0 : ℝ) ≤ u - 2)]
+  have hsq : 4 * ((N : ℝ) * u * T) ≤ ((N : ℝ) * u * T) ^ 2 := by linarith
 
   have hS0 : 0 ≤ ∑ᶠ ρ ∈ {ρ : ℂ | 0 < ρ.re ∧ ρ.re < 1 ∧ |ρ.im| < 1 ∧ LFunction χ ρ = 0},
       ((analyticOrderNatAt (LFunction χ) ρ : ℕ) : ℝ) / ‖ρ‖ :=
     finsum_nonneg fun ρ => finsum_nonneg fun _ => by positivity
   have hlogNu : Real.log u ≤ Real.log (N * u) :=
-    Real.log_le_log (by linarith) (by nlinarith)
+    Real.log_le_log (by linarith) (by linarith [mul_nonneg (sub_nonneg.2 hT) (sub_nonneg.2 hN),
+                                        mul_nonneg (sub_nonneg.2 hTu) (sub_nonneg.2 hN)])
   have hlog2N : Real.log (2 * N) ≤ Real.log (N * u) :=
     Real.log_le_log (by positivity) (by nlinarith)
   have hE : ‖(m : ℂ) * ((Real.log u : ℝ) : ℂ) + h 0‖ ≤ Real.log u + ‖h 0‖ := by
     refine (norm_add_le _ _).trans ?_
     rw [norm_mul, Complex.norm_natCast, Complex.norm_real, Real.norm_eq_abs, abs_of_pos hlogu]
     have : (m : ℝ) ≤ 1 := by exact_mod_cast hm
-    nlinarith
+    linarith [mul_nonneg ((sub_pos.2 hlogu).le) (sub_nonneg.2 this)]
 
   have hW := HV N χ hχ u T' hu1.le (by linarith)
   have hW1 : Real.log (N * (T' + 2)) ≤ 2 * Real.log (N * u * T) := by
@@ -330,7 +333,8 @@ theorem _root_.GlobalTheory.PerronShift.perron_shift : ∃ C : ℝ, 0 < C ∧ �
   have hWb : C₂ * Real.log (N * (T' + 2)) * Real.log (2 * T' + 1) ≤
       4 * C₂ * (u * Real.log (N * u * T) ^ 2 / T) := by
     have := mul_le_mul hW1 hW2 hW0 (by linarith)
-    nlinarith
+    linarith [mul_nonneg ((sub_pos.2 hC₂).le) (by linarith : (0 : ℝ) ≤ u * Real.log (↑N * u * T) ^ 2 / T - Real.log (↑N * u * T) ^ 2),
+      mul_nonneg ((sub_pos.2 hC₂).le) (sub_nonneg.2 this)]
   have hLg : 0 ≤ Real.log (N * u) := hlogu.le.trans hlogNu
   have key := add_le_add (add_le_add (add_le_add (hE.trans (add_le_add le_rfl hh0))
     (hW.trans hWb)) hH1) hH2

@@ -167,8 +167,12 @@ theorem main_bounds {θ : ℤ} {β δ u : ℝ} (hθ : θ = 0 ∨ θ = 1 ∨ θ =
   have h1 : u ^ β ≤ u := by
     simpa using Real.rpow_le_rpow_of_exponent_le hu (show β ≤ 1 by linarith)
   have h2 : 0 < u ^ β / β := by positivity
-  have h3 : u ^ β / β ≤ 2 * u := by rw [div_le_iff₀ (by linarith)]; nlinarith
-  have h4 : δ * u ≤ u := by nlinarith
+  have h3 : u ^ β / β ≤ 2 * u := by rw [div_le_iff₀ (by linarith)]; linarith [mul_nonneg (by linarith : (0 : ℝ) ≤ 8 * β - 7) (sub_nonneg.2 hu)]
+  have h4 : δ * u ≤ u := by linarith [mul_nonneg (by linarith : (0 : ℝ) ≤ 8 * β - 7) ((sub_pos.2 hδ).le),
+                              mul_nonneg (by linarith : (0 : ℝ) ≤ 8 * β - 7) (sub_nonneg.2 hu),
+                              mul_pos (sub_pos.2 hδ) (sub_pos.2 hδ),
+                              mul_nonneg ((sub_pos.2 hδ).le) (sub_nonneg.2 hδβ),
+                              mul_nonneg (sub_nonneg.2 hδβ) (sub_nonneg.2 hu)]
   unfold mainPsi
   rcases hθ with rfl | rfl | rfl
   · simp; constructor <;> linarith
@@ -177,7 +181,8 @@ theorem main_bounds {θ : ℤ} {β δ u : ℝ} (hθ : θ = 0 ∨ θ = 1 ∨ θ =
       rw [show Real.log u * β + (1 - β) * Real.log u = Real.log u by ring, Real.exp_log hu0]
     have h5 : 1 + 4 * (1 - β) ≤ Real.exp ((1 - β) * Real.log u) := by
       have := Real.add_one_le_exp ((1 - β) * Real.log u)
-      nlinarith
+      linarith [mul_nonneg ((sub_pos.2 hδ).le) (sub_nonneg.2 hl),
+        mul_nonneg (sub_nonneg.2 hδβ) (sub_nonneg.2 hl)]
     have h6 : u ^ β * (1 + 4 * (1 - β)) ≤ u := by
       have := mul_le_mul_of_nonneg_left h5 hp.le
       linarith
@@ -185,11 +190,15 @@ theorem main_bounds {θ : ℤ} {β δ u : ℝ} (hθ : θ = 0 ∨ θ = 1 ∨ θ =
       rw [div_le_iff₀ (by linarith)]
       have h8 : 1 ≤ (1 + 4 * (1 - β)) * (β * β) := by
         have : 0 ≤ 1 - β := by linarith
-        have h9 : 3 / 4 ≤ β * β := by nlinarith
-        nlinarith
+        have h9 : 3 / 4 ≤ β * β := by linarith [mul_nonneg (by linarith : (0 : ℝ) ≤ 8 * β - 7) (by linarith : (0 : ℝ) ≤ 8 * β - 7)]
+        linarith [mul_nonneg (by linarith : (0 : ℝ) ≤ 8 * β - 7) ((sub_pos.2 hδ).le),
+          mul_pos (sub_pos.2 hδ) (sub_pos.2 hδ), mul_nonneg ((sub_pos.2 hδ).le) (sub_nonneg.2 hδβ),
+          mul_nonneg ((sub_pos.2 hδ).le) (by linarith : (0 : ℝ) ≤ β * (4 * β) - 3),
+          mul_nonneg (sub_nonneg.2 hδβ) (sub_nonneg.2 hδβ),
+          mul_nonneg (sub_nonneg.2 hδβ) (by linarith : (0 : ℝ) ≤ β * (4 * β) - 3)]
       have := mul_le_mul_of_nonneg_left h8 hp.le
       have := mul_le_mul_of_nonneg_right h6 (show 0 ≤ β * β by positivity)
-      nlinarith
+      linarith
     push_cast
     constructor <;> nlinarith
   · push_cast
@@ -256,7 +265,14 @@ theorem step (P : ℕ → Prop) {θ : ℤ} {β δ φ B ρ s : ℝ} (hθ : θ = 0
       linarith
     have k5 : B * (8 * r ^ 3) ≤ 1 / s * (δ * u) := by
       rw [one_div, ← div_eq_inv_mul, le_div_iff₀ hs0, hr]
-      have a1 : 8 * B * s ≤ δ * r := by nlinarith
+      have a1 : 8 * B * s ≤ δ * r := by linarith [mul_nonneg (by linarith : (0 : ℝ) ≤ 8 * β - 7) ((sub_pos.2 hδ).le),
+                                          mul_nonneg (by linarith : (0 : ℝ) ≤ 8 * β - 7) ((sub_pos.2 hs0).le),
+                                          mul_pos (sub_pos.2 hδ) (sub_pos.2 hδ),
+                                          mul_nonneg ((sub_pos.2 hδ).le) (sub_nonneg.2 hδβ),
+                                          mul_nonneg ((sub_pos.2 hδ).le) (sub_nonneg.2 hsr),
+                                          mul_nonneg (sub_nonneg.2 hδβ) ((sub_pos.2 hs0).le),
+                                          mul_nonneg (sub_nonneg.2 hB) ((sub_pos.2 hs0).le),
+                                          mul_nonneg (sub_nonneg.2 hs) ((sub_pos.2 hs0).le)]
       have := mul_le_mul_of_nonneg_left a1 (show 0 ≤ r ^ 3 by positivity)
       linarith
     have k6 : 1 / s * (δ * u) ≤ 1 / s * mainPsi θ β u := mul_le_mul_of_nonneg_left (hm u hu).1 (by positivity)
@@ -284,7 +300,7 @@ theorem step (P : ℕ → Prop) {θ : ℤ} {β δ φ B ρ s : ℝ} (hθ : θ = 0
     have a3 := mul_le_mul_of_nonneg_left a2 (show 0 ≤ s ^ 14 by positivity)
     have a4 := mul_le_mul_of_nonneg_left (show 128 ≤ δ * s by linarith) (show 0 ≤ s ^ 15 by positivity)
     push_cast
-    nlinarith
+    linarith
   have e4 : s ^ 8 ≤ s ^ 10 := pow_le_pow_right₀ hs1 (by norm_num)
   have e5 : s ^ 10 ≤ s ^ 14 := pow_le_pow_right₀ hs1 (by norm_num)
   have e6 : 4 * s ^ 10 ≤ Emain θ β (s ^ 16) := by linarith [e1.1]
@@ -299,7 +315,7 @@ theorem step (P : ℕ → Prop) {θ : ℤ} {β δ φ B ρ s : ℝ} (hθ : θ = 0
     rw [one_div, ← div_eq_inv_mul, le_div_iff₀ hs0]
     have := mul_le_mul_of_nonneg_left (show B + 3 ≤ s by linarith) (show 0 ≤ s ^ 9 by positivity)
     have : 0 < s ^ 10 := by positivity
-    nlinarith
+    linarith
   have e11 := abs_le.1 (hc.trans e7)
   have e12 : 0 ≤ B * s ^ 8 := by positivity
   rw [abs_le, show 4 / s = 4 * (1 / s) by ring]
@@ -358,7 +374,8 @@ theorem pi_rel_of_psi_rel : ∀ c₂ c₃ C cS : ℝ, 0 < c₂ → 0 < c₃ → 
       have := Real.log_le_log (by positivity) hu.1
       rw [Real.log_pow] at this ⊢
       push_cast at this ⊢
-      nlinarith
+      linarith [mul_nonneg ((sub_pos.2 h3).le) (sub_nonneg.2 this),
+        mul_nonneg (by linarith : (0 : ℝ) ≤ c₃ - 2 * d) (sub_nonneg.2 hls)]
     refine add_le_add (Real.exp_le_exp.2 ?_) (Real.exp_le_exp.2 (neg_le_neg (Real.sqrt_le_sqrt a1)))
     exact div_le_div_of_nonneg_right (by linarith) (by linarith)
   have hse : 1 / s ≤ e := by

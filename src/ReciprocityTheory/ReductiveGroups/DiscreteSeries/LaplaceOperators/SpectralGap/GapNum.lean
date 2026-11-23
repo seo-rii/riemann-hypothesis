@@ -31,7 +31,7 @@ theorem gapNum_key (Q Nn T : ℝ) (hQ : 1 ≤ Q) (hN : 2 ≤ Nn) (hT : Nn + 5 �
   have h3 : Q ^ 2 ≤ Q ^ 3 := by nlinarith [sq_nonneg Q]
   have h4 : 16 * Q ^ 2 * (17 * Nn ^ 2) ≤ 16 * Q ^ 3 * T ^ 3 := by
     have := mul_le_mul h3 h2 (by positivity) (by positivity)
-    nlinarith
+    linarith
   nlinarith [sq_nonneg Q, sq_nonneg Nn]
 
 theorem gapNum_real (Q Nn T P Q0 x : ℝ) (hQ : 1 ≤ Q) (hN : 2 ≤ Nn) (hT : Nn + 5 ≤ T)
@@ -45,35 +45,40 @@ theorem gapNum_real (Q Nn T P Q0 x : ℝ) (hQ : 1 ≤ Q) (hN : 2 ≤ Nn) (hT : N
   have hNp : 0 ≤ Nn := by linarith
   have hTp : 0 ≤ T := by linarith
   set S := Nn + 2 * Q * T with hS
-  have hSN : Nn ≤ S := by nlinarith
+  have hSN : Nn ≤ S := by linarith [mul_nonneg (sub_nonneg.2 hQ) (sub_nonneg.2 hN),
+                            mul_nonneg (sub_nonneg.2 hQ) (sub_nonneg.2 hT)]
   have hS3 : Nn ≤ 2 * S ^ 3 := by nlinarith [sq_nonneg S, sq_nonneg Nn]
   have hs0 : 0 ≤ Real.sqrt (2 * Q0) := Real.sqrt_nonneg _
-  have hs : Real.sqrt (2 * Q0) ≤ 2 * Q := Real.sqrt_le_iff.mpr ⟨by linarith, by nlinarith⟩
+  have hs : Real.sqrt (2 * Q0) ≤ 2 * Q := Real.sqrt_le_iff.mpr ⟨by linarith, by linarith [mul_nonneg (sub_nonneg.2 hQ) (sub_nonneg.2 hQ)]⟩
   have hm0 : 0 ≤ max (2 * Nn * Q0) (2 * (Q - 1) * Nn ^ 2) :=
     le_max_of_le_left (by positivity)
   have hm : max (2 * Nn * Q0) (2 * (Q - 1) * Nn ^ 2) ≤ 2 * Q * Nn ^ 2 :=
-    max_le (by nlinarith [mul_le_mul_of_nonneg_left hQ0 hNp, mul_le_mul_of_nonneg_left (show Nn ≤ Nn ^ 2 by nlinarith) (show 0 ≤ Q by linarith)]) (by nlinarith)
-  have hN2 : 4 ≤ Nn ^ 2 := by nlinarith
+    max_le (by linarith [mul_le_mul_of_nonneg_left hQ0 hNp,
+                 mul_le_mul_of_nonneg_left (show Nn ≤ Nn ^ 2 by nlinarith) (show 0 ≤ Q by linarith),
+                 mul_nonneg (sub_nonneg.2 hN) (sub_nonneg.2 hN)]) (by linarith [sq_nonneg (Nn : ℝ)])
+  have hN2 : 4 ≤ Nn ^ 2 := by linarith [mul_nonneg (sub_nonneg.2 hN) (sub_nonneg.2 hN)]
   have hQN : 4 * Q ≤ Q ^ 2 * Nn ^ 2 := by
-    calc 4 * Q ≤ Q ^ 2 * 4 := by nlinarith
+    calc 4 * Q ≤ Q ^ 2 * 4 := by linarith [mul_nonneg (sub_nonneg.2 hQ) (sub_nonneg.2 hQ)]
       _ ≤ Q ^ 2 * Nn ^ 2 := mul_le_mul_of_nonneg_left hN2 (sq_nonneg Q)
   have hd : 8 * Real.sqrt (2 * Q0) * (4 * max (2 * Nn * Q0) (2 * (Q - 1) * Nn ^ 2) + 1)
       ≤ 8 * (2 * Q) * (4 * (2 * Q * Nn ^ 2) + 1) := by
     apply mul_le_mul (by linarith) (by linarith) (by positivity) (by positivity)
   have hNQ : Nn * Q0 ≤ Nn * Q := mul_le_mul_of_nonneg_left hQ0 hNp
-  have hqn : 2 ≤ Q * Nn := by nlinarith
-  have hQ2N2 : 2 * (Nn * Q) ≤ Q ^ 2 * Nn ^ 2 := by nlinarith
+  have hqn : 2 ≤ Q * Nn := by linarith [mul_nonneg (sub_nonneg.2 hQ) (sub_nonneg.2 hN)]
+  have hQ2N2 : 2 * (Nn * Q) ≤ Q ^ 2 * Nn ^ 2 := by linarith [mul_nonneg (sub_nonneg.2 hQ) (sub_nonneg.2 hm0),
+                                                     mul_nonneg (sub_nonneg.2 hQ) (sub_nonneg.2 hm),
+                                                     mul_nonneg (sub_nonneg.2 hN) (sub_nonneg.2 hqn)]
   have hPQ : P * Q ≤ Nn * Q := mul_le_mul_of_nonneg_right hP hQp
   have hNPQ1 : Nn * (P * Q) ≤ Nn * (Nn * Q) := mul_le_mul_of_nonneg_left hPQ hNp
-  have hQQ : Q ≤ Q ^ 2 := by nlinarith
+  have hQQ : Q ≤ Q ^ 2 := by linarith [mul_nonneg (sub_nonneg.2 hQ) (sub_nonneg.2 hQ)]
   have hNPQ2 : Nn ^ 2 * Q ≤ Nn ^ 2 * Q ^ 2 := mul_le_mul_of_nonneg_left hQQ (sq_nonneg Nn)
   have hQN0 : 0 ≤ Q ^ 2 * Nn ^ 2 := by positivity
   refine max_lt ?_ (max_lt ?_ ?_)
   · have : max (3 * Nn / 2) (1 + Nn * P * Q) < x - 2 :=
-      max_lt (by linarith) (by nlinarith)
+      max_lt (by linarith) (by linarith)
     linarith
-  · nlinarith
-  · nlinarith
+  · linarith
+  · linarith
 
 theorem gapNum : GapNumStatement := by
   intro n q t x hn hq hqn ht hx

@@ -35,7 +35,7 @@ lemma map_lt (B : ℕ) : ∀ {S : ℕ} (v : Fin S → ℕ), (∀ m, v m < B) →
     have h2 : B * (Behrend.map B (fun m : Fin S => v m.succ) + 1) ≤ B * B ^ S :=
       Nat.mul_le_mul_left B h1
     have h3 := hv 0
-    nlinarith
+    linarith
 
 lemma sphere_rel {S : ℕ} (v₁ v₂ v₃ : Fin S → ℤ) (k : ℤ) (h₁ : ∑ m, v₁ m ^ 2 = k)
     (h₂ : ∑ m, v₂ m ^ 2 = k) (h₃ : ∑ m, v₃ m ^ 2 = k) (i j : ℤ) (hj : j ≠ 0) (hij : i ≠ j)
@@ -233,7 +233,7 @@ theorem hostThickExists : HostThickExists := by
   have hs32 : 32 * y < s := by
     by_contra hc
     push_neg at hc
-    nlinarith [mul_nonneg hs0 (sub_nonneg.mpr hc), mul_pos hpos hy0, sq_nonneg y]
+    linarith [mul_nonneg hs0 (sub_nonneg.mpr hc), mul_pos hpos hy0, sq_nonneg y, sq_nonneg (y : ℝ)]
   have hs16 : 16 < s := by linarith
   obtain ⟨S, hSdef⟩ : ∃ S : ℕ, S = ⌊s / y⌋₊ := ⟨_, rfl⟩
   have hS1 : (S : ℝ) ≤ s / y := by rw [hSdef]; exact Nat.floor_le (div_nonneg hs0 hy0.le)
@@ -248,12 +248,12 @@ theorem hostThickExists : HostThickExists := by
   obtain ⟨a, ha⟩ : ∃ a : ℝ, a = (x - y - 3) / S := ⟨_, rfl⟩
   have haS : a * S = x - y - 3 := by rw [ha]; field_simp
   have h2Sy : s ≤ 2 * S * y := by
-    nlinarith [mul_nonneg (by linarith : (0 : ℝ) ≤ S - 1) hy0.le]
+    linarith [mul_nonneg (by linarith : (0 : ℝ) ≤ S - 1) hy0.le]
   have hxle : x ≤ 2 * s * S := by
-    have h : x * y ≤ (2 * s * S) * y := by nlinarith [mul_le_mul_of_nonneg_left h2Sy hs0]
+    have h : x * y ≤ (2 * s * S) * y := by linarith [mul_le_mul_of_nonneg_left h2Sy hs0]
     exact le_of_mul_le_mul_right h hy0
   have ha2s : a ≤ 2 * s := by
-    have h : a * S ≤ (2 * s) * S := by nlinarith
+    have h : a * S ≤ (2 * s) * S := by linarith
     exact le_of_mul_le_mul_right h hSpos
   have ha7 : 7 + y ≤ a := by
     have h1 : (7 + y) * S * y ≤ (x - y - 3) * y := by

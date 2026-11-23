@@ -191,17 +191,17 @@ theorem num (χ : Fin n → ℂ) (B : ℝ) : ∃ C δ : ℝ, 0 < δ ∧ ∀ N₀
     have h1 : e1 ≤ x b - x a := hE1 (a, b) (sub_pos.2 h)
     have h2 : ε * ((a : ℕ) : ℝ) ≤ ε * n := mul_le_mul_of_nonneg_left (hidx a).2 hε.le
     have h3 : 0 ≤ ε * ((b : ℕ) : ℝ) := mul_nonneg hε.le (hidx b).1
-    simp only [hc]; nlinarith
+    simp only [hc]; linarith
   have hgapc : ∀ a b, a ≠ b → ε ≤ c a - c b ∨ ε ≤ c b - c a := by
     have hlt : ∀ a b, x a < x b → ε ≤ c b - c a := fun a b h => by
       have h1 : e1 ≤ x b - x a := hE1 (a, b) (sub_pos.2 h)
       have h2 : ε * ((a : ℕ) : ℝ) ≤ ε * n := mul_le_mul_of_nonneg_left (hidx a).2 hε.le
       have h3 : 0 ≤ ε * ((b : ℕ) : ℝ) := mul_nonneg hε.le (hidx b).1
-      simp only [hc]; nlinarith
+      simp only [hc]; linarith
     have heq : ∀ a b : Fin n, x a = x b → (a : ℕ) < (b : ℕ) → ε ≤ c b - c a := fun a b h hab => by
       have h1 : ((a : ℕ) : ℝ) + 1 ≤ ((b : ℕ) : ℝ) := by exact_mod_cast hab
       have h2 := mul_le_mul_of_nonneg_left h1 hε.le
-      simp only [hc, h]; nlinarith
+      simp only [hc, h]; linarith
     intro a b hab
     rcases lt_trichotomy (x a) (x b) with h | h | h
     · exact Or.inr (hlt a b h)
@@ -234,7 +234,7 @@ theorem num (χ : Fin n → ℂ) (B : ℝ) : ∃ C δ : ℝ, 0 < δ ∧ ∀ N₀
     refine Nat.le_floor ?_
     have := hc1 a
     push_cast
-    nlinarith
+    linarith [mul_nonneg (sub_nonneg.2 hN2) (sub_nonneg.2 this)]
   · intro I I' _ hcard hv
     have hvx : (∑ i ∈ I, χ i - ∑ i ∈ I', χ i).re = ∑ i ∈ I, x i - ∑ i ∈ I', x i := by
       simp [hx, Complex.re_sum]
@@ -282,10 +282,10 @@ theorem num (χ : Fin n → ℂ) (B : ℝ) : ∃ C δ : ℝ, 0 < δ ∧ ∀ N₀
     have hinner : X - X' + ε * (A - A') ≤ -(κ / 2) := by
       have h1 : ε * (A - A') ≤ ε * (n : ℝ) ^ 2 := mul_le_mul_of_nonneg_left (by linarith) hε.le
       have h2 : 0 ≤ ε * (n : ℝ) ^ 2 := by positivity
-      nlinarith
+      linarith
     have hmul : N * (X - X' + ε * (A - A')) ≤ N * (-(κ / 2)) :=
       mul_le_mul_of_nonneg_left hinner (by linarith)
-    nlinarith
+    linarith
   · intro a b hab
     have hxa := abs_le.1 (hxM a)
     have hxb := abs_le.1 (hxM b)
@@ -297,10 +297,10 @@ theorem num (χ : Fin n → ℂ) (B : ℝ) : ∃ C δ : ℝ, 0 < δ ∧ ∀ N₀
     rcases hgapc a b hab with h | h
     · have hh := mul_le_mul_of_nonneg_left h hNp
       refine le_abs.2 (Or.inl ?_)
-      nlinarith
+      linarith
     · have hh := mul_le_mul_of_nonneg_left h hNp
       refine le_abs.2 (Or.inr ?_)
-      nlinarith
+      linarith
   · intro a
     have hNp : 0 ≤ N := by linarith
     have hεn : 0 ≤ ε * n := by positivity
@@ -309,11 +309,11 @@ theorem num (χ : Fin n → ℂ) (B : ℝ) : ∃ C δ : ℝ, 0 < δ ∧ ∀ N₀
     have h1 := hfl a
     have h2 : N * c a ≤ N * (2 * M + 1 + ε * n) := mul_le_mul_of_nonneg_left (hc2 a) hNp
     have hm0 : (0 : ℝ) ≤ m a := Nat.cast_nonneg _
-    have h3 : M ≤ N * M := by nlinarith
+    have h3 : M ≤ N * M := by linarith [mul_nonneg (sub_nonneg.2 hM0) (sub_nonneg.2 hN2)]
     refine abs_le.2 ⟨?_, ?_⟩
-    · nlinarith
+    · linarith
     · show x a + m a ≤ _
-      nlinarith
+      linarith
 
 theorem pathExists : CompanionTheory.RgExh.Fin.PathExists := by
   intro n χ B

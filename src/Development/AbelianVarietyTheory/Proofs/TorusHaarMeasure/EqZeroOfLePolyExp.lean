@@ -196,8 +196,8 @@ private lemma one_add_inv_la1_flow_le_mul {r : ℕ} (X : _root_.ReciprocityTheor
   have hz := flow_mem_dom_of_im_nonneg' X hx hξ s hs
   set P := (1 + Y * K) * (1 + B * K) ^ 2 with hP_def
   have hP1 : 1 ≤ P := by
-    have h1 : 1 ≤ 1 + Y * K := by nlinarith
-    have h2 : 1 ≤ (1 + B * K) ^ 2 := one_le_pow₀ (by nlinarith)
+    have h1 : 1 ≤ 1 + Y * K := by linarith [mul_nonneg (sub_nonneg.2 hK0) (sub_nonneg.2 hY0)]
+    have h2 : 1 ≤ (1 + B * K) ^ 2 := one_le_pow₀ (by linarith [mul_nonneg (sub_nonneg.2 hK0) (sub_nonneg.2 hB0)])
     nlinarith
   have hP0 : 0 < P := by linarith
   have hb := _root_.ReciprocityTheory.ChartRestriction.G.FD.MinimumGrowthBounds.minimumSq_two_sided_bounds X hx hz (k1 := 1 / P) (k2 := P) (by positivity) hP0
@@ -211,7 +211,7 @@ private lemma one_add_inv_la1_flow_le_mul {r : ℕ} (X : _root_.ReciprocityTheor
     unfold _root_.ReciprocityTheory.ChartRestriction.G.FD.Data.la1 at hx1
     rw [Real.le_sqrt' (by positivity), div_pow, Real.sq_sqrt hsq]
     calc X.firstMinimumSq x / P ^ 2 ≤ X.firstMinimumSq x / P :=
-          div_le_div_of_nonneg_left hsq hP0 (by nlinarith)
+          div_le_div_of_nonneg_left hsq hP0 (by linarith [mul_nonneg (sub_nonneg.2 hP1) (sub_nonneg.2 hP1)])
       _ = 1 / P * X.firstMinimumSq x := by ring
       _ ≤ _ := hb.1
   have hinv : 1 / X.la1 (X.flow ξ s x) ≤ P / X.la1 x := by
@@ -219,7 +219,7 @@ private lemma one_add_inv_la1_flow_le_mul {r : ℕ} (X : _root_.ReciprocityTheor
           one_div_le_one_div_of_le (by positivity) hlow
       _ = P / X.la1 x := one_div_div _ _
   have : P / X.la1 x = P * (1 / X.la1 x) := by ring
-  nlinarith [one_div_pos.mpr hx1]
+  linarith [one_div_pos.mpr hx1]
 
 open NumberField MeasureTheory Topology in
 open scoped ContDiff ENNReal Matrix in
@@ -274,7 +274,7 @@ private lemma nfac_flow_ge_lemma_5 {r : ℕ} (X : _root_.ReciprocityTheory.Chart
     have e : 2 * X.c τ * (s τ).im * _root_.ReciprocityTheory.ChartRestriction.G.FD.PositiveMinorUnits.mN (↑τ) X.Gm (_root_.ReciprocityTheory.ChartRestriction.G.FD.mat x τ) (_root_.ReciprocityTheory.ChartRestriction.G.FD.Data.emb (↑τ) ξ) j =
         (s τ).im * (2 * X.c τ * _root_.ReciprocityTheory.ChartRestriction.G.FD.PositiveMinorUnits.mN (↑τ) X.Gm (_root_.ReciprocityTheory.ChartRestriction.G.FD.mat x τ) (_root_.ReciprocityTheory.ChartRestriction.G.FD.Data.emb (↑τ) ξ) j) := by ring
     rw [e]
-    exact ⟨by nlinarith [hs τ], by nlinarith [mul_le_mul (hY τ) (hL τ j) h2 hY0, hs τ]⟩
+    exact ⟨by nlinarith [hs τ], by linarith [mul_le_mul (hY τ) (hL τ j) h2 hY0, hs τ]⟩
   unfold _root_.ReciprocityTheory.ChartRestriction.G.FD.Data.nfac
   rw [← Finset.sum_neg_distrib, Real.rpow_sum_of_pos hQ0, ← Finset.prod_mul_distrib]
   apply Finset.prod_le_prod₀
@@ -306,7 +306,7 @@ private lemma nfac_flow_ge_lemma_5 {r : ℕ} (X : _root_.ReciprocityTheory.Chart
       _ = 1 := inv_mul_cancel₀ hQ0.ne'
       _ ≤ f1 := h1a
   · rw [div_le_iff₀ (by positivity)]
-    nlinarith
+    linarith [mul_nonneg (sub_nonneg.2 hQ1) (sub_nonneg.2 h0a)]
 
 open NumberField MeasureTheory Topology in
 open scoped ContDiff ENNReal Matrix in
@@ -325,10 +325,10 @@ private lemma eq_zero_of_le_poly_mul_exp_neg {a D K L A S b : ℝ} (ha : 0 ≤ a
     have hy0 : 0 < y := by linarith
     have h1 : (1 + y * K) ^ A ≤ (1 + K) ^ A * y ^ A := by
       rw [← Real.mul_rpow (by positivity) hy0.le]
-      exact Real.rpow_le_rpow (by positivity) (by nlinarith) hA
+      exact Real.rpow_le_rpow (by positivity) (by linarith) hA
     have h2 : (1 + y * L) ^ S ≤ (1 + L) ^ S * y ^ S := by
       rw [← Real.mul_rpow (by positivity) hy0.le]
-      exact Real.rpow_le_rpow (by positivity) (by nlinarith) hS
+      exact Real.rpow_le_rpow (by positivity) (by linarith) hS
     rw [Real.rpow_add hy0]
     have he := (Real.exp_pos (-b * y)).le
     calc D * (1 + y * K) ^ A * (1 + y * L) ^ S * Real.exp (-b * y)
@@ -415,21 +415,21 @@ theorem _root_.GlobalTheory.ModeDecay.fj_eq_zero_of_decay :
       have e1 := mul_le_mul_of_nonneg_right (neg_le_abs a') (sub_nonneg.2 hinf1)
       have e2 := mul_le_mul_of_nonneg_left (show (⨅ τ, X.tt ξ (X.flow ξ s x) τ) - y ≤ T by linarith)
         (abs_nonneg a')
-      nlinarith
+      linarith
     have hexp : Real.exp (-4 * Real.pi * a' * ⨅ τ, X.tt ξ (X.flow ξ s x) τ) ≤
         Real.exp (-4 * Real.pi * a' * y) * Real.exp (4 * Real.pi * |a'| * T) := by
       rw [← Real.exp_add]
       apply Real.exp_le_exp.mpr
       have := mul_le_mul_of_nonneg_left key (by positivity : (0 : ℝ) ≤ 4 * Real.pi)
-      nlinarith
+      linarith
     have hz1 : 0 < X.la1 (X.flow ξ s x) := hpos _ hz
     have hla := one_add_inv_la1_flow_le_mul X hx hξ s hs0 hsY hsB hK hK0 hy0 hB0 hx1 hz1
     have hpow : (1 + 1 / X.la1 (X.flow ξ s x)) ^ A ≤
         ((1 + y * K) * (1 + B * K) ^ 2 * (1 + 1 / X.la1 x)) ^ A :=
       Real.rpow_le_rpow (add_nonneg zero_le_one (one_div_nonneg.mpr hz1.le)) hla hA
     have hnf := nfac_flow_ge_lemma_5 X hx hξ la s hs0 hsY hy0 hL0 hL
-    have hyL : 0 < 1 + y * L := by nlinarith
-    have hyK : 0 < 1 + y * K := by nlinarith
+    have hyL : 0 < 1 + y * L := by linarith [mul_nonneg (sub_nonneg.2 hL0) (sub_nonneg.2 hy)]
+    have hyK : 0 < 1 + y * K := by linarith [mul_nonneg (sub_nonneg.2 hK0) (sub_nonneg.2 hy)]
     have hBK : 0 ≤ (1 + B * K) ^ 2 * (1 + 1 / X.la1 x) :=
       mul_nonneg (sq_nonneg _) (add_nonneg zero_le_one (one_div_nonneg.mpr hx1.le))
     have hP0 : 0 ≤ (1 + y * K) * (1 + B * K) ^ 2 * (1 + 1 / X.la1 x) := by

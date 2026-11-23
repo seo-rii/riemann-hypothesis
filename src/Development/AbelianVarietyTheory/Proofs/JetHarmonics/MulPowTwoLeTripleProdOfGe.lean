@@ -47,7 +47,7 @@ lemma quad_eq {y b r : K} (h : y ^ 2 + b * y = r) (hb : ‖b‖ ^ 2 < ‖r‖) :
     have : ‖r‖ ≤ ‖b‖ * ‖b‖ := by
       rw [← h, show y ^ 2 + b * y = y * (y + b) by ring, norm_mul]
       gcongr
-    nlinarith
+    linarith
   · rw [← h, show y ^ 2 + b * y = y * (y + b) by ring, norm_mul, norm_add_eq_of_lt hy, sq]
 
 lemma quad_mem {y b r : K} (h : y ^ 2 + b * y = r) (hb : b ∈ intRing K) (hr : r ∈ intRing K) :
@@ -147,9 +147,10 @@ lemma third_big {a₁ a₂ a₃ a₄ a₆ x₁ x₂ x₃ l n : K} (h₁ : ‖a�
     have t3 : ‖l * a₃‖ ≤ ‖l‖ := norm_mul_le_of_mem h₃
     have t4 : ‖l * n‖ ≤ L * N := by rw [norm_mul]; gcongr
     rw [← h1, e2, show a₄ - 2 * l * n - a₁ * n - a₃ * l = a₄ - (l * n * 2 + n * a₁ + l * a₃) by ring]
-    refine (norm_sub_le_max' _ _).trans (max_le (by nlinarith) ?_)
+    refine (norm_sub_le_max' _ _).trans (max_le (by linarith [mul_nonneg (sub_nonneg.2 L1) (sub_nonneg.2 N1)]) ?_)
     refine (norm_sum_three_le _ _ _).trans (max_le (max_le ?_ ?_) ?_) <;> nlinarith
-  have hab1 : 1 < a * b := by nlinarith
+  have hab1 : 1 < a * b := by linarith [mul_pos (sub_pos.2 h2) (sub_pos.2 h2),
+                                mul_nonneg ((sub_pos.2 h2).le) (sub_nonneg.2 h12)]
   have h4 : (a * b) ^ 2 ≤ a * max (a * b * c) 1 := by
     calc (a * b) ^ 2 ≤ (L * N) ^ 2 := by gcongr
       _ = L ^ 2 * N ^ 2 := by ring
@@ -158,15 +159,17 @@ lemma third_big {a₁ a₂ a₃ a₄ a₆ x₁ x₂ x₃ l n : K} (h₁ : ‖a�
   have h5 : max (a * b * c) 1 < a * b * b := by
     refine max_lt ?_ ?_
     · exact mul_lt_mul_of_pos_left hc (by linarith)
-    · nlinarith
+    · linarith [mul_pos (sub_pos.2 h2) (sub_pos.2 h2),
+        mul_nonneg ((sub_pos.2 h2).le) (sub_nonneg.2 h12), mul_pos (sub_pos.2 h2) (sub_pos.2 hab1)]
   have := mul_lt_mul_of_pos_left h5 a0
-  nlinarith
+  linarith
 
 lemma mul_pow_two_le_triple_prod_of_ge {a b c M : ℝ} (hM : 1 < M) (ha : M ≤ a) (hb : M ≤ b) (hc : M ≤ c) :
     a * M ^ 2 ≤ a * b * c := by
   have a0 : 0 ≤ a := by linarith
   have : M * M ≤ b * c := mul_le_mul hb hc (by linarith) (by linarith)
-  nlinarith
+  linarith [mul_nonneg ((sub_pos.2 hM).le) (sub_nonneg.2 this),
+    mul_nonneg (sub_nonneg.2 ha) (sub_nonneg.2 this)]
 
 lemma chord {a₁ a₂ a₃ a₄ a₆ x₁ x₂ x₃ y₁ y₂ y₃ l n : K} {M : ℝ} (h₁ : ‖a₁‖ ≤ 1) (h₂ : ‖a₂‖ ≤ 1)
     (h₃ : ‖a₃‖ ≤ 1) (h₄ : ‖a₄‖ ≤ 1) (h₆ : ‖a₆‖ ≤ 1) (hM : 1 < M)
@@ -198,7 +201,7 @@ lemma chord {a₁ a₂ a₃ a₄ a₆ x₁ x₂ x₃ y₁ y₂ y₃ l n : K} {M 
   have p1 := mul_pow_two_le_triple_prod_of_ge hM h1 h2 h3
   have p2 : b * M ^ 2 ≤ a * b * c := by have := mul_pow_two_le_triple_prod_of_ge hM h2 h1 h3; linarith
   have p3 : c * M ^ 2 ≤ a * b * c := by have := mul_pow_two_le_triple_prod_of_ge hM h3 h1 h2; linarith
-  have hM2 : 1 < M ^ 2 := by nlinarith
+  have hM2 : 1 < M ^ 2 := by linarith [mul_pos (sub_pos.2 hM) (sub_pos.2 hM)]
   have habc : M ^ 2 ≤ a * b * c := by nlinarith
   have hr : ‖x₁ * x₂ * x₃ + a₆‖ = a * b * c := by
     rw [norm_add_eq_of_lt, norm_mul, norm_mul]
@@ -351,7 +354,7 @@ theorem norm_x_le_one [DecidableEq K] {W : Affine K} (h₁ : ‖W.a₁‖ ≤ 1)
   have h2 : (‖x‖ * ‖x‖) ^ 2 ≤ ‖y‖ ^ 2 := by gcongr
   rw [hy] at h2
   have : ‖x‖ ^ 3 * 1 < ‖x‖ ^ 3 * ‖x‖ := by gcongr
-  nlinarith
+  linarith
 
 theorem norm_x_sub_eq_one {W : Affine K} (h₁ : ‖W.a₁‖ ≤ 1) (h₂ : ‖W.a₂‖ ≤ 1)
     (h₃ : ‖W.a₃‖ ≤ 1) (h₄ : ‖W.a₄‖ ≤ 1) (h₆ : ‖W.a₆‖ ≤ 1) (hΔ : ‖W.Δ‖ = 1) {x₁ x₂ y₁ y₂ : K}
