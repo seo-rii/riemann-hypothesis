@@ -33,13 +33,13 @@ variable {k : Type u} [Field k] [CharZero k] {Y : Scheme.{u}} [AlgebraicGeometry
 
 namespace EmbeddedBlowupSequence
 
-theorem detachedToCoprod_detachedCoprodInl_detachedCoprodMapOfLE (S : EmbeddedBlowupSequence k Y pY) (s a b : ℕ)
+private theorem detachedToCoprod_detachedCoprodInl_detachedCoprodMapOfLE (S : EmbeddedBlowupSequence k Y pY) (s a b : ℕ)
     (hsa : s < a) (hab : a + 1 ≤ b) :
     S.detachedToCoprod s a hsa ≫ S.detachedCoprodInl a ≫ S.detachedCoprodMapOfLE hab =
       S.detachedToCoprod s b (lt_of_lt_of_le hsa (le_trans (Nat.le_succ a) hab)) := by
   rw [← Category.assoc, ← S.detachedToCoprod_succ_of_lt s a hsa, S.detachedToCoprod_detachedCoprodMapOfLE]
 
-theorem detachedCoprodInr_detachedCoprodMapOfLE (S : EmbeddedBlowupSequence k Y pY) (a b : ℕ) (hab : a + 1 ≤ b) :
+private theorem detachedCoprodInr_detachedCoprodMapOfLE (S : EmbeddedBlowupSequence k Y pY) (a b : ℕ) (hab : a + 1 ≤ b) :
     S.detachedCoprodInr a ≫ S.detachedCoprodMapOfLE hab =
       S.detachedToCoprod a b (lt_of_lt_of_le (Nat.lt_succ_self a) hab) := by
   rw [← S.detachedToCoprod_self a, S.detachedToCoprod_detachedCoprodMapOfLE]
@@ -48,12 +48,12 @@ def inactiveTotalToBase (S : EmbeddedBlowupSequence k Y pY) (h : S.TransitionsAr
     S.detachedCoprod i ⟶ Y :=
   (coprod.inr : S.detachedCoprod i ⟶ S.totalSpace i) ≫ (S.inducedBlowups h).projectionToBase i
 
-theorem detachedToCoprod_inactiveTotalToBase (S : EmbeddedBlowupSequence k Y pY) (h : S.TransitionsAreBlowups) (s i : ℕ)
+private theorem detachedToCoprod_inactiveTotalToBase (S : EmbeddedBlowupSequence k Y pY) (h : S.TransitionsAreBlowups) (s i : ℕ)
     (hs : s < i) :
     S.detachedToCoprod s i hs ≫ S.inactiveTotalToBase h i = S.detachedι s ≫ S.strictTransformToBase s :=
   detachedToCoprod_inr_inducedBlowups_projectionToBase S h s i hs
 
-theorem coprodDesc_strictTransformToBase_inactiveTotalToBase (S : EmbeddedBlowupSequence k Y pY) (h : S.TransitionsAreBlowups) (i : ℕ) :
+private theorem coprodDesc_strictTransformToBase_inactiveTotalToBase (S : EmbeddedBlowupSequence k Y pY) (h : S.TransitionsAreBlowups) (i : ℕ) :
     coprod.desc (S.strictTransformToBase i) (S.inactiveTotalToBase h i) = (S.inducedBlowups h).projectionToBase i := by
   apply coprod.hom_ext
   · rw [coprod.inl_desc]
@@ -81,7 +81,7 @@ theorem reindex_lt_reindex_succ (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j
     F.reindex j < F.reindex (j + 1) :=
   F.reindex_lt_succ j (by omega)
 
-theorem strictTransformComparison_comp_strictTransformToBase (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j ≤ S'.length) :
+private theorem strictTransformComparison_comp_strictTransformToBase (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j ≤ S'.length) :
     F.strictTransformComparison j hj ≫ S.strictTransformToBase (F.reindex j) = S'.strictTransformToBase j ≫ F.baseMap := by
   have : CategoryTheory.Mono S.emb := inferInstance
   have key : (F.strictTransformComparison j hj ≫ S.strictTransformToBase (F.reindex j)) ≫ S.emb
@@ -107,7 +107,7 @@ theorem strictTransformComparison_comp_strictTransformToBase (F : ChartFlatBaseC
       _ = (S'.strictTransformToBase j ≫ F.baseMap) ≫ S.emb := (Category.assoc _ _ _).symm
   exact (cancel_mono S.emb).mp key
 
-theorem isPullback_strictTransformComparison_strictTransformToBase (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j ≤ S'.length) :
+private theorem isPullback_strictTransformComparison_strictTransformToBase (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j ≤ S'.length) :
     IsPullback (F.strictTransformComparison j hj) (S'.strictTransformToBase j) (S.strictTransformToBase (F.reindex j))
       F.baseMap := by
   have h1 := (F.isPullback_strictTransformComparison_strictTransformι j hj).paste_vert (F.isPullback_level j hj)
@@ -117,7 +117,7 @@ theorem isPullback_strictTransformComparison_strictTransformToBase (F : ChartFla
     exact h1
   exact h2.of_bot (F.strictTransformComparison_comp_strictTransformToBase j hj) F.isPullback_emb
 
-theorem isEmpty_of_comm_detachedScheme_of_not_mem_range (F : ChartFlatBaseChange S S') (s : ℕ) (hs : s < S.length)
+private theorem isEmpty_of_comm_detachedScheme_of_not_mem_range (F : ChartFlatBaseChange S S') (s : ℕ) (hs : s < S.length)
     (hskip : ∀ j, j < S'.length → F.reindex j ≠ s) (Q : Scheme.{u}) (q : Q ⟶ S.detachedScheme s)
     (p : Q ⟶ Y') (hcomm : q ≫ S.detachedι s ≫ S.strictTransformToBase s = p ≫ F.baseMap) :
     IsEmpty ↥Q := by
@@ -195,14 +195,14 @@ private theorem forall_isEmpty_of_comm_inactiveTotalToBase (F : ChartFlatBaseCha
       exact isEmpty_of_hom_to_initial
         (h3.lift q p hcomm' ≫ coprod.desc (𝟙 (⊥_ Scheme.{u})) (𝟙 (⊥_ Scheme.{u})))
 
-theorem isEmpty_of_comm_inactiveTotalToBase_of_not_mem_range (F : ChartFlatBaseChange S S') (h : S.TransitionsAreBlowups)
+private theorem isEmpty_of_comm_inactiveTotalToBase_of_not_mem_range (F : ChartFlatBaseChange S S') (h : S.TransitionsAreBlowups)
     (i : ℕ) (hlt : ∀ s, s < i → s < S.length)
     (hskip : ∀ s, s < i → ∀ j, j < S'.length → F.reindex j ≠ s) (P : Scheme.{u})
     (q : P ⟶ S.detachedCoprod i) (p : P ⟶ Y')
     (hcomm : q ≫ S.inactiveTotalToBase h i = p ≫ F.baseMap) : IsEmpty ↥P :=
   forall_isEmpty_of_comm_inactiveTotalToBase F h i hlt hskip P q p hcomm
 
-theorem isPullback_detachedCoprodMapOfLE_inactiveTotalToBase (F : ChartFlatBaseChange S S') (h : S.TransitionsAreBlowups)
+private theorem isPullback_detachedCoprodMapOfLE_inactiveTotalToBase (F : ChartFlatBaseChange S S') (h : S.TransitionsAreBlowups)
     {a b : ℕ} (hab : a ≤ b) (hlt : ∀ s, a ≤ s → s < b → s < S.length)
     (hskip : ∀ s, a ≤ s → s < b → ∀ j, j < S'.length → F.reindex j ≠ s) {P : Scheme.{u}}
     (q : P ⟶ S.detachedCoprod a) (p : P ⟶ Y')
@@ -263,7 +263,7 @@ theorem isPullback_detachedCoprodMapOfLE_inactiveTotalToBase (F : ChartFlatBaseC
         exact hpbSucc
   exact main b hab hlt hskip
 
-theorem isPullback_inactiveSchemeMap_baseMap (F : ChartFlatBaseChange S S')
+private theorem isPullback_inactiveSchemeMap_baseMap (F : ChartFlatBaseChange S S')
     [AlgebraicGeometry.IsReduced Y] [AlgebraicGeometry.IsReduced Y'] (j : ℕ) (hj : j < S'.length) :
     IsPullback (F.detachedSchemeComparison j hj) (S'.detachedι j ≫ S'.strictTransformToBase j)
       (S.detachedι (F.reindex j) ≫ S.strictTransformToBase (F.reindex j)) F.baseMap :=
@@ -335,7 +335,7 @@ private theorem forall_detachedToCoprod_inactiveTotalMap (F : ChartFlatBaseChang
       · subst heq
         rw [S'.detachedToCoprod_self s, detachedCoprodInr_inactiveTotalMap F s hj]
 
-theorem detachedToCoprod_inactiveTotalMap (F : ChartFlatBaseChange S S')
+private theorem detachedToCoprod_inactiveTotalMap (F : ChartFlatBaseChange S S')
     [AlgebraicGeometry.IsReduced Y] [AlgebraicGeometry.IsReduced Y'] (j : ℕ) (hj : j ≤ S'.length)
     (s : ℕ) (hs : s < j) :
     S'.detachedToCoprod s j hs ≫ F.inactiveTotalMap j hj =
@@ -377,7 +377,7 @@ private theorem isPullback_of_snd_eq_of_map_eq {P X Z W : Scheme.{u}} {f : P ⟶
   subst hq
   exact hp
 
-theorem isPullback_inactiveTotalMap (F : ChartFlatBaseChange S S')
+private theorem isPullback_inactiveTotalMap (F : ChartFlatBaseChange S S')
     [AlgebraicGeometry.IsReduced Y] [AlgebraicGeometry.IsReduced Y']
     (h : S.TransitionsAreBlowups) (h' : S'.TransitionsAreBlowups) (j : ℕ) (hj : j ≤ S'.length) :
     IsPullback (F.inactiveTotalMap j hj) (S'.inactiveTotalToBase h' j)

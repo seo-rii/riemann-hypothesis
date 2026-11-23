@@ -66,7 +66,7 @@ def renameCompl (k : Type u) [Field k] (m : ℕ) (S : Finset (Fin m)) :
       MvPolynomial.X (ULift.up.{u} (complOrderEmb m S i)) :=
   MvPolynomial.aeval_X _ _
 
-theorem renameCompl_C (k : Type u) [Field k] (m : ℕ) (S : Finset (Fin m)) (a : k) :
+private theorem renameCompl_C (k : Type u) [Field k] (m : ℕ) (S : Finset (Fin m)) (a : k) :
     renameCompl k m S (MvPolynomial.C a) = MvPolynomial.C a := by
   show MvPolynomial.aeval
       (fun i : ULift.{u} (Fin (m - S.card)) => MvPolynomial.X (ULift.up.{u} (complOrderEmb m S i.down)))
@@ -82,14 +82,14 @@ def setCoordsZero (k : Type u) [Field k] (m : ℕ) (S : Finset (Fin m)) :
     MvPolynomial (ULift.{u} (Fin m)) k →ₐ[k] MvPolynomial (ULift.{u} (Fin (m - S.card))) k :=
   MvPolynomial.aeval (substZeroOnFinset k m S)
 
-theorem setCoordsZero_X_of_mem (k : Type u) [Field k] (m : ℕ) (S : Finset (Fin m)) {j : Fin m}
+private theorem setCoordsZero_X_of_mem (k : Type u) [Field k] (m : ℕ) (S : Finset (Fin m)) {j : Fin m}
     (hj : j ∈ S) : setCoordsZero k m S (MvPolynomial.X (ULift.up.{u} j)) = 0 := by
   have h1 : setCoordsZero k m S (MvPolynomial.X (ULift.up.{u} j)) = substZeroOnFinset k m S (ULift.up.{u} j) :=
     by simp [setCoordsZero, MvPolynomial.aeval_X]
   rw [h1]
   exact dif_pos hj
 
-theorem setCoordsZero_X_complOrderEmb (k : Type u) [Field k] (m : ℕ) (S : Finset (Fin m))
+private theorem setCoordsZero_X_complOrderEmb (k : Type u) [Field k] (m : ℕ) (S : Finset (Fin m))
     (i : Fin (m - S.card)) :
     setCoordsZero k m S (MvPolynomial.X (ULift.up.{u} (complOrderEmb m S i))) =
       MvPolynomial.X (ULift.up.{u} i) := by
@@ -104,7 +104,7 @@ theorem setCoordsZero_X_complOrderEmb (k : Type u) [Field k] (m : ℕ) (S : Fins
     (complOrderEmb m S).injective (Classical.choose_spec (exists_complOrderEmb_eq m S hnot))
   rw [h1, h2, h3]
 
-theorem setCoordsZero_eq_zero_of_mem (k : Type u) [Field k] (m : ℕ) (S : Finset (Fin m))
+private theorem setCoordsZero_eq_zero_of_mem (k : Type u) [Field k] (m : ℕ) (S : Finset (Fin m))
     {q : MvPolynomial (ULift.{u} (Fin m)) k} (hq : q ∈ mvPolynomialCoordIdeal k m S) :
     setCoordsZero k m S q = 0 := by
   have hker : mvPolynomialCoordIdeal k m S ≤ RingHom.ker ((setCoordsZero k m S).toRingHom) := by

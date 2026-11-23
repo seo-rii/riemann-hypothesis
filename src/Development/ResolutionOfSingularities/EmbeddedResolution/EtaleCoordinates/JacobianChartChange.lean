@@ -117,7 +117,7 @@ private theorem basisKaehler_repr_kaehlerMap (k₀ : Type*) [CommRing k₀] (ι�
 variable {X : Scheme.{u}} {k : Type u} [Field k] {p : X ⟶ Spec (CommRingCat.of k)}
   [AlgebraicGeometry.Smooth p] {V : X.Opens} {n : ℕ}
 
-theorem exists_etaleChart_coord_eq_of_isUnit_jacobianDet (hV : IsAffineOpen V)
+private theorem exists_etaleChart_coord_eq_of_isUnit_jacobianDet (hV : IsAffineOpen V)
     (c : EtaleChart p V n) (w : ULift.{u} (Fin n) → Γ(X, V)) :
     letI : Algebra k Γ(X, V) := sectionsAlgebra k p V
     letI : Algebra (MvPolynomial (ULift.{u} (Fin n)) k) Γ(X, V) := c.algebra
@@ -304,7 +304,7 @@ private theorem chartPartialDeriv_mul (hV : IsAffineOpen V) (c : EtaleChart p V 
   change D (a * b) = a * D b + b * D a
   rw [Derivation.leibniz, smul_eq_mul, smul_eq_mul]
 
-theorem exists_etaleChart_coord_add_smul (hV : IsAffineOpen V) (c : EtaleChart p V n)
+private theorem exists_etaleChart_coord_add_smul (hV : IsAffineOpen V) (c : EtaleChart p V n)
     (j₁ j₂ : Fin n) (hj : j₁ ≠ j₂) (t : k) :
     ∃ c' : EtaleChart p V n,
       c'.coord j₂ = c.coord j₂ + sectionsAlgebraMap k p V t * c.coord j₁ ∧

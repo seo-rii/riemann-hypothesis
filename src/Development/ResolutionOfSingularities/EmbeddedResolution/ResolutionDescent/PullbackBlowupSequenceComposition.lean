@@ -222,7 +222,7 @@ theorem isomorphic {X' X : Scheme.{u}} {g : X' ⟶ X}
     rw [hc' i hi2, hc i hi, ← he1 i hi.le]
     simp [Scheme.IdealSheafData.comap_comp]
 
-theorem center_eq_top {X' X : Scheme.{u}} {g : X' ⟶ X}
+private theorem center_eq_top {X' X : Scheme.{u}} {g : X' ⟶ X}
     {t : SequenceOfBlowups X'} {s : SequenceOfBlowups X}
     (h : IsStrictPullbackBlowupSeq g t s) (i : ℕ) (hi : i < s.length)
     (hs : s.center i = ⊤) : t.center i = ⊤ := by

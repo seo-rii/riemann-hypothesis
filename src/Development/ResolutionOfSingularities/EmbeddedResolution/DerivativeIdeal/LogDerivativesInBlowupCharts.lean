@@ -83,7 +83,7 @@ theorem partialDeriv_mem_sup_of_span_pow_mul_eq_map
   rw [h2]
   exact hw
 
-theorem map_logDerivIdeal_le_span_pow_mul [Fintype ι]
+private theorem map_logDerivIdeal_le_span_pow_mul [Fintype ι]
     (hin : ∀ i ∈ T, i ≠ s → φ (coord k ι S i) = coord k ι S₁ i * coord k ι S₁ s)
     (hs : φ (coord k ι S s) = coord k ι S₁ s)
     (hout : ∀ i ∉ T, φ (coord k ι S i) = coord k ι S₁ i)

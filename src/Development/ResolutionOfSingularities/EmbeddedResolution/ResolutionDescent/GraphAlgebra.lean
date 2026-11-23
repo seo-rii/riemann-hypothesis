@@ -45,7 +45,7 @@ def graphAlgebraAeval (f : τ → MvPolynomial σ R) :
     MvPolynomial σ (MvPolynomial τ R) →ₐ[MvPolynomial τ R] GraphAlgebra f :=
   MvPolynomial.aeval (fun i : σ => graphAlgebraEquiv f (MvPolynomial.X i))
 
-theorem graphAlgebraAeval_X (f : τ → MvPolynomial σ R) (i : σ) :
+private theorem graphAlgebraAeval_X (f : τ → MvPolynomial σ R) (i : σ) :
     graphAlgebraAeval f (MvPolynomial.X i) = graphAlgebraEquiv f (MvPolynomial.X i) :=
   MvPolynomial.aeval_X _ i
 
@@ -66,7 +66,7 @@ private theorem graphAlgebraAeval_map_C (f : τ → MvPolynomial σ R) (p : MvPo
   | add p q hp hq => simp only [map_add (f := _), hp, hq]
   | mul_X p i hp => simp only [map_mul, MvPolynomial.map_X, hp, graphAlgebraAeval_X]
 
-theorem graphAlgebraAeval_graphRelation (f : τ → MvPolynomial σ R) (i : τ) :
+private theorem graphAlgebraAeval_graphRelation (f : τ → MvPolynomial σ R) (i : τ) :
     graphAlgebraAeval f (graphRelation f i) = 0 := by
   simp only [graphRelation, map_sub, graphAlgebraAeval_C, graphAlgebraAeval_map_C, MvPolynomial.aeval_X, sub_self]
 
@@ -223,7 +223,7 @@ theorem graphJacobianMinorMatrix_apply (f : τ → MvPolynomial σ R) (v : τ �
     graphJacobianMinorMatrix f v i j = MvPolynomial.pderiv (v i) (f j) :=
   rfl
 
-theorem graphPreSubmersivePresentation_jacobiMatrix [Fintype τ] [DecidableEq τ]
+private theorem graphPreSubmersivePresentation_jacobiMatrix [Fintype τ] [DecidableEq τ]
     (f : τ → MvPolynomial σ R) (v : τ → σ) (hv : Function.Injective v) :
     (graphPreSubmersivePresentation f v hv).jacobiMatrix
       = -((graphJacobianMinorMatrix f v).map

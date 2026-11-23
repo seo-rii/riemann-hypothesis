@@ -207,7 +207,7 @@ def EtaleChart.pullbackOpenImmersion (c : EtaleChart p V n) (f : Y' ⟶ Y) [IsOp
   ⟨morphismRestrict f V ≫ c.map, morphismRestrict_comp_map_comp_affineSpaceFinToSpec c f,
     etale_morphismRestrict_comp_map c f⟩
 
-theorem EtaleChart.pullbackOpenImmersion_map (c : EtaleChart p V n) (f : Y' ⟶ Y)
+private theorem EtaleChart.pullbackOpenImmersion_map (c : EtaleChart p V n) (f : Y' ⟶ Y)
     [IsOpenImmersion f] :
     (c.pullbackOpenImmersion f).map = morphismRestrict f V ≫ c.map :=
   rfl
@@ -234,7 +234,7 @@ theorem restrictIdeal_comap_preimage_eq_top {Y Y' : Scheme.{u}} (f : Y' ⟶ Y) (
       ← morphismRestrict_ι, Scheme.IdealSheafData.comap_comp]
   rw [h1, h, Scheme.IdealSheafData.comap_top]
 
-theorem image_subset_of_image_inter_subset {α : Type*} {β : Type*} [TopologicalSpace α]
+private theorem image_subset_of_image_inter_subset {α : Type*} {β : Type*} [TopologicalSpace α]
     [TopologicalSpace β] {A O : Set α} {g : α → β} {C : Set β} (hA : IsIrreducible A)
     (hO : IsOpen O) (hAO : (A ∩ O).Nonempty) (hg : Continuous g) (hC : IsClosed C)
     (h : g '' (A ∩ O) ⊆ C) : g '' A ⊆ C := by
@@ -340,7 +340,7 @@ section
 
 variable {W : Scheme.{u}} {k : Type u} [Field k]
 
-theorem exists_etaleChart_on_open_of_hasStrictNormalCrossingsWith (q : W ⟶ Spec (CommRingCat.of k))
+private theorem exists_etaleChart_on_open_of_hasStrictNormalCrossingsWith (q : W ⟶ Spec (CommRingCat.of k))
     (E : List W.IdealSheafData) (Z : W.IdealSheafData) (hZ : HasStrictNormalCrossingsWith q Z E)
     (T : Z.subscheme.Opens)
     (hcomp : ∀ D ∈ E, ∀ C ∈ irreducibleComponents ↥T.toScheme,

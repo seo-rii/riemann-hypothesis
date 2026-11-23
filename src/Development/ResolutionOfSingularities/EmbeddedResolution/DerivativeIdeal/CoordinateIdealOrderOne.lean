@@ -29,7 +29,7 @@ private theorem le_one_of_not_two_le {a : ℕ∞} (h : ¬ ((2 : ℕ) : ℕ∞) �
     have hm1 : m ≤ 1 := by omega
     exact_mod_cast hm1
 
-theorem germ_coord_notMem_maximalIdeal_sq {V : X.Opens} (hV : IsAffineOpen V) {n : ℕ}
+private theorem germ_coord_notMem_maximalIdeal_sq {V : X.Opens} (hV : IsAffineOpen V) {n : ℕ}
     (c : EtaleChart p V n) (j : Fin n) (y : X) (hy : y ∈ V)
     (hmem : c.coord j ∈ (hV.primeIdealOf ⟨y, hy⟩).asIdeal) :
     (X.presheaf.germ V y hy).hom (c.coord j) ∉

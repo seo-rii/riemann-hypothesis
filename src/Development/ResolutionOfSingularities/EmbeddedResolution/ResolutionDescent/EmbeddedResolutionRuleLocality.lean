@@ -85,7 +85,7 @@ theorem embeddedResolutionRule_isCompatibleWithSmoothAmbientMaps
   intro k _ _ Y Y' p p' _ _ _ _ _ _ _ _ D D' φ _ ψ hφ hsq
   exact embeddedResolutionRule_isPullbackBlowupSequence_of_smooth A hA hw k Y Y' p p' D D' φ ψ hφ hsq
 
-theorem embeddedResolutionRule_isStrictPullbackBlowupSeq_baseChange
+private theorem embeddedResolutionRule_isStrictPullbackBlowupSeq_baseChange
     (A : PrincipalizationAlgorithm.{u}) (hA : IsFunctorialPrincipalization A) (hw : TransitionsAreBlowupsForEmbeddings A)
     (k : Type u) [Field k] [CharZero k] (Y : Scheme.{u})
     (p : Y ⟶ Spec (CommRingCat.of k))

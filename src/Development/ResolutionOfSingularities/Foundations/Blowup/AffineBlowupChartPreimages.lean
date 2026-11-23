@@ -395,7 +395,7 @@ private theorem mem_preimage_affineBlowupChart_iff {R : Type u} [CommRing R] (I 
     rw [Scheme.Hom.image_top_eq_opensRange]
     exact hmem
 
-theorem preimage_affineBlowupChart_eq_of_toSpec_eq {R : Type u} [CommRing R] {I : Ideal R} {W : Scheme.{u}}
+private theorem preimage_affineBlowupChart_eq_of_toSpec_eq {R : Type u} [CommRing R] {I : Ideal R} {W : Scheme.{u}}
     (h₁ h₂ : W ⟶ affineBlowup I)
     (he : h₁ ≫ AffineBlowup.toSpec I = h₂ ≫ AffineBlowup.toSpec I)
     (hcart : IsLocallyGeneratedByNonZeroDivisor ((specIdealSheaf I).comap (h₁ ≫ AffineBlowup.toSpec I)))

@@ -17,7 +17,7 @@ private theorem generalizingMap_of_flat {X Y : Scheme.{u}} (f : X ⟶ Y) [Algebr
     GeneralizingMap (fun x : ↥X => f x) :=
   AlgebraicGeometry.Flat.generalizingMap f
 
-theorem closure_image_mem_irreducibleComponents_of_generalizingMap
+private theorem closure_image_mem_irreducibleComponents_of_generalizingMap
     {X Y : Scheme.{u}} (f : X ⟶ Y) (hf : GeneralizingMap (fun x : ↥X => f x))
     {C : Set ↥X} (hC : C ∈ irreducibleComponents ↥X) :
     closure ((fun x : ↥X => f x) '' C) ∈ irreducibleComponents ↥Y := by
@@ -77,7 +77,7 @@ theorem support_comap {X Y : Scheme.{u}} (f : X ⟶ Y) (I : Y.IdealSheafData) :
 
 namespace NonzeroOnComponents
 
-theorem comap_of_generalizingMap {X Y : Scheme.{u}} {I : Y.IdealSheafData}
+private theorem comap_of_generalizingMap {X Y : Scheme.{u}} {I : Y.IdealSheafData}
     (hI : NonzeroOnComponents I) (f : X ⟶ Y)
     (hf : GeneralizingMap (fun x : ↥X => f x)) :
     NonzeroOnComponents (I.comap f) := by

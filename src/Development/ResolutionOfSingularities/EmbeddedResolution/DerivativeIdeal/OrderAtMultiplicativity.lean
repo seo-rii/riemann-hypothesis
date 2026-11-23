@@ -69,7 +69,7 @@ private theorem exists_commuting_dual_derivations (k : Type*) [CommRing k] (ι :
   · intro i j a
     exact EtaleCoordinates.partialDeriv_comm k ι A i j a
 
-theorem exists_regularParameters_of_formallyEtale (k : Type*) [CommRing k] (ι : Type*) [Fintype ι]
+private theorem exists_regularParameters_of_formallyEtale (k : Type*) [CommRing k] (ι : Type*) [Fintype ι]
     [DecidableEq ι] (S : Type*) [CommRing S] [Algebra k S] [Algebra (MvPolynomial ι k) S]
     [IsScalarTower k (MvPolynomial ι k) S] [Algebra.FormallyEtale (MvPolynomial ι k) S]
     (q : Ideal S) [q.IsPrime] (A : Type*) [CommRing A] [Algebra S A] [Algebra k A]
@@ -132,7 +132,7 @@ theorem exists_regularParameters_of_formallyEtale (k : Type*) [CommRing k] (ι :
   · intro i j a
     exact hDD (ix i) (ix j) a
 
-theorem exists_regularParameters_stalk_of_smooth (k : Type u) [Field k] [CharZero k] {X : Scheme.{u}}
+private theorem exists_regularParameters_stalk_of_smooth (k : Type u) [Field k] [CharZero k] {X : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] (x : X) :
     letI := stalkAlgebra k p x;
     ∃ (h : ℕ) (y : Fin h → X.presheaf.stalk x)

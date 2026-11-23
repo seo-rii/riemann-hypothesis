@@ -23,7 +23,7 @@ namespace FunctorialResolution.EmbeddedResolution
 def saturationOpens {Y : Scheme.{u}} (F T : Y.IdealSheafData) : (T.subscheme).Opens :=
   T.subschemeι ⁻¹ᵁ F.support.compl
 
-theorem coe_saturationOpens {Y : Scheme.{u}} (F T : Y.IdealSheafData) :
+private theorem coe_saturationOpens {Y : Scheme.{u}} (F T : Y.IdealSheafData) :
     ((saturationOpens F T : (T.subscheme).Opens) : Set (T.subscheme)) =
       ⇑T.subschemeι.base ⁻¹' ((F.support.compl : Y.Opens) : Set Y) := rfl
 
@@ -31,13 +31,13 @@ def saturationι {Y : Scheme.{u}} (F T : Y.IdealSheafData) :
     (saturationOpens F T).toScheme ⟶ Y :=
   Scheme.Opens.ι (saturationOpens F T) ≫ T.subschemeι
 
-theorem saturationι_eq_ι_comp_subschemeι {Y : Scheme.{u}} (F T : Y.IdealSheafData) :
+private theorem saturationι_eq_ι_comp_subschemeι {Y : Scheme.{u}} (F T : Y.IdealSheafData) :
     saturationι F T = Scheme.Opens.ι (saturationOpens F T) ≫ T.subschemeι := rfl
 
 def saturation {Y : Scheme.{u}} (F T : Y.IdealSheafData) : Y.IdealSheafData :=
   (saturationι F T).ker
 
-theorem saturation_eq_ker_saturationι {Y : Scheme.{u}} (F T : Y.IdealSheafData) :
+private theorem saturation_eq_ker_saturationι {Y : Scheme.{u}} (F T : Y.IdealSheafData) :
     saturation F T = (saturationι F T).ker := rfl
 
 theorem strictTransformι_eq_saturationι {X X₁ : Scheme.{u}} (π : X₁ ⟶ X)
@@ -161,7 +161,7 @@ theorem quasiCompact_saturationι_of_isLocallyNoetherian {Y : Scheme.{u}}
     exact isCompact_of_subset_isCompact hUc Set.inter_subset_left
   exact hg.toIsInducing.isCompact_iff.mpr hfinal
 
-theorem quasiCompact_saturationι_of_noetherianSpace {Y : Scheme.{u}}
+private theorem quasiCompact_saturationι_of_noetherianSpace {Y : Scheme.{u}}
     [NoetherianSpace Y] (F T : Y.IdealSheafData) :
     QuasiCompact (saturationι F T) := by
   have hemb := Scheme.Hom.isEmbedding

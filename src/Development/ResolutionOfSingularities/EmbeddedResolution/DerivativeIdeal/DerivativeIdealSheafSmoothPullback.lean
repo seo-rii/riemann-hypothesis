@@ -20,7 +20,7 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace
 
 namespace FunctorialResolution.EmbeddedResolution
 
-theorem sectionsAlgebraMap_comp_appLE (k : Type u) [CommRing k] {X Y : Scheme.{u}}
+private theorem sectionsAlgebraMap_comp_appLE (k : Type u) [CommRing k] {X Y : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) (h : Y ⟶ X) (W : X.Opens) (V : Y.Opens)
     (e : V ≤ h ⁻¹ᵁ W) :
     (h.appLE W V e).hom.comp (sectionsAlgebraMap k p W) = sectionsAlgebraMap k (h ≫ p) V := by
@@ -177,7 +177,7 @@ private theorem exists_affineOpen_derivIdealSheaf_comap_ideal_eq (k : Type u) [F
   exact (EtaleCoordinates.map_derivIdeal_sum k (ULift.{u} (Fin m)) (ULift.{u} (Fin d))
     Γ(X, W) Γ(Y, V) hcoord (I.ideal ⟨W, hW⟩)).symm
 
-theorem derivIdealSheaf_comap (k : Type u) [Field k] [IsNoetherianRing k] {X Y : Scheme.{u}}
+private theorem derivIdealSheaf_comap (k : Type u) [Field k] [IsNoetherianRing k] {X Y : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) [Smooth p] [LocallyOfFiniteType p]
     (h : Y ⟶ X) [Smooth h] [LocallyOfFiniteType (h ≫ p)] (I : X.IdealSheafData) :
     derivIdealSheaf k (h ≫ p) (I.comap h) = (derivIdealSheaf k p I).comap h :=

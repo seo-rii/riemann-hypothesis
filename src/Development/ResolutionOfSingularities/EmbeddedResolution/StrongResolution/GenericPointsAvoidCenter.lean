@@ -135,7 +135,7 @@ def strictTransformOffCenter (i : ℕ) : (S.strictTransform i).Opens :=
 abbrev strictTransformMapPreimageOffCenter (i : ℕ) : (S.strictTransform (i + 1)).Opens :=
   (TopologicalSpace.Opens.map (S.strictTransformMap i).base).obj (S.strictTransformOffCenter i)
 
-theorem mem_strictTransformMapPreimageOffCenter (i : ℕ) (x : ↥(S.strictTransform (i + 1))) :
+private theorem mem_strictTransformMapPreimageOffCenter (i : ℕ) (x : ↥(S.strictTransform (i + 1))) :
     x ∈ S.strictTransformMapPreimageOffCenter i ↔
       (S.strictTransformι i).base ((S.strictTransformMap i).base x) ∉
         ((S.ambientCenter i).support : Set ↥(S.schemeAt i)) := Iff.rfl

@@ -92,7 +92,7 @@ theorem logDerivIdeal_le_derivIdeal (P J : Ideal S) :
   refine ⟨le_derivIdeal k J, fun D _ x hx => ?_⟩
   exact derivation_apply_mem_derivIdeal k J D hx
 
-theorem logDerivIdeal_top_eq_derivIdeal (J : Ideal S) :
+private theorem logDerivIdeal_top_eq_derivIdeal (J : Ideal S) :
     logDerivIdeal k (⊤ : Ideal S) J = derivIdeal k J := by
   refine le_antisymm (logDerivIdeal_le_derivIdeal k ⊤ J) ?_
   rw [derivIdeal_le_iff]
@@ -125,14 +125,14 @@ theorem logDerivIdealIterate_zero (P J : Ideal S) : logDerivIdealIterate k P 0 J
 theorem logDerivIdealIterate_succ (P : Ideal S) (r : ℕ) (J : Ideal S) :
     logDerivIdealIterate k P (r + 1) J = logDerivIdeal k P (logDerivIdealIterate k P r J) := rfl
 
-theorem logDerivIdealIterate_add (P : Ideal S) (r s : ℕ) (J : Ideal S) :
+private theorem logDerivIdealIterate_add (P : Ideal S) (r s : ℕ) (J : Ideal S) :
     logDerivIdealIterate k P (r + s) J =
       logDerivIdealIterate k P r (logDerivIdealIterate k P s J) := by
   induction r with
   | zero => rw [Nat.zero_add, logDerivIdealIterate_zero]
   | succ r ih => rw [Nat.succ_add, logDerivIdealIterate_succ, logDerivIdealIterate_succ, ih]
 
-theorem le_logDerivIdealIterate (P : Ideal S) (r : ℕ) (J : Ideal S) :
+private theorem le_logDerivIdealIterate (P : Ideal S) (r : ℕ) (J : Ideal S) :
     J ≤ logDerivIdealIterate k P r J := by
   induction r with
   | zero => exact (logDerivIdealIterate_zero k P J).ge

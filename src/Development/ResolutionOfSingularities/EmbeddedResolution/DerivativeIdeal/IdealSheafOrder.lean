@@ -215,7 +215,7 @@ theorem add_orderAt_le_orderAt_mul (I J : X.IdealSheafData) (x : X) :
   rw [orderAt_eq_idealOrder (I * J), stalkIdeal_mul]
   exact add_idealOrder_le_idealOrder_mul (stalkIdeal I x) (stalkIdeal J x)
 
-theorem mul_orderAt_le_orderAt_pow (I : X.IdealSheafData) (c : ℕ) (x : X) :
+private theorem mul_orderAt_le_orderAt_pow (I : X.IdealSheafData) (c : ℕ) (x : X) :
     (c : ℕ∞) * orderAt I x ≤ orderAt (I ^ c) x := by
   rw [orderAt_eq_idealOrder (I ^ c), stalkIdeal_pow]
   exact mul_idealOrder_le_idealOrder_pow (stalkIdeal I x) c
@@ -256,7 +256,7 @@ theorem orderAt_eq_of_stalkIdeal_eq {I J : X.IdealSheafData} {x : X}
     (h : stalkIdeal I x = stalkIdeal J x) : orderAt I x = orderAt J x := by
   rw [orderAt_eq_idealOrder, orderAt_eq_idealOrder, h]
 
-theorem orderAt_eq_one_iff (I : X.IdealSheafData) (x : X) :
+private theorem orderAt_eq_one_iff (I : X.IdealSheafData) (x : X) :
     orderAt I x = 1 ↔
       stalkIdeal I x ≤ IsLocalRing.maximalIdeal (X.presheaf.stalk x) ∧
         ¬ stalkIdeal I x ≤ IsLocalRing.maximalIdeal (X.presheaf.stalk x) ^ 2 := by
@@ -292,7 +292,7 @@ private theorem maximalIdeal_not_le_sq {R : Type*} [CommRing R] [IsLocalRing R]
     exact hle
   · exact (IsLocalRing.jacobson_eq_maximalIdeal ⊥ bot_ne_top).ge
 
-theorem orderAt_eq_one_of_stalkIdeal_eq_maximalIdeal [IsLocallyNoetherian X]
+private theorem orderAt_eq_one_of_stalkIdeal_eq_maximalIdeal [IsLocallyNoetherian X]
     (I : X.IdealSheafData) (x : X)
     (h : stalkIdeal I x = IsLocalRing.maximalIdeal (X.presheaf.stalk x))
     (hne : IsLocalRing.maximalIdeal (X.presheaf.stalk x) ≠ ⊥) :
@@ -355,7 +355,7 @@ private theorem map_algebraMap_eq_maximalIdeal {R S : Type*} [CommRing R] [CommR
   rw [← IsLocalization.map_radical p.primeCompl S J]
   exact Ideal.map_mono hJ
 
-theorem stalkIdeal_vanishingIdeal_eq_maximalIdeal_of_isGenericPoint (Z : TopologicalSpace.Closeds X) (ξ : X)
+private theorem stalkIdeal_vanishingIdeal_eq_maximalIdeal_of_isGenericPoint (Z : TopologicalSpace.Closeds X) (ξ : X)
     (T : Set X) (hT : Maximal (fun s : Set X => IsIrreducible s ∧ s ⊆ (Z : Set X)) T)
     (hξ : IsGenericPoint ξ T) :
     stalkIdeal (Scheme.IdealSheafData.vanishingIdeal Z) ξ

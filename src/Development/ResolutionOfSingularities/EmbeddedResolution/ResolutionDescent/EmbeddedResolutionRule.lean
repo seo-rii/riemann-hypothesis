@@ -34,7 +34,7 @@ theorem quasiCompact_baseChangeToSpec {X : Scheme.{u}} {k : Type u} [Field k]
     (IsPullback.of_hasPullback p (specMapAlgebraMap k K))
     (inferInstanceAs (AlgebraicGeometry.QuasiCompact p))
 
-theorem smooth_baseChangeToSpec {X : Scheme.{u}} {k : Type u} [Field k]
+private theorem smooth_baseChangeToSpec {X : Scheme.{u}} {k : Type u} [Field k]
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     (K : Type u) [Field K] [Algebra k K] :
     AlgebraicGeometry.Smooth (baseChangeToSpec p K) :=
@@ -104,7 +104,7 @@ namespace EmbeddingDatum
 variable {k : Type u} [Field k] [CharZero k] {Y : Scheme.{u}}
   {p : Y ⟶ Spec (CommRingCat.of k)}
 
-theorem pullbackCondition_baseChangeEmb (D : EmbeddingDatum k Y p) (K : Type u) [Field K]
+private theorem pullbackCondition_baseChangeEmb (D : EmbeddingDatum k Y p) (K : Type u) [Field K]
     [Algebra k K] :
     (baseChangeProjection p K ≫ D.emb) ≫ D.ambientStruct =
       baseChangeToSpec p K ≫ specMapAlgebraMap k K := by

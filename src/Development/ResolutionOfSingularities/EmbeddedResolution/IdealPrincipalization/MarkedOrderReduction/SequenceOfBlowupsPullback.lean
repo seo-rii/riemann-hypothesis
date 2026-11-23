@@ -45,7 +45,7 @@ theorem transitionMap_succ (d : BlowupSequenceData X) (i : ℕ) : d.transitionMa
     d.toSequenceOfBlowups.blowupMorphism_eq_transitionMap i
   exact h2.symm.trans h1
 
-theorem transitionMap_zero_comp_isoObjZero_hom (d : BlowupSequenceData X) (n : ℕ) :
+private theorem transitionMap_zero_comp_isoObjZero_hom (d : BlowupSequenceData X) (n : ℕ) :
     d.transitionMap (Nat.zero_le n) ≫ d.isoZero.hom = d.projectionToBase n := by
   have h := d.toSequenceOfBlowups.projectionToBase_def n
   rw [BlowupSequenceData.toSequenceOfBlowups_projectionToBase, BlowupSequenceData.toSequenceOfBlowups_transitionMap, BlowupSequenceData.toSequenceOfBlowups_isoObjZero] at h
@@ -108,7 +108,7 @@ theorem append_blowupMorphism_comp_concatObjAddIso (s : BlowupSequenceData X) (t
   | zero => exact append_blowupMorphism_zero_comp_concatObjAddIso s t
   | succ k => exact append_blowupMorphism_succ_comp_concatObjAddIso s t k
 
-theorem append_transitionMap_comp_concatObjAddIso (s : BlowupSequenceData X) (t : BlowupSequenceData (s.obj s.length)) {i i' : ℕ}
+private theorem append_transitionMap_comp_concatObjAddIso (s : BlowupSequenceData X) (t : BlowupSequenceData (s.obj s.length)) {i i' : ℕ}
     (h : i ≤ i') :
     (s.append t).transitionMap (Nat.add_le_add_left h s.length) ≫ (concatObjAddIso s t i).hom =
       (concatObjAddIso s t i').hom ≫ t.transitionMap h := by
@@ -266,7 +266,7 @@ theorem isPullbackSequenceOfBlowups {s' : SequenceOfBlowups X'} {s : SequenceOfB
     rw [pullbackIso_hom_snd]
     exact c.center_comap i hi
 
-theorem blowupSequenceData_index_lt_length {d' : BlowupSequenceData X'} {d : BlowupSequenceData X}
+private theorem blowupSequenceData_index_lt_length {d' : BlowupSequenceData X'} {d : BlowupSequenceData X}
     (c : SequenceOfBlowupsPullback φ d'.toSequenceOfBlowups d.toSequenceOfBlowups) (j : ℕ) (hj : j < d'.length) :
     c.idx j < d.length := by
   have h : j < d'.toSequenceOfBlowups.length := by
@@ -275,16 +275,16 @@ theorem blowupSequenceData_index_lt_length {d' : BlowupSequenceData X'} {d : Blo
   have h2 := c.idx_lt j h
   rwa [BlowupSequenceData.toSequenceOfBlowups_length] at h2
 
-theorem blowupSequenceData_index_lt_index_succ {d' : BlowupSequenceData X'} {d : BlowupSequenceData X}
+private theorem blowupSequenceData_index_lt_index_succ {d' : BlowupSequenceData X'} {d : BlowupSequenceData X}
     (c : SequenceOfBlowupsPullback φ d'.toSequenceOfBlowups d.toSequenceOfBlowups) (j : ℕ) (hj : j < d'.length) :
     c.idx j < c.idx (j + 1) :=
   c.idx_strictMono j (by rw [BlowupSequenceData.toSequenceOfBlowups_length]; exact hj)
 
-theorem index_length_eq_length {d' : BlowupSequenceData X'} {d : BlowupSequenceData X}
+private theorem index_length_eq_length {d' : BlowupSequenceData X'} {d : BlowupSequenceData X}
     (c : SequenceOfBlowupsPullback φ d'.toSequenceOfBlowups d.toSequenceOfBlowups) : c.idx d'.length = d.length := by
   simpa only [BlowupSequenceData.toSequenceOfBlowups_length] using c.idx_length
 
-theorem blowupSequenceData_blowupMorphism_comp_map {d' : BlowupSequenceData X'} {d : BlowupSequenceData X}
+private theorem blowupSequenceData_blowupMorphism_comp_map {d' : BlowupSequenceData X'} {d : BlowupSequenceData X}
     (c : SequenceOfBlowupsPullback φ d'.toSequenceOfBlowups d.toSequenceOfBlowups) (j : ℕ) (hj : j < d'.length) :
     d'.map j ≫ c.map j (le_of_lt hj) =
       c.map (j + 1) hj ≫ d.transitionMap (le_of_lt (c.blowupSequenceData_index_lt_index_succ j hj)) := by
@@ -303,13 +303,13 @@ def concatIndex (s : BlowupSequenceData X) (t : BlowupSequenceData (s.obj s.leng
     (e : SequenceOfBlowupsPullback c.lastMap t'.toSequenceOfBlowups t.toSequenceOfBlowups) (j : ℕ) : ℕ :=
   if j < s'.length then c.idx j else s.length + e.idx (j - s'.length)
 
-theorem concatIndex_of_lt (s : BlowupSequenceData X) (t : BlowupSequenceData (s.obj s.length))
+private theorem concatIndex_of_lt (s : BlowupSequenceData X) (t : BlowupSequenceData (s.obj s.length))
     (s' : BlowupSequenceData X') (t' : BlowupSequenceData (s'.obj s'.length))
     (c : SequenceOfBlowupsPullback φ s'.toSequenceOfBlowups s.toSequenceOfBlowups)
     (e : SequenceOfBlowupsPullback c.lastMap t'.toSequenceOfBlowups t.toSequenceOfBlowups) (j : ℕ) (h : j < s'.length) :
     concatIndex s t s' t' c e j = c.idx j := if_pos h
 
-theorem concatIndex_of_ge (s : BlowupSequenceData X) (t : BlowupSequenceData (s.obj s.length))
+private theorem concatIndex_of_ge (s : BlowupSequenceData X) (t : BlowupSequenceData (s.obj s.length))
     (s' : BlowupSequenceData X') (t' : BlowupSequenceData (s'.obj s'.length))
     (c : SequenceOfBlowupsPullback φ s'.toSequenceOfBlowups s.toSequenceOfBlowups)
     (e : SequenceOfBlowupsPullback c.lastMap t'.toSequenceOfBlowups t.toSequenceOfBlowups) (j : ℕ) (h : s'.length ≤ j) :

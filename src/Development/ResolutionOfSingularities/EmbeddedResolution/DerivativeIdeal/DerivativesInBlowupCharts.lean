@@ -66,7 +66,7 @@ theorem partialDeriv_map_of_mem
       simp only [partialDeriv_coord, if_neg hij, map_zero, mul_zero]
   exact DFunLike.congr_fun hD f
 
-theorem partialDeriv_map_of_notMem
+private theorem partialDeriv_map_of_notMem
     (hin : ∀ i ∈ T, i ≠ s → φ (coord k ι S i) = coord k ι S₁ i * coord k ι S₁ s)
     (hs : φ (coord k ι S s) = coord k ι S₁ s)
     (hout : ∀ i ∉ T, φ (coord k ι S i) = coord k ι S₁ i)
@@ -119,7 +119,7 @@ theorem partialDeriv_map_of_notMem
       · exact (map_zero φ).symm
   exact DFunLike.congr_fun key f
 
-theorem coord_mul_partialDeriv_map_eq_map_sum
+private theorem coord_mul_partialDeriv_map_eq_map_sum
     (hin : ∀ i ∈ T, i ≠ s → φ (coord k ι S i) = coord k ι S₁ i * coord k ι S₁ s)
     (hs : φ (coord k ι S s) = coord k ι S₁ s)
     (hout : ∀ i ∉ T, φ (coord k ι S i) = coord k ι S₁ i)
@@ -242,7 +242,7 @@ theorem coord_mul_partialDeriv_map_eq_map_sum
           partialDeriv_coord_of_ne k ι S₁ s j hne, mul_zero]
   exact DFunLike.congr_fun hD f
 
-theorem coord_mul_partialDeriv_map_eq_map_add_sum_erase
+private theorem coord_mul_partialDeriv_map_eq_map_add_sum_erase
     (hin : ∀ i ∈ T, i ≠ s → φ (coord k ι S i) = coord k ι S₁ i * coord k ι S₁ s)
     (hs : φ (coord k ι S s) = coord k ι S₁ s)
     (hout : ∀ i ∉ T, φ (coord k ι S i) = coord k ι S₁ i)
@@ -352,7 +352,7 @@ private theorem finset_sum_smul_derivation_apply {k : Type*} [CommRing k] {S : T
     rw [Finset.sum_cons, Finset.sum_cons]
     simp [ih]
 
-theorem map_derivIdeal_le_span_pow_mul [Fintype ι]
+private theorem map_derivIdeal_le_span_pow_mul [Fintype ι]
     (hin : ∀ i ∈ T, i ≠ s → φ (coord k ι S i) = coord k ι S₁ i * coord k ι S₁ s)
     (hs : φ (coord k ι S s) = coord k ι S₁ s)
     (hout : ∀ i ∉ T, φ (coord k ι S i) = coord k ι S₁ i)

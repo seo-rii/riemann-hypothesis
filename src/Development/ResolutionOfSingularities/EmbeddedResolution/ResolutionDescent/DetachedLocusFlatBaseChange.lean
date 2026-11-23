@@ -76,7 +76,7 @@ namespace ChartFlatBaseChange
 
 variable {S : EmbeddedBlowupSequence k Y pY} {S' : EmbeddedBlowupSequence k' Y' pY'}
 
-theorem mem_support_ambientCenter_iff (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j < S'.length)
+private theorem mem_support_ambientCenter_iff (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j < S'.length)
     (y : ↥(S'.strictTransform j)) :
     (S'.strictTransformι j) y ∈ (↑(S'.ambientCenter j).support : Set ↥(S'.schemeAt j)) ↔
       (S.strictTransformι (F.reindex j)) ((F.strictTransformComparison j hj.le) y) ∈
@@ -87,7 +87,7 @@ theorem mem_support_ambientCenter_iff (F : ChartFlatBaseChange S S') (j : ℕ) (
       (F.strictTransformComparison_comp_strictTransformι j hj.le)
   rw [F.center_eq j hj, FunctorialResolution.EmbeddedResolution.support_comap, Set.mem_preimage, hcomp]
 
-theorem detachedLocus_eq_preimage (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j < S'.length) :
+private theorem detachedLocus_eq_preimage (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j < S'.length) :
     S'.detachedLocus j =
       (fun x : ↥(S'.strictTransform j) => (F.strictTransformComparison j hj.le) x) ⁻¹'
         S.detachedLocus (F.reindex j) := by
@@ -127,7 +127,7 @@ theorem detachedLocus_eq_preimage (F : ChartFlatBaseChange S S') (j : ℕ) (hj :
       exact subset_closure ⟨y, hy, rfl⟩
     exact hsub ⟨_, hgy, rfl⟩
 
-theorem coe_detachedClosure_eq_preimage (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j < S'.length) :
+private theorem coe_detachedClosure_eq_preimage (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j < S'.length) :
     (↑(S'.detachedClosure j) : Set ↥(S'.strictTransform j)) =
       (fun x : ↥(S'.strictTransform j) => (F.strictTransformComparison j hj.le) x) ⁻¹'
         (↑(S.detachedClosure (F.reindex j)) : Set ↥(S.strictTransform (F.reindex j))) := by
@@ -137,7 +137,7 @@ theorem coe_detachedClosure_eq_preimage (F : ChartFlatBaseChange S S') (j : ℕ)
     S.noetherianSpace_strictTransform (F.reindex j) (F.reindex_le_length hj.le)
   rw [S'.detachedClosure_coe j, S.detachedClosure_coe (F.reindex j), F.detachedLocus_eq_preimage j hj]
 
-theorem detachedIdeal_eq_comap (F : ChartFlatBaseChange S S') [AlgebraicGeometry.IsReduced Y]
+private theorem detachedIdeal_eq_comap (F : ChartFlatBaseChange S S') [AlgebraicGeometry.IsReduced Y]
     [AlgebraicGeometry.IsReduced Y'] (j : ℕ) (hj : j < S'.length) :
     S'.detachedIdeal j = (S.detachedIdeal (F.reindex j)).comap (F.strictTransformComparison j hj.le) := by
   have : TopologicalSpace.NoetherianSpace ↥(S'.strictTransform j) :=
@@ -185,7 +185,7 @@ def detachedSchemeComparison (F : ChartFlatBaseChange S S') [AlgebraicGeometry.I
     S'.detachedScheme j ⟶ S.detachedScheme (F.reindex j) :=
   (F.exists_isPullback_detachedScheme j hj).choose
 
-theorem detachedSchemeComparison_comp_detachedι (F : ChartFlatBaseChange S S') [AlgebraicGeometry.IsReduced Y]
+private theorem detachedSchemeComparison_comp_detachedι (F : ChartFlatBaseChange S S') [AlgebraicGeometry.IsReduced Y]
     [AlgebraicGeometry.IsReduced Y'] (j : ℕ) (hj : j < S'.length) :
     F.detachedSchemeComparison j hj ≫ S.detachedι (F.reindex j) =
       S'.detachedι j ≫ F.strictTransformComparison j hj.le :=

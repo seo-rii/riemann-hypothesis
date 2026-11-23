@@ -74,7 +74,7 @@ theorem _root_.FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor.co
   · rw [Scheme.IdealSheafData.comap_ideal_eq_map_appLE D f U V hVle, hUs, Ideal.map_span,
       Set.image_singleton]
 
-theorem _root_.FunctorialResolution.Blowup.IsBlowupAlongIdealSheaf.pullback_snd_of_flat {X Y B : Scheme.{u}} {π : B ⟶ X}
+private theorem _root_.FunctorialResolution.Blowup.IsBlowupAlongIdealSheaf.pullback_snd_of_flat {X Y B : Scheme.{u}} {π : B ⟶ X}
     {J : X.IdealSheafData} (h : FunctorialResolution.Blowup.IsBlowupAlongIdealSheaf π J) (g : Y ⟶ X) [AlgebraicGeometry.Flat g] :
     FunctorialResolution.Blowup.IsBlowupAlongIdealSheaf (pullback.snd π g) (J.comap g) := by
   have e1 : (J.comap g).comap (pullback.snd π g)

@@ -20,7 +20,7 @@ namespace LocalResolutionData
 variable {k : Type u} [Field k] {X : Scheme.{u}} {f : X ⟶ Spec (CommRingCat.of k)}
   [LocallyOfFiniteType f] {s : SequenceOfBlowups X}
 
-theorem isPullback_chartToLastObj (d : LocalResolutionData k f s) (i : d.cover.I₀) :
+private theorem isPullback_chartToLastObj (d : LocalResolutionData k f s) (i : d.cover.I₀) :
     IsPullback (d.chartToLastObj i) ((d.seq i).lastStructMap) s.lastStructMap (d.cover.f i) := by
   have hsq : CommSq ((d.seq i).lastStructMap) (d.chartToLastObj i) (d.cover.f i) s.lastStructMap :=
     ⟨(d.chartToLastObj_comp_lastStructMap i).symm⟩

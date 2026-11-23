@@ -44,14 +44,14 @@ theorem pullbackTransitionMap_comp_snd (s : SequenceOfBlowups X) {X' : Scheme.{u
       pullback.snd φ (s.projectionToBase i') ≫ s.transitionMap h :=
   s.pullbackTransitionMap_snd φ h
 
-theorem pullbackTransitionMap_refl (s : SequenceOfBlowups X) {X' : Scheme.{u}} (φ : X' ⟶ X)
+private theorem pullbackTransitionMap_refl (s : SequenceOfBlowups X) {X' : Scheme.{u}} (φ : X' ⟶ X)
     {a : ℕ} (h : a ≤ a) :
     s.pullbackTransitionMap φ h = 𝟙 (pullback φ (s.projectionToBase a)) := by
   refine pullback.hom_ext ?_ ?_
   · rw [s.pullbackTransitionMap_fst, Category.id_comp]
   · rw [s.pullbackTransitionMap_snd, s.transitionMap_self_eq_id, Category.comp_id, Category.id_comp]
 
-theorem pullbackTransitionMap_eq_comp (s : SequenceOfBlowups X) {X' : Scheme.{u}} (φ : X' ⟶ X)
+private theorem pullbackTransitionMap_eq_comp (s : SequenceOfBlowups X) {X' : Scheme.{u}} (φ : X' ⟶ X)
     {a b c : ℕ} (hba : b ≤ a) (hcb : c ≤ b) (hca : c ≤ a) :
     s.pullbackTransitionMap φ hca = s.pullbackTransitionMap φ hba ≫ s.pullbackTransitionMap φ hcb := by
   refine pullback.hom_ext ?_ ?_
@@ -104,7 +104,7 @@ theorem isPullback_pullbackTransitionMap (s : SequenceOfBlowups X) {X' : Scheme.
     exact (IsPullback.of_hasPullback φ (s.projectionToBase (i + 1))).flip
   exact sq.of_bot hsnd t
 
-theorem isBlowupAlongIdealSheaf_baseChangeTower_map (s : SequenceOfBlowups X) {X' : Scheme.{u}} (φ : X' ⟶ X)
+private theorem isBlowupAlongIdealSheaf_baseChangeTower_map (s : SequenceOfBlowups X) {X' : Scheme.{u}} (φ : X' ⟶ X)
     [AlgebraicGeometry.Flat φ] (i : ℕ) (hi : i < s.length) :
     Blowup.IsBlowupAlongIdealSheaf ((s.baseChangeTower φ).map (homOfLE (Nat.le_succ i)).op)
       ((s.center i).comap (pullback.snd φ (s.projectionToBase i))) :=

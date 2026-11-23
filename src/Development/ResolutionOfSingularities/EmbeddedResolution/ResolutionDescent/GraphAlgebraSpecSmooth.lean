@@ -27,7 +27,7 @@ theorem smooth_specMap_algebraMap_graphAlgebraAway [Fintype σ]
   rw [h]
   refine ⟨?_, ?_⟩ <;> infer_instance
 
-theorem isOpenImmersion_specMap_algebraMap_graphAlgebraAway
+private theorem isOpenImmersion_specMap_algebraMap_graphAlgebraAway
     (f : τ → MvPolynomial σ R) (v : τ → σ) :
     IsOpenImmersion
       (Spec.map (CommRingCat.ofHom (algebraMap (GraphAlgebra f) (GraphAlgebraAway f v)))) := by
@@ -49,7 +49,7 @@ theorem range_specMap_algebraMap_graphAlgebraAway
     (GraphAlgebraAway f v) (graphJacobianMinorDet f v)
   exact h
 
-theorem algebraMap_graphAlgebraAway_eq_comp
+private theorem algebraMap_graphAlgebraAway_eq_comp
     (f : τ → MvPolynomial σ R) (v : τ → σ) :
     (algebraMap (MvPolynomial τ R) (GraphAlgebraAway f v)) =
       (algebraMap (GraphAlgebra f) (GraphAlgebraAway f v)).comp

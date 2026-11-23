@@ -115,7 +115,7 @@ theorem mvPolynomialEquivGlobalSections_C (k : Type u) [Field k] (v : Type u) (c
     simp
   rw [← key, appTop_hom_inv_apply]
 
-theorem mvPolynomialEquivGlobalSections_basicOpen (k : Type u) [Field k] (v : Type u) (p : MvPolynomial v k) :
+private theorem mvPolynomialEquivGlobalSections_basicOpen (k : Type u) [Field k] (v : Type u) (p : MvPolynomial v k) :
     (affineSpaceIndexedBy k v).basicOpen (mvPolynomialEquivGlobalSections k v p) =
       (affineSpaceIsoSpecMvPolynomial k v).hom ⁻¹ᵁ
         (Spec (CommRingCat.of (MvPolynomial v k))).basicOpen

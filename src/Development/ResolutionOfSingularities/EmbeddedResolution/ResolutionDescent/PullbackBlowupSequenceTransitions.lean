@@ -21,13 +21,13 @@ namespace SequenceOfBlowups
 
 variable {X : Scheme.{u}}
 
-theorem pullbackTransitionMap_self_eq_id (s : SequenceOfBlowups X) {X' : Scheme.{u}} (φ : X' ⟶ X) {i : ℕ} (h : i ≤ i) :
+private theorem pullbackTransitionMap_self_eq_id (s : SequenceOfBlowups X) {X' : Scheme.{u}} (φ : X' ⟶ X) {i : ℕ} (h : i ≤ i) :
     s.pullbackTransitionMap φ h = 𝟙 (pullback φ (s.projectionToBase i)) := by
   refine pullback.hom_ext ?_ ?_
   · rw [s.pullbackTransitionMap_fst, Category.id_comp]
   · rw [s.pullbackTransitionMap_snd, s.transitionMap_self_eq_id, Category.comp_id, Category.id_comp]
 
-theorem pullbackTransitionMap_trans (s : SequenceOfBlowups X) {X' : Scheme.{u}} (φ : X' ⟶ X) {i j l : ℕ}
+private theorem pullbackTransitionMap_trans (s : SequenceOfBlowups X) {X' : Scheme.{u}} (φ : X' ⟶ X) {i j l : ℕ}
     (hij : i ≤ j) (hjl : j ≤ l) :
     s.pullbackTransitionMap φ hjl ≫ s.pullbackTransitionMap φ hij = s.pullbackTransitionMap φ (hij.trans hjl) := by
   refine pullback.hom_ext ?_ ?_
@@ -57,7 +57,7 @@ private theorem isIso_pullbackTransitionMap_add (s : SequenceOfBlowups X) {X' : 
       rw [s.pullbackTransitionMap_trans φ (Nat.le_add_right n k) (Nat.le_succ (n + k))] at key
       exact key
 
-theorem isIso_pullbackTransitionMap (s : SequenceOfBlowups X) {X' : Scheme.{u}} (φ : X' ⟶ X) {n n' : ℕ}
+private theorem isIso_pullbackTransitionMap (s : SequenceOfBlowups X) {X' : Scheme.{u}} (φ : X' ⟶ X) {n n' : ℕ}
     (h : n ≤ n') (hstep : ∀ m, n ≤ m → m < n' → IsIso (s.pullbackTransitionMap φ (Nat.le_succ m))) :
     IsIso (s.pullbackTransitionMap φ h) := by
   obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le h

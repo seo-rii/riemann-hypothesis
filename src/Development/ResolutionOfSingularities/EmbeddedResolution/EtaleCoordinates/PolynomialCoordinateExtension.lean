@@ -114,7 +114,7 @@ variable (k : Type*) [CommRing k] (ι κ : Type*) (S : Type*) [CommRing S]
 
 attribute [local instance] mapCoeffAlgebra
 
-theorem algebraMap_eq_mvPolynomial_map (p : MvPolynomial κ (MvPolynomial ι k)) :
+private theorem algebraMap_eq_mvPolynomial_map (p : MvPolynomial κ (MvPolynomial ι k)) :
     algebraMap (MvPolynomial κ (MvPolynomial ι k)) (MvPolynomial κ S) p
       = MvPolynomial.map (algebraMap (MvPolynomial ι k) S) p := rfl
 
@@ -180,7 +180,7 @@ private theorem algebraMap_eq_sumEvalIter (p : MvPolynomial (ι ⊕ κ) k) :
     algebraMap (MvPolynomial (ι ⊕ κ) k) (MvPolynomial κ (MvPolynomial ι k)) p
       = sumEvalIter k ι κ p := rfl
 
-theorem mapCoeffAlgebra_isScalarTower_of_isScalarTower [IsScalarTower k (MvPolynomial ι k) S] :
+private theorem mapCoeffAlgebra_isScalarTower_of_isScalarTower [IsScalarTower k (MvPolynomial ι k) S] :
     IsScalarTower k (MvPolynomial κ (MvPolynomial ι k)) (MvPolynomial κ S) :=
   IsScalarTower.of_algebraMap_eq fun x => by
     have h1 : algebraMap k (MvPolynomial κ (MvPolynomial ι k)) x
@@ -189,7 +189,7 @@ theorem mapCoeffAlgebra_isScalarTower_of_isScalarTower [IsScalarTower k (MvPolyn
     rw [h2, h1, algebraMap_eq_mvPolynomial_map, MvPolynomial.map_C,
       IsScalarTower.algebraMap_apply k (MvPolynomial ι k) S]
 
-theorem mapCoeffAlgebra_isScalarTower [IsScalarTower k (MvPolynomial ι k) S] :
+private theorem mapCoeffAlgebra_isScalarTower [IsScalarTower k (MvPolynomial ι k) S] :
     IsScalarTower (MvPolynomial (ι ⊕ κ) k) (MvPolynomial κ (MvPolynomial ι k))
       (MvPolynomial κ S) := by
   have := mapCoeffAlgebra_isScalarTower_of_isScalarTower k ι κ S
@@ -202,7 +202,7 @@ theorem mapCoeffAlgebra_isScalarTower [IsScalarTower k (MvPolynomial ι k) S] :
       simp [RingHom.comp_apply, algebraMap_eq_sumEval, algebraMap_eq_sumEvalIter,
         sumEval, sumEvalIter, algebraMap_eq_mvPolynomial_map, coord_def]
 
-theorem formallyEtale_mvPolynomial_sum [IsScalarTower k (MvPolynomial ι k) S]
+private theorem formallyEtale_mvPolynomial_sum [IsScalarTower k (MvPolynomial ι k) S]
     [Algebra.FormallyEtale (MvPolynomial ι k) S] :
     Algebra.FormallyEtale (MvPolynomial (ι ⊕ κ) k) (MvPolynomial κ S) := by
   have := mapCoeffAlgebra_isScalarTower_of_isScalarTower k ι κ S

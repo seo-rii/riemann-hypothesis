@@ -26,19 +26,19 @@ variable {X X₁ : Scheme.{u}} {k : Type u} [Field k]
   {p : X ⟶ Spec (CommRingCat.of k)} {π : X₁ ⟶ X} {U : X.Opens} {m : ℕ}
   {c : EtaleChart p U m} {S : Finset (Fin m)} {s : Fin m}
 
-theorem coord_mem_ideal_of_mem (hU : IsAffineOpen U) (Z : X.IdealSheafData)
+private theorem coord_mem_ideal_of_mem (hU : IsAffineOpen U) (Z : X.IdealSheafData)
     (hZ : restrictIdeal Z U = c.coordIdeal S) (i : Fin m) (hi : i ∈ S) :
     c.coord i ∈ Z.ideal ⟨U, hU⟩ := by
   rw [EtaleChart.ideal_eq_span_coord c hU Z S hZ]
   exact Ideal.subset_span (Set.mem_image_of_mem c.coord (Finset.mem_coe.mpr hi))
 
-theorem mk_coord_eq_zero_of_mem (hU : IsAffineOpen U) (Z : X.IdealSheafData)
+private theorem mk_coord_eq_zero_of_mem (hU : IsAffineOpen U) (Z : X.IdealSheafData)
     (hZ : restrictIdeal Z U = c.coordIdeal S) (i : Fin m) (hi : i ∈ S) :
     (Ideal.Quotient.mk (Z.ideal ⟨U, hU⟩)) (c.coord i) = 0 := by
   rw [Ideal.Quotient.eq_zero_iff_mem]
   exact coord_mem_ideal_of_mem hU Z hZ i hi
 
-theorem isAffineOpen_domain_of_isPullback (hU : IsAffineOpen U) (B : BlowupChart π c S s)
+private theorem isAffineOpen_domain_of_isPullback (hU : IsAffineOpen U) (B : BlowupChart π c S s)
     (hB : IsPullback B.chart.map (π.resLE U B.domain B.domain_le) (coordBlowupSubstMap k m S s) c.map) :
     IsAffineOpen B.domain := by
   have hUaff : IsAffine U.toScheme := hU
@@ -78,7 +78,7 @@ def exceptionalQuotientBaseHom (hU : IsAffineOpen U) (Z : X.IdealSheafData)
       (π.appLE U B.domain B.domain_le).hom)
     (quotientMk_comp_appLE_eq_zero_of_mem hU Z hZ B)
 
-theorem exceptionalQuotientBaseHom_mk (hU : IsAffineOpen U) (Z : X.IdealSheafData)
+private theorem exceptionalQuotientBaseHom_mk (hU : IsAffineOpen U) (Z : X.IdealSheafData)
     (hZ : restrictIdeal Z U = c.coordIdeal S) (B : BlowupChart π c S s) (hs : s ∈ S)
     (a : Γ(X, U)) :
     exceptionalQuotientBaseHom hU Z hZ B hs ((Ideal.Quotient.mk (Z.ideal ⟨U, hU⟩)) a) =
@@ -93,13 +93,13 @@ def mvPolynomialToExceptionalQuotient (hU : IsAffineOpen U) (Z : X.IdealSheafDat
   MvPolynomial.eval₂Hom (exceptionalQuotientBaseHom hU Z hZ B hs)
     (fun t => (Ideal.Quotient.mk (Ideal.span {B.chart.coord s})) (B.chart.coord t.1))
 
-theorem mvPolynomialToExceptionalQuotient_C (hU : IsAffineOpen U) (Z : X.IdealSheafData)
+private theorem mvPolynomialToExceptionalQuotient_C (hU : IsAffineOpen U) (Z : X.IdealSheafData)
     (hZ : restrictIdeal Z U = c.coordIdeal S) (B : BlowupChart π c S s) (hs : s ∈ S)
     (r : Γ(X, U) ⧸ Z.ideal ⟨U, hU⟩) :
     mvPolynomialToExceptionalQuotient hU Z hZ B hs (MvPolynomial.C r) = exceptionalQuotientBaseHom hU Z hZ B hs r :=
   MvPolynomial.eval₂Hom_C _ _ r
 
-theorem mvPolynomialToExceptionalQuotient_X (hU : IsAffineOpen U) (Z : X.IdealSheafData)
+private theorem mvPolynomialToExceptionalQuotient_X (hU : IsAffineOpen U) (Z : X.IdealSheafData)
     (hZ : restrictIdeal Z U = c.coordIdeal S) (B : BlowupChart π c S s) (hs : s ∈ S)
     (t : ↥(S.erase s)) :
     mvPolynomialToExceptionalQuotient hU Z hZ B hs (MvPolynomial.X t) =
@@ -289,14 +289,14 @@ def exceptionalQuotientEquivMvPolynomial (hU : IsAffineOpen U) (Z : X.IdealSheaf
       MvPolynomial ↥(S.erase s) (Γ(X, U) ⧸ Z.ideal ⟨U, hU⟩) :=
   (RingEquiv.ofBijective (mvPolynomialToExceptionalQuotient hU Z hZ B hs) (bijective_mvPolynomialToExceptionalQuotient hU Z hZ B hs hB)).symm
 
-theorem exceptionalQuotientEquivMvPolynomial_symm_apply (hU : IsAffineOpen U) (Z : X.IdealSheafData)
+private theorem exceptionalQuotientEquivMvPolynomial_symm_apply (hU : IsAffineOpen U) (Z : X.IdealSheafData)
     (hZ : restrictIdeal Z U = c.coordIdeal S) (B : BlowupChart π c S s) (hs : s ∈ S)
     (hB : IsPullback B.chart.map (π.resLE U B.domain B.domain_le) (coordBlowupSubstMap k m S s) c.map)
     (f : MvPolynomial ↥(S.erase s) (Γ(X, U) ⧸ Z.ideal ⟨U, hU⟩)) :
     (exceptionalQuotientEquivMvPolynomial hU Z hZ B hs hB).symm f = mvPolynomialToExceptionalQuotient hU Z hZ B hs f :=
   rfl
 
-theorem exceptionalQuotientEquivMvPolynomial_mk_appLE (hU : IsAffineOpen U) (Z : X.IdealSheafData)
+private theorem exceptionalQuotientEquivMvPolynomial_mk_appLE (hU : IsAffineOpen U) (Z : X.IdealSheafData)
     (hZ : restrictIdeal Z U = c.coordIdeal S) (B : BlowupChart π c S s) (hs : s ∈ S)
     (hB : IsPullback B.chart.map (π.resLE U B.domain B.domain_le) (coordBlowupSubstMap k m S s) c.map)
     (a : Γ(X, U)) :
@@ -307,7 +307,7 @@ theorem exceptionalQuotientEquivMvPolynomial_mk_appLE (hU : IsAffineOpen U) (Z :
   apply (exceptionalQuotientEquivMvPolynomial hU Z hZ B hs hB).symm.injective
   rw [RingEquiv.symm_apply_apply, exceptionalQuotientEquivMvPolynomial_symm_apply, mvPolynomialToExceptionalQuotient_C, exceptionalQuotientBaseHom_mk]
 
-theorem exceptionalQuotientEquivMvPolynomial_mk_coord (hU : IsAffineOpen U) (Z : X.IdealSheafData)
+private theorem exceptionalQuotientEquivMvPolynomial_mk_coord (hU : IsAffineOpen U) (Z : X.IdealSheafData)
     (hZ : restrictIdeal Z U = c.coordIdeal S) (B : BlowupChart π c S s) (hs : s ∈ S)
     (hB : IsPullback B.chart.map (π.resLE U B.domain B.domain_le) (coordBlowupSubstMap k m S s) c.map)
     (i : Fin m) (hi : i ∈ S) (his : i ≠ s) :

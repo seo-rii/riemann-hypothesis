@@ -48,7 +48,7 @@ section
 
 variable {k : Type*} [CommRing k] {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-theorem det_derivation_mul_sub_mem_of_eq_one_or_mem {B : Type*} [CommRing B] [Algebra k B]
+private theorem det_derivation_mul_sub_mem_of_eq_one_or_mem {B : Type*} [CommRing B] [Algebra k B]
     (δ : ι → Derivation k B B) (v x : ι → B) (m : Ideal B)
     (h : ∀ b : ι, v b = 1 ∨ x b ∈ m) :
     (Matrix.of fun a b : ι => δ a (v b * x b)).det
@@ -72,7 +72,7 @@ theorem det_derivation_mul_sub_mem_of_eq_one_or_mem {B : Type*} [CommRing B] [Al
   rw [← Ideal.Quotient.eq_zero_iff_mem, map_sub, map_mul, map_prod, h1, h2, hmat,
     Matrix.det_mul, Matrix.det_diagonal, sub_self]
 
-theorem det_derivation_notMem_comap_of_eq_one_or_mem {R S : Type*} [CommRing R] [CommRing S]
+private theorem det_derivation_notMem_comap_of_eq_one_or_mem {R S : Type*} [CommRing R] [CommRing S]
     [Algebra k R] [Algebra k S] (q : R →+* S) (δ : ι → Derivation k R R)
     (δ' : ι → Derivation k S S)
     (hcompat : ∀ (a : ι) (r : R), q (δ a r) = δ' a (q r))
@@ -109,7 +109,7 @@ theorem det_derivation_notMem_comap_of_eq_one_or_mem {R S : Type*} [CommRing R] 
 
 end
 
-theorem basisKaehler_det_eq_jacobian_det (k : Type*) [CommRing k] (ι : Type*) [Fintype ι]
+private theorem basisKaehler_det_eq_jacobian_det (k : Type*) [CommRing k] (ι : Type*) [Fintype ι]
     [DecidableEq ι] (S : Type*) [CommRing S] [Algebra (MvPolynomial ι k) S] [Algebra k S]
     [IsScalarTower k (MvPolynomial ι k) S] [Algebra.FormallyEtale (MvPolynomial ι k) S]
     (w : ι → S) :
@@ -422,7 +422,7 @@ section
 
 variable {P : Scheme.{u}} {k : Type u} [Field k]
 
-theorem hasLocalCoordsOnSmoothHypersurface_of_comap (p : P ⟶ Spec (CommRingCat.of k))
+private theorem hasLocalCoordsOnSmoothHypersurface_of_comap (p : P ⟶ Spec (CommRingCat.of k))
     [AlgebraicGeometry.Smooth p] (H : P.IdealSheafData) (N : List P.IdealSheafData)
     (Z : H.subscheme.IdealSheafData)
     (hN : InStrictNormalCrossingPosition p (H :: N))

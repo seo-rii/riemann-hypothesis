@@ -16,18 +16,18 @@ variable (k : Type*) [CommRing k] (ι : Type*) (S : Type*) [CommRing S]
   [Algebra (MvPolynomial ι k) S] [Algebra k S] [IsScalarTower k (MvPolynomial ι k) S]
   [Algebra.FormallyEtale (MvPolynomial ι k) S]
 
-theorem coord_smul_partialDeriv_mem_tangentDerivations (h : ι) :
+private theorem coord_smul_partialDeriv_mem_tangentDerivations (h : ι) :
     coord k ι S h • partialDeriv k ι S h ∈
       tangentDerivations k (Ideal.span ({coord k ι S h} : Set S)) :=
   smul_mem_tangentDerivations k (Ideal.span ({coord k ι S h} : Set S))
     (Ideal.mem_span_singleton_self (coord k ι S h)) (partialDeriv k ι S h)
 
-theorem partialDeriv_mem_tangentDerivations_of_ne {i h : ι} (hih : i ≠ h) :
+private theorem partialDeriv_mem_tangentDerivations_of_ne {i h : ι} (hih : i ≠ h) :
     partialDeriv k ι S i ∈ tangentDerivations k (Ideal.span ({coord k ι S h} : Set S)) := by
   rw [mem_tangentDerivations_span_singleton, partialDeriv_coord_of_ne k ι S i h hih]
   exact Submodule.zero_mem _
 
-theorem coord_mul_partialDeriv_mem_logDerivIdeal (h : ι) (J : Ideal S) {g : S} (hg : g ∈ J) :
+private theorem coord_mul_partialDeriv_mem_logDerivIdeal (h : ι) (J : Ideal S) {g : S} (hg : g ∈ J) :
     coord k ι S h * partialDeriv k ι S h g ∈
       logDerivIdeal k (Ideal.span ({coord k ι S h} : Set S)) J := by
   have hmem := derivation_apply_mem_logDerivIdeal k (Ideal.span ({coord k ι S h} : Set S)) J
@@ -35,7 +35,7 @@ theorem coord_mul_partialDeriv_mem_logDerivIdeal (h : ι) (J : Ideal S) {g : S} 
     (coord_smul_partialDeriv_mem_tangentDerivations k ι S h) hg
   simpa [smul_eq_mul] using hmem
 
-theorem partialDeriv_mem_logDerivIdeal_of_ne {i h : ι} (hih : i ≠ h) (J : Ideal S) {g : S}
+private theorem partialDeriv_mem_logDerivIdeal_of_ne {i h : ι} (hih : i ≠ h) (J : Ideal S) {g : S}
     (hg : g ∈ J) :
     partialDeriv k ι S i g ∈ logDerivIdeal k (Ideal.span ({coord k ι S h} : Set S)) J :=
   derivation_apply_mem_logDerivIdeal k (Ideal.span ({coord k ι S h} : Set S)) J
@@ -57,7 +57,7 @@ theorem partialDeriv_mem_partialDerivIdeal (h : ι) (J : Ideal S) {g : S} (hg : 
   rw [partialDerivIdeal_def]
   exact Submodule.mem_sup_right (Ideal.subset_span ⟨g, hg, rfl⟩)
 
-theorem partialDerivIdeal_le_iff (h : ι) (J K : Ideal S) :
+private theorem partialDerivIdeal_le_iff (h : ι) (J K : Ideal S) :
     partialDerivIdeal k ι S h J ≤ K ↔ J ≤ K ∧ ∀ g ∈ J, partialDeriv k ι S h g ∈ K := by
   rw [partialDerivIdeal_def, sup_le_iff, Ideal.span_le]
   constructor
@@ -101,7 +101,7 @@ private theorem derivation_sum_apply (s : Finset ι) (f : ι → Derivation k S 
     (∑ i ∈ s, f i) g = ∑ i ∈ s, f i g :=
   map_sum (evalDerivationAddHom k S g) f s
 
-theorem derivation_apply_eq_sum_partialDeriv [Fintype ι] (D : Derivation k S S) (g : S) :
+private theorem derivation_apply_eq_sum_partialDeriv [Fintype ι] (D : Derivation k S S) (g : S) :
     D g = ∑ i, D (coord k ι S i) * partialDeriv k ι S i g := by
   have h1 : D g = (∑ i, D (coord k ι S i) • partialDeriv k ι S i : Derivation k S S) g :=
     congrArg (fun E : Derivation k S S => E g) (eq_sum_smul_partialDeriv k ι S D)

@@ -24,19 +24,19 @@ private theorem sum_smul_derivation_apply (k : Type*) [CommRing k] {R : Type*} [
       rw [Finset.sum_insert hi, Finset.sum_insert hi, Derivation.add_apply,
         Derivation.smul_apply, smul_eq_mul, ih]
 
-theorem eulerDerivation_apply (k : Type*) [CommRing k] {R : Type*} [CommRing R] [Algebra k R]
+private theorem eulerDerivation_apply (k : Type*) [CommRing k] {R : Type*} [CommRing R] [Algebra k R]
     {ι : Type*} [Fintype ι] (x : ι → R) (D : ι → Derivation k R R) (a : R) :
     eulerDerivation k x D a = ∑ i, x i * D i a := by
   show (∑ i, x i • D i) a = ∑ i, x i * D i a
   exact sum_smul_derivation_apply k Finset.univ x D a
 
-theorem eulerDerivation_apply_mem_span (k : Type*) [CommRing k] {R : Type*} [CommRing R] [Algebra k R]
+private theorem eulerDerivation_apply_mem_span (k : Type*) [CommRing k] {R : Type*} [CommRing R] [Algebra k R]
     {ι : Type*} [Fintype ι] (x : ι → R) (D : ι → Derivation k R R) (a : R) :
     eulerDerivation k x D a ∈ Ideal.span (Set.range x) := by
   rw [eulerDerivation_apply]
   exact Ideal.sum_mem _ fun i _ => Ideal.mul_mem_right _ _ (Ideal.subset_span ⟨i, rfl⟩)
 
-theorem eulerDerivation_apply_generator (k : Type*) [CommRing k] {R : Type*} [CommRing R] [Algebra k R]
+private theorem eulerDerivation_apply_generator (k : Type*) [CommRing k] {R : Type*} [CommRing R] [Algebra k R]
     {ι : Type*} [Fintype ι] [DecidableEq ι] (x : ι → R) (D : ι → Derivation k R R)
     (hD : ∀ i j, D i (x j) = if i = j then 1 else 0) (j : ι) :
     eulerDerivation k x D (x j) = x j := by
@@ -119,7 +119,7 @@ private theorem forall_eulerDerivation_sub_natCast_mul_mem (k : Type*) [CommRing
           exact Submodule.add_mem _ hy hz
         exact hres
 
-theorem eulerDerivation_sub_natCast_mul_mem_pow_succ (k : Type*) [CommRing k] {R : Type*} [CommRing R]
+private theorem eulerDerivation_sub_natCast_mul_mem_pow_succ (k : Type*) [CommRing k] {R : Type*} [CommRing R]
     [Algebra k R] {ι : Type*} [Fintype ι] [DecidableEq ι] (x : ι → R) (D : ι → Derivation k R R)
     (hD : ∀ i j, D i (x j) = if i = j then 1 else 0) (r : ℕ) {f : R}
     (hf : f ∈ Ideal.span (Set.range x) ^ r) :
@@ -153,7 +153,7 @@ theorem mem_pow_succ_of_deriv_mem_pow (k : Type*) [CommRing k] {R : Type*} [Comm
   rw [← key]
   exact Ideal.mul_mem_left _ _ h3
 
-theorem not_derivIdeal_le_pow (k : Type*) [CommRing k] {R : Type*} [CommRing R] [Algebra k R]
+private theorem not_derivIdeal_le_pow (k : Type*) [CommRing k] {R : Type*} [CommRing R] [Algebra k R]
     {ι : Type*} [Fintype ι] [DecidableEq ι] (x : ι → R) (D : ι → Derivation k R R)
     (hD : ∀ i j, D i (x j) = if i = j then 1 else 0) {r : ℕ} (hr : IsUnit ((r : ℕ) : R))
     {I : Ideal R} (h1 : I ≤ Ideal.span (Set.range x) ^ r)
@@ -177,7 +177,7 @@ private theorem eq_natCast_of_le_of_not_succ_le (n : ℕ) (a : ℕ∞) (h1 : (n 
     have ha : a = n := by omega
     exact_mod_cast ha
 
-theorem idealOrder_derivIdeal_of_isUnit_natCast (k : Type*) [CommRing k] {R : Type*} [CommRing R] [IsLocalRing R]
+private theorem idealOrder_derivIdeal_of_isUnit_natCast (k : Type*) [CommRing k] {R : Type*} [CommRing R] [IsLocalRing R]
     [Algebra k R] {ι : Type*} [Fintype ι] [DecidableEq ι] (x : ι → R) (D : ι → Derivation k R R)
     (hD : ∀ i j, D i (x j) = if i = j then 1 else 0)
     (hx : Ideal.span (Set.range x) = IsLocalRing.maximalIdeal R)

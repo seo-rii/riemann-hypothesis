@@ -23,7 +23,7 @@ theorem coordSubspaceIdeal_empty (k : Type u) [Field k] (m : ℕ) :
   ext U
   simp [Ideal.map_bot]
 
-theorem coordSubspaceIdeal_singleton (k : Type u) [Field k] (m : ℕ) (j : Fin m) :
+private theorem coordSubspaceIdeal_singleton (k : Type u) [Field k] (m : ℕ) (j : Fin m) :
     coordSubspaceIdeal k m {j} =
       Scheme.IdealSheafData.ofIdealTop
         (Ideal.span {AffineSpace.coord (Spec (CommRingCat.of k)) (ULift.up j)}) := by
@@ -87,7 +87,7 @@ theorem coordBlowupSubstMap_appTop_coord_of_notMem (k : Type u) [Field k] (m : �
       (ULift.up j : ULift.{u} (Fin m)).down ≠ s) := fun h => hj h.1
   rw [coordBlowupSubstMap_appTop_coord k m S s (ULift.up j : ULift.{u} (Fin m)), if_neg hc]
 
-theorem comap_coordBlowupSubstMap_coordSubspaceIdeal_singleton_of_mem (k : Type u) [Field k] (m : ℕ)
+private theorem comap_coordBlowupSubstMap_coordSubspaceIdeal_singleton_of_mem (k : Type u) [Field k] (m : ℕ)
     (S : Finset (Fin m)) (s : Fin m) (j : Fin m) (hj : j ∈ S) (hjs : j ≠ s) :
     (coordSubspaceIdeal k m {j}).comap (coordBlowupSubstMap k m S s) =
       coordSubspaceIdeal k m {j} * coordSubspaceIdeal k m {s} := by
@@ -97,19 +97,19 @@ theorem comap_coordBlowupSubstMap_coordSubspaceIdeal_singleton_of_mem (k : Type 
     coordBlowupSubstMap_appTop_coord_of_mem k m S s j hj hjs,
     Ideal.span_singleton_mul_span_singleton]
 
-theorem comap_coordBlowupSubstMap_coordSubspaceIdeal_singleton_self (k : Type u) [Field k] (m : ℕ)
+private theorem comap_coordBlowupSubstMap_coordSubspaceIdeal_singleton_self (k : Type u) [Field k] (m : ℕ)
     (S : Finset (Fin m)) (s : Fin m) :
     (coordSubspaceIdeal k m {s}).comap (coordBlowupSubstMap k m S s) = coordSubspaceIdeal k m {s} := by
   rw [coordSubspaceIdeal_singleton, Scheme.IdealSheafData.comap_ofIdealTop,
     Ideal.map_span, Set.image_singleton, coordBlowupSubstMap_appTop_coord_self k m S s]
 
-theorem comap_coordBlowupSubstMap_coordSubspaceIdeal_singleton_of_notMem (k : Type u) [Field k] (m : ℕ)
+private theorem comap_coordBlowupSubstMap_coordSubspaceIdeal_singleton_of_notMem (k : Type u) [Field k] (m : ℕ)
     (S : Finset (Fin m)) (s : Fin m) (j : Fin m) (hj : j ∉ S) :
     (coordSubspaceIdeal k m {j}).comap (coordBlowupSubstMap k m S s) = coordSubspaceIdeal k m {j} := by
   rw [coordSubspaceIdeal_singleton, Scheme.IdealSheafData.comap_ofIdealTop,
     Ideal.map_span, Set.image_singleton, coordBlowupSubstMap_appTop_coord_of_notMem k m S s j hj]
 
-theorem comap_coordBlowupSubstMap_coordSubspaceIdeal_center (k : Type u) [Field k] (m : ℕ)
+private theorem comap_coordBlowupSubstMap_coordSubspaceIdeal_center (k : Type u) [Field k] (m : ℕ)
     (S : Finset (Fin m)) (s : Fin m) (hs : s ∈ S) :
     (coordSubspaceIdeal k m S).comap (coordBlowupSubstMap k m S s) = coordSubspaceIdeal k m {s} := by
   have key : Ideal.map ((coordBlowupSubstMap k m S s).appTop.hom)
@@ -147,7 +147,7 @@ theorem comap_coordBlowupSubstMap_coordSubspaceIdeal_center (k : Type u) [Field 
   rw [coordSubspaceIdeal_eq_ofIdealTop_span_coord, Scheme.IdealSheafData.comap_ofIdealTop, key,
     coordSubspaceIdeal_singleton]
 
-theorem comap_coordIdeal_of_coordBlowupSubstMap {X X₁ : Scheme.{u}} {k : Type u} [Field k]
+private theorem comap_coordIdeal_of_coordBlowupSubstMap {X X₁ : Scheme.{u}} {k : Type u} [Field k]
     {p : X ⟶ Spec (CommRingCat.of k)} {p₁ : X₁ ⟶ Spec (CommRingCat.of k)}
     {U : X.Opens} {V : X₁.Opens} {m : ℕ} {S : Finset (Fin m)} {s : Fin m}
     (c : EtaleChart p U m) (c₁ : EtaleChart p₁ V m)

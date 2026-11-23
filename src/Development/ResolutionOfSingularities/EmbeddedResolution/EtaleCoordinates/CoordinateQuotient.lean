@@ -19,19 +19,19 @@ noncomputable def etaleChartCoordIdeal (k : Type u) [Field k] (m : ℕ) (S : Typ
     [Algebra (CoordPolynomialRing k m) S] (J : Finset (Fin m)) : Ideal S :=
   Ideal.span (etaleChartCoord k m S '' (J : Set (Fin m)))
 
-theorem etaleChartCoordIdeal_eq_span_image (k : Type u) [Field k] (m : ℕ) (S : Type u) [CommRing S]
+private theorem etaleChartCoordIdeal_eq_span_image (k : Type u) [Field k] (m : ℕ) (S : Type u) [CommRing S]
     [Algebra (CoordPolynomialRing k m) S] (J : Finset (Fin m)) :
     etaleChartCoordIdeal k m S J = Ideal.span (etaleChartCoord k m S '' (J : Set (Fin m))) :=
   rfl
 
-theorem etaleChartCoordIdeal_le (k : Type u) [Field k] (m : ℕ) (S : Type u) [CommRing S]
+private theorem etaleChartCoordIdeal_le (k : Type u) [Field k] (m : ℕ) (S : Type u) [CommRing S]
     [Algebra (CoordPolynomialRing k m) S] (J : Finset (Fin m)) (I : Ideal S)
     (hI : ∀ j ∈ J, etaleChartCoord k m S j ∈ I) : etaleChartCoordIdeal k m S J ≤ I := by
   refine Ideal.span_le.mpr ?_
   rintro x ⟨j, hj, rfl⟩
   exact hI j (Finset.mem_coe.mp hj)
 
-theorem map_mvPolynomialCoordIdeal_eq_etaleChartCoordIdeal (k : Type u) [Field k] (m : ℕ) (S : Type u)
+private theorem map_mvPolynomialCoordIdeal_eq_etaleChartCoordIdeal (k : Type u) [Field k] (m : ℕ) (S : Type u)
     [CommRing S] [Algebra (CoordPolynomialRing k m) S] (J : Finset (Fin m)) :
     Ideal.map (algebraMap (CoordPolynomialRing k m) S) (mvPolynomialCoordIdeal k m J) =
       etaleChartCoordIdeal k m S J := by
@@ -55,7 +55,7 @@ private theorem etale_algebraMap_coordPolynomialRing (k : Type u) [Field k] (m :
   rw [hiff]
   infer_instance
 
-theorem isRegularLocalRing_quotient_map_etaleChartCoordIdeal (k : Type u) [Field k] (m : ℕ)
+private theorem isRegularLocalRing_quotient_map_etaleChartCoordIdeal (k : Type u) [Field k] (m : ℕ)
     (S : Type u) [CommRing S] [Algebra (CoordPolynomialRing k m) S]
     [Algebra.Etale (CoordPolynomialRing k m) S] (q : Ideal S) [q.IsPrime] (A : Type u) [CommRing A]
     [Algebra S A] [IsLocalization q.primeCompl A] (J : Finset (Fin m))
@@ -193,7 +193,7 @@ private theorem algebraMap_etaleChartCoord_notMem_maximalIdeal_sq_sup (k : Type 
     exact add_mem hDa hDb
   exact (IsLocalRing.maximalIdeal.isMaximal A).ne_top ((Ideal.eq_top_iff_one _).mpr h1)
 
-theorem ringKrullDim_quotient_map_etaleChartCoordIdeal_add_card (k : Type u) [Field k] (m : ℕ)
+private theorem ringKrullDim_quotient_map_etaleChartCoordIdeal_add_card (k : Type u) [Field k] (m : ℕ)
     (S : Type u) [CommRing S] [Algebra (CoordPolynomialRing k m) S]
     [Algebra.Etale (CoordPolynomialRing k m) S] (q : Ideal S) [q.IsPrime] (A : Type u) [CommRing A]
     [Algebra S A] [IsLocalization q.primeCompl A] (J : Finset (Fin m))

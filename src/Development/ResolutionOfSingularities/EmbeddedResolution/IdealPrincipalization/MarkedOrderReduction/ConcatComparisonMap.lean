@@ -122,7 +122,7 @@ private theorem blowupMorphism_eq_eqToHom_conj {Y : Scheme.{u}} (d : BlowupSeque
   subst hab
   simp
 
-theorem concatObjIsoRight_hom_comm_blowupMorphism {X : Scheme.{u}} (s : BlowupSequenceData X)
+private theorem concatObjIsoRight_hom_comm_blowupMorphism {X : Scheme.{u}} (s : BlowupSequenceData X)
     (t : BlowupSequenceData (s.obj s.length)) (i j : ℕ) (h : j = s.length + i) :
     (s.append t).map j ≫ (s.concatObjIsoRight t i j h).hom =
       (s.concatObjIsoRight t (i + 1) (j + 1) (by omega)).hom ≫ t.map i := by
@@ -154,7 +154,7 @@ private theorem comap_eqToHom_comap_eq {A B C : Scheme.{u}} (e : A = B)
   subst e
   simp
 
-theorem append_center_eq_comap_concatObjIsoRight {X : Scheme.{u}} (s : BlowupSequenceData X)
+private theorem append_center_eq_comap_concatObjIsoRight {X : Scheme.{u}} (s : BlowupSequenceData X)
     (t : BlowupSequenceData (s.obj s.length)) (i j : ℕ) (h : j = s.length + i) :
     (s.append t).center j = (t.center i).comap (s.concatObjIsoRight t i j h).hom := by
   rcases Nat.eq_zero_or_pos i with hi | hi

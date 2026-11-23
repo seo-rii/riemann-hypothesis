@@ -67,7 +67,7 @@ private theorem quasiCompact_of_isAffine_of_locallyOfFiniteType {k : Type u} [Fi
   have he : IsCompact (e '' (⇑g ⁻¹' Vo)) := TopologicalSpace.NoetherianSpace.isCompact _
   rwa [Homeomorph.isCompact_image] at he
 
-theorem isReduced_pullback_sigmaOpensDesc (Y : Scheme.{u}) {ι : Type u} (U : ι → Y.Opens)
+private theorem isReduced_pullback_sigmaOpensDesc (Y : Scheme.{u}) {ι : Type u} (U : ι → Y.Opens)
     (W' : Scheme.{u}) [IsReduced W'] (g' : W' ⟶ Y) :
     IsReduced (pullback g' (sigmaOpensDesc Y U)) := by
   refine isReduced_of_isOpenImmersion_cover
@@ -95,7 +95,7 @@ theorem isReduced_pullback_sigmaOpensDesc (Y : Scheme.{u}) {ι : Type u} (U : ι
         (g := Sigma.ι (fun j => (U j).toScheme) i) x y hy.symm
     exact ⟨i, z, hz1⟩
 
-theorem compactSpace_pullback_sigmaOpensDesc (Y : Scheme.{u}) {ι : Type u} [Finite ι]
+private theorem compactSpace_pullback_sigmaOpensDesc (Y : Scheme.{u}) {ι : Type u} [Finite ι]
     (U : ι → Y.Opens) (hU : ∀ i, IsAffineOpen (U i))
     (W' : Scheme.{u}) (g' : W' ⟶ Y) [QuasiCompact g'] :
     CompactSpace ↥(pullback g' (sigmaOpensDesc Y U)) := by

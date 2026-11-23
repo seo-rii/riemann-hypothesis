@@ -12,7 +12,7 @@ noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
-theorem apply_mem_irreducibleComponent_iff_of_generalizingMap
+private theorem apply_mem_irreducibleComponent_iff_of_generalizingMap
     {X Y : Scheme.{u}} (f : X ⟶ Y) (hf : GeneralizingMap (fun x : ↥X => f x))
     {C : Set ↥Y} (hC : C ∈ irreducibleComponents ↥Y) (x : ↥X) :
     (fun x : ↥X => f x) x ∈ C ↔

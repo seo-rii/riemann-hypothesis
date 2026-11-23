@@ -296,7 +296,7 @@ theorem ideal_le_pow_of_restrictIdeal_eq_coordIdeal {X : Scheme.{u}} {k : Type u
   rw [Nat.sub_self, derivIdealIterate_zero] at hfin
   exact hfin
 
-theorem le_pow_of_support_subset_orderAtLeastLocus_of_coordIdeal {X : Scheme.{u}} {k : Type u} [Field k] [CharZero k]
+private theorem le_pow_of_support_subset_orderAtLeastLocus_of_coordIdeal {X : Scheme.{u}} {k : Type u} [Field k] [CharZero k]
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] (Z I : X.IdealSheafData)
     (m : ℕ)
     (hchart : ∀ x : X, x ∈ Z.support →

@@ -78,7 +78,7 @@ private theorem eq_homOfSumCoords_of_comp_reindex {n₁ n₂ n : Type u} (e : n�
       rw [AlgebraicGeometry.Scheme.Hom.comp_appTop, CommRingCat.comp_apply] at h
       simpa using h
 
-theorem isPullback_reindex_of_sumEquiv {n₁ n₂ n : Type u} (e : n₁ ⊕ n₂ ≃ n) (S : Scheme.{u}) :
+private theorem isPullback_reindex_of_sumEquiv {n₁ n₂ n : Type u} (e : n₁ ⊕ n₂ ≃ n) (S : Scheme.{u}) :
     IsPullback
       (AffineSpace.reindex (S := S) (fun a : n₁ => e (Sum.inl a)))
       (AffineSpace.reindex (S := S) (fun b : n₂ => e (Sum.inr b)))

@@ -27,7 +27,7 @@ noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
-theorem isClosed_of_maximal_isIrreducible_subset {X : Scheme.{u}} {C S : Set X}
+private theorem isClosed_of_maximal_isIrreducible_subset {X : Scheme.{u}} {C S : Set X}
     (hC : IsIrreducible C) (hCS : C ⊆ S)
     (hmax : ∀ T : Set X, IsIrreducible T → T ⊆ S → C ⊆ T → T = C)
     (hS : IsClosed S) : IsClosed C := by
@@ -35,7 +35,7 @@ theorem isClosed_of_maximal_isIrreducible_subset {X : Scheme.{u}} {C S : Set X}
     hmax (closure C) hC.closure (hS.closure_subset_iff.mpr hCS) subset_closure
   exact closure_eq_iff_isClosed.mp h
 
-theorem exists_closure_singleton_eq_of_maximal_irreducible {X : Scheme.{u}} {C S : Set X}
+private theorem exists_closure_singleton_eq_of_maximal_irreducible {X : Scheme.{u}} {C S : Set X}
     (hC : IsIrreducible C) (hCS : C ⊆ S)
     (hmax : ∀ T : Set X, IsIrreducible T → T ⊆ S → C ⊆ T → T = C)
     (hS : IsClosed S) : ∃ ξ : X, closure ({ξ} : Set X) = C := by
@@ -43,7 +43,7 @@ theorem exists_closure_singleton_eq_of_maximal_irreducible {X : Scheme.{u}} {C S
   obtain ⟨ξ, hξ⟩ := QuasiSober.sober hC hCclosed
   exact ⟨ξ, hξ⟩
 
-theorem eq_of_mem_closure_singleton_of_maximal_irreducible {X : Scheme.{u}} {C S : Set X}
+private theorem eq_of_mem_closure_singleton_of_maximal_irreducible {X : Scheme.{u}} {C S : Set X}
     (_hC : IsIrreducible C) (_hCS : C ⊆ S)
     (hmax : ∀ T : Set X, IsIrreducible T → T ⊆ S → C ⊆ T → T = C)
     (hS : IsClosed S) {ξ ξ' : X} (hξ : closure ({ξ} : Set X) = C) (hξ' : ξ' ∈ S)
@@ -68,7 +68,7 @@ theorem totalDegree_add {T : Type*} (f g : T →₀ ℕ) : totalDegree (f + g) =
   show (f + g).sum (fun _ n => n) = f.sum (fun _ n => n) + g.sum (fun _ n => n)
   exact Finsupp.sum_add_index' (fun _ => rfl) (fun _ _ _ => rfl)
 
-theorem totalDegree_single {T : Type*} [DecidableEq T] (t : T) (n : ℕ) :
+private theorem totalDegree_single {T : Type*} [DecidableEq T] (t : T) (n : ℕ) :
     totalDegree (Finsupp.single t n) = n := by
   show (Finsupp.single t n).sum (fun _ m => m) = n
   exact Finsupp.sum_single_index rfl
@@ -76,22 +76,22 @@ theorem totalDegree_single {T : Type*} [DecidableEq T] (t : T) (n : ℕ) :
 def powProd {A : Type*} [CommRing A] {T : Type*} (x : T → A) (f : T →₀ ℕ) : A :=
   f.prod fun t n => x t ^ n
 
-theorem powProd_zero {A : Type*} [CommRing A] {T : Type*} (x : T → A) :
+private theorem powProd_zero {A : Type*} [CommRing A] {T : Type*} (x : T → A) :
     powProd x (0 : T →₀ ℕ) = 1 := by
   simp [powProd]
 
-theorem powProd_add {A : Type*} [CommRing A] {T : Type*} (x : T → A) (f g : T →₀ ℕ) :
+private theorem powProd_add {A : Type*} [CommRing A] {T : Type*} (x : T → A) (f g : T →₀ ℕ) :
     powProd x (f + g) = powProd x f * powProd x g := by
   show (f + g).prod (fun t n => x t ^ n)
       = f.prod (fun t n => x t ^ n) * g.prod (fun t n => x t ^ n)
   exact Finsupp.prod_add_index' (fun a => pow_zero (x a)) (fun a b₁ b₂ => pow_add (x a) b₁ b₂)
 
-theorem powProd_single {A : Type*} [CommRing A] {T : Type*} [DecidableEq T] (x : T → A)
+private theorem powProd_single {A : Type*} [CommRing A] {T : Type*} [DecidableEq T] (x : T → A)
     (t : T) (n : ℕ) : powProd x (Finsupp.single t n) = x t ^ n := by
   show (Finsupp.single t n).prod (fun t m => x t ^ m) = x t ^ n
   exact Finsupp.prod_single_index (pow_zero (x t))
 
-theorem map_powProd {A B : Type*} [CommRing A] [CommRing B] {T : Type*} (φ : A →+* B)
+private theorem map_powProd {A B : Type*} [CommRing A] [CommRing B] {T : Type*} (φ : A →+* B)
     (x : T → A) (f : T →₀ ℕ) : φ (powProd x f) = powProd (fun t => φ (x t)) f := by
   classical
   simp [powProd, Finsupp.prod, map_prod, map_pow]
@@ -106,7 +106,7 @@ private theorem prod_pow_mem_pow_sum {A : Type*} [CommRing A] {T : Type*}
     rw [Finset.prod_insert ha, Finset.sum_insert ha, pow_add]
     exact Ideal.mul_mem_mul (Ideal.pow_mem_pow (hx a) (g a)) ih
 
-theorem powProd_mem_pow_totalDegree {A : Type*} [CommRing A] {T : Type*} (x : T → A) (I : Ideal A)
+private theorem powProd_mem_pow_totalDegree {A : Type*} [CommRing A] {T : Type*} (x : T → A) (I : Ideal A)
     (hx : ∀ t : T, x t ∈ I) (f : T →₀ ℕ) : powProd x f ∈ I ^ totalDegree f := by
   have h1 : powProd x f = ∏ t ∈ f.support, x t ^ f t := rfl
   have h2 : totalDegree f = ∑ t ∈ f.support, f t := rfl
@@ -229,7 +229,7 @@ private theorem mul_mem_chartMonomialIdeal_succ {A : Type*} [CommRing A] {m : �
   rw [mul_comm r y]
   exact h
 
-theorem pow_span_image_le_chartMonomialIdeal {A : Type*} [CommRing A] {m : ℕ} (x : Fin m → A)
+private theorem pow_span_image_le_chartMonomialIdeal {A : Type*} [CommRing A] {m : ℕ} (x : Fin m → A)
     (S : Finset (Fin m)) (s : Fin m) (_hs : s ∈ S) (c : ℕ) :
     Ideal.span (x '' (S : Set (Fin m))) ^ c ≤ chartMonomialIdeal x S s c := by
   induction c with
@@ -292,7 +292,7 @@ private theorem C_mul_powProd_X_eq_monomial {R : Type*} [CommRing R] {σ : Type*
       = MvPolynomial.monomial f r :=
   MvPolynomial.monomial_eq.symm
 
-theorem ideal_le_comap_pow_succ_of_map_le_span_pow_mul {A B : Type*} [CommRing A] [CommRing B] (φ : A →+* B)
+private theorem ideal_le_comap_pow_succ_of_map_le_span_pow_mul {A B : Type*} [CommRing A] [CommRing B] (φ : A →+* B)
     {m : ℕ} (x : Fin m → A) (y : Fin m → B) (S : Finset (Fin m)) (s : Fin m) (hs : s ∈ S)
     (hφs : φ (x s) = y s)
     (hφ : ∀ i ∈ S, i ≠ s → φ (x i) = y i * y s)

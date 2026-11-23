@@ -24,7 +24,7 @@ theorem moveToFront_eq_cons (E : List α) (j : ℕ) (hj : j < E.length) :
     moveToFront E j = (E[j]'hj) :: E.eraseIdx j := by
   simp [moveToFront, List.getElem?_eq_getElem hj]
 
-theorem length_moveToFront (E : List α) (j : ℕ) (hj : j < E.length) :
+private theorem length_moveToFront (E : List α) (j : ℕ) (hj : j < E.length) :
     (moveToFront E j).length = E.length := by
   rw [moveToFront_eq_cons E j hj, List.length_cons,
     List.length_eraseIdx_add_one hj]
@@ -33,11 +33,11 @@ def indexBeforeMoveToFront (j : ℕ) : ℕ → ℕ
   | 0 => j
   | (i + 1) => if i < j then i else i + 1
 
-theorem indexBeforeMoveToFront_zero (j : ℕ) : indexBeforeMoveToFront j 0 = j := rfl
+private theorem indexBeforeMoveToFront_zero (j : ℕ) : indexBeforeMoveToFront j 0 = j := rfl
 
-theorem indexBeforeMoveToFront_succ (j i : ℕ) : indexBeforeMoveToFront j (i + 1) = if i < j then i else i + 1 := rfl
+private theorem indexBeforeMoveToFront_succ (j i : ℕ) : indexBeforeMoveToFront j (i + 1) = if i < j then i else i + 1 := rfl
 
-theorem indexBeforeMoveToFront_injective (j : ℕ) : Function.Injective (indexBeforeMoveToFront j) := by
+private theorem indexBeforeMoveToFront_injective (j : ℕ) : Function.Injective (indexBeforeMoveToFront j) := by
   intro a b hab
   cases a with
   | zero =>
@@ -57,7 +57,7 @@ theorem indexBeforeMoveToFront_injective (j : ℕ) : Function.Injective (indexBe
       simp only [indexBeforeMoveToFront] at hab
       split_ifs at hab <;> omega
 
-theorem indexBeforeMoveToFront_lt_length (E : List α) (j : ℕ) (hj : j < E.length) (i : ℕ)
+private theorem indexBeforeMoveToFront_lt_length (E : List α) (j : ℕ) (hj : j < E.length) (i : ℕ)
     (hi : i < E.length) : indexBeforeMoveToFront j i < E.length := by
   cases i with
   | zero => exact hj
@@ -65,7 +65,7 @@ theorem indexBeforeMoveToFront_lt_length (E : List α) (j : ℕ) (hj : j < E.len
     show (if n < j then n else n + 1) < E.length
     split <;> omega
 
-theorem getElem_moveToFront (E : List α) (j : ℕ) (hj : j < E.length) (i : ℕ)
+private theorem getElem_moveToFront (E : List α) (j : ℕ) (hj : j < E.length) (i : ℕ)
     (hi : i < (moveToFront E j).length) :
     (moveToFront E j)[i]'hi =
       E[indexBeforeMoveToFront j i]'(indexBeforeMoveToFront_lt_length E j hj i (by
@@ -90,21 +90,21 @@ theorem getElem_moveToFront (E : List α) (j : ℕ) (hj : j < E.length) (i : ℕ
 
 def indexInMoveToFront (j : ℕ) (i : ℕ) : ℕ := if i = j then 0 else if i < j then i + 1 else i
 
-theorem indexInMoveToFront_self (j : ℕ) : indexInMoveToFront j j = 0 := by
+private theorem indexInMoveToFront_self (j : ℕ) : indexInMoveToFront j j = 0 := by
   simp [indexInMoveToFront]
 
-theorem indexInMoveToFront_injective (j : ℕ) : Function.Injective (indexInMoveToFront j) := by
+private theorem indexInMoveToFront_injective (j : ℕ) : Function.Injective (indexInMoveToFront j) := by
   intro a b hab
   simp only [indexInMoveToFront] at hab
   split_ifs at hab <;> omega
 
-theorem indexInMoveToFront_lt_length (E : List α) (j : ℕ) (hj : j < E.length) (i : ℕ) (hi : i < E.length) :
+private theorem indexInMoveToFront_lt_length (E : List α) (j : ℕ) (hj : j < E.length) (i : ℕ) (hi : i < E.length) :
     indexInMoveToFront j i < (moveToFront E j).length := by
   rw [length_moveToFront E j hj]
   show (if i = j then 0 else if i < j then i + 1 else i) < E.length
   split_ifs <;> omega
 
-theorem getElem_eq_getElem_moveToFront (E : List α) (j : ℕ) (hj : j < E.length) (i : ℕ)
+private theorem getElem_eq_getElem_moveToFront (E : List α) (j : ℕ) (hj : j < E.length) (i : ℕ)
     (hi : i < E.length) :
     E[i]'hi = (moveToFront E j)[indexInMoveToFront j i]'(indexInMoveToFront_lt_length E j hj i hi) := by
   rcases lt_trichotomy i j with h | h | h
@@ -121,7 +121,7 @@ theorem getElem_eq_getElem_moveToFront (E : List α) (j : ℕ) (hj : j < E.lengt
     have hjk : j ≤ k := by omega
     simp [moveToFront_eq_cons E j hj, hb, List.getElem_eraseIdx_of_ge, hjk]
 
-theorem mem_of_mem_moveToFront (E : List α) (j : ℕ) (hj : j < E.length) (D : α)
+private theorem mem_of_mem_moveToFront (E : List α) (j : ℕ) (hj : j < E.length) (D : α)
     (hD : D ∈ moveToFront E j) : D ∈ E := by
   rw [moveToFront_eq_cons E j hj] at hD
   rcases List.mem_cons.mp hD with h1 | h2
@@ -129,7 +129,7 @@ theorem mem_of_mem_moveToFront (E : List α) (j : ℕ) (hj : j < E.length) (D : 
     simp
   · exact List.mem_of_mem_eraseIdx h2
 
-theorem chartAssignment_comp_of_injective {X : Scheme.{u}} {k : Type u} [Field k]
+private theorem chartAssignment_comp_of_injective {X : Scheme.{u}} {k : Type u} [Field k]
     {p : X ⟶ Spec (CommRingCat.of k)} {U : X.Opens} {m : ℕ}
     (c : EtaleChart p U m) (a : ℕ → Option (Fin m))
     (E E' : List X.IdealSheafData) (σ : ℕ → ℕ)

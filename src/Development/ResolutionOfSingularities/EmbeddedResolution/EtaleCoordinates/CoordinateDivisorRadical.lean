@@ -199,7 +199,7 @@ theorem linearIndependent_toCotangent_etaleChartCoord (k : Type u) [Field k] (m 
   rw [← heq]
   exact hcomp
 
-theorem isRadical_span_singleton_prod_algebraMap_etaleChartCoord (k : Type u) [Field k] (m : ℕ)
+private theorem isRadical_span_singleton_prod_algebraMap_etaleChartCoord (k : Type u) [Field k] (m : ℕ)
     (S : Type u) [CommRing S] [Algebra (CoordPolynomialRing k m) S]
     [Algebra.Etale (CoordPolynomialRing k m) S] (q : Ideal S) [q.IsPrime] (A : Type u) [CommRing A]
     [Algebra S A] [IsLocalization q.primeCompl A] [IsLocalRing A] (J : Finset (Fin m))
@@ -218,7 +218,7 @@ theorem isRadical_span_singleton_prod_algebraMap_etaleChartCoord (k : Type u) [F
   rw [← Finset.prod_coe_sort J (fun j => algebraMap S A (etaleChartCoord k m S j))]
   exact hmain
 
-theorem isRadical_map_span_singleton_prod_etaleChartCoord (k : Type u) [Field k] (m : ℕ)
+private theorem isRadical_map_span_singleton_prod_etaleChartCoord (k : Type u) [Field k] (m : ℕ)
     (S : Type u) [CommRing S] [Algebra (CoordPolynomialRing k m) S]
     [Algebra.Etale (CoordPolynomialRing k m) S] (q : Ideal S) [q.IsPrime] (A : Type u) [CommRing A]
     [Algebra S A] [IsLocalization q.primeCompl A] [IsLocalRing A] (T : Finset (Fin m)) :

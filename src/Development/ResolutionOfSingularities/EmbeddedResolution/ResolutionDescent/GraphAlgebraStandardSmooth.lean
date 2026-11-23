@@ -20,13 +20,13 @@ abbrev graphJacobianMinorDet [Fintype τ] [DecidableEq τ] (f : τ → MvPolynom
 abbrev GraphAlgebraAway [Fintype τ] [DecidableEq τ] (f : τ → MvPolynomial σ R) (v : τ → σ) : Type u :=
   Localization.Away (graphJacobianMinorDet f v)
 
-theorem isUnit_algebraMap_graphJacobianMinorDet [Fintype τ] [DecidableEq τ]
+private theorem isUnit_algebraMap_graphJacobianMinorDet [Fintype τ] [DecidableEq τ]
     (f : τ → MvPolynomial σ R) (v : τ → σ) :
     IsUnit (algebraMap (GraphAlgebra f) (GraphAlgebraAway f v) (graphJacobianMinorDet f v)) :=
   IsLocalization.map_units (M := Submonoid.powers (graphJacobianMinorDet f v)) (GraphAlgebraAway f v)
     ⟨graphJacobianMinorDet f v, Submonoid.mem_powers _⟩
 
-theorem isUnit_algebraMap_jacobian_graphPreSubmersive [Fintype τ] [DecidableEq τ]
+private theorem isUnit_algebraMap_jacobian_graphPreSubmersive [Fintype τ] [DecidableEq τ]
     (f : τ → MvPolynomial σ R) (v : τ → σ) (hv : Function.Injective v) :
     IsUnit (algebraMap (GraphAlgebra f) (GraphAlgebraAway f v)
       (graphPreSubmersivePresentation f v hv).jacobian) := by

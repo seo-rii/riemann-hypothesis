@@ -378,7 +378,7 @@ variable (k : Type*) [CommRing k] (ι : Type*) [Fintype ι] [DecidableEq ι]
   [IsScalarTower k (MvPolynomial ι k) S] [Algebra.FormallyEtale (MvPolynomial ι k) S]
   [IsNoetherianRing S] (I q : Ideal S) [q.IsPrime]
 
-theorem exists_away_ideal_eq_span_and_isUnit_det
+private theorem exists_away_ideal_eq_span_and_isUnit_det
     (A : Type*) [CommRing A] [Algebra S A] [Algebra k A] [IsScalarTower k S A]
     [IsLocalization q.primeCompl A] [IsLocalRing A] [IsNoetherianRing A]
     [Algebra.FormallySmooth k (A ⧸ Ideal.map (algebraMap S A) I)]

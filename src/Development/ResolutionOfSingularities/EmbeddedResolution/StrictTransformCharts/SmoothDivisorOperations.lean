@@ -61,7 +61,7 @@ theorem EtaleChart.comap_map {X X' : Scheme.{u}} {k : Type u} [Field k]
     (he : AlgebraicGeometry.Etale (π.resLE U V hV)) :
     (EtaleChart.comap p π c V hV he).map = π.resLE U V hV ≫ c.map := rfl
 
-theorem EtaleChart.comap_coordIdeal {X X' : Scheme.{u}} {k : Type u} [Field k]
+private theorem EtaleChart.comap_coordIdeal {X X' : Scheme.{u}} {k : Type u} [Field k]
     (p : X ⟶ Spec (CommRingCat.of k)) (π : X' ⟶ X) {U : X.Opens} {m : ℕ}
     (c : EtaleChart p U m) (V : X'.Opens) (hV : V ≤ π ⁻¹ᵁ U)
     (he : AlgebraicGeometry.Etale (π.resLE U V hV)) (S : Finset (Fin m)) :

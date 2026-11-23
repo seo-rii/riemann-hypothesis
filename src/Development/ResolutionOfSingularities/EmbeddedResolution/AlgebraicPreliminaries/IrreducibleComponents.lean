@@ -8,7 +8,7 @@ namespace FunctorialResolution.EmbeddedResolution
 
 open Set TopologicalSpace
 
-theorem isClosed_sUnion_of_subset_irreducibleComponents {X : Type*} [TopologicalSpace X]
+private theorem isClosed_sUnion_of_subset_irreducibleComponents {X : Type*} [TopologicalSpace X]
     [NoetherianSpace X] {𝒜 : Set (Set X)} (h𝒜 : ∀ C ∈ 𝒜, C ∈ irreducibleComponents X) :
     IsClosed (⋃₀ 𝒜) := by
   have hfin : (irreducibleComponents X).Finite := NoetherianSpace.finite_irreducibleComponents ..

@@ -252,7 +252,7 @@ def coordRelation (_B : BlowupChart π c S s) (i : Fin m) :
         MvPolynomial.X (ULift.up s : ULift.{u} (Fin m))
     else MvPolynomial.X (ULift.up i : ULift.{u} (Fin m))) - MvPolynomial.C (c.coord i)
 
-theorem coordRelation_def (B : BlowupChart π c S s) (i : Fin m) :
+private theorem coordRelation_def (B : BlowupChart π c S s) (i : Fin m) :
     B.coordRelation i =
       (if i ∈ S ∧ i ≠ s then
           MvPolynomial.X (ULift.up i : ULift.{u} (Fin m)) *
@@ -260,7 +260,7 @@ theorem coordRelation_def (B : BlowupChart π c S s) (i : Fin m) :
         else MvPolynomial.X (ULift.up i : ULift.{u} (Fin m))) -
         MvPolynomial.C (c.coord i) := rfl
 
-theorem coordEvalHom_coordRelation (B : BlowupChart π c S s) (i : Fin m) :
+private theorem coordEvalHom_coordRelation (B : BlowupChart π c S s) (i : Fin m) :
     B.coordEvalHom (B.coordRelation i) = 0 := by
   rw [coordRelation_def]
   by_cases h : i ∈ S ∧ i ≠ s

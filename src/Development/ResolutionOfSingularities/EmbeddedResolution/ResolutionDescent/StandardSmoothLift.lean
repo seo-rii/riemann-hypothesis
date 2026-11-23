@@ -23,7 +23,7 @@ variable {S R B : Type u} [CommRing S] [CommRing R] [CommRing B]
 noncomputable def liftedRelation (j : σ) : MvPolynomial ι S :=
   Function.surjInv (MvPolynomial.map_surjective (algebraMap S R) hsurj) (P.relation j)
 
-theorem map_liftedRelation (j : σ) :
+private theorem map_liftedRelation (j : σ) :
     MvPolynomial.map (algebraMap S R) (liftedRelation hsurj P j) = P.relation j :=
   Function.surjInv_eq (MvPolynomial.map_surjective (algebraMap S R) hsurj) (P.relation j)
 
@@ -231,7 +231,7 @@ noncomputable def invBaseChangeHom : B →ₐ[R] R ⊗[S] LiftedAlgebra hsurj P 
   map_add' := by exact mvPolynomialToBaseChange_section_add hsurj P
   commutes' := by exact mvPolynomialToBaseChange_section_algebraMap hsurj P
 
-theorem invBaseChangeHom_aeval (q : MvPolynomial ι R) :
+private theorem invBaseChangeHom_aeval (q : MvPolynomial ι R) :
     invBaseChangeHom hsurj P (MvPolynomial.aeval P.val q) = mvPolynomialToBaseChange hsurj P q := by
   have hker : (MvPolynomial.aeval P.val : MvPolynomial ι R →ₐ[R] B)
       (P.σ' ((MvPolynomial.aeval P.val : MvPolynomial ι R →ₐ[R] B) q) - q) = 0 := by
@@ -355,7 +355,7 @@ noncomputable def liftedAlgebraHom : LiftedAlgebra hsurj P →ₐ[S] B :=
         by exact isUnit_liftedQuotientHom_jacobian hsurj P) : LiftedAlgebra hsurj P →+* B) with
     commutes' := by exact awayLift_jacobian_algebraMap_eq hsurj P }
 
-theorem liftedAlgebraHom_algebraMap (x : LiftedQuotient hsurj P) :
+private theorem liftedAlgebraHom_algebraMap (x : LiftedQuotient hsurj P) :
     liftedAlgebraHom hsurj P (algebraMap (LiftedQuotient hsurj P) (LiftedAlgebra hsurj P) x) =
       liftedQuotientHom hsurj P x := by
   change (IsLocalization.Away.lift (liftedPreSubmersivePresentation hsurj P).jacobian

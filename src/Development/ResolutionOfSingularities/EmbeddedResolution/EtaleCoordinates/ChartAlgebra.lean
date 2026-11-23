@@ -34,7 +34,7 @@ private theorem resLE_appTop_conj_topIso_eq_appLE {X' Y' : Scheme.{u}} (h : Y' �
   rw [resLE_appTop_eq]
   simp only [Category.assoc, Iso.inv_hom_id_assoc, Iso.inv_hom_id, Category.comp_id]
 
-theorem chartEvalHom_comp_C (hW : IsAffineOpen W) (h : Y ⟶ X) (e : V ≤ h ⁻¹ᵁ W)
+private theorem chartEvalHom_comp_C (hW : IsAffineOpen W) (h : Y ⟶ X) (e : V ≤ h ⁻¹ᵁ W)
     (g : V.toScheme ⟶ AffineSpace n W.toScheme)
     (hg : g ≫ (AffineSpace n W.toScheme ↘ W.toScheme) = h.resLE W V e) :
     (chartEvalHom hW g).comp (MvPolynomial.C : Γ(X, W) →+* MvPolynomial n Γ(X, W)) =
@@ -174,7 +174,7 @@ private theorem affineSpaceOpenIsoSpecMvPolynomial_hom_appTop_C {X' : Scheme.{u}
   rw [comp_appTop_apply, key, ← comp_appTop_apply, AffineSpace.map_over, comp_appTop_apply,
     affineOpenIsoSpec_hom_appTop_apply]
 
-theorem chartAlgebra_etale (hW : IsAffineOpen W) (hV : IsAffineOpen V)
+private theorem chartAlgebra_etale (hW : IsAffineOpen W) (hV : IsAffineOpen V)
     (g : V.toScheme ⟶ AffineSpace n W.toScheme) [Etale g] :
     (letI : Algebra (MvPolynomial n Γ(X, W)) Γ(Y, V) := chartAlgebra hW g
      Algebra.Etale (MvPolynomial n Γ(X, W)) Γ(Y, V)) := by

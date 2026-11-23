@@ -31,7 +31,7 @@ private theorem notMem_support_comap_top {A C : Scheme.{u}} (h : A ⟶ C) (x : �
   have hx' : x ∈ ((⊥ : TopologicalSpace.Closeds ↥A) : Set ↥A) := hx
   simp at hx'
 
-theorem center_ne_top_of_isPullbackSequenceOfBlowups_id {X : Scheme.{u}} (s : SequenceOfBlowups X)
+private theorem center_ne_top_of_isPullbackSequenceOfBlowups_id {X : Scheme.{u}} (s : SequenceOfBlowups X)
     (h : IsPullbackBlowupSequence (𝟙 X) s s) :
     ∀ i : ℕ, i < s.length → s.center i ≠ ⊤ := by
   obtain ⟨r, _e, _hlt, hmono, htop, hsupp, -⟩ := h

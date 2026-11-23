@@ -35,7 +35,7 @@ private theorem nextNontrivialIndex_le_of_center_eq_top_iff (s : SequenceOfBlowu
     · exact absurd hd (not_le.mpr hlt)
   · exact Or.inr h
 
-theorem nextNontrivialIndex_congr_of_center_eq_top_iff (s : SequenceOfBlowups X) (t : SequenceOfBlowups Y)
+private theorem nextNontrivialIndex_congr_of_center_eq_top_iff (s : SequenceOfBlowups X) (t : SequenceOfBlowups Y)
     (hlen : s.length = t.length)
     (htriv : ∀ i, i < s.length → (s.center i = ⊤ ↔ t.center i = ⊤)) (a : ℕ) :
     s.nextNontrivialIndex a = t.nextNontrivialIndex a := by

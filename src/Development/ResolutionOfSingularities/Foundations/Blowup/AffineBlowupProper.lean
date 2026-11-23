@@ -55,7 +55,7 @@ private theorem adjoin_degreeZero_eq_top_of_adjoin_eq_top (I : Ideal R) (s : Set
     exact Algebra.mem_top
   exact mem_adjoin_degreeZero_of_mem_restrictScalars I s x (adjoin_le_adjoin_degreeZero I s hx)
 
-theorem finiteType_reesAlgebra_degreeZero (I : Ideal R) [IsNoetherianRing R] :
+private theorem finiteType_reesAlgebra_degreeZero (I : Ideal R) [IsNoetherianRing R] :
     Algebra.FiniteType ↥(reesGrading I 0) ↥(reesAlgebra I) := by
   obtain ⟨s, hs⟩ := (inferInstance : Algebra.FiniteType R ↥(reesAlgebra I)).out
   exact ⟨⟨s, adjoin_degreeZero_eq_top_of_adjoin_eq_top I (↑s : Set ↥(reesAlgebra I)) hs⟩⟩

@@ -21,7 +21,7 @@ open CategoryTheory AlgebraicGeometry
 
 namespace FunctorialResolution.EmbeddedResolution
 
-theorem map_maximalIdeal_le_maximalIdeal_of_retraction {R S : Type*} [CommRing R] [IsLocalRing R]
+private theorem map_maximalIdeal_le_maximalIdeal_of_retraction {R S : Type*} [CommRing R] [IsLocalRing R]
     [CommRing S] [IsLocalRing S] (f : R →+* S) (g : S →+* R) (hgf : g.comp f = RingHom.id R) :
     Ideal.map f (IsLocalRing.maximalIdeal R) ≤ IsLocalRing.maximalIdeal S := by
   rw [Ideal.map_le_iff_le_comap]
@@ -35,7 +35,7 @@ theorem map_maximalIdeal_le_maximalIdeal_of_retraction {R S : Type*} [CommRing R
   have h2 := hu.map g
   rwa [h3] at h2
 
-theorem idealOrder_map_eq_of_comp_eq_id {R S : Type*} [CommRing R] [IsLocalRing R]
+private theorem idealOrder_map_eq_of_comp_eq_id {R S : Type*} [CommRing R] [IsLocalRing R]
     [CommRing S] [IsLocalRing S] (f : R →+* S) (g : S →+* R)
     (hgf : g.comp f = RingHom.id R) (hfg : f.comp g = RingHom.id S) (I : Ideal R) :
     idealOrder (Ideal.map f I) = idealOrder I := by

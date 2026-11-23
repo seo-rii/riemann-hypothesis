@@ -19,7 +19,7 @@ variable (k : Type u) [Field k] [CharZero k] {X : Scheme.{u}}
   (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
   (I : X.IdealSheafData) (m : ℕ)
 
-theorem orderAt_eq_zero_or_le_orderAt_of_isDerivBalanced
+private theorem orderAt_eq_zero_or_le_orderAt_of_isDerivBalanced
     (h : IsDerivBalanced k p I m) (x : X) :
     orderAt I x = 0 ∨ (m : ℕ∞) ≤ orderAt I x := by
   rcases Nat.eq_zero_or_pos m with rfl | hpos

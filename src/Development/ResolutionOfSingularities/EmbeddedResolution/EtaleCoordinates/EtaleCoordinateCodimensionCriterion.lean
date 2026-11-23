@@ -22,10 +22,10 @@ namespace FunctorialResolution.EmbeddedResolution
 def castAddImage (c d : ℕ) : Finset (Fin (c + d)) :=
   (Finset.univ : Finset (Fin c)).image (Fin.castAdd d)
 
-theorem castAddImage_eq_image_castAdd (c d : ℕ) :
+private theorem castAddImage_eq_image_castAdd (c d : ℕ) :
     castAddImage c d = (Finset.univ : Finset (Fin c)).image (Fin.castAdd d) := rfl
 
-theorem card_castAddImage (c d : ℕ) : (castAddImage c d).card = c := by
+private theorem card_castAddImage (c d : ℕ) : (castAddImage c d).card = c := by
   have hinj : Function.Injective (Fin.castAdd d : Fin c → Fin (c + d)) := by
     intro a b hab
     have hv : ((Fin.castAdd d a : Fin (c + d)) : ℕ) = ((Fin.castAdd d b : Fin (c + d)) : ℕ) :=
@@ -62,7 +62,7 @@ private theorem restrictIdeal_top_coordSubspaceIdeal_univ (k : Type u) [Field k]
       (⊤ : (affineSpaceFin k c).Opens) = (etaleChartTop k c).coordIdeal Finset.univ := by
   rw [restrictIdeal_eq_comap_ι, EtaleChart.coordIdeal_eq_comap_coordSubspaceIdeal, etaleChartTop_map]
 
-theorem exists_etaleChart_image_of_restrictIdeal_eq {X' : Scheme.{u}} {k : Type u} [Field k]
+private theorem exists_etaleChart_image_of_restrictIdeal_eq {X' : Scheme.{u}} {k : Type u} [Field k]
     (p : X' ⟶ Spec (CommRingCat.of k)) (U : X'.Opens) (V : U.toScheme.Opens) (n : ℕ)
     (ch : EtaleChart (U.ι ≫ p) V n) (D : X'.IdealSheafData) (S : Finset (Fin n))
     (h : restrictIdeal (restrictIdeal D U) V = ch.coordIdeal S) :
@@ -91,7 +91,7 @@ theorem exists_etaleChart_image_of_restrictIdeal_eq {X' : Scheme.{u}} {k : Type 
     _ = (coordSubspaceIdeal k n S).comap (φ.hom ≫ ch.map) := by
         rw [Scheme.IdealSheafData.comap_comp]
 
-theorem exists_etaleChart_of_restrictIdeal_ker_eq_comap
+private theorem exists_etaleChart_of_restrictIdeal_ker_eq_comap
     {X X' : Scheme.{u}} {k : Type u} [Field k] (p : X' ⟶ Spec (CommRingCat.of k))
     (τ : X ⟶ X') (c : ℕ) (U : X'.Opens) (q : U.toScheme ⟶ affineSpaceFin k c)
     [AlgebraicGeometry.Smooth q] (hq : q ≫ affineSpaceFinToSpec k c = U.ι ≫ p)

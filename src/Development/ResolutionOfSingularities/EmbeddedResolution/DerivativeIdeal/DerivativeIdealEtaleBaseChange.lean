@@ -52,7 +52,7 @@ theorem derivation_ext_of_coord (k : Type*) [CommRing k] (ι : Type*) (S : Type*
   rw [← Derivation.liftKaehlerDifferential_comp_D D₁ x,
     ← Derivation.liftKaehlerDifferential_comp_D D₂ x, key]
 
-theorem partialDeriv_inr_algebraMap (k : Type*) [CommRing k] (ι : Type*) (κ : Type*)
+private theorem partialDeriv_inr_algebraMap (k : Type*) [CommRing k] (ι : Type*) (κ : Type*)
     (S : Type*) [CommRing S] (T : Type*) [CommRing T]
     [Algebra k S] [Algebra (MvPolynomial ι k) S] [IsScalarTower k (MvPolynomial ι k) S]
     [Algebra.FormallyEtale (MvPolynomial ι k) S]
@@ -76,7 +76,7 @@ theorem partialDeriv_inr_algebraMap (k : Type*) [CommRing k] (ι : Type*) (κ : 
   rw [h0] at h2
   exact h2
 
-theorem partialDeriv_inl_algebraMap (k : Type*) [CommRing k] (ι : Type*) (κ : Type*)
+private theorem partialDeriv_inl_algebraMap (k : Type*) [CommRing k] (ι : Type*) (κ : Type*)
     [DecidableEq ι] [DecidableEq κ]
     (S : Type*) [CommRing S] (T : Type*) [CommRing T]
     [Algebra k S] [Algebra (MvPolynomial ι k) S] [IsScalarTower k (MvPolynomial ι k) S]

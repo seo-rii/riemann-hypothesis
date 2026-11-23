@@ -59,7 +59,7 @@ theorem exists_le_center_ne_top_or_length_le (s : SequenceOfBlowups X) (a : ℕ)
 noncomputable def nextNontrivialIndex (s : SequenceOfBlowups X) (a : ℕ) : ℕ :=
   @Nat.find _ (fun _ => Classical.propDecidable _) (s.exists_le_center_ne_top_or_length_le a)
 
-theorem nextNontrivialIndex_spec (s : SequenceOfBlowups X) (a : ℕ) :
+private theorem nextNontrivialIndex_spec (s : SequenceOfBlowups X) (a : ℕ) :
     a ≤ s.nextNontrivialIndex a ∧ (s.center (s.nextNontrivialIndex a) ≠ ⊤ ∨ s.length ≤ s.nextNontrivialIndex a) :=
   @Nat.find_spec _ (fun _ => Classical.propDecidable _) (s.exists_le_center_ne_top_or_length_le a)
 
@@ -74,11 +74,11 @@ theorem nextNontrivialIndex_le (s : SequenceOfBlowups X) {a i : ℕ} (hi : a ≤
     (h : s.center i ≠ ⊤ ∨ s.length ≤ i) : s.nextNontrivialIndex a ≤ i :=
   @Nat.find_min' _ (fun _ => Classical.propDecidable _) (s.exists_le_center_ne_top_or_length_le a) i ⟨hi, h⟩
 
-theorem nextNontrivialIndex_le_length (s : SequenceOfBlowups X) {a : ℕ} (h : a ≤ s.length) :
+private theorem nextNontrivialIndex_le_length (s : SequenceOfBlowups X) {a : ℕ} (h : a ≤ s.length) :
     s.nextNontrivialIndex a ≤ s.length :=
   s.nextNontrivialIndex_le h (Or.inr le_rfl)
 
-theorem center_eq_top_of_lt_nextNontrivialIndex (s : SequenceOfBlowups X) {a i : ℕ} (hai : a ≤ i)
+private theorem center_eq_top_of_lt_nextNontrivialIndex (s : SequenceOfBlowups X) {a i : ℕ} (hai : a ≤ i)
     (h : i < s.nextNontrivialIndex a) : s.center i = ⊤ := by
   by_contra hc
   exact absurd (s.nextNontrivialIndex_le hai (Or.inl hc)) (not_le.mpr h)
@@ -106,10 +106,10 @@ theorem nontrivialIndex_strictMono (s : SequenceOfBlowups X) : StrictMono s.nont
 theorem nontrivialIndex_monotone (s : SequenceOfBlowups X) : Monotone s.nontrivialIndex :=
   s.nontrivialIndex_strictMono.monotone
 
-theorem le_nontrivialIndex (s : SequenceOfBlowups X) (j : ℕ) : j ≤ s.nontrivialIndex j :=
+private theorem le_nontrivialIndex (s : SequenceOfBlowups X) (j : ℕ) : j ≤ s.nontrivialIndex j :=
   s.nontrivialIndex_strictMono.le_apply
 
-theorem center_nontrivialIndex_ne_top_or_length_le (s : SequenceOfBlowups X) (j : ℕ) :
+private theorem center_nontrivialIndex_ne_top_or_length_le (s : SequenceOfBlowups X) (j : ℕ) :
     s.center (s.nontrivialIndex j) ≠ ⊤ ∨ s.length ≤ s.nontrivialIndex j := by
   cases j with
   | zero => exact s.center_nextNontrivialIndex_ne_top_or_length_le 0
@@ -180,7 +180,7 @@ theorem isIso_transitionMap_nontrivialIndex_zero (s : SequenceOfBlowups X) :
   · intro i _ hi
     exact s.center_eq_top_of_lt_nontrivialIndex_zero hi
 
-theorem isIso_transitionMap_nontrivialIndex_succ (s : SequenceOfBlowups X) {j : ℕ} (h : j < s.lengthWithoutIsoBlowups) :
+private theorem isIso_transitionMap_nontrivialIndex_succ (s : SequenceOfBlowups X) {j : ℕ} (h : j < s.lengthWithoutIsoBlowups) :
     IsIso (s.transitionMap (s.succ_le_nontrivialIndex_succ j)) := by
   refine s.isIso_transitionMap_of_center_eq_top (s.succ_le_nontrivialIndex_succ j)
     (s.nontrivialIndex_le_length (Nat.succ_le_of_lt h)) ?_

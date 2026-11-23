@@ -90,7 +90,7 @@ private theorem principalizationAlgorithm_toSequenceOfBlowups_congr (Alg : Princ
   subst hEF
   rfl
 
-theorem smooth_affineSpaceIndexedByToSpec_finSumFin (hsm : AffineSpaceIsSmooth.{u}) (k : Type u)
+private theorem smooth_affineSpaceIndexedByToSpec_finSumFin (hsm : AffineSpaceIsSmooth.{u}) (k : Type u)
     [Field k] (n m : ℕ) :
     AlgebraicGeometry.Smooth (affineSpaceIndexedByToSpec k (ULift.{u, 0} (Fin n ⊕ Fin m))) := by
   have hs : AlgebraicGeometry.Smooth (affineSpaceIndexedByToSpec k (ULift.{u, 0} (Fin (n + m)))) :=
@@ -109,7 +109,7 @@ theorem smooth_affineSpaceIndexedByToSpec_finSumFin (hsm : AffineSpaceIsSmooth.{
   rw [← h]
   exact MorphismProperty.comp_mem (@AlgebraicGeometry.Smooth) _ _ hiso hs
 
-theorem isomorphic_embeddedResolutionRuleOfPrincipalization_of_iso (Alg : PrincipalizationAlgorithm.{u}) (hAlg : IsFunctorialPrincipalization Alg)
+private theorem isomorphic_embeddedResolutionRuleOfPrincipalization_of_iso (Alg : PrincipalizationAlgorithm.{u}) (hAlg : IsFunctorialPrincipalization Alg)
     (hw : TransitionsAreBlowupsForEmbeddings Alg) (k : Type u) [Field k] [CharZero k] (Y : Scheme.{u})
     [AlgebraicGeometry.IsAffine Y] [AlgebraicGeometry.IsReduced Y]
     (p : Y ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.LocallyOfFiniteType p]
@@ -173,7 +173,7 @@ def LinearEmbeddingsHaveLocallyConstCodim : Prop :=
       HasSmoothCoordCodim (affineSpaceIndexedByToSpec k (ULift.{u, 0} (Fin n ⊕ Fin m)))
         (affineSpaceInrEmbedding k n m) n
 
-theorem isomorphic_embeddedResolutionRuleOfPrincipalization (Alg : PrincipalizationAlgorithm.{u}) (hAlg : IsFunctorialPrincipalization Alg)
+private theorem isomorphic_embeddedResolutionRuleOfPrincipalization (Alg : PrincipalizationAlgorithm.{u}) (hAlg : IsFunctorialPrincipalization Alg)
     (hw : TransitionsAreBlowupsForEmbeddings Alg) (hsm : AffineSpaceIsSmooth.{u})
     (hcmp : ClosedEmbeddingsRelatedByAutomorphism.{u}) (hcod : LocallyConstCodimImpliesConstantCodim.{u})
     (hlin : LinearEmbeddingsHaveLocallyConstCodim.{u}) (k : Type u) [Field k] [CharZero k] (Y : Scheme.{u})

@@ -136,7 +136,7 @@ theorem le_of_forall_exists_affineOpen {Y : Scheme.{u}} {A B : Y.IdealSheafData}
   · intro y
     exact (h y).choose_spec.2
 
-theorem derivIdealSheaf_pow_succ_mul_le (k : Type u) [Field k] [CharZero k] {Y : Scheme.{u}}
+private theorem derivIdealSheaf_pow_succ_mul_le (k : Type u) [Field k] [CharZero k] {Y : Scheme.{u}}
     (q : Y ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth q]
     (F J : Y.IdealSheafData) (n : ℕ) :
     derivIdealSheaf k q (F ^ (n + 1) * J) ≤ F ^ n * derivIdealSheaf k q J := by
@@ -151,7 +151,7 @@ theorem derivIdealSheaf_pow_succ_mul_le (k : Type u) [Field k] [CharZero k] {Y :
             (le_trans (idealSheafData_mul_le_left J (derivIdealSheaf k q F))
               (le_derivIdealSheaf k q J))
 
-theorem derivIdealSheafIterate_pow_mul_le (k : Type u) [Field k] [CharZero k] {Y : Scheme.{u}}
+private theorem derivIdealSheafIterate_pow_mul_le (k : Type u) [Field k] [CharZero k] {Y : Scheme.{u}}
     (q : Y ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth q]
     (F J : Y.IdealSheafData) (m j : ℕ) (hj : j ≤ m) :
     derivIdealSheafIterate k q j (F ^ m * J) ≤ F ^ (m - j) * derivIdealSheafIterate k q j J := by

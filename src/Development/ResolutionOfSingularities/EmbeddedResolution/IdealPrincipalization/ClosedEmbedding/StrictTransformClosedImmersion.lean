@@ -59,7 +59,7 @@ theorem ker_subschemeι_comp_eq_of_ker_le {U V : Scheme.{u}} (j : U ⟶ V) [IsCl
   rw [hK, hcomap, Scheme.Hom.ker_comp, Scheme.IdealSheafData.ker_subschemeι,
     ← Scheme.Hom.ker_comp, hfac, Scheme.IdealSheafData.ker_subschemeι]
 
-theorem strictTransform_eq_ker_complComapSupport {X X₁ : Scheme.{u}} (π : X₁ ⟶ X)
+private theorem strictTransform_eq_ker_complComapSupport {X X₁ : Scheme.{u}} (π : X₁ ⟶ X)
     (Z D : X.IdealSheafData) :
     Blowup.strictTransform π Z D =
       Scheme.Hom.ker
@@ -69,7 +69,7 @@ theorem strictTransform_eq_ker_complComapSupport {X X₁ : Scheme.{u}} (π : X�
     ← complComapSupport_eq]
   exact ker_ι_preimage_comp_subschemeι_eq_ker_comap (D.comap π) (complComapSupport π Z)
 
-theorem preimage_complComapSupport_eq {A A' A₁ A'₁ : Scheme.{u}} (j : A ⟶ A') [IsClosedImmersion j]
+private theorem preimage_complComapSupport_eq {A A' A₁ A'₁ : Scheme.{u}} (j : A ⟶ A') [IsClosedImmersion j]
     (Z : A.IdealSheafData) (π : A₁ ⟶ A) (π' : A'₁ ⟶ A') (j₁ : A₁ ⟶ A'₁)
     (hsq : j₁ ≫ π' = π ≫ j) :
     (Opens.map j₁.base).obj (complComapSupport π' (Scheme.Hom.ker (Z.subschemeι ≫ j))) =

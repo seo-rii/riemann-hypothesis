@@ -82,7 +82,7 @@ private theorem eq_zero_of_locally_eq_zero {W : Scheme.{u}} (U : W.Opens) (x : �
     rw [map_zero]
     exact hzero w.1 w.2
 
-theorem ker_le_ker_strictTransform_subschemeι_comp {X X₁ S : Scheme.{u}}
+private theorem ker_le_ker_strictTransform_subschemeι_comp {X X₁ S : Scheme.{u}}
     (j : S ⟶ X) (π : X₁ ⟶ X) (Z : X.IdealSheafData) :
     j.ker ≤ ((Blowup.strictTransform π Z j.ker).subschemeι ≫ π).ker := by
   rw [Scheme.Hom.ker_comp, Scheme.IdealSheafData.ker_subschemeι,

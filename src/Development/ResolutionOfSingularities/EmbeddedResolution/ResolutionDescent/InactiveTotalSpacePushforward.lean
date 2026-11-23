@@ -34,11 +34,11 @@ variable {k : Type u} [Field k] [CharZero k] {Y : Scheme.{u}} [AlgebraicGeometry
   {pY : Y ⟶ Spec (CommRingCat.of k)} [AlgebraicGeometry.LocallyOfFiniteType pY]
   {S S' : EmbeddedBlowupSequence k Y pY}
 
-theorem le_length_of_le_length (P : ChartPushforward S S') {i : ℕ} (hi : i ≤ S.length) : i ≤ S'.length := by
+private theorem le_length_of_le_length (P : ChartPushforward S S') {i : ℕ} (hi : i ≤ S.length) : i ≤ S'.length := by
   rw [← P.len_eq]
   exact hi
 
-theorem lt_length_of_lt_length (P : ChartPushforward S S') {i : ℕ} (hi : i < S.length) : i < S'.length := by
+private theorem lt_length_of_lt_length (P : ChartPushforward S S') {i : ℕ} (hi : i < S.length) : i < S'.length := by
   rw [← P.len_eq]
   exact hi
 
@@ -95,7 +95,7 @@ def totalSpaceIso (P : ChartPushforward S S') [AlgebraicGeometry.IsReduced Y] (i
     (hi : i ≤ S'.length) : S.totalSpace i ≅ S'.totalSpace i :=
   coprod.mapIso (P.strictTransformIso i hi) (P.inactiveTotalIso i hi)
 
-theorem totalSpaceIso_hom_eq_coprodMap (P : ChartPushforward S S') [AlgebraicGeometry.IsReduced Y] (i : ℕ)
+private theorem totalSpaceIso_hom_eq_coprodMap (P : ChartPushforward S S') [AlgebraicGeometry.IsReduced Y] (i : ℕ)
     (hi : i ≤ S'.length) :
     (P.totalSpaceIso i hi).hom =
       coprod.map (P.strictTransformIso i hi).hom (P.inactiveTotalIso i hi).hom := rfl
@@ -151,7 +151,7 @@ private theorem comap_map_of_comm_iso {A B A' B' : Scheme.{u}} (eA : A ≅ A') (
       Scheme.IdealSheafData.comap_mono eB.hom key
     rwa [comap_inv_comap_hom eB] at h3
 
-theorem comap_totalCenter (P : ChartPushforward S S') [AlgebraicGeometry.IsReduced Y] (i : ℕ)
+private theorem comap_totalCenter (P : ChartPushforward S S') [AlgebraicGeometry.IsReduced Y] (i : ℕ)
     (hi : i < S'.length) :
     (S'.totalCenter i).comap (P.totalSpaceIso i hi.le).hom = S.totalCenter i := by
   have h := comap_map_of_comm_iso (P.strictTransformIso i hi.le) (P.totalSpaceIso i hi.le)
@@ -178,7 +178,7 @@ private theorem totalSpaceIso_hom_totalTransition (P : ChartPushforward S S')
         P.inl_totalSpaceIso_hom i hi.le]
       exact P.detachedSchemeIso_hom_comp_detachedι_assoc i hi _
 
-theorem inducedBlowups_isomorphic (P : ChartPushforward S S') [AlgebraicGeometry.IsReduced Y]
+private theorem inducedBlowups_isomorphic (P : ChartPushforward S S') [AlgebraicGeometry.IsReduced Y]
     (h : S.TransitionsAreBlowups) (h' : S'.TransitionsAreBlowups) :
     (S.inducedBlowups h).Isomorphic (S'.inducedBlowups h') := by
   refine ⟨P.len_eq, fun i hi => P.totalSpaceIso i (P.le_length_of_le_length hi), ?_, ?_, ?_⟩

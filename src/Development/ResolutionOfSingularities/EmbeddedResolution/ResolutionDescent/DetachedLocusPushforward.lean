@@ -81,7 +81,7 @@ private theorem mem_irreducibleComponents_iff_image {α β : Type*} [Topological
       have hx'x : x' = x := hinj hxx
       rwa [← hx'x]
 
-theorem mem_detachedComponents_iff (P : ChartPushforward S S') (i : ℕ) (hi : i < S'.length)
+private theorem mem_detachedComponents_iff (P : ChartPushforward S S') (i : ℕ) (hi : i < S'.length)
     (C : Set ↥(S.strictTransform i)) :
     C ∈ S.detachedComponents i ↔
       ⇑((P.strictTransformIso i hi.le).hom) '' C ∈ S'.detachedComponents i := by
@@ -136,7 +136,7 @@ private theorem sUnion_eq_image_sUnion {α β : Type u} (f : α → β)
     obtain ⟨C, hC, hyC⟩ := hy
     exact ⟨f '' C, (h C).mp hC, ⟨y, hyC, rfl⟩⟩
 
-theorem detachedLocus_eq_image (P : ChartPushforward S S') (i : ℕ) (hi : i < S'.length) :
+private theorem detachedLocus_eq_image (P : ChartPushforward S S') (i : ℕ) (hi : i < S'.length) :
     S'.detachedLocus i = ⇑((P.strictTransformIso i hi.le).hom) '' S.detachedLocus i := by
   have hsurj : Function.Surjective ⇑((P.strictTransformIso i hi.le).hom) :=
     (Scheme.homeoOfIso (P.strictTransformIso i hi.le)).surjective
@@ -144,7 +144,7 @@ theorem detachedLocus_eq_image (P : ChartPushforward S S') (i : ℕ) (hi : i < S
   exact sUnion_eq_image_sUnion _ hsurj _ _
     (fun C => P.mem_detachedComponents_iff i hi C)
 
-theorem coe_detachedClosure_eq_image (P : ChartPushforward S S') (i : ℕ) (hi : i < S'.length) :
+private theorem coe_detachedClosure_eq_image (P : ChartPushforward S S') (i : ℕ) (hi : i < S'.length) :
     (↑(S'.detachedClosure i) : Set ↥(S'.strictTransform i)) =
       ⇑((P.strictTransformIso i hi.le).hom) '' (↑(S.detachedClosure i) : Set ↥(S.strictTransform i)) := by
   have h1 : (↑(S'.detachedClosure i) : Set ↥(S'.strictTransform i)) = closure (S'.detachedLocus i) := rfl
@@ -152,13 +152,13 @@ theorem coe_detachedClosure_eq_image (P : ChartPushforward S S') (i : ℕ) (hi :
   rw [h1, h2, P.detachedLocus_eq_image i hi]
   exact ((Scheme.homeoOfIso (P.strictTransformIso i hi.le)).image_closure (S.detachedLocus i)).symm
 
-theorem preimage_coe_detachedClosure (P : ChartPushforward S S') (i : ℕ) (hi : i < S'.length) :
+private theorem preimage_coe_detachedClosure (P : ChartPushforward S S') (i : ℕ) (hi : i < S'.length) :
     ⇑((P.strictTransformIso i hi.le).hom) ⁻¹' (↑(S'.detachedClosure i) : Set ↥(S'.strictTransform i)) =
       (↑(S.detachedClosure i) : Set ↥(S.strictTransform i)) := by
   rw [P.coe_detachedClosure_eq_image i hi]
   exact Set.preimage_image_eq _ (Scheme.homeoOfIso (P.strictTransformIso i hi.le)).injective
 
-theorem comap_detachedIdeal (P : ChartPushforward S S') [AlgebraicGeometry.IsReduced Y] (i : ℕ)
+private theorem comap_detachedIdeal (P : ChartPushforward S S') [AlgebraicGeometry.IsReduced Y] (i : ℕ)
     (hi : i < S'.length) :
     (S'.detachedIdeal i).comap (P.strictTransformIso i hi.le).hom = S.detachedIdeal i := by
   have hn' : TopologicalSpace.NoetherianSpace ↥(S'.strictTransform i) :=
@@ -222,7 +222,7 @@ theorem detachedSchemeIso_hom_comp_detachedι (P : ChartPushforward S S') [Algeb
     (P.detachedSchemeIso i hi).hom ≫ S'.detachedι i = S.detachedι i ≫ (P.strictTransformIso i hi.le).hom :=
   (P.exists_iso_detachedScheme i hi).choose_spec
 
-theorem preimage_detachedClosureCompl (P : ChartPushforward S S') (i : ℕ) (hi : i < S'.length) :
+private theorem preimage_detachedClosureCompl (P : ChartPushforward S S') (i : ℕ) (hi : i < S'.length) :
     (P.strictTransformIso i hi.le).hom ⁻¹ᵁ (S'.detachedClosureCompl i) = S.detachedClosureCompl i := by
   have h : ⇑((P.strictTransformIso i hi.le).hom) ⁻¹' (↑(S'.detachedClosure i) : Set ↥(S'.strictTransform i)) =
       (↑(S.detachedClosure i) : Set ↥(S.strictTransform i)) := P.preimage_coe_detachedClosure i hi
@@ -232,7 +232,7 @@ theorem preimage_detachedClosureCompl (P : ChartPushforward S S') (i : ℕ) (hi 
     rw [Set.preimage_compl, h]
   exact TopologicalSpace.Opens.ext h2
 
-theorem comap_comapAmbientCenter (P : ChartPushforward S S') (i : ℕ) (hi : i < S'.length) :
+private theorem comap_comapAmbientCenter (P : ChartPushforward S S') (i : ℕ) (hi : i < S'.length) :
     (S'.comapAmbientCenter i).comap (P.strictTransformIso i hi.le).hom = S.comapAmbientCenter i := by
   have hmap : S'.ambientCenter i = (S.ambientCenter i).map (P.levelMap i hi.le) := by
     rw [P.ambientCenter_eq i hi, map_eq_imageIdealSheaf]

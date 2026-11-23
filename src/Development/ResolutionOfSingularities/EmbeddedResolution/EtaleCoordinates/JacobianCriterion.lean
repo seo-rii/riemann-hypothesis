@@ -133,7 +133,7 @@ theorem tensorKaehlerBasis_mapBaseChange (i : ι) :
   have h2 : coord k ι S i = algebraMap (MvPolynomial ι k) S (MvPolynomial.X i) := rfl
   rw [h, KaehlerDifferential.mapBaseChange_tmul, one_smul, KaehlerDifferential.map_D, h2]
 
-theorem formallyUnramified_of_mapBaseChange_surjective
+private theorem formallyUnramified_of_mapBaseChange_surjective
     (h : Function.Surjective (KaehlerDifferential.mapBaseChange k (MvPolynomial ι k) S)) :
     Algebra.FormallyUnramified (MvPolynomial ι k) S := by
   have hexact := KaehlerDifferential.exact_mapBaseChange_map k (MvPolynomial ι k) S
@@ -158,7 +158,7 @@ theorem formallyUnramified_of_mapBaseChange_surjective
     | smul c a _ ha => rw [ha, smul_zero]
   exact Algebra.FormallyUnramified.mk ⟨fun a b => by rw [key a, key b]⟩
 
-theorem mapBaseChange_bijective_of_basis
+private theorem mapBaseChange_bijective_of_basis
     (b : Module.Basis ι S (KaehlerDifferential k S))
     (hb : ∀ i : ι, b i = KaehlerDifferential.D k S (coord k ι S i)) :
     Function.Bijective (KaehlerDifferential.mapBaseChange k (MvPolynomial ι k) S) := by
@@ -184,7 +184,7 @@ theorem mapBaseChange_bijective_of_basis
     obtain ⟨x, hxe⟩ := ((tensorKaehlerBasis k ι S).equiv b (Equiv.refl ι)).surjective y
     exact ⟨x, (hx x).trans hxe⟩
 
-theorem formallyEtale_of_basis [Algebra.FormallySmooth k S]
+private theorem formallyEtale_of_basis [Algebra.FormallySmooth k S]
     (b : Module.Basis ι S (KaehlerDifferential k S))
     (hb : ∀ i : ι, b i = KaehlerDifferential.D k S (coord k ι S i)) :
     Algebra.FormallyEtale (MvPolynomial ι k) S := by

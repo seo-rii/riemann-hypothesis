@@ -8,7 +8,7 @@ public import Development.ResolutionOfSingularities.EmbeddedResolution.MaximalCo
 
 namespace FunctorialResolution.EmbeddedResolution
 
-theorem tuningWeight_sub (m : ℕ) (c c' : ℕ → ℕ) (h : ∀ j, c' j ≤ c j) :
+private theorem tuningWeight_sub (m : ℕ) (c c' : ℕ → ℕ) (h : ∀ j, c' j ≤ c j) :
     tuningWeight m (fun j => c j - c' j) = tuningWeight m c - tuningWeight m c' := by
   have h2 : (fun j => (c j - c' j) + c' j) = c := funext fun j => Nat.sub_add_cancel (h j)
   have key : tuningWeight m (fun j => c j - c' j) + tuningWeight m c' = tuningWeight m c := by
@@ -25,7 +25,7 @@ private theorem tuningWeight_ite (m j q : ℕ) (hj : j ∈ Finset.range m) :
   · intro hcon
     exact absurd hj hcon
 
-theorem exists_le_tuningWeight_eq_mul (m L r : ℕ) (hL : 0 < L)
+private theorem exists_le_tuningWeight_eq_mul (m L r : ℕ) (hL : 0 < L)
     (hdvd : ∀ w : ℕ, 1 ≤ w → w ≤ m → w ∣ L) (c : ℕ → ℕ)
     (hc : r * L + (m - 1) * L ≤ tuningWeight m c) :
     ∃ c' : ℕ → ℕ, (∀ j, c' j ≤ c j) ∧ tuningWeight m c' = r * L := by
@@ -126,7 +126,7 @@ section
 
 variable (k : Type*) [CommRing k] {S : Type*} [CommRing S] [Algebra k S]
 
-theorem tunedIdeal_pow_le (J : Ideal S) (m a n : ℕ) :
+private theorem tunedIdeal_pow_le (J : Ideal S) (m a n : ℕ) :
     tunedIdeal k J m a ^ n ≤ tunedIdeal k J m (n * a) := by
   induction n with
   | zero => simp [tunedIdeal_zero]

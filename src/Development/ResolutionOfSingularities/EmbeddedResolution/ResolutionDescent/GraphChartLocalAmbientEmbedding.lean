@@ -43,7 +43,7 @@ private theorem appTop_comp_hom_apply {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y 
   rw [h]
   rfl
 
-theorem graphMorphismToAffineSpace_comp_projLeft (k : Type u) [Field k] (M n q : ℕ)
+private theorem graphMorphismToAffineSpace_comp_projLeft (k : Type u) [Field k] (M n q : ℕ)
     (F : Fin q →
       ↑((affineSpaceIndexedBy k (ULift.{u, 0} (Fin M ⊕ Fin n))).presheaf.obj (Opposite.op ⊤)))
     (D : (affineSpaceIndexedBy k (ULift.{u, 0} (Fin M ⊕ Fin n))).Opens) :
@@ -236,7 +236,7 @@ private theorem coordSubspaceIdeal_univ_comap_affineSpaceIsoOfEquiv (k : Type u)
     coordSubspaceIdeal_univ_eq_ofIdealTop, comap_ofIdealTop_span, comap_ofIdealTop_span,
     comap_ofIdealTop_span, ← ofIdealTop_sup, ← Ideal.span_union, hset]
 
-theorem hasSmoothCoordCodim_add_of_smooth_graphMorphism (hsm : AffineSpaceIsSmooth.{u}) (k : Type u) [Field k]
+private theorem hasSmoothCoordCodim_add_of_smooth_graphMorphism (hsm : AffineSpaceIsSmooth.{u}) (k : Type u) [Field k]
     {A A' : Scheme.{u}} [IsAffine A] [IsAffine A'] (M c n q : ℕ)
     (ρ : A ⟶ affineSpaceIndexedBy k (ULift.{u, 0} (Fin M))) [IsClosedImmersion ρ]
     (hρ : HasSmoothCoordCodim (affineSpaceIndexedByToSpec k (ULift.{u, 0} (Fin M))) ρ c)

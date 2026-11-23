@@ -175,7 +175,7 @@ private theorem derivation_apply_mem_pow_of_mem_pow_succ {k : Type*} [CommRing k
         rw [map_add (f := _)]
         exact Submodule.add_mem _ ha hb
 
-theorem derivIdeal_pow_succ_le_pow (k : Type*) [CommRing k] {S : Type*} [CommRing S] [Algebra k S]
+private theorem derivIdeal_pow_succ_le_pow (k : Type*) [CommRing k] {S : Type*} [CommRing S] [Algebra k S]
     (J : Ideal S) (n : ℕ) : derivIdeal k (J ^ (n + 1)) ≤ J ^ n := by
   rw [derivIdeal_le_iff]
   refine ⟨?_, ?_⟩
@@ -194,7 +194,7 @@ private theorem pow_succ_le_pow {S : Type*} [CommRing S] (J : Ideal S) (m : ℕ)
   rw [pow_succ]
   exact Ideal.mul_le.mpr fun r hr s _ => Ideal.mul_mem_right s _ hr
 
-theorem derivIdeal_pow_le (k : Type*) [CommRing k] {S : Type*} [CommRing S] [Algebra k S]
+private theorem derivIdeal_pow_le (k : Type*) [CommRing k] {S : Type*} [CommRing S] [Algebra k S]
     (J : Ideal S) (n : ℕ) : derivIdeal k (J ^ n) ≤ J ^ (n - 1) := by
   obtain _ | m := n
   · have h : (J ^ (0 - 1 : ℕ) : Ideal S) = ⊤ := by simp
@@ -233,14 +233,14 @@ theorem derivIdealIterate_succ (k : Type*) [CommRing k] {S : Type*} [CommRing S]
 theorem derivIdealIterate_one (k : Type*) [CommRing k] {S : Type*} [CommRing S] [Algebra k S]
     (J : Ideal S) : derivIdealIterate k 1 J = derivIdeal k J := rfl
 
-theorem derivIdealIterate_add (k : Type*) [CommRing k] {S : Type*} [CommRing S] [Algebra k S]
+private theorem derivIdealIterate_add (k : Type*) [CommRing k] {S : Type*} [CommRing S] [Algebra k S]
     (r s : ℕ) (J : Ideal S) :
     derivIdealIterate k (r + s) J = derivIdealIterate k r (derivIdealIterate k s J) := by
   induction r with
   | zero => rw [Nat.zero_add, derivIdealIterate_zero]
   | succ r ih => rw [Nat.succ_add, derivIdealIterate_succ, derivIdealIterate_succ, ih]
 
-theorem le_derivIdealIterate (k : Type*) [CommRing k] {S : Type*} [CommRing S] [Algebra k S]
+private theorem le_derivIdealIterate (k : Type*) [CommRing k] {S : Type*} [CommRing S] [Algebra k S]
     (r : ℕ) (J : Ideal S) : J ≤ derivIdealIterate k r J := by
   induction r with
   | zero => exact (derivIdealIterate_zero k J).ge

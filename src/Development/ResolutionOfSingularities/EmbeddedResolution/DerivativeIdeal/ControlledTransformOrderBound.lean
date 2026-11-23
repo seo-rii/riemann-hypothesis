@@ -51,7 +51,7 @@ theorem orderAt_le_iff_notMem_orderAtLeastLocus {X : Scheme.{u}} (I : X.IdealShe
   rw [mem_orderAtLeastLocus_iff]
   exact le_natCast_iff_not_succ_le (orderAt I x) m
 
-theorem notMem_support_derivIdealSheafIterate_iff_orderAt_le (k : Type u) [Field k] [CharZero k]
+private theorem notMem_support_derivIdealSheafIterate_iff_orderAt_le (k : Type u) [Field k] [CharZero k]
     {X : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     (I : X.IdealSheafData) (m : ℕ) (x : X) :
     x ∉ (derivIdealSheafIterate k p m I).support ↔ orderAt I x ≤ (m : ℕ∞) := by
@@ -61,7 +61,7 @@ theorem notMem_support_derivIdealSheafIterate_iff_orderAt_le (k : Type u) [Field
     rw [← SetLike.mem_coe, h0]
   rw [orderAt_le_iff_notMem_orderAtLeastLocus, hiff]
 
-theorem stalkIdeal_derivIdealSheafIterate_eq_top_iff_orderAt_le (k : Type u) [Field k] [CharZero k]
+private theorem stalkIdeal_derivIdealSheafIterate_eq_top_iff_orderAt_le (k : Type u) [Field k] [CharZero k]
     {X : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     (I : X.IdealSheafData) (m : ℕ) (x : X) :
     stalkIdeal (derivIdealSheafIterate k p m I) x = ⊤ ↔ orderAt I x ≤ (m : ℕ∞) := by
@@ -100,7 +100,7 @@ theorem orderAt_controlledTransform_le_of_orderAt_image_le (k : Type u) [Field k
     orderAt (controlledTransform π Z I m hπ hI) x₁ ≤ (m : ℕ∞) :=
   orderAt_controlledTransform_le k p π Z E hZ hπ I m hI (π.base x₁) hx₁ x₁ rfl
 
-theorem orderAt_controlledTransform_le_of_not_succ_le (k : Type u) [Field k] [CharZero k]
+private theorem orderAt_controlledTransform_le_of_not_succ_le (k : Type u) [Field k] [CharZero k]
     {X X₁ : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     (π : X₁ ⟶ X) [IsLocallyNoetherian X₁] (Z : X.IdealSheafData) (E : List X.IdealSheafData)
     (hZ : HasStrictNormalCrossingsWith p Z E) (hπ : Blowup.IsBlowupAlongIdealSheaf π Z) (I : X.IdealSheafData) (m : ℕ)

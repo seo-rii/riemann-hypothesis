@@ -148,7 +148,7 @@ variable (k A : Type*) [CommRing k] [CommRing A] [Algebra k A] [IsLocalRing A]
 
 omit [IsNoetherianRing A] [Module.Free A (KaehlerDifferential k A)]
   [Module.Finite A (KaehlerDifferential k A)] in
-theorem linearIndependent_tensor_D_of_ker {ι : Type*}
+private theorem linearIndependent_tensor_D_of_ker {ι : Type*}
     (m : ι → (RingHom.ker (algebraMap A (IsLocalRing.ResidueField A)) : Ideal A))
     (hm : LinearIndependent (IsLocalRing.ResidueField A)
       (fun i : ι => (1 : IsLocalRing.ResidueField A) ⊗ₜ[A] (m i))) :

@@ -42,7 +42,7 @@ private theorem isReduced_of_forall_isReduced_stalk (X : Scheme.{u})
   have := h
   exact isReduced_of_isReduced_stalk X
 
-theorem isReduced_sigmaOpens (Y : Scheme.{u}) [IsReduced Y] {ι : Type u} (U : ι → Y.Opens) :
+private theorem isReduced_sigmaOpens (Y : Scheme.{u}) [IsReduced Y] {ι : Type u} (U : ι → Y.Opens) :
     IsReduced (sigmaOpens Y U) := by
   refine isReduced_of_forall_isReduced_stalk _ ?_
   intro x
@@ -57,7 +57,7 @@ instance instIsReducedOpensCoprod (Y : Scheme.{u}) [IsReduced Y] {ι : Type u} (
     IsReduced (sigmaOpens Y U) :=
   isReduced_sigmaOpens Y U
 
-theorem etale_isZariskiLocalAtSource : IsZariskiLocalAtSource (@Etale.{u}) := by
+private theorem etale_isZariskiLocalAtSource : IsZariskiLocalAtSource (@Etale.{u}) := by
   have hrh : HasRingHomProperty (@Etale.{u}) RingHom.Etale := inferInstance
   exact @HasRingHomProperty.instIsZariskiLocalAtSource (@Etale.{u}) _ hrh
 
@@ -139,7 +139,7 @@ theorem exists_affine_etale_cover_of_isReduced {k : Type u} [Field k] (Y : Schem
   · infer_instance
   · exact quasiCompact_of_compactSpace_of_subsingleton _
 
-theorem smooth_isZariskiLocalAtSource : IsZariskiLocalAtSource (@Smooth.{u}) := by
+private theorem smooth_isZariskiLocalAtSource : IsZariskiLocalAtSource (@Smooth.{u}) := by
   have hrh : HasRingHomProperty (@Smooth.{u}) RingHom.Smooth := inferInstance
   exact @HasRingHomProperty.instIsZariskiLocalAtSource (@Smooth.{u}) _ hrh
 

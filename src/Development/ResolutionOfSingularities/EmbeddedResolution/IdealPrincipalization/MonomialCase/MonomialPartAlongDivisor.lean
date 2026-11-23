@@ -44,7 +44,7 @@ private theorem mem_span_of_pow_mul_mem_span {R : Type*} [CommRing R] (g h : R)
 
 variable {X : Scheme.{u}}
 
-theorem stalkIdeal_one (x : X) : stalkIdeal (1 : X.IdealSheafData) x = ⊤ := by
+private theorem stalkIdeal_one (x : X) : stalkIdeal (1 : X.IdealSheafData) x = ⊤ := by
   have h := stalkIdeal_mul (1 : X.IdealSheafData) (⊤ : X.IdealSheafData) x
   rw [one_mul, stalkIdeal_top] at h
   refine le_antisymm le_top ?_
@@ -88,7 +88,7 @@ theorem isEtaleLocallyCoordinateDivisor_of_inStrictNormalCrossingPosition (p : X
 def orderAlongComponent (I : X.IdealSheafData) {C : Set X} (hC : IsIrreducible C) : ℕ :=
   (orderAt I hC.genericPoint).toNat
 
-theorem orderAlongComponent_eq_orderAt_genericPoint (I : X.IdealSheafData) {C : Set X} (hC : IsIrreducible C) :
+private theorem orderAlongComponent_eq_orderAt_genericPoint (I : X.IdealSheafData) {C : Set X} (hC : IsIrreducible C) :
     orderAlongComponent I hC = (orderAt I hC.genericPoint).toNat := rfl
 
 theorem coe_orderAlongComponent_eq_orderAt_genericPoint [IsLocallyNoetherian X] {D I : X.IdealSheafData} {C : Set X}
@@ -105,12 +105,12 @@ def componentPowerIdeal (I D : X.IdealSheafData) (C : Set X) : X.IdealSheafData 
       orderAlongComponent I h.isIrreducible
   else ⊤
 
-theorem componentPowerIdeal_of_not_isIrreducibleComponentOfSupport (I D : X.IdealSheafData) {C : Set X}
+private theorem componentPowerIdeal_of_not_isIrreducibleComponentOfSupport (I D : X.IdealSheafData) {C : Set X}
     (h : ¬ IsIrreducibleComponentOfSupport D C) : componentPowerIdeal I D C = ⊤ :=
   @dif_neg (IsIrreducibleComponentOfSupport D C) (Classical.propDecidable (IsIrreducibleComponentOfSupport D C)) h
     X.IdealSheafData _ _
 
-theorem componentPowerIdeal_of_isIrreducibleComponentOfSupport (I D : X.IdealSheafData) {C : Set X}
+private theorem componentPowerIdeal_of_isIrreducibleComponentOfSupport (I D : X.IdealSheafData) {C : Set X}
     (h : IsIrreducibleComponentOfSupport D C) :
     componentPowerIdeal I D C =
       Scheme.IdealSheafData.vanishingIdeal (⟨C, h.isClosed⟩ : TopologicalSpace.Closeds ↥X) ^
@@ -118,7 +118,7 @@ theorem componentPowerIdeal_of_isIrreducibleComponentOfSupport (I D : X.IdealShe
   unfold componentPowerIdeal
   exact dif_pos h
 
-theorem stalkIdeal_componentPowerIdeal_of_not_mem (I D : X.IdealSheafData) (C : Set X) {x : X}
+private theorem stalkIdeal_componentPowerIdeal_of_not_mem (I D : X.IdealSheafData) (C : Set X) {x : X}
     (hx : x ∉ C) : stalkIdeal (componentPowerIdeal I D C) x = ⊤ := by
   by_cases hC : IsIrreducibleComponentOfSupport D C
   · have htop : stalkIdeal (Scheme.IdealSheafData.vanishingIdeal
@@ -133,7 +133,7 @@ theorem stalkIdeal_componentPowerIdeal_of_not_mem (I D : X.IdealSheafData) (C : 
       one_pow]
   · rw [componentPowerIdeal_of_not_isIrreducibleComponentOfSupport I D hC, stalkIdeal_top]
 
-theorem stalkIdeal_componentPowerIdeal_of_mem [TopologicalSpace.NoetherianSpace ↥X]
+private theorem stalkIdeal_componentPowerIdeal_of_mem [TopologicalSpace.NoetherianSpace ↥X]
     (p : X ⟶ Spec (CommRingCat.of k)) (I : X.IdealSheafData) {D : X.IdealSheafData}
     (hD : IsEtaleLocallyCoordinateDivisor p D) {C : Set X} (hC : IsIrreducibleComponentOfSupport D C) {x : X}
     (hx : x ∈ C) :
@@ -150,7 +150,7 @@ def monomialPartAlongDivisor [TopologicalSpace.NoetherianSpace ↥X] (I D : X.Id
     X.IdealSheafData :=
   (supportComponentsFinset D).inf (fun C => componentPowerIdeal I D C)
 
-theorem monomialPartAlongDivisor_eq_inf_componentPowerIdeal [TopologicalSpace.NoetherianSpace ↥X] (I D : X.IdealSheafData) :
+private theorem monomialPartAlongDivisor_eq_inf_componentPowerIdeal [TopologicalSpace.NoetherianSpace ↥X] (I D : X.IdealSheafData) :
     monomialPartAlongDivisor I D = (supportComponentsFinset D).inf (fun C => componentPowerIdeal I D C) := rfl
 
 private theorem idealSheafData_mul_le_left (a b : X.IdealSheafData) : a * b ≤ a := by
@@ -294,7 +294,7 @@ def monomialFactorIdeal [TopologicalSpace.NoetherianSpace ↥X] (E : List X.Idea
     (I : X.IdealSheafData) : X.IdealSheafData :=
   (E.map (fun D => monomialPartAlongDivisor I D)).prod
 
-theorem monomialFactorIdeal_eq_prod_monomialPartAlongDivisor [TopologicalSpace.NoetherianSpace ↥X] (E : List X.IdealSheafData)
+private theorem monomialFactorIdeal_eq_prod_monomialPartAlongDivisor [TopologicalSpace.NoetherianSpace ↥X] (E : List X.IdealSheafData)
     (I : X.IdealSheafData) :
     monomialFactorIdeal E I = (E.map (fun D => monomialPartAlongDivisor I D)).prod := rfl
 
@@ -811,7 +811,7 @@ private theorem mem_span_germ_coord_pow_of_mul_mem (p : X ⟶ Spec (CommRingCat.
     (by rw [hpow, hmap]; exact hz)
   rwa [hpow] at hmain
 
-theorem monomialFactorIdeal_mul_nonMonomialFactorIdeal [TopologicalSpace.NoetherianSpace ↥X]
+private theorem monomialFactorIdeal_mul_nonMonomialFactorIdeal [TopologicalSpace.NoetherianSpace ↥X]
     [IsLocallyNoetherian X] (p : X ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType p]
     (E : List X.IdealSheafData) (I : X.IdealSheafData) (hE : InStrictNormalCrossingPosition p E) :
     monomialFactorIdeal E I * nonMonomialFactorIdeal E I = I := by

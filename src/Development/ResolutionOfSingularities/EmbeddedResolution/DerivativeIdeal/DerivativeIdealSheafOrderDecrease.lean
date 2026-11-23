@@ -30,7 +30,7 @@ theorem algebraMap_stalkAlgebra (k : Type u) [CommRing k] {X : Scheme.{u}}
     @algebraMap k (X.presheaf.stalk x) _ _ (stalkAlgebra k p x) = stalkAlgebraMap k p x :=
   rfl
 
-theorem sectionsAlgebraMap_comp_germ (k : Type u) [CommRing k] {X : Scheme.{u}}
+private theorem sectionsAlgebraMap_comp_germ (k : Type u) [CommRing k] {X : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) (U : X.Opens) (x : X) (hx : x ∈ U) :
     (X.presheaf.germ U x hx).hom.comp (sectionsAlgebraMap k p U) = stalkAlgebraMap k p x := by
   have hle : U ≤ (⊤ : X.Opens) := le_top
@@ -85,7 +85,7 @@ theorem stalkIdeal_derivIdealSheaf (k : Type u) [CommRing k] [IsNoetherianRing k
       stalkIdeal_eq_map_germ I x U hx, derivIdealSheaf_ideal]
     exact map_derivIdeal (hU.primeIdealOf ⟨x, hx⟩).asIdeal.primeCompl (I.ideal U)
 
-theorem stalkIdeal_derivIdealSheafIterate (k : Type u) [CommRing k] [IsNoetherianRing k]
+private theorem stalkIdeal_derivIdealSheafIterate (k : Type u) [CommRing k] [IsNoetherianRing k]
     {X : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType p] (r : ℕ)
     (I : X.IdealSheafData) (x : X) :
     stalkIdeal (derivIdealSheafIterate k p r I) x =

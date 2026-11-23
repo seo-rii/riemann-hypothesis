@@ -21,7 +21,7 @@ private theorem exists_affineOpens_mem (X : Scheme.{u}) (x : ↥X) :
   obtain ⟨U, hU⟩ := TopologicalSpace.Opens.mem_iSup.mp hx
   exact ⟨U, hU⟩
 
-theorem maximalIdeal_stalk_ne_bot_of_specializes
+private theorem maximalIdeal_stalk_ne_bot_of_specializes
     (X : Scheme.{u}) (x y : ↥X) (h : y ⤳ x) (hne : y ≠ x) :
     IsLocalRing.maximalIdeal ↑(X.presheaf.stalk x) ≠ ⊥ := by
   intro hbot
@@ -86,7 +86,7 @@ theorem maximalIdeal_stalk_ne_bot_of_specializes
   · exact hcq hcc
   · exact haq haa
 
-theorem orderAt_vanishingIdeal_eq_one_of_not_mem_irreducibleComponents
+private theorem orderAt_vanishingIdeal_eq_one_of_not_mem_irreducibleComponents
     (X : Scheme.{u}) [IsLocallyNoetherian X] (S : Closeds ↥X) (x : ↥X)
     (hx : IsGenericPoint x (S : Set ↥X))
     (hS : (S : Set ↥X) ∉ irreducibleComponents ↥X) :
@@ -131,7 +131,7 @@ theorem orderAt_vanishingIdeal_eq_one_of_not_mem_irreducibleComponents
     maximalIdeal_stalk_ne_bot_of_specializes X x y hyx hyne
   exact _root_.FunctorialResolution.EmbeddedResolution.orderAt_vanishingIdeal_eq_one S x (S : Set ↥X) hMax hx hbot
 
-theorem isLocallyNoetherian_subscheme_of_isSmoothDivisor
+private theorem isLocallyNoetherian_subscheme_of_isSmoothDivisor
     (k : Type u) [Field k] (W : Scheme.{u}) (p : W ⟶ Spec (CommRingCat.of k))
     (U : W.Opens) (D : (U.toScheme).IdealSheafData)
     (hD : IsSmoothDivisor (U.ι ≫ p) D) :

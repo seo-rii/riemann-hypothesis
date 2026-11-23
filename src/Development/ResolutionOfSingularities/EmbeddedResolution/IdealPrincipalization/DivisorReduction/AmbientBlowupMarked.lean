@@ -35,7 +35,7 @@ namespace FunctorialResolution.EmbeddedResolution
 
 namespace BlowupSequenceData
 
-theorem IsMarked.of_comap_isoObjZero_eq {k : Type u} [Field k] {X : Scheme.{u}}
+private theorem IsMarked.of_comap_isoObjZero_eq {k : Type u} [Field k] {X : Scheme.{u}}
     {d : BlowupSequenceData X} {p : X ⟶ Spec (CommRingCat.of k)} {m : ℕ}
     {I I' : X.IdealSheafData} {E E' : List X.IdealSheafData}
     (hI : I.comap d.isoZero.hom = I'.comap d.isoZero.hom)
@@ -82,7 +82,7 @@ theorem goingUpInvariant_of_le (hres : FunctorialResolution.Blowup.StrictTransfo
   | succ n ih =>
       exact GoingUpInvariant.succ (ih (Nat.le_of_succ_le ht)) hbal hm hV hlift (Nat.lt_of_succ_le ht)
 
-theorem isMarked_ambientBlowupSeq (hres : FunctorialResolution.Blowup.StrictTransformIsBlowupOfClosedSubscheme.{u})
+private theorem isMarked_ambientBlowupSeq (hres : FunctorialResolution.Blowup.StrictTransformIsBlowupOfClosedSubscheme.{u})
     (hno : BlowupPreservesNoetherian.{u}) (T : MarkedIdealWithBoundary.{u})
     [AlgebraicGeometry.IsNoetherian T.scheme] [AlgebraicGeometry.Smooth T.structMap]
     [AlgebraicGeometry.LocallyOfFiniteType T.structMap] [CharZero T.base]
@@ -115,7 +115,7 @@ theorem isMarked_ambientBlowupSeq (hres : FunctorialResolution.Blowup.StrictTran
     exact (goingUpInvariant_of_le hres hno T j hj I₀ E₀ s hpr hbal hm hV hlift hE₀ hjE hget htrunc
       i (le_of_lt hi)).hasStrictNormalCrossingsWith_center_boundary hlift hi
 
-theorem comap_controlledTransform_ambientBlowupSeq (hres : FunctorialResolution.Blowup.StrictTransformIsBlowupOfClosedSubscheme.{u})
+private theorem comap_controlledTransform_ambientBlowupSeq (hres : FunctorialResolution.Blowup.StrictTransformIsBlowupOfClosedSubscheme.{u})
     (hno : BlowupPreservesNoetherian.{u}) (T : MarkedIdealWithBoundary.{u})
     [AlgebraicGeometry.IsNoetherian T.scheme] [AlgebraicGeometry.Smooth T.structMap]
     [AlgebraicGeometry.LocallyOfFiniteType T.structMap] [CharZero T.base]

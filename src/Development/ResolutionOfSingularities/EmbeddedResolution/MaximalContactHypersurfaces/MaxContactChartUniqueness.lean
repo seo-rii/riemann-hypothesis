@@ -72,7 +72,7 @@ private theorem germ_topIso_inv_mem_maximalIdeal {X₁ : Scheme.{u}} (V : X₁.O
     exact (V.toScheme.mem_basicOpen ((V.ι.app V).hom s) (pointOfMem V y hy) hy').2 hu
   exact (X₁.mem_basicOpen s y hy).1 hmem
 
-theorem chartsAgreeAt_of_coord_eq_of_germ_mem {n : ℕ} (c₁ c₂ : EtaleChart p U n) (j : Fin n)
+private theorem chartsAgreeAt_of_coord_eq_of_germ_mem {n : ℕ} (c₁ c₂ : EtaleChart p U n) (j : Fin n)
     (x : X) (hx : x ∈ U)
     (hcoord : ∀ i : Fin n, i ≠ j → c₁.coord i = c₂.coord i)
     (hg₁ : (X.presheaf.germ U x hx).hom (c₁.coord j) ∈
@@ -104,7 +104,7 @@ theorem chartsAgreeAt_of_coord_eq_of_germ_mem {n : ℕ} (c₁ c₂ : EtaleChart 
     rw [h'', sub_self, map_zero]
     exact Submodule.zero_mem _
 
-theorem coordIdeal_eq_of_coord_eq {n : ℕ} (hU : IsAffineOpen U) (c₁ c₂ : EtaleChart p U n)
+private theorem coordIdeal_eq_of_coord_eq {n : ℕ} (hU : IsAffineOpen U) (c₁ c₂ : EtaleChart p U n)
     (S : Finset (Fin n)) (h : ∀ i ∈ S, c₁.coord i = c₂.coord i) :
     c₁.coordIdeal S = c₂.coordIdeal S := by
   have hUaff : IsAffine U.toScheme := hU
@@ -459,7 +459,7 @@ private theorem chartPullbackStalkMap_compat (k : Type u) [Field k] {X : Scheme.
   refine mem_maximalIdeal_of_map_eq_zero σ.hom ?_
   rw [map_sub, ← h0, sub_self]
 
-theorem stalkIdeal_comap_chartPullbackPoint_eq
+private theorem stalkIdeal_comap_chartPullbackPoint_eq
     (k : Type u) [Field k] [CharZero k] {X : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p]
     (I : X.IdealSheafData) {m : ℕ} (_hm : 1 ≤ m)
@@ -730,7 +730,7 @@ private theorem chartPullbackFstStalkMap_eq_snd_of_coord_eq_zero
   rw [RingHom.mem_ker, map_sub, sub_eq_zero] at ha
   exact ha
 
-theorem fromSpecStalk_comp_subschemeι_chartPullback_eq
+private theorem fromSpecStalk_comp_subschemeι_chartPullback_eq
     (k : Type u) [Field k] [CharZero k] {X : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p]
     (I : X.IdealSheafData) {m : ℕ} (_hm : 1 ≤ m)

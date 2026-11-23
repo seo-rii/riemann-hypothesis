@@ -44,7 +44,7 @@ theorem le_idealOrder_iff (I : Ideal R) (n : ℕ) :
     rw [hdef]
     exact le_sSup ⟨n, h, rfl⟩
 
-theorem idealOrder_eq_top_iff (I : Ideal R) :
+private theorem idealOrder_eq_top_iff (I : Ideal R) :
     idealOrder I = ⊤ ↔ ∀ n : ℕ, I ≤ IsLocalRing.maximalIdeal R ^ n := by
   constructor
   · intro h n
@@ -61,7 +61,7 @@ theorem one_le_idealOrder_iff (I : Ideal R) :
   rw [Nat.cast_one, pow_one] at h
   exact h
 
-theorem one_le_idealOrder_iff_ne_top (I : Ideal R) :
+private theorem one_le_idealOrder_iff_ne_top (I : Ideal R) :
     1 ≤ idealOrder I ↔ I ≠ ⊤ := by
   rw [one_le_idealOrder_iff]
   constructor

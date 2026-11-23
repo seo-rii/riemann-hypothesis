@@ -25,7 +25,7 @@ theorem _root_.FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor.le
     (h : F ^ n * B ≤ F ^ n * B') : B ≤ B' :=
   (hF.pow n).le_of_mul_le_mul h
 
-theorem comap_prod_map_range {X Y : Scheme.{u}} (π : Y ⟶ X) (f : ℕ → X.IdealSheafData) (m : ℕ) :
+private theorem comap_prod_map_range {X Y : Scheme.{u}} (π : Y ⟶ X) (f : ℕ → X.IdealSheafData) (m : ℕ) :
     (((List.range m).map f).prod).comap π =
       ((List.range m).map (fun j => (f j).comap π)).prod := by
   induction m with

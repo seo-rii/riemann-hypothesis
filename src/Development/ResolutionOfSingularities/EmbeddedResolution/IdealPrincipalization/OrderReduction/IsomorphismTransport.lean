@@ -117,7 +117,7 @@ private theorem ker_eq_of_iso_comp {P Q T : Scheme.{u}} (c : Q ≅ P) (h₁ : P 
     (hc : c.hom ≫ h₁ = h₂) : h₁.ker = h₂.ker := by
   rw [← hc, AlgebraicGeometry.Scheme.Hom.ker_comp_of_isIso]
 
-theorem imageIdealSheaf_strictTransform_of_comm_sq {X X₁ Y Y₁ : Scheme.{u}}
+private theorem imageIdealSheaf_strictTransform_of_comm_sq {X X₁ Y Y₁ : Scheme.{u}}
     (φ : X₁ ⟶ X) (ψ : Y₁ ⟶ Y) (u : X ⟶ Y) (u₁ : X₁ ⟶ Y₁) [IsIso u] [IsIso u₁]
     (hsq : u₁ ≫ ψ = φ ≫ u) (Z D : X.IdealSheafData) :
     imageIdealSheaf u₁ (Blowup.strictTransform φ Z D)

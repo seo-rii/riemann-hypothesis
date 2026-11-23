@@ -196,7 +196,7 @@ theorem finite_isIrreducibleComponentOfSupport {X : Scheme.{u}} [TopologicalSpac
     exact congrArg (Set.image Subtype.val) heq
   exact Set.Finite.of_finite_image (hfin.subset hsub) hinj
 
-theorem stalkIdeal_ne_bot_of_nonzeroOnComponents {X : Scheme.{u}} (I : X.IdealSheafData)
+private theorem stalkIdeal_ne_bot_of_nonzeroOnComponents {X : Scheme.{u}} (I : X.IdealSheafData)
     (hI : NonzeroOnComponents I) (x : X) : stalkIdeal I x ≠ ⊥ := by
   intro hbot
   rw [nonzeroOnComponents_iff] at hI

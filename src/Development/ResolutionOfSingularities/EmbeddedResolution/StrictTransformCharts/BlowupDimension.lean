@@ -21,14 +21,14 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace
 
 namespace FunctorialResolution.EmbeddedResolution
 
-theorem ringKrullDim_stalk_eq_of_isOpenImmersion {Y W : Scheme.{u}} (g : Y ⟶ W)
+private theorem ringKrullDim_stalk_eq_of_isOpenImmersion {Y W : Scheme.{u}} (g : Y ⟶ W)
     [AlgebraicGeometry.IsOpenImmersion g] (y : Y) :
     ringKrullDim (Y.presheaf.stalk y) = ringKrullDim (W.presheaf.stalk (g.base y)) := by
   have : IsIso (g.stalkMap y) := inferInstance
   have e : (W.presheaf.stalk (g.base y)) ≅ (Y.presheaf.stalk y) := asIso (g.stalkMap y)
   exact (ringKrullDim_eq_of_ringEquiv e.commRingCatIsoToRingEquiv).symm
 
-theorem isNoetherianRing_stalk_of_isOpenImmersion {Y W : Scheme.{u}} (g : Y ⟶ W)
+private theorem isNoetherianRing_stalk_of_isOpenImmersion {Y W : Scheme.{u}} (g : Y ⟶ W)
     [AlgebraicGeometry.IsOpenImmersion g] (y : Y)
     [IsNoetherianRing (W.presheaf.stalk (g.base y))] :
     IsNoetherianRing (Y.presheaf.stalk y) := by
@@ -36,7 +36,7 @@ theorem isNoetherianRing_stalk_of_isOpenImmersion {Y W : Scheme.{u}} (g : Y ⟶ 
   exact isNoetherianRing_of_ringEquiv _
     (CategoryTheory.asIso (g.stalkMap y)).commRingCatIsoToRingEquiv
 
-theorem ringKrullDim_stalk_le_of_etaleChart {k : Type u} [Field k] {Y : Scheme.{u}}
+private theorem ringKrullDim_stalk_le_of_etaleChart {k : Type u} [Field k] {Y : Scheme.{u}}
     (p : Y ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.IsLocallyNoetherian Y]
     {U : Y.Opens} {m : ℕ} (c : EtaleChart p U m) (y : Y) (hy : y ∈ U) :
     ringKrullDim (Y.presheaf.stalk y) ≤ ((m : ℕ∞) : WithBot ℕ∞) := by
@@ -53,7 +53,7 @@ theorem ringKrullDim_stalk_le_of_etaleChart {k : Type u} [Field k] {Y : Scheme.{
   rw [← h3]
   exact h2
 
-theorem le_topologicalKrullDim_of_etaleChart {k : Type u} [Field k] {X : Scheme.{u}}
+private theorem le_topologicalKrullDim_of_etaleChart {k : Type u} [Field k] {X : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.LocallyOfFiniteType p]
     {U : X.Opens} {m : ℕ} (c : EtaleChart p U m) (hU : (U : Set X).Nonempty) :
     ((m : ℕ∞) : WithBot ℕ∞) ≤ topologicalKrullDim ↥X := by
@@ -77,7 +77,7 @@ theorem le_topologicalKrullDim_of_etaleChart {k : Type u} [Field k] {X : Scheme.
     _ ≤ topologicalKrullDim ↥X :=
         ringKrullDim_stalk_le_topologicalKrullDim X ((V.ι ≫ U.ι).base y)
 
-theorem ringKrullDim_stalk_eq_of_isBlowupAlongIdealSheaf_of_notMem {X X₁ : Scheme.{u}} (π : X₁ ⟶ X)
+private theorem ringKrullDim_stalk_eq_of_isBlowupAlongIdealSheaf_of_notMem {X X₁ : Scheme.{u}} (π : X₁ ⟶ X)
     (Z : X.IdealSheafData) (hπ : Blowup.IsBlowupAlongIdealSheaf π Z) (x₁ : X₁) (hx₁ : π.base x₁ ∉ Z.support) :
     ringKrullDim (X₁.presheaf.stalk x₁) = ringKrullDim (X.presheaf.stalk (π.base x₁)) := by
   obtain ⟨W, hWeq⟩ : ∃ W : X.Opens, (W : Set X) = (Z.support : Set X)ᶜ :=
@@ -101,7 +101,7 @@ theorem ringKrullDim_stalk_eq_of_isBlowupAlongIdealSheaf_of_notMem {X X₁ : Sch
   rw [morphismRestrict_ι] at e2
   exact e1.symm.trans e2
 
-theorem topologicalKrullDim_le_of_blowup_strictNormalCrossings {k : Type u} [Field k] {X X₁ : Scheme.{u}}
+private theorem topologicalKrullDim_le_of_blowup_strictNormalCrossings {k : Type u} [Field k] {X X₁ : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.LocallyOfFiniteType p]
     (π : X₁ ⟶ X) (Z : X.IdealSheafData) (E : List X.IdealSheafData)
     (hZE : HasStrictNormalCrossingsWith p Z E) (hπ : Blowup.IsBlowupAlongIdealSheaf π Z) :

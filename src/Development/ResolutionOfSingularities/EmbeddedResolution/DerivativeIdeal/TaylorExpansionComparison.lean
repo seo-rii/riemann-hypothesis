@@ -90,7 +90,7 @@ theorem truncatedSeries_of_deriv_deriv_eq_zero (σ : R →+* S) (D : Derivation 
   rw [TaylorExpansion.truncatedSeries_apply, ← hsum]
   simp [Finset.sum_range_succ]
 
-theorem truncatedSeries_mem_map {A R B : Type*} [CommRing A] [CommRing R] [CommRing B] [Algebra A R]
+private theorem truncatedSeries_mem_map {A R B : Type*} [CommRing A] [CommRing R] [CommRing B] [Algebra A R]
     [Algebra ℚ B] (φ : R →+* B) (D : Derivation A R R) (b : R) (J : Ideal R)
     (hstab : ∀ (j : ℕ) (g : R), g ∈ J → b ^ j * (⇑D)^[j] g ∈ J)
     (N : ℕ) (g : R) (hg : g ∈ J) :
@@ -255,7 +255,7 @@ private theorem sub_mem_pow_succ_of_sub_mem_pow (P : Type*) {R B : Type*} [CommR
     derivation_apply_eq_zero_of_formallyUnramified d x
   exact Ideal.Quotient.eq_zero_iff_mem.mp hdx
 
-theorem truncatedSeries_sub_mem_maximalIdeal_pow (P : Type*) [CommRing P] {A R B : Type*}
+private theorem truncatedSeries_sub_mem_maximalIdeal_pow (P : Type*) [CommRing P] {A R B : Type*}
     [CommRing A] [CommRing R] [CommRing B] [Algebra P R] [Algebra A R]
     [Algebra.FormallyUnramified P R] [IsLocalRing B] [Algebra ℚ B]
     (φ φ' : R →+* B) (D : Derivation A R R) (β : B)
@@ -307,7 +307,7 @@ theorem truncatedSeries_sub_mem_maximalIdeal_pow (P : Type*) [CommRing P] {A R B
             (ih hk1' (by omega)) x
   exact key N hN le_rfl f
 
-theorem sub_mem_span_sup_maximalIdeal_pow (P : Type*) [CommRing P] {A R B : Type*}
+private theorem sub_mem_span_sup_maximalIdeal_pow (P : Type*) [CommRing P] {A R B : Type*}
     [CommRing A] [CommRing R] [CommRing B] [Algebra P R] [Algebra A R]
     [Algebra.FormallyUnramified P R] [IsLocalRing B] [Algebra ℚ B]
     (φ φ' : R →+* B) (D : Derivation A R R) (β : B)
@@ -326,7 +326,7 @@ theorem sub_mem_span_sup_maximalIdeal_pow (P : Type*) [CommRing P] {A R B : Type
   rw [hEq]
   exact Submodule.sub_mem _ (Submodule.mem_sup_right h2) (Submodule.mem_sup_left h1)
 
-theorem sub_mem_iInf_span_sup_maximalIdeal_pow (P : Type*) [CommRing P] {A R B : Type*}
+private theorem sub_mem_iInf_span_sup_maximalIdeal_pow (P : Type*) [CommRing P] {A R B : Type*}
     [CommRing A] [CommRing R] [CommRing B] [Algebra P R] [Algebra A R]
     [Algebra.FormallyUnramified P R] [IsLocalRing B] [Algebra ℚ B]
     (φ φ' : R →+* B) (D : Derivation A R R) (β : B)
@@ -395,7 +395,7 @@ private theorem mem_of_forall_mem_sup_maximalIdeal_pow {B : Type*} [CommRing B] 
   rw [hbot, Ideal.mem_bot] at hfin
   exact Ideal.Quotient.eq_zero_iff_mem.1 hfin
 
-theorem sub_mem_span_singleton_of_isTaylorExpansionOn (P : Type*) [CommRing P] {A R B : Type*}
+private theorem sub_mem_span_singleton_of_isTaylorExpansionOn (P : Type*) [CommRing P] {A R B : Type*}
     [CommRing A] [CommRing R] [CommRing B] [Algebra P R] [Algebra A R]
     [Algebra.FormallyUnramified P R] [IsLocalRing B] [IsNoetherianRing B] [Algebra ℚ B]
     (φ φ' : R →+* B) (D : Derivation A R R) (β : B)

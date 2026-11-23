@@ -14,7 +14,7 @@ open IsLocalRing
 def multiIndicesOfDegree (h r : ℕ) : Finset (Fin h → ℕ) :=
   (Fintype.piFinset fun _ : Fin h => Finset.range (r + 1)).filter fun β => ∑ i, β i = r
 
-theorem mem_multiIndicesOfDegree {h r : ℕ} (β : Fin h → ℕ) :
+private theorem mem_multiIndicesOfDegree {h r : ℕ} (β : Fin h → ℕ) :
     β ∈ multiIndicesOfDegree h r ↔ ∑ i, β i = r := by
   simp only [multiIndicesOfDegree, Finset.mem_filter, Fintype.mem_piFinset, Finset.mem_range]
   constructor
@@ -63,7 +63,7 @@ private theorem mem_maximalIdeal_pow_succ_of_multiIndexDeriv_mem {k R : Type*} [
     rw [hx] at hres
     exact hres
 
-theorem mem_maximalIdeal_pow_succ_iff_multiIndexDeriv_mem {k R : Type*} [CommRing k] [CommRing R]
+private theorem mem_maximalIdeal_pow_succ_iff_multiIndexDeriv_mem {k R : Type*} [CommRing k] [CommRing R]
     [IsLocalRing R] [Algebra k R] {h : ℕ} (x : Fin h → R) (D : Fin h → Derivation k R R)
     (hx : Ideal.span (Set.range x) = IsLocalRing.maximalIdeal R)
     (hD : ∀ i j, D i (x j) = if i = j then 1 else 0)

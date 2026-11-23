@@ -244,7 +244,7 @@ theorem isSmoothDivisor_top (p : X ⟶ Spec (CommRingCat.of k))
   obtain ⟨U, m, hxU, hU, ⟨c⟩⟩ := exists_etaleChart p x
   exact ⟨U, hxU, m, c, Or.inl (Scheme.IdealSheafData.comap_top U.ι)⟩
 
-theorem inStrictNormalCrossingPositionAt_of_filterNeTop_eq (p : X ⟶ Spec (CommRingCat.of k))
+private theorem inStrictNormalCrossingPositionAt_of_filterNeTop_eq (p : X ⟶ Spec (CommRingCat.of k))
     (E E' : List X.IdealSheafData) (h : filterNeTop E = filterNeTop E') (x : X)
     (hE : InStrictNormalCrossingPositionAt p E x) : InStrictNormalCrossingPositionAt p E' x := by
   obtain ⟨U, hxU, m, c, a, hinj, hnone, hsome⟩ := hE.exists_etaleChart

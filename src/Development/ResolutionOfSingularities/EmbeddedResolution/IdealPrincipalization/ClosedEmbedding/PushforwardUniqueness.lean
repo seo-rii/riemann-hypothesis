@@ -78,7 +78,7 @@ private theorem comap_center_eq_of_sequenceOfBlowupsPushforward {S X : Scheme.{u
 
 namespace SequenceOfBlowupsPushforward
 
-theorem nonempty_of_isPushforward {S X : Scheme.{u}} (j : S ⟶ X) [IsClosedImmersion j]
+private theorem nonempty_of_isPushforward {S X : Scheme.{u}} (j : S ⟶ X) [IsClosedImmersion j]
     {BS : SequenceOfBlowups S} {B : SequenceOfBlowups X} (h : IsPushforwardBlowupSeq j BS B) :
     Nonempty (SequenceOfBlowupsPushforward j BS B) := by
   obtain ⟨hlen, σ, hci, h0, hstep, hcent, hker⟩ := h
@@ -89,7 +89,7 @@ theorem nonempty_of_isPushforward {S X : Scheme.{u}} (j : S ⟶ X) [IsClosedImme
   · intro i hi
     exact hcent i (by omega)
 
-theorem length_eq_length {S X : Scheme.{u}} {j : S ⟶ X}
+private theorem length_eq_length {S X : Scheme.{u}} {j : S ⟶ X}
     {BS : SequenceOfBlowups S} {B B' : SequenceOfBlowups X}
     (d : SequenceOfBlowupsPushforward j BS B) (d' : SequenceOfBlowupsPushforward j BS B') :
     B.length = B'.length :=

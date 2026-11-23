@@ -131,7 +131,7 @@ private theorem exists_affineChart_isStandardSmoothOfRelativeDimension {X X' : S
   exact ⟨X.basicOpen s, X'.basicOpen t, hU.basicOpen s, hB₁aff.basicOpen t, hsA₀, htB₀, hyt,
     hBle, isStandardSmoothOfRelativeDimension_appLE_basicOpen_source φ r hB₁aff hB₁le hstd₁ t hBle⟩
 
-theorem smoothOfRelativeDimension_resLE {X X' : Scheme.{u}} (φ : X' ⟶ X) (r : ℕ)
+private theorem smoothOfRelativeDimension_resLE {X X' : Scheme.{u}} (φ : X' ⟶ X) (r : ℕ)
     [AlgebraicGeometry.SmoothOfRelativeDimension r φ] (U₀ : X.Opens) (V₀ : X'.Opens)
     (h : V₀ ≤ φ ⁻¹ᵁ U₀) :
     AlgebraicGeometry.SmoothOfRelativeDimension r (φ.resLE U₀ V₀ h) := by

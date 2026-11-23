@@ -185,7 +185,7 @@ private theorem map_comp_appLE {X' Y' : Scheme.{u}} (f : X' ⟶ Y') {U₁ U₂ :
     Y'.presheaf.map (homOfLE e).op ≫ f.appLE U₁ V h = f.appLE U₂ V h' :=
   Scheme.Hom.map_appLE f h (homOfLE e).op
 
-theorem _root_.FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor.comap_opensι {F : Y.IdealSheafData} (hF : FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor F)
+private theorem _root_.FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor.comap_opensι {F : Y.IdealSheafData} (hF : FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor F)
     (U : Y.Opens) : FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor (F.comap U.ι) := by
   intro x
   obtain ⟨W, t, hyW, ht, hFW⟩ := hF (U.ι.base x)
@@ -459,7 +459,7 @@ theorem _root_.FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor.ex
     ∃ J : Y.IdealSheafData, F * J = I' :=
   ⟨EmbeddedResolution.idealSheafColon I' F, hF.mul_idealSheafColon hI⟩
 
-theorem _root_.FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor.existsUnique_mul_eq [IsLocallyNoetherian Y]
+private theorem _root_.FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor.existsUnique_mul_eq [IsLocallyNoetherian Y]
     {F I' : Y.IdealSheafData} (hF : FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor F) (hI : I' ≤ F) :
     ∃! J : Y.IdealSheafData, F * J = I' := by
   refine ⟨EmbeddedResolution.idealSheafColon I' F, hF.mul_idealSheafColon hI, ?_⟩
@@ -474,7 +474,7 @@ theorem comap_le_exceptionalIdeal_pow (π : X₁ ⟶ X) {Z I : X.IdealSheafData}
   apply AlgebraicGeometry.Scheme.IdealSheafData.comap_mono
   exact hI
 
-theorem existsUnique_pow_mul_eq_comap [IsLocallyNoetherian X₁] (π : X₁ ⟶ X)
+private theorem existsUnique_pow_mul_eq_comap [IsLocallyNoetherian X₁] (π : X₁ ⟶ X)
     (Z I : X.IdealSheafData) (n : ℕ) (hZ : Blowup.IsLocallyGeneratedByNonZeroDivisor (Blowup.exceptionalIdeal π Z))
     (hI : I ≤ Z ^ n) :
     ∃! J : X₁.IdealSheafData, Blowup.exceptionalIdeal π Z ^ n * J = I.comap π :=

@@ -14,7 +14,7 @@ noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
-theorem inStrictNormalCrossingPositionAt_nil {X : Scheme.{u}} {k : Type u} [Field k]
+private theorem inStrictNormalCrossingPositionAt_nil {X : Scheme.{u}} {k : Type u} [Field k]
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] (x : X) :
     InStrictNormalCrossingPositionAt p ([] : List X.IdealSheafData) x := by
   obtain ⟨U, m, hxU, _, hc⟩ := exists_etaleChart p x

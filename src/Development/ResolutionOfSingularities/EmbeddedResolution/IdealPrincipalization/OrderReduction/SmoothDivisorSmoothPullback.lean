@@ -50,7 +50,7 @@ private theorem restrictIdeal_comap_le_of_restrictIdeal_le {P Y : Scheme.{u}} (g
     restrictIdeal_comap_eq_comap_restrictIdeal g J hf]
   exact Scheme.IdealSheafData.comap_mono _ hle
 
-theorem IsMaxContactHypersurface.isSmoothDivisor {k : Type u} [Field k] [CharZero k]
+private theorem IsMaxContactHypersurface.isSmoothDivisor {k : Type u} [Field k] [CharZero k]
     {P : Scheme.{u}} {p : P ⟶ Spec (CommRingCat.of k)} [AlgebraicGeometry.Smooth p]
     [AlgebraicGeometry.LocallyOfFiniteType p] {A : P.IdealSheafData} {μ : ℕ}
     {H : P.IdealSheafData} (h : IsMaxContactHypersurface k p A μ H) :
@@ -63,7 +63,7 @@ theorem IsMaxContactHypersurface.isSmoothDivisor {k : Type u} [Field k] [CharZer
     exact ⟨U', hxU', m, c', Or.inl (restrictIdeal_eq_top_of_le H hU'U htop)⟩
   · exact ⟨U, hxU, n, c, Or.inr ⟨j, hHU⟩⟩
 
-theorem IsMaxContactHypersurface.comap_of_forall_etaleChart_coordIdeal {k : Type u} [Field k] [CharZero k]
+private theorem IsMaxContactHypersurface.comap_of_forall_etaleChart_coordIdeal {k : Type u} [Field k] [CharZero k]
     {P Y : Scheme.{u}} {p : P ⟶ Spec (CommRingCat.of k)} [AlgebraicGeometry.Smooth p]
     [AlgebraicGeometry.LocallyOfFiniteType p] (g : Y ⟶ P) [AlgebraicGeometry.Smooth g]
     [AlgebraicGeometry.LocallyOfFiniteType (g ≫ p)] {A : P.IdealSheafData} {μ : ℕ}
@@ -113,7 +113,7 @@ theorem IsMaxContactHypersurface.comap_of_forall_etaleChart_coordIdeal {k : Type
       intro z hzV
       exact hVW hzV
 
-theorem IsMaxContactHypersurface.comap_of_isSmoothDivisorStableUnderSmoothPullback {k : Type u} [Field k]
+private theorem IsMaxContactHypersurface.comap_of_isSmoothDivisorStableUnderSmoothPullback {k : Type u} [Field k]
     [CharZero k] {P Y : Scheme.{u}} {p : P ⟶ Spec (CommRingCat.of k)}
     [AlgebraicGeometry.Smooth p] [AlgebraicGeometry.LocallyOfFiniteType p] (g : Y ⟶ P)
     [AlgebraicGeometry.Smooth g] [AlgebraicGeometry.LocallyOfFiniteType (g ≫ p)]

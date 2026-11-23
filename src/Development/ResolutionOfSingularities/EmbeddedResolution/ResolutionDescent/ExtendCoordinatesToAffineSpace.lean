@@ -94,7 +94,7 @@ theorem specToAffineSpaceExtendCoords_comp_projLeft (k : Type u) [Field k] (A : 
     rw [Scheme.Hom.comp_appTop, CommRingCat.comp_apply, projLeft_appTop_coord,
       specToAffineSpaceExtendCoords_appTop_coord_inl]
 
-theorem specToAffineSpaceExtendCoords_appTop_surjective (k : Type u) [Field k] (A : Scheme.{u})
+private theorem specToAffineSpaceExtendCoords_appTop_surjective (k : Type u) [Field k] (A : Scheme.{u})
     [AlgebraicGeometry.IsAffine A] (pA : A ⟶ Spec (CommRingCat.of k)) (M : ℕ)
     (e : A ⟶ affineSpaceIndexedBy k (ULift.{u} (Fin M)))
     [AlgebraicGeometry.IsClosedImmersion e] {B' : CommRingCat.{u}}

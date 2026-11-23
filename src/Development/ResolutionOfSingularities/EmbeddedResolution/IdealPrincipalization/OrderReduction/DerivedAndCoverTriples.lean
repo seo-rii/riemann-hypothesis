@@ -36,7 +36,7 @@ noncomputable def chosenCoverData (T : MarkedIdealWithBoundary.{u}) (hv : T.IsAd
     MaxContactReduction.FiniteOpenCoverWithIdeals T :=
   MaxContactReduction.maxContactCover T hv.locallyOfFiniteType (balancedTunedIdeal T hv) (tunedMult T)
 
-theorem isMaxContactCover_maxContactCover (T : MarkedIdealWithBoundary.{u})
+private theorem isMaxContactCover_maxContactCover (T : MarkedIdealWithBoundary.{u})
     (hft : LocallyOfFiniteType T.structMap) (W : T.scheme.IdealSheafData) (μ : ℕ)
     (h : ∃ D : MaxContactReduction.FiniteOpenCoverWithIdeals T, MaxContactReduction.IsMaxContactCover T D hft W μ) :
     MaxContactReduction.IsMaxContactCover T (MaxContactReduction.maxContactCover T hft W μ) hft W μ := by
@@ -183,7 +183,7 @@ section
 variable {k : Type u} [Field k] {X : Scheme.{u}} {p : X ⟶ Spec (CommRingCat.of k)}
   {I : X.IdealSheafData} {m : ℕ} {E : List X.IdealSheafData}
 
-theorem asMarkedData_eq_some_of_isMarked (s : MarkedBlowupSequenceData p I m E) (d : BlowupSequenceData (s.obj s.length))
+private theorem asMarkedData_eq_some_of_isMarked (s : MarkedBlowupSequenceData p I m E) (d : BlowupSequenceData (s.obj s.length))
     (h : d.IsMarked (s.proj s.length ≫ p) (s.ideal s.length) m (s.boundary s.length)) :
     MaxContactReduction.asMarkedData s d =
       some (d.toMarkedBlowupSequenceData (s.proj s.length ≫ p) (s.ideal s.length) m (s.boundary s.length) h) :=

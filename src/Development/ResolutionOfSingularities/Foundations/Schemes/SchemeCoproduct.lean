@@ -86,7 +86,7 @@ private theorem exists_sigmaι_base_eq {κ : Type u} (Y : κ → Scheme.{u}) [Ha
   obtain ⟨i, y, hy⟩ := Set.mem_iUnion.mp hmem2
   exact ⟨i, y, hy⟩
 
-theorem isClosed_range_sigmaι (j : ι) : IsClosed (Set.range ⇑(Sigma.ι X j).base) := by
+private theorem isClosed_range_sigmaι (j : ι) : IsClosed (Set.range ⇑(Sigma.ι X j).base) := by
   rw [← isOpen_compl_iff, isOpen_iff_forall_mem_open]
   intro x hx
   rw [Set.mem_compl_iff] at hx

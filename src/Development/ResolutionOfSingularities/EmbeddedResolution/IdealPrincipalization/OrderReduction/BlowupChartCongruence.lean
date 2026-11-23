@@ -69,7 +69,7 @@ def eqModIdealSubring (f g : B →+* A) (J : Ideal A) : Subring B where
   neg_mem' := neg_mem_eqModIdealSet f g J
   mul_mem' := mul_mem_eqModIdealSet f g J
 
-theorem sub_mem_ideal_of_subring_closure_eq_top (f g : B →+* A) (J : Ideal A) (S : Set B)
+private theorem sub_mem_ideal_of_subring_closure_eq_top (f g : B →+* A) (J : Ideal A) (S : Set B)
     (hS : Subring.closure S = ⊤) (hmem : ∀ b ∈ S, f b - g b ∈ J) (b : B) :
     f b - g b ∈ J := by
   have hsub : Subring.closure S ≤ eqModIdealSubring f g J :=
@@ -173,7 +173,7 @@ private theorem exists_mem_closure_chartRingHom_eq_mul_pow (I : Ideal R) (a : I)
       rw [map_add (f := _), hx, hy]
       exact mul_add_mul_eq_add_mul wx wy _
 
-theorem closure_chartRingHom_union_chartFraction_eq_top (I : Ideal R) (a : I) :
+private theorem closure_chartRingHom_union_chartFraction_eq_top (I : Ideal R) (a : I) :
     Subring.closure
         (Set.range ⇑(Blowup.chartRingHom I a) ∪ Set.range (Blowup.chartFraction I a)) = ⊤ := by
   rw [Subring.eq_top_iff']
@@ -195,7 +195,7 @@ theorem closure_chartRingHom_union_chartFraction_eq_top (I : Ideal R) (a : I) :
   rw [hzeq]
   exact hw
 
-theorem chartFraction_sub_mem_of_congr {A : Type u} [CommRing A] (I : Ideal R) (a : I)
+private theorem chartFraction_sub_mem_of_congr {A : Type u} [CommRing A] (I : Ideal R) (a : I)
     (φ φ' : HomogeneousLocalization.Away (Blowup.reesGrading I) (Blowup.reesGenerator I a) →+* A)
     (σ σ' : R →+* A) (𝔟 : Ideal A)
     (hφ : ∀ r : R, φ (Blowup.chartRingHom I a r) = σ r)
@@ -270,7 +270,7 @@ private theorem appLE_congr_hom {X Y : Scheme.{u}} {f g : X ⟶ Y} (hfg : f = g)
   subst hfg
   rfl
 
-theorem sectionsRingHom_sub_mem_ideal {A : Type u} [CommRing A] {W : Scheme.{u}}
+private theorem sectionsRingHom_sub_mem_ideal {A : Type u} [CommRing A] {W : Scheme.{u}}
     (ρ ρ' : W ⟶ Spec (CommRingCat.of A)) (𝔞 : W.IdealSheafData)
     (hagree : 𝔞.subschemeι ≫ ρ = 𝔞.subschemeι ≫ ρ')
     (V : W.affineOpens) (r : A) :
@@ -333,7 +333,7 @@ private theorem appTop_lift_affineBlowupChart_apply (I : Ideal R) {W : Scheme.{u
   rw [hsec, ← Blowup.chartSectionsRingHom_apply] at happ
   exact happ
 
-theorem comp_eq_of_chartSectionsRingHom_sub_mem (I : Ideal R) {W : Scheme.{u}}
+private theorem comp_eq_of_chartSectionsRingHom_sub_mem (I : Ideal R) {W : Scheme.{u}}
     (h h' : W ⟶ Blowup.affineBlowup I) (a : I) (𝔟 : W.IdealSheafData) (V : W.affineOpens)
     (hV : (V : W.Opens) ≤ (Opens.map h.base).obj
       ((Scheme.Hom.opensFunctor (Blowup.affineBlowupChart I a)).obj ⊤))
@@ -469,7 +469,7 @@ private theorem chartSectionsRingHom_sub_mem (I : Ideal R) {W : Scheme.{u}}
       (Blowup.chartSectionsRingHom_chartRingHom I h' a (V : W.Opens) hV')
       hcongr hnzd u hu b0
 
-theorem comp_eq_on_chart_of_mul_eq_of_agree (I : Ideal R) {W : Scheme.{u}}
+private theorem comp_eq_on_chart_of_mul_eq_of_agree (I : Ideal R) {W : Scheme.{u}}
     (h h' : W ⟶ Blowup.affineBlowup I) (𝔞 𝔟₁ : W.IdealSheafData) (a : I) (V : W.affineOpens)
     (hagree : 𝔞.subschemeι ≫ (h ≫ Blowup.AffineBlowup.toSpec I)
       = 𝔞.subschemeι ≫ (h' ≫ Blowup.AffineBlowup.toSpec I))
@@ -496,7 +496,7 @@ theorem comp_eq_on_chart_of_mul_eq_of_agree (I : Ideal R) {W : Scheme.{u}}
   exact sectionsRingHom_sub_mem_span_mul_of_agree I (h ≫ Blowup.AffineBlowup.toSpec I) (h' ≫ Blowup.AffineBlowup.toSpec I) 𝔞 𝔟₁ V
     hagree hfac (Blowup.sectionsRingHom (h ≫ Blowup.AffineBlowup.toSpec I) (V : W.Opens) (a : R)) hspan r
 
-theorem exists_common_chart_affineOpen (I : Ideal R) {W : Scheme.{u}}
+private theorem exists_common_chart_affineOpen (I : Ideal R) {W : Scheme.{u}}
     (h h' : W ⟶ Blowup.affineBlowup I) (𝔞 𝔟₁ : W.IdealSheafData)
     (hagree : 𝔞.subschemeι ≫ (h ≫ Blowup.AffineBlowup.toSpec I)
       = 𝔞.subschemeι ≫ (h' ≫ Blowup.AffineBlowup.toSpec I))

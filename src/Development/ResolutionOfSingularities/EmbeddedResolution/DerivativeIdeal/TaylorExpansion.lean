@@ -75,7 +75,7 @@ private theorem iterate_deriv_mul_eq_sum_nsmul (D : Derivation A R R) (n : ℕ) 
             (n + 1).choose i • ((⇑D)^[i] f * (⇑D)^[n + 1 - i] g) := by
             rw [e1, e2]; ring
 
-theorem iterate_deriv_mul (D : Derivation A R R) (n : ℕ) (f g : R) :
+private theorem iterate_deriv_mul (D : Derivation A R R) (n : ℕ) (f g : R) :
     (⇑D)^[n] (f * g) =
       ∑ i ∈ Finset.range (n + 1), (n.choose i : R) * ((⇑D)^[i] f * (⇑D)^[n - i] g) := by
   rw [iterate_deriv_mul_eq_sum_nsmul D n f g]
@@ -150,7 +150,7 @@ private theorem coeff_eq {A' R' S' : Type*} [CommRing A'] [CommRing R'] [CommRin
     [Algebra A' R'] [Algebra ℚ S'] (σ : R' →+* S') (D : Derivation A' R' R') (i : ℕ) (f : R') :
     coeff σ D i f = algebraMap ℚ S' ((i.factorial : ℚ)⁻¹) * σ ((⇑D)^[i] f) := rfl
 
-theorem truncatedSeries_mul (σ : R →+* S) (D : Derivation A R R) (β : S) (N : ℕ) (f g : R) :
+private theorem truncatedSeries_mul (σ : R →+* S) (D : Derivation A R R) (β : S) (N : ℕ) (f g : R) :
     truncatedSeries σ D β N (f * g) =
       ∑ j ∈ Finset.range N,
         β ^ j * ∑ i ∈ Finset.range (j + 1),

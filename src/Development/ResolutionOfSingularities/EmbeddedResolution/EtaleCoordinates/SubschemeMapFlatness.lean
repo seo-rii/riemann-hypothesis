@@ -47,7 +47,7 @@ private theorem flat_of_comp_subschemeι_eq_of_iso_pullback {X Y : Scheme.{u}} (
   rw [hq']
   infer_instance
 
-theorem flat_subschemeMapOfComap {X Y : Scheme.{u}} (g : Y ⟶ X)
+private theorem flat_subschemeMapOfComap {X Y : Scheme.{u}} (g : Y ⟶ X)
     [AlgebraicGeometry.Flat g] (Z : X.IdealSheafData) :
     AlgebraicGeometry.Flat (subschemeMapOfComap g Z) := by
   refine flat_of_comp_subschemeι_eq_of_iso_pullback g Z (Scheme.IdealSheafData.comapIso ..) ?_ _
@@ -59,7 +59,7 @@ instance instFlatComapSubschemeMap {X Y : Scheme.{u}} (g : Y ⟶ X)
     AlgebraicGeometry.Flat (subschemeMapOfComap g Z) :=
   flat_subschemeMapOfComap g Z
 
-theorem subschemeMapOfComap_base {X Y : Scheme.{u}} (g : Y ⟶ X) (Z : X.IdealSheafData)
+private theorem subschemeMapOfComap_base {X Y : Scheme.{u}} (g : Y ⟶ X) (Z : X.IdealSheafData)
     (y : (Z.comap g).subscheme) :
     Z.subschemeι.base ((subschemeMapOfComap g Z).base y) =
       g.base ((Z.comap g).subschemeι.base y) := by
@@ -68,14 +68,14 @@ theorem subschemeMapOfComap_base {X Y : Scheme.{u}} (g : Y ⟶ X) (Z : X.IdealSh
       = ((Z.comap g).subschemeι ≫ g).base y := by rw [h]
   simpa using h2
 
-theorem generalizing_subschemeMapOfComap {X Y : Scheme.{u}} (g : Y ⟶ X)
+private theorem generalizing_subschemeMapOfComap {X Y : Scheme.{u}} (g : Y ⟶ X)
     [AlgebraicGeometry.Flat g] (Z : X.IdealSheafData)
     (y : (Z.comap g).subscheme) (x : Z.subscheme)
     (hx : x ⤳ (subschemeMapOfComap g Z).base y) :
     ∃ y' : (Z.comap g).subscheme, y' ⤳ y ∧ (subschemeMapOfComap g Z).base y' = x := by
   exact AlgebraicGeometry.Flat.generalizingMap (subschemeMapOfComap g Z) hx
 
-theorem mem_connectedComponent_of_specializes {α : Type*} [TopologicalSpace α] {x y z : α}
+private theorem mem_connectedComponent_of_specializes {α : Type*} [TopologicalSpace α] {x y z : α}
     (hy : y ∈ connectedComponent x) (h : y ⤳ z) : z ∈ connectedComponent x := by
   have hzy : z ∈ closure ({y} : Set α) := specializes_iff_mem_closure.mp h
   have hpc : _root_.IsPreconnected (closure ({y} : Set α)) :=
@@ -168,7 +168,7 @@ private theorem ideal_le_of_basicOpen_cover {X : Scheme.{u}} (A B : X.IdealSheaf
   obtain ⟨n, hn⟩ := exists_pow_mul_mem_of_ideal_basicOpen_eq A B W f hf s hs
   exact ⟨n, by rwa [smul_eq_mul]⟩
 
-theorem idealSheafData_eq_of_forall_restrictIdeal_eq {X : Scheme.{u}} (I J : X.IdealSheafData)
+private theorem idealSheafData_eq_of_forall_restrictIdeal_eq {X : Scheme.{u}} (I J : X.IdealSheafData)
     (h : ∀ x : X, ∃ U : X.Opens, x ∈ U ∧ restrictIdeal I U = restrictIdeal J U) : I = J := by
   have hloc : ∀ W : X.affineOpens, ∀ x ∈ (W : X.Opens),
       ∃ f : Γ(X, (W : X.Opens)), x ∈ X.basicOpen f ∧
@@ -188,7 +188,7 @@ theorem idealSheafData_eq_of_forall_restrictIdeal_eq {X : Scheme.{u}} (I J : X.I
   obtain ⟨f, hxf, hf⟩ := hloc W x hx
   exact ⟨f, hxf, hf.symm⟩
 
-theorem mem_of_subschemeMapOfComap_apply_mem {X Y : Scheme.{u}} (g : Y ⟶ X) (Z : X.IdealSheafData)
+private theorem mem_of_subschemeMapOfComap_apply_mem {X Y : Scheme.{u}} (g : Y ⟶ X) (Z : X.IdealSheafData)
     (A : Set X) (W : Z.subscheme.Opens) (W' : (Z.comap g).subscheme.Opens)
     (hW : (W : Set Z.subscheme) = {w | connectedComponent w ⊆ ⇑Z.subschemeι.base ⁻¹' A})
     (hW' : (W' : Set (Z.comap g).subscheme) =
@@ -215,7 +215,7 @@ theorem mem_of_subschemeMapOfComap_apply_mem {X Y : Scheme.{u}} (g : Y ⟶ X) (Z
     exact h2
   exact hmem
 
-theorem subschemeMapOfComap_apply_mem_of_mem {X Y : Scheme.{u}} (g : Y ⟶ X)
+private theorem subschemeMapOfComap_apply_mem_of_mem {X Y : Scheme.{u}} (g : Y ⟶ X)
     [AlgebraicGeometry.Flat g] (Z : X.IdealSheafData)
     (A : Set X) (hA : IsClosed A) (W : Z.subscheme.Opens) (W' : (Z.comap g).subscheme.Opens)
     (hW : (W : Set Z.subscheme) = {w | connectedComponent w ⊆ ⇑Z.subschemeι.base ⁻¹' A})

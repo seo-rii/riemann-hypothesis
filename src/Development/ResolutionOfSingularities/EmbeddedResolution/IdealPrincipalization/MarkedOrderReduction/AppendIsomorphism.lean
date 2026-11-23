@@ -78,7 +78,7 @@ private theorem appendObjIso_eq_right_of_pos {X : Scheme.{u}} (s : BlowupSequenc
   exact appendObjIsoRight_congr s t₁ t₂ e (i - s.length) j i (by omega) (by omega) (by omega)
     (by omega) hij hj hjl
 
-theorem append_isomorphic_of_iso {X : Scheme.{u}} (s : BlowupSequenceData X)
+private theorem append_isomorphic_of_iso {X : Scheme.{u}} (s : BlowupSequenceData X)
     (t₁ t₂ : BlowupSequenceData (s.obj s.length)) (hlen : t₁.length = t₂.length)
     (e : ∀ i : ℕ, i ≤ t₁.length → (t₁.obj i ≅ t₂.obj i))
     (hzero : (e 0 (Nat.zero_le _)).hom ≫ t₂.isoZero.hom = t₁.isoZero.hom)

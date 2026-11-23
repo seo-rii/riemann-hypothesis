@@ -31,7 +31,7 @@ private theorem nextNontrivialIndex_le_of_center_eq_top_iff {X' X : Scheme.{u}} 
     · exact Or.inr (by omega)
   · exact Or.inr (by omega)
 
-theorem nextNontrivialIndex_congr {X' X : Scheme.{u}} (t : SequenceOfBlowups X') (s : SequenceOfBlowups X)
+private theorem nextNontrivialIndex_congr {X' X : Scheme.{u}} (t : SequenceOfBlowups X') (s : SequenceOfBlowups X)
     (hlen : t.length = s.length)
     (hcen : ∀ i : ℕ, i < s.length → (t.center i = ⊤ ↔ s.center i = ⊤)) (a : ℕ) :
     t.nextNontrivialIndex a = s.nextNontrivialIndex a :=

@@ -29,7 +29,7 @@ private theorem isAffineHom_pullback_fst {X Y S : Scheme.{u}} (f : X ⟶ S) (g :
   MorphismProperty.of_isPullback (P := @AlgebraicGeometry.IsAffineHom)
     (IsPullback.of_hasPullback f g).flip ‹AlgebraicGeometry.IsAffineHom g›
 
-theorem isAffineHom_pullback_fst_specMap_of_field {k K : Type u} [Field k] [Field K] {X : Scheme.{u}}
+private theorem isAffineHom_pullback_fst_specMap_of_field {k K : Type u} [Field k] [Field K] {X : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) (φ : CommRingCat.of k ⟶ CommRingCat.of K) :
     AlgebraicGeometry.IsAffineHom (pullback.fst p (Spec.map φ)) :=
   @isAffineHom_pullback_fst X _ _ p (Spec.map φ) (isAffineHom_specMap φ)
@@ -101,7 +101,7 @@ end FunctorialResolution.Blowup
 
 namespace TopologicalSpace.NoetherianSpace
 
-theorem finite_range_connectedComponent (Y : Type*) [TopologicalSpace Y] [NoetherianSpace Y] :
+private theorem finite_range_connectedComponent (Y : Type*) [TopologicalSpace Y] [NoetherianSpace Y] :
     (Set.range fun x : Y => connectedComponent x).Finite := by
   classical
   have hfin : (irreducibleComponents Y).Finite :=

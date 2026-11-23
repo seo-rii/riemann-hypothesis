@@ -103,11 +103,11 @@ private theorem exists_isBlowupAlongIdealSheaf_spec_of_commRing (R : Type u) [Co
   rw [← hJ]
   exact isBlowupAlongIdealSheaf_affineBlowup_toSpec J
 
-theorem exists_isBlowupAlongIdealSheaf_spec (R : CommRingCat.{u}) (I : (Spec R).IdealSheafData) :
+private theorem exists_isBlowupAlongIdealSheaf_spec (R : CommRingCat.{u}) (I : (Spec R).IdealSheafData) :
     ∃ (Y : Scheme.{u}) (π : Y ⟶ Spec R), IsBlowupAlongIdealSheaf π I :=
   exists_isBlowupAlongIdealSheaf_spec_of_commRing (R : Type u) I
 
-theorem exists_isBlowupAlongIdealSheaf_of_isAffine (X : Scheme.{u}) [IsAffine X] (I : X.IdealSheafData) :
+private theorem exists_isBlowupAlongIdealSheaf_of_isAffine (X : Scheme.{u}) [IsAffine X] (I : X.IdealSheafData) :
     ∃ (Y : Scheme.{u}) (π : Y ⟶ X), IsBlowupAlongIdealSheaf π I := by
   obtain ⟨Y, π, hπ⟩ := exists_isBlowupAlongIdealSheaf_spec Γ(X, ⊤) (I.comap X.isoSpec.inv)
   refine ⟨Y, π ≫ X.isoSpec.inv, ?_⟩

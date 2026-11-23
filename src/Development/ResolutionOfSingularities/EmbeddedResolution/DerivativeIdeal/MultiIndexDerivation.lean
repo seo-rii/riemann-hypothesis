@@ -261,7 +261,7 @@ private theorem sum_piFinset_succ {M : Type*} [AddCommMonoid M] {m : ℕ}
   · intro β _
     exact congrArg F (fin_cons_self_tail β).symm
 
-theorem multiIndexDeriv_mul {h : ℕ} (D : Fin h → Derivation k R R) (α : Fin h → ℕ) (f g : R) :
+private theorem multiIndexDeriv_mul {h : ℕ} (D : Fin h → Derivation k R R) (α : Fin h → ℕ) (f g : R) :
     multiIndexDeriv D α (f * g) =
       ∑ β ∈ Fintype.piFinset fun i => Finset.range (α i + 1),
         ((∏ i, (α i).choose (β i) : ℕ) : R) * multiIndexDeriv D β f *
@@ -416,7 +416,7 @@ private theorem multiIndexDeriv_add_of_comm_forall :
         hcomm (β 0) (fun i : Fin n => α i.succ)
           (multiIndexDeriv (fun i : Fin n => D i.succ) (fun i : Fin n => β i.succ) x)]
 
-theorem multiIndexDeriv_add {h : ℕ} (D : Fin h → Derivation k R R)
+private theorem multiIndexDeriv_add {h : ℕ} (D : Fin h → Derivation k R R)
     (hD : ∀ i j : Fin h, ∀ x : R, D i (D j x) = D j (D i x)) (α β : Fin h → ℕ) (x : R) :
     multiIndexDeriv D (α + β) x = multiIndexDeriv D α (multiIndexDeriv D β x) :=
   multiIndexDeriv_add_of_comm_forall h D hD α β x

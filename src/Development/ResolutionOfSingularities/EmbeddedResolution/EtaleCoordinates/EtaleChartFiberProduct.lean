@@ -48,7 +48,7 @@ abbrev chartPullbackFst (c₁ c₂ : EtaleChart q V n) : chartPullback c₁ c₂
 abbrev chartPullbackSnd (c₁ c₂ : EtaleChart q V n) : chartPullback c₁ c₂ ⟶ P :=
   pullback.snd c₁.map c₂.map ≫ V.ι
 
-theorem etale_pullback_fst_map (c₁ c₂ : EtaleChart q V n) :
+private theorem etale_pullback_fst_map (c₁ c₂ : EtaleChart q V n) :
     AlgebraicGeometry.Etale (pullback.fst c₁.map c₂.map) := by
   have : AlgebraicGeometry.Etale c₂.map := c₂.isEtale
   infer_instance
@@ -57,7 +57,7 @@ instance instEtalePullbackFstChart (c₁ c₂ : EtaleChart q V n) :
     AlgebraicGeometry.Etale (pullback.fst c₁.map c₂.map) :=
   etale_pullback_fst_map c₁ c₂
 
-theorem etale_pullback_snd_map (c₁ c₂ : EtaleChart q V n) :
+private theorem etale_pullback_snd_map (c₁ c₂ : EtaleChart q V n) :
     AlgebraicGeometry.Etale (pullback.snd c₁.map c₂.map) := by
   have h1 : AlgebraicGeometry.Etale c₁.map := c₁.isEtale
   have h2 : AlgebraicGeometry.Etale c₂.map := c₂.isEtale
@@ -70,7 +70,7 @@ private theorem etale_comp {A B C : Scheme.{u}} (f : A ⟶ B) (g : B ⟶ C)
   have := hg
   infer_instance
 
-theorem etale_chartPullbackFst (c₁ c₂ : EtaleChart q V n) :
+private theorem etale_chartPullbackFst (c₁ c₂ : EtaleChart q V n) :
     AlgebraicGeometry.Etale (chartPullbackFst c₁ c₂) := by
   have h₁ : AlgebraicGeometry.Etale (pullback.fst c₁.map c₂.map) :=
     etale_pullback_fst_map c₁ c₂
@@ -82,7 +82,7 @@ instance instEtaleChartPairFst (c₁ c₂ : EtaleChart q V n) :
     AlgebraicGeometry.Etale (chartPullbackFst c₁ c₂) :=
   etale_chartPullbackFst c₁ c₂
 
-theorem etale_chartPullbackSnd (c₁ c₂ : EtaleChart q V n) :
+private theorem etale_chartPullbackSnd (c₁ c₂ : EtaleChart q V n) :
     AlgebraicGeometry.Etale (chartPullbackSnd c₁ c₂) := by
   have h₁ : AlgebraicGeometry.Etale (pullback.snd c₁.map c₂.map) :=
     etale_pullback_snd_map c₁ c₂

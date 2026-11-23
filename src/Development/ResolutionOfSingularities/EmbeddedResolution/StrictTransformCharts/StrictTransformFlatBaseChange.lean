@@ -22,7 +22,7 @@ namespace FunctorialResolution.EmbeddedResolution
 noncomputable def saturationByPowers {A : Type*} [CommRing A] (J : Ideal A) (a : A) : Ideal A :=
   _root_.UpperTheory.Reformulated.B.SaturationByPowers.saturationByPowers J a
 
-theorem mem_saturationByPowers_iff {A : Type*} [CommRing A] (J : Ideal A) (a x : A) :
+private theorem mem_saturationByPowers_iff {A : Type*} [CommRing A] (J : Ideal A) (a x : A) :
     x ∈ saturationByPowers J a ↔ ∃ n : ℕ, a ^ n * x ∈ J := Iff.rfl
 
 private theorem map_saturationByPowers_le {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
@@ -36,7 +36,7 @@ private theorem map_saturationByPowers_le {A B : Type*} [CommRing A] [CommRing B
   have h := Ideal.mem_map_of_mem (algebraMap A B) hn
   rwa [map_mul, map_pow] at h
 
-theorem map_saturationByPowers_of_flat {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
+private theorem map_saturationByPowers_of_flat {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
     [Module.Flat A B] (J : Ideal A) (a : A) :
     (saturationByPowers J a).map (algebraMap A B) =
       saturationByPowers (J.map (algebraMap A B)) (algebraMap A B a) := by
@@ -206,7 +206,7 @@ private theorem ideal_comap_saturation_of_ideal_eq_span_singleton {Y Y' : Scheme
   rw [h1, h2, h5, h3]
   exact map_saturationByPowers_of_flat (T.ideal U) t
 
-theorem comap_saturation_of_flat {Y Y' : Scheme.{u}} (g : Y' ⟶ Y)
+private theorem comap_saturation_of_flat {Y Y' : Scheme.{u}} (g : Y' ⟶ Y)
     [AlgebraicGeometry.Flat g] (F T : Y.IdealSheafData) (hF : Blowup.IsLocallyGeneratedByNonZeroDivisor F)
     [QuasiCompact (saturationι F T)]
     [QuasiCompact (saturationι (F.comap g) (T.comap g))] :
@@ -225,7 +225,7 @@ theorem comap_saturation_of_flat {Y Y' : Scheme.{u}} (g : Y' ⟶ Y)
   · rintro f ⟨U, t, ht, hle⟩
     exact ideal_comap_saturation_of_ideal_eq_span_singleton g F T U (Y'.affineBasicOpen f) hle t ht
 
-theorem comap_strictTransform_of_flat {X X₁ X' X₁' : Scheme.{u}}
+private theorem comap_strictTransform_of_flat {X X₁ X' X₁' : Scheme.{u}}
     (π : X₁ ⟶ X) (g : X' ⟶ X) (π' : X₁' ⟶ X') (g₁ : X₁' ⟶ X₁)
     [AlgebraicGeometry.Flat g]
     (hsq : IsPullback g₁ π' π g)

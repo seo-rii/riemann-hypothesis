@@ -75,7 +75,7 @@ private theorem comp_eq_of_lift_comp_eq {T W Z S S' Q : Scheme.{u}}
     simp only [Category.assoc]
   rw [h1, h2, heq]
 
-theorem nonempty_etaleMaxContactComparison (k : Type u) [Field k] [CharZero k] {P : Scheme.{u}}
+private theorem nonempty_etaleMaxContactComparison (k : Type u) [Field k] [CharZero k] {P : Scheme.{u}}
     (p : P ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p]
     (A : P.IdealSheafData) {μ : ℕ} (hμ : 1 ≤ μ) (hinv : IsMaxContactInvariant k p A μ)
     (N : List P.IdealSheafData) (H₁ H₂ : P.IdealSheafData)

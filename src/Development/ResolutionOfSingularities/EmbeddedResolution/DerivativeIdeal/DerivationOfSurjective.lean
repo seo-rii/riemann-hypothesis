@@ -9,7 +9,7 @@ namespace FunctorialResolution.EmbeddedResolution
 variable {k S T : Type*} [CommRing k] [CommRing S] [CommRing T]
   [Algebra k S] [Algebra k T]
 
-theorem map_derivation_eq_of_map_eq (f : S →ₐ[k] T) (D : Derivation k S S)
+private theorem map_derivation_eq_of_map_eq (f : S →ₐ[k] T) (D : Derivation k S S)
     (hD : ∀ s ∈ RingHom.ker f.toRingHom, D s ∈ RingHom.ker f.toRingHom)
     {s s' : S} (h : f s = f s') : f (D s) = f (D s') := by
   have hker : s - s' ∈ RingHom.ker f.toRingHom := by
@@ -25,7 +25,7 @@ noncomputable def derivationOfSurjectiveFun (f : S →ₐ[k] T) (hf : Function.S
     (D : Derivation k S S) : T → T :=
   fun t => f (D (Function.surjInv hf t))
 
-theorem derivationOfSurjectiveFun_apply (f : S →ₐ[k] T) (hf : Function.Surjective f)
+private theorem derivationOfSurjectiveFun_apply (f : S →ₐ[k] T) (hf : Function.Surjective f)
     (D : Derivation k S S)
     (hD : ∀ s ∈ RingHom.ker f.toRingHom, D s ∈ RingHom.ker f.toRingHom) (s : S) :
     derivationOfSurjectiveFun f hf D (f s) = f (D s) := by

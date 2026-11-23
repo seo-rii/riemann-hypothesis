@@ -126,7 +126,7 @@ def AllLevelsSmooth : Prop :=
 def BoundaryInStrictNormalCrossingPosition : Prop :=
   ∀ i, i ≤ S.ambientLength → InStrictNormalCrossingPosition (S.schemeAtToSpec i) (S.boundary i)
 
-theorem inl_comp_blowupSequence_projectionToBase (h : S.TransitionsAreBlowups) (j : ℕ) :
+private theorem inl_comp_blowupSequence_projectionToBase (h : S.TransitionsAreBlowups) (j : ℕ) :
     (coprod.inl : S.strictTransform j ⟶ S.totalSpace j) ≫ (S.blowupSequence h).projectionToBase j =
       S.strictTransformToZero j ≫ S.strictTransformZeroToBase := by
   induction j with

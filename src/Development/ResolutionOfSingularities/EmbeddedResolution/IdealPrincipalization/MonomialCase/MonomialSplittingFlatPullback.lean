@@ -25,11 +25,11 @@ private theorem comap_finset_prod {ι : Type*} (s : Finset ι) (F : ι → X.Ide
   | cons a s ha ih =>
       rw [Finset.prod_cons, Finset.prod_cons, Scheme.IdealSheafData.comap_mul, ih]
 
-theorem comap_comap_ι (h : Y ⟶ X) (J : X.IdealSheafData) (U : X.Opens) :
+private theorem comap_comap_ι (h : Y ⟶ X) (J : X.IdealSheafData) (U : X.Opens) :
     (J.comap h).comap (h ⁻¹ᵁ U).ι = (J.comap U.ι).comap (h ∣_ U) := by
   rw [← Scheme.IdealSheafData.comap_comp, ← Scheme.IdealSheafData.comap_comp, morphismRestrict_ι]
 
-theorem support_comap_subset_biUnion (h : Y ⟶ X) (E : List X.IdealSheafData)
+private theorem support_comap_subset_biUnion (h : Y ⟶ X) (E : List X.IdealSheafData)
     (M : X.IdealSheafData) (hM : (M.support : Set X) ⊆ ⋃ D ∈ E, (D.support : Set X)) :
     ((M.comap h).support : Set Y) ⊆
       ⋃ D ∈ E.map (fun D : X.IdealSheafData => D.comap h), (D.support : Set Y) := by
@@ -39,7 +39,7 @@ theorem support_comap_subset_biUnion (h : Y ⟶ X) (E : List X.IdealSheafData)
   refine Set.mem_iUnion₂.mpr ⟨D.comap h, List.mem_map.mpr ⟨D, hD, rfl⟩, ?_⟩
   exact Scheme.IdealSheafData.mem_support_comap.mpr hyD
 
-theorem IsMonomialIn.comap_of_isMonomialIn {E : List X.IdealSheafData} {M : X.IdealSheafData}
+private theorem IsMonomialIn.comap_of_isMonomialIn {E : List X.IdealSheafData} {M : X.IdealSheafData}
     (hM : IsMonomialIn E M) (h : Y ⟶ X) :
     IsMonomialIn (E.map (fun D : X.IdealSheafData => D.comap h)) (M.comap h) := by
   intro y
@@ -66,7 +66,7 @@ theorem IsMonomialIn.comap_of_isMonomialIn {E : List X.IdealSheafData} {M : X.Id
   intro i _
   rw [hget i]
 
-theorem irreducibleComponents_not_subset_support_comap (h : Y ⟶ X) (hg : GeneralizingMap (fun y : Y => h.base y))
+private theorem irreducibleComponents_not_subset_support_comap (h : Y ⟶ X) (hg : GeneralizingMap (fun y : Y => h.base y))
     (E : List X.IdealSheafData) (N : X.IdealSheafData)
     (hN : ∀ D ∈ E, ∀ C : Set X, IsIrreducible C → C ⊆ (D.support : Set X) →
       (∀ C' : Set X, IsIrreducible C' → C' ⊆ (D.support : Set X) → C ⊆ C' → C' ⊆ C) →
@@ -133,7 +133,7 @@ theorem irreducibleComponents_not_subset_support_comap (h : Y ⟶ X) (hg : Gener
   rw [← hη] at hzc
   exact closure_minimal (Set.singleton_subset_iff.mpr hηclos) isClosed_closure hzc
 
-theorem isMonomialSplitting_comap_of_generalizingMap (h : Y ⟶ X)
+private theorem isMonomialSplitting_comap_of_generalizingMap (h : Y ⟶ X)
     (hg : GeneralizingMap (fun y : Y => h.base y)) {E : List X.IdealSheafData}
     {I M N : X.IdealSheafData} (hs : IsMonomialSplitting E I M N) :
     IsMonomialSplitting (E.map (fun D : X.IdealSheafData => D.comap h)) (I.comap h) (M.comap h)
@@ -145,7 +145,7 @@ theorem isMonomialSplitting_comap_of_generalizingMap (h : Y ⟶ X)
     transversal := irreducibleComponents_not_subset_support_comap h hg E N hs.transversal }
   rw [hs.eq_mul, Scheme.IdealSheafData.comap_mul]
 
-theorem generalizingMap_base_of_flat (h : Y ⟶ X) [AlgebraicGeometry.Flat h] :
+private theorem generalizingMap_base_of_flat (h : Y ⟶ X) [AlgebraicGeometry.Flat h] :
     GeneralizingMap (fun y : Y => h.base y) :=
   AlgebraicGeometry.Flat.generalizingMap h
 

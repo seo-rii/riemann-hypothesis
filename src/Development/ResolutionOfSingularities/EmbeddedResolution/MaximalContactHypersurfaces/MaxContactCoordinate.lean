@@ -111,7 +111,7 @@ private theorem one_tmul_ne_zero_of_notMem_maximalIdeal_sq {A : Type*} [CommRing
   rw [h1] at key
   exact (Ideal.toCotangent_eq_zero (IsLocalRing.maximalIdeal A) ⟨a, ha⟩).mp key
 
-theorem linearIndependent_one_tmul_D_of_notMem_maximalIdeal_sq
+private theorem linearIndependent_one_tmul_D_of_notMem_maximalIdeal_sq
     (k : Type*) (A : Type*) [CommRing k] [CommRing A] [Algebra k A] [IsLocalRing A]
     [IsNoetherianRing A] [Algebra.FormallySmooth k A]
     [Module.Free A (KaehlerDifferential k A)] [Module.Finite A (KaehlerDifferential k A)]
@@ -211,13 +211,13 @@ theorem mem_support_maxContactIdeal_of_mem_orderAtLeastLocus (I : X.IdealSheafDa
     rw [h]; exact hx
   exact hx'
 
-theorem orderAt_maxContactIdeal_eq_one (I : X.IdealSheafData) {m : ℕ} (hm : 1 ≤ m) {x : X}
+private theorem orderAt_maxContactIdeal_eq_one (I : X.IdealSheafData) {m : ℕ} (hm : 1 ≤ m) {x : X}
     (hx : orderAt I x = (m : ℕ∞)) :
     orderAt (maxContactIdeal k p I m) x = (1 : ℕ∞) := by
   have h := orderAt_derivIdealSheafIterate_eq_sub k p I x hx (Nat.sub_le m 1)
   rw [maxContactIdeal_eq_derivIdealSheafIterate, h, show m - (m - 1) = 1 from by omega, Nat.cast_one]
 
-theorem stalkIdeal_maxContactIdeal_le_maximalIdeal (I : X.IdealSheafData) {m : ℕ}
+private theorem stalkIdeal_maxContactIdeal_le_maximalIdeal (I : X.IdealSheafData) {m : ℕ}
     (hm : 1 ≤ m) {x : X} (hx : orderAt I x = (m : ℕ∞)) :
     stalkIdeal (maxContactIdeal k p I m) x ≤
       IsLocalRing.maximalIdeal ↑(X.presheaf.stalk x) := by
@@ -227,7 +227,7 @@ theorem stalkIdeal_maxContactIdeal_le_maximalIdeal (I : X.IdealSheafData) {m : �
   rw [pow_one] at h2
   exact h2
 
-theorem exists_section_maxContactIdeal_notMem_maximalIdeal_sq (I : X.IdealSheafData) {m : ℕ}
+private theorem exists_section_maxContactIdeal_notMem_maximalIdeal_sq (I : X.IdealSheafData) {m : ℕ}
     (hm : 1 ≤ m) {x : X} (hx : orderAt I x = (m : ℕ∞)) {U : X.Opens} (hU : IsAffineOpen U)
     (hxU : x ∈ U) :
     ∃ s ∈ (maxContactIdeal k p I m).ideal ⟨U, hU⟩,

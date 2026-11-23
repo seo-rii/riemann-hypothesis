@@ -558,7 +558,7 @@ private theorem exists_restrictIdeal_eq_of_mem_preimage {X X₁ : Scheme.{u}} {k
   exact restrictIdeal_comap_strictTransform_eq_of_blowupChart ((blowupChartOfIsBlowup π c S hπ hZ s hs).restrict V hVle)
     hU hVaff Z H hs hZ a ha has hH D hDd q hq
 
-theorem comap_strictTransform_eq_strictTransform_of_comp_eq {X X₁ : Scheme.{u}} {k : Type u} [Field k]
+private theorem comap_strictTransform_eq_strictTransform_of_comp_eq {X X₁ : Scheme.{u}} {k : Type u} [Field k]
     (p : X ⟶ Spec (CommRingCat.of k)) (π : X₁ ⟶ X) [IsLocallyNoetherian X₁]
     (Z H : X.IdealSheafData) (E : List X.IdealSheafData)
     (hsnc : HasStrictNormalCrossingsWith p Z (H :: E)) (hHZ : H ≤ Z) (hπ : Blowup.IsBlowupAlongIdealSheaf π Z)

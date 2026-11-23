@@ -215,7 +215,7 @@ end
 
 section
 
-theorem formallyEtale_of_isUnit_det_of_eq_coord (k : Type*) [CommRing k] (ι : Type*) [Fintype ι]
+private theorem formallyEtale_of_isUnit_det_of_eq_coord (k : Type*) [CommRing k] (ι : Type*) [Fintype ι]
     [DecidableEq ι] (T : Type*) [CommRing T] [Algebra k T] [Algebra (MvPolynomial ι k) T]
     [IsScalarTower k (MvPolynomial ι k) T] [Algebra.FormallySmooth k T]
     (e : Module.Basis ι T (KaehlerDifferential k T)) (w : ι → T)
@@ -255,7 +255,7 @@ end
 
 section
 
-theorem span_range_eq_span_range_of_eq_mul_isUnit {A : Type*} [CommRing A] {n : ℕ}
+private theorem span_range_eq_span_range_of_eq_mul_isUnit {A : Type*} [CommRing A] {n : ℕ}
     (y z c : Fin n → A) (hc : ∀ i, IsUnit (c i)) (hz : ∀ i, z i = y i * c i) :
     Ideal.span (Set.range z) = Ideal.span (Set.range y) := by
   apply le_antisymm

@@ -39,7 +39,7 @@ private theorem span_singleton_mul_eq_inf {R : Type*} [CommRing R] {a b : R}
     obtain ⟨w, rfl⟩ := Ideal.mem_span_singleton.mp hv
     exact Ideal.mem_span_singleton.mpr ⟨w, by ring⟩
 
-theorem span_singleton_prod_eq_biInf {R : Type*} [CommRing R] {ι : Type*} [DecidableEq ι]
+private theorem span_singleton_prod_eq_biInf {R : Type*} [CommRing R] {ι : Type*} [DecidableEq ι]
     (f : ι → R) (s : Finset ι)
     (hp : ∀ i ∈ s, (Ideal.span ({f i} : Set R)).IsPrime)
     (hdvd : ∀ i ∈ s, ∀ j ∈ s, i ≠ j → f j ∉ Ideal.span ({f i} : Set R)) :
@@ -62,7 +62,7 @@ theorem span_singleton_prod_eq_biInf {R : Type*} [CommRing R] {ι : Type*} [Deci
           hdvd i (Finset.mem_insert_of_mem hi) j (Finset.mem_insert_of_mem hj) hij)
       rw [Finset.prod_insert ha, span_singleton_mul_eq_inf hpa hP, ihu, Finset.iInf_insert]
 
-theorem isRadical_biInf_span_singleton {R : Type*} [CommRing R] {ι : Type*}
+private theorem isRadical_biInf_span_singleton {R : Type*} [CommRing R] {ι : Type*}
     (f : ι → R) (s : Finset ι)
     (hp : ∀ i ∈ s, (Ideal.span ({f i} : Set R)).IsPrime) :
     (⨅ i ∈ s, Ideal.span ({f i} : Set R)).IsRadical := by

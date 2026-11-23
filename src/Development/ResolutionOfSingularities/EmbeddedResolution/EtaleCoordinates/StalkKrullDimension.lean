@@ -104,7 +104,7 @@ theorem topologicalKrullDim_le_of_forall_ringKrullDim_stalk_le (X : Scheme.{u}) 
       ⟨p.length, fun i => q i.rev, fun i => hg Fin.castSucc_lt_succ⟩
   exact le_trans hlen (h (y 0))
 
-theorem ringKrullDim_stalk_le_of_etale {Y W : Scheme.{u}} (f : Y ⟶ W)
+private theorem ringKrullDim_stalk_le_of_etale {Y W : Scheme.{u}} (f : Y ⟶ W)
     [AlgebraicGeometry.Etale f] (y : Y) [IsNoetherianRing (Y.presheaf.stalk y)]
     [_root_.IsRegularLocalRing (W.presheaf.stalk (f.base y))] :
     ringKrullDim (Y.presheaf.stalk y) ≤ ringKrullDim (W.presheaf.stalk (f.base y)) := by
@@ -123,7 +123,7 @@ theorem ringKrullDim_stalk_le_of_etale {Y W : Scheme.{u}} (f : Y ⟶ W)
   exact le_of_eq (FunctorialResolution.EmbeddedResolution.ringKrullDim_eq_of_flat_formallyUnramified
     (W.presheaf.stalk (f.base y)) (Y.presheaf.stalk y))
 
-theorem ringKrullDim_stalk_eq_of_etale {Y W : Scheme.{u}} (f : Y ⟶ W)
+private theorem ringKrullDim_stalk_eq_of_etale {Y W : Scheme.{u}} (f : Y ⟶ W)
     [AlgebraicGeometry.Etale f] (y : Y) [IsNoetherianRing (Y.presheaf.stalk y)]
     [_root_.IsRegularLocalRing (W.presheaf.stalk (f.base y))] :
     ringKrullDim (Y.presheaf.stalk y) = ringKrullDim (W.presheaf.stalk (f.base y)) := by

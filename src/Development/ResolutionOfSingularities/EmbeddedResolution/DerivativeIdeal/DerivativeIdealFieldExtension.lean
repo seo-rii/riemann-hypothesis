@@ -58,7 +58,7 @@ variable (k : Type*) [CommRing k] (L : Type*) [CommRing L] [Algebra k L]
   [IsScalarTower L (MvPolynomial ι L) S'] [Algebra.FormallyEtale (MvPolynomial ι L) S']
   [Algebra k S'] [IsScalarTower k L S']
 
-theorem partialDeriv_algHom_apply (φ : S →ₐ[k] S')
+private theorem partialDeriv_algHom_apply (φ : S →ₐ[k] S')
     (hφ : ∀ i : ι, φ (coord k ι S i) = coord L ι S' i) (i : ι) (f : S) :
     partialDeriv L ι S' i (φ f) = φ (partialDeriv k ι S i f) := by
   let _ : Algebra S S' := φ.toRingHom.toAlgebra
@@ -147,7 +147,7 @@ theorem map_derivIdeal_le [Fintype ι] (φ : S →ₐ[k] S')
     exact apply_mem_of_forall_partialDeriv_mem (ι := ι) (J : Set S)
       (Ideal.comap φ (derivIdeal L (Ideal.map φ J))) key D (show x ∈ (J : Set S) from hx)
 
-theorem partialDeriv_mem_map_derivIdeal (φ : S →ₐ[k] S')
+private theorem partialDeriv_mem_map_derivIdeal (φ : S →ₐ[k] S')
     (hφ : ∀ i : ι, φ (coord k ι S i) = coord L ι S' i) (i : ι) (J : Ideal S)
     {g : S'} (hg : g ∈ Ideal.map φ J) :
     partialDeriv L ι S' i g ∈ Ideal.map φ (derivIdeal k J) := by

@@ -61,7 +61,7 @@ def EtaleChart.coordRingHom (c : EtaleChart p U m) :
     MvPolynomial (ULift.{u} (Fin m)) k →+* Γ(X, U) :=
   (U.topIso.hom.hom.comp c.map.appTop.hom).comp (affineSpaceGlobalSectionsHom k m)
 
-theorem EtaleChart.coordRingHom_def (c : EtaleChart p U m) :
+private theorem EtaleChart.coordRingHom_def (c : EtaleChart p U m) :
     c.coordRingHom = (U.topIso.hom.hom.comp c.map.appTop.hom).comp (affineSpaceGlobalSectionsHom k m) :=
   rfl
 
@@ -104,7 +104,7 @@ private theorem affineSpace_specIso_hom_comp_specMap_C (K : Type u) [Field K] (n
     simp
   rw [← h, Iso.hom_inv_id_assoc]
 
-theorem EtaleChart.coordRingHom_comp_C (c : EtaleChart p U m) :
+private theorem EtaleChart.coordRingHom_comp_C (c : EtaleChart p U m) :
     c.coordRingHom.comp (MvPolynomial.C : k →+* MvPolynomial (ULift.{u} (Fin m)) k) =
       sectionsAlgebraMap k p U := by
   have hC : CommRingCat.ofHom (MvPolynomial.C : k →+* MvPolynomial (ULift.{u} (Fin m)) k) ≫

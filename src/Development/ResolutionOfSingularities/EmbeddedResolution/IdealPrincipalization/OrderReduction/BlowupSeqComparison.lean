@@ -121,14 +121,14 @@ variable {f g : V ⟶ P} {C : SequenceOfBlowups V} {B₁ B₂ : SequenceOfBlowup
   {σ₂ : ∀ i : ℕ, i ≤ L → (C.schemeAt i ⟶ B₂.schemeAt i)}
   {a : ∀ i : ℕ, (C.schemeAt i).IdealSheafData}
 
-theorem BlowupSeqComparison.exists_preimage_of_mem_center_support_left (hd : BlowupSeqComparison f g C B₁ B₂ L σ₁ σ₂ a)
+private theorem BlowupSeqComparison.exists_preimage_of_mem_center_support_left (hd : BlowupSeqComparison f g C B₁ B₂ L σ₁ σ₂ a)
     (i : ℕ) (hi : i < L) (x : ↥(B₁.schemeAt i)) (hx : x ∈ (B₁.center i).support) :
     ∃ y : ↥(C.schemeAt i), (σ₁ i hi.le).base y = x := by
   have hsq : IsPullback (σ₁ i hi.le) (C.projectionToBase i) (B₁.projectionToBase i) f :=
     isPullback_projectionToBase_of_isPullback_blowupMorphism f C B₁ L σ₁ hd.zero₁ hd.pullback₁ i hi.le
   exact exists_preimage_of_isPullback hsq x (hd.cover₁ i hi x hx)
 
-theorem BlowupSeqComparison.exists_preimage_of_mem_center_support_right (hd : BlowupSeqComparison f g C B₁ B₂ L σ₁ σ₂ a)
+private theorem BlowupSeqComparison.exists_preimage_of_mem_center_support_right (hd : BlowupSeqComparison f g C B₁ B₂ L σ₁ σ₂ a)
     (i : ℕ) (hi : i < L) (x : ↥(B₂.schemeAt i)) (hx : x ∈ (B₂.center i).support) :
     ∃ y : ↥(C.schemeAt i), (σ₂ i hi.le).base y = x := by
   have hsq : IsPullback (σ₂ i hi.le) (C.projectionToBase i) (B₂.projectionToBase i) g :=
@@ -152,12 +152,12 @@ def blowupSeqLevelIsoZero (hd : BlowupSeqComparison f g C B₁ B₂ L σ₁ σ�
   iso := B₁.isoZero ≪≫ B₂.isoZero.symm
   compat := subschemeι_comp_zero_eq_comp_isoObjZero_inv hd
 
-theorem blowupSeqLevelIsoZero_iso_hom_comp_isoObjZero (hd : BlowupSeqComparison f g C B₁ B₂ L σ₁ σ₂ a) :
+private theorem blowupSeqLevelIsoZero_iso_hom_comp_isoObjZero (hd : BlowupSeqComparison f g C B₁ B₂ L σ₁ σ₂ a) :
     (blowupSeqLevelIsoZero hd).iso.hom ≫ B₂.isoZero.hom = B₁.isoZero.hom := by
   show (B₁.isoZero ≪≫ B₂.isoZero.symm).hom ≫ B₂.isoZero.hom = B₁.isoZero.hom
   simp
 
-theorem BlowupSeqLevelIso.center_comap_iso_hom_eq (hd : BlowupSeqComparison f g C B₁ B₂ L σ₁ σ₂ a)
+private theorem BlowupSeqLevelIso.center_comap_iso_hom_eq (hd : BlowupSeqComparison f g C B₁ B₂ L σ₁ σ₂ a)
     {i : ℕ} (hi : i < L) (st : BlowupSeqLevelIso C B₁ B₂ L σ₁ σ₂ a i) :
     (B₂.center i).comap st.iso.hom = B₁.center i := by
   have hkey : ∀ y : ↥(C.schemeAt i), y ∈ (C.center i).support →
@@ -222,7 +222,7 @@ theorem BlowupSeqLevelIso.exists_iso_succ_comp_blowupMorphism (hd : BlowupSeqCom
   rw [Iso.symm_hom, Iso.symm_inv, BlowupSeqLevelIso.center_comap_iso_hom_eq hd hi st] at h2
   exact (hd.isBlowup_B₁ i hi).exists_iso h2
 
-theorem BlowupSeqLevelIso.hom_comp_blowupMorphism_eq_comp_iso_hom {i : ℕ} (st : BlowupSeqLevelIso C B₁ B₂ L σ₁ σ₂ a i)
+private theorem BlowupSeqLevelIso.hom_comp_blowupMorphism_eq_comp_iso_hom {i : ℕ} (st : BlowupSeqLevelIso C B₁ B₂ L σ₁ σ₂ a i)
     (e : B₁.schemeAt (i + 1) ≅ B₂.schemeAt (i + 1))
     (he : e.hom ≫ B₂.transitionMapSucc i ≫ st.iso.inv = B₁.transitionMapSucc i) :
     e.hom ≫ B₂.transitionMapSucc i = B₁.transitionMapSucc i ≫ st.iso.hom := by
@@ -234,7 +234,7 @@ def BlowupSeqLevelIso.isoSucc (hd : BlowupSeqComparison f g C B₁ B₂ L σ₁ 
     B₁.schemeAt (i + 1) ≅ B₂.schemeAt (i + 1) :=
   (BlowupSeqLevelIso.exists_iso_succ_comp_blowupMorphism hd hi st).choose
 
-theorem BlowupSeqLevelIso.isoSucc_hom_comp_blowupMorphism (hd : BlowupSeqComparison f g C B₁ B₂ L σ₁ σ₂ a)
+private theorem BlowupSeqLevelIso.isoSucc_hom_comp_blowupMorphism (hd : BlowupSeqComparison f g C B₁ B₂ L σ₁ σ₂ a)
     {i : ℕ} (hi : i < L) (st : BlowupSeqLevelIso C B₁ B₂ L σ₁ σ₂ a i) :
     (BlowupSeqLevelIso.isoSucc hd hi st).hom ≫ B₂.transitionMapSucc i ≫ st.iso.inv = B₁.transitionMapSucc i :=
   (BlowupSeqLevelIso.exists_iso_succ_comp_blowupMorphism hd hi st).choose_spec

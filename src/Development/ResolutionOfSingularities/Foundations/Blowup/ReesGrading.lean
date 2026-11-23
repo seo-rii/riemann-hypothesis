@@ -48,12 +48,12 @@ theorem mem_reesGrading_iff_coeff (I : Ideal R) (n : ℕ) (p : ↥(reesAlgebra I
     · simp
     · simp [Polynomial.coeff_monomial, Ne.symm hi, h i hi]
 
-theorem reesGrading_one_mem (I : Ideal R) : (1 : ↥(reesAlgebra I)) ∈ reesGrading I 0 := by
+private theorem reesGrading_one_mem (I : Ideal R) : (1 : ↥(reesAlgebra I)) ∈ reesGrading I 0 := by
   show ((1 : ↥(reesAlgebra I)) : R[X]) ∈ LinearMap.range (Polynomial.monomial (R := R) 0)
   refine LinearMap.mem_range.2 ⟨1, ?_⟩
   simp
 
-theorem reesGrading_mul_mem (I : Ideal R) {m n : ℕ} {p q : ↥(reesAlgebra I)}
+private theorem reesGrading_mul_mem (I : Ideal R) {m n : ℕ} {p q : ↥(reesAlgebra I)}
     (hp : p ∈ reesGrading I m) (hq : q ∈ reesGrading I n) :
     p * q ∈ reesGrading I (m + n) := by
   have key : ∀ (k : ℕ) (x : ↥(reesAlgebra I)),
@@ -69,7 +69,7 @@ instance instGradedMonoidReesGrading (I : Ideal R) : SetLike.GradedMonoid (reesG
   one_mem := reesGrading_one_mem I
   mul_mem := @fun _ _ _ _ hp hq => reesGrading_mul_mem I hp hq
 
-theorem reesGrading_iSupIndep (I : Ideal R) : iSupIndep (reesGrading I) := by
+private theorem reesGrading_iSupIndep (I : Ideal R) : iSupIndep (reesGrading I) := by
   intro n
   rw [Submodule.disjoint_def]
   intro p hp hp'
@@ -101,7 +101,7 @@ private theorem monomial_mem_reesGrading (I : Ideal R) {n : ℕ} {r : R} (hr : r
   show (Polynomial.monomial n r : R[X]).coeff i = 0
   simp [Polynomial.coeff_monomial, Ne.symm hi]
 
-theorem reesGrading_iSup_eq_top (I : Ideal R) : (⨆ n : ℕ, reesGrading I n) = ⊤ := by
+private theorem reesGrading_iSup_eq_top (I : Ideal R) : (⨆ n : ℕ, reesGrading I n) = ⊤ := by
   refine Submodule.eq_top_iff'.2 fun p => ?_
   have hval : ∀ x y : ↥(reesAlgebra I),
       (reesAlgebra I).val x = (reesAlgebra I).val y → x = y := fun _ _ h => Subtype.ext h
@@ -153,7 +153,7 @@ theorem reesMonomial_mem_reesGrading (I : Ideal R) {n : ℕ} {r : R} (hr : r ∈
 noncomputable def reesDegreeOneMonomial (I : Ideal R) (a : R) (ha : a ∈ I) : ↥(reesAlgebra I) :=
   reesMonomial I 1 a (mem_pow_one I ha)
 
-theorem reesDegreeOneMonomial_mem_reesGrading (I : Ideal R) {a : R} (ha : a ∈ I) :
+private theorem reesDegreeOneMonomial_mem_reesGrading (I : Ideal R) {a : R} (ha : a ∈ I) :
     reesDegreeOneMonomial I a ha ∈ reesGrading I 1 :=
   reesMonomial_mem_reesGrading I (mem_pow_one I ha)
 
@@ -314,7 +314,7 @@ noncomputable def reesDegreeZeroRingHom (I : Ideal R) : R →+* ↥(reesGrading 
   show (Polynomial.monomial 0 r : R[X]) = Polynomial.C r
   simp
 
-theorem reesDegreeZeroRingHom_injective (I : Ideal R) :
+private theorem reesDegreeZeroRingHom_injective (I : Ideal R) :
     Function.Injective (reesDegreeZeroRingHom I) := by
   intro r s h
   have h1 := congrArg (fun x : ↥(reesGrading I 0) => ((x : ↥(reesAlgebra I)) : R[X])) h
@@ -323,7 +323,7 @@ theorem reesDegreeZeroRingHom_injective (I : Ideal R) :
     congrArg (fun p : R[X] => p.coeff 0) h2
   simpa using h3
 
-theorem reesDegreeZeroRingHom_surjective (I : Ideal R) :
+private theorem reesDegreeZeroRingHom_surjective (I : Ideal R) :
     Function.Surjective (reesDegreeZeroRingHom I) := by
   rintro ⟨x, hx⟩
   have hco : ∀ i, i ≠ 0 → ((x : ↥(reesAlgebra I)) : R[X]).coeff i = 0 :=

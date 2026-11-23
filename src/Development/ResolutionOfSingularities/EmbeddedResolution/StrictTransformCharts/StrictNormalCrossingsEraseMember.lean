@@ -106,7 +106,7 @@ theorem inStrictNormalCrossingPosition_of_forall_etaleChart {Y : Scheme.{u}} {k 
   · exact Or.inl (h2 i hi hai)
   · exact Or.inr ⟨t, h3 i hi t hai⟩
 
-theorem exists_etaleChart_comap_subschemeι_eraseIdx {X : Scheme.{u}} {k : Type u} [Field k]
+private theorem exists_etaleChart_comap_subschemeι_eraseIdx {X : Scheme.{u}} {k : Type u} [Field k]
     (p : X ⟶ Spec (CommRingCat.of k)) (E : List X.IdealSheafData) (hE : InStrictNormalCrossingPosition p E)
     (j : ℕ) (hj : j < E.length) (z : ↥((E[j]'hj).subscheme)) :
     ∃ (U : ((E[j]'hj).subscheme).Opens) (_ : z ∈ U) (m : ℕ)

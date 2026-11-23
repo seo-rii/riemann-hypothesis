@@ -200,7 +200,7 @@ private theorem exists_affineOpen_derivIdealSheaf_comap_eq {k L : Type u} [Field
   rw [derivIdealSheaf_ideal, hcomapV, hcomapD, derivIdealSheaf_ideal]
   exact key.symm
 
-theorem derivIdealSheaf_comap_fieldBaseChange {k L : Type u} [Field k] [Field L]
+private theorem derivIdealSheaf_comap_fieldBaseChange {k L : Type u} [Field k] [Field L]
     {X : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     (φ : CommRingCat.of k ⟶ CommRingCat.of L) (I : X.IdealSheafData) :
     derivIdealSheaf L (pullback.snd p (Spec.map φ))

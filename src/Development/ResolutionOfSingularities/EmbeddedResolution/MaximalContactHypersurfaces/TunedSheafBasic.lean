@@ -121,7 +121,7 @@ private theorem tunedSheaf_eq_iSup_fin (k : Type u) [Field k] [IsNoetherianRing 
   · rintro ⟨t, ht⟩
     exact le_iSup_of_le ⟨extendExponentsByZero m s t, ht⟩ le_rfl
 
-theorem idealSheafData_pow_le_self {X : Scheme.{u}} (I : X.IdealSheafData) {c : ℕ}
+private theorem idealSheafData_pow_le_self {X : Scheme.{u}} (I : X.IdealSheafData) {c : ℕ}
     (hc : 1 ≤ c) : I ^ c ≤ I := by
   have h : ∀ U : X.affineOpens, (I ^ c).ideal U ≤ I.ideal U := by
     intro U
@@ -154,7 +154,7 @@ theorem balancedTunedSheaf_one (k : Type u) [Field k] [IsNoetherianRing k] {X : 
     balancedTunedSheaf k p I 1 = I := by
   rw [balancedTunedSheaf_eq, tuningExponent_one, tunedSheaf_one_one]
 
-theorem tunedSheaf_eq_top_of_orderAtLeastLocus_eq_empty (k : Type u) [Field k] [CharZero k]
+private theorem tunedSheaf_eq_top_of_orderAtLeastLocus_eq_empty (k : Type u) [Field k] [CharZero k]
     [IsNoetherianRing k] {X : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k))
     [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p] (I : X.IdealSheafData) {m : ℕ}
     (hm : 1 ≤ m) (s : ℕ) (h : orderAtLeastLocus I m = (∅ : Set X)) :
@@ -199,7 +199,7 @@ theorem balancedTunedSheaf_eq_top_of_orderAtLeastLocus_eq_empty (k : Type u) [Fi
   rw [balancedTunedSheaf_eq]
   exact tunedSheaf_eq_top_of_orderAtLeastLocus_eq_empty k p I hm (tuningExponent m) h
 
-theorem tunedSheaf_comap (k : Type u) [Field k] [IsNoetherianRing k] {X Y : Scheme.{u}}
+private theorem tunedSheaf_comap (k : Type u) [Field k] [IsNoetherianRing k] {X Y : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p]
     (h : Y ⟶ X) [AlgebraicGeometry.Smooth h] [LocallyOfFiniteType (h ≫ p)]
     (I : X.IdealSheafData) (m s : ℕ) :

@@ -26,7 +26,7 @@ private theorem isLocallyNoetherian_of_smooth_over_field (k : Type u) [Field k]
     IsLocallyNoetherian Y :=
   AlgebraicGeometry.LocallyOfFiniteType.isLocallyNoetherian q
 
-theorem smooth_projectionToBase_comp_and_orderAt_controlledTransform_le (k : Type u) [Field k] [CharZero k]
+private theorem smooth_projectionToBase_comp_and_orderAt_controlledTransform_le (k : Type u) [Field k] [CharZero k]
     {X : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     (I : X.IdealSheafData) (m : ℕ) (E : List X.IdealSheafData) (d : BlowupSequenceData X)
     (hd : d.IsMarked p I m E) (hI : ∀ x : ↥X, orderAt I x ≤ (m : ℕ∞))

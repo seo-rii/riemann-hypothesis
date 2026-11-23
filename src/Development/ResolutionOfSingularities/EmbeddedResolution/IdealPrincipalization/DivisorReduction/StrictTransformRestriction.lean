@@ -28,7 +28,7 @@ private theorem ker_le_ker_of_comp_eq {A B T : Scheme.{u}} (f : A ⟶ T) (g : B 
   subst h
   exact Scheme.Hom.le_ker_comp e g
 
-theorem comap_strictTransform_of_iso {X X₁ X₁' : Scheme.{u}} (π : X₁ ⟶ X)
+private theorem comap_strictTransform_of_iso {X X₁ X₁' : Scheme.{u}} (π : X₁ ⟶ X)
     (f : X₁' ≅ X₁) (Z D : X.IdealSheafData) (_hcart : Blowup.IsLocallyGeneratedByNonZeroDivisor (Z.comap π))
     [QuasiCompact (strictTransformι π Z D)]
     [QuasiCompact (strictTransformι (f.hom ≫ π) Z D)] :
@@ -95,7 +95,7 @@ theorem comap_strictTransform_of_iso {X X₁ X₁' : Scheme.{u}} (π : X₁ ⟶ 
     strictTransform_eq_ker_strictTransformι f.hom (Z.comap π) (D.comap π)]
   exact le_antisymm (ker_le_ker_of_comp_eq _ _ _ hfac1) (ker_le_ker_of_comp_eq _ _ _ hfac2)
 
-theorem exists_iso_subscheme_of_ker_eq_strictTransform {X X₁ S S₁ : Scheme.{u}} (π : X₁ ⟶ X)
+private theorem exists_iso_subscheme_of_ker_eq_strictTransform {X X₁ S S₁ : Scheme.{u}} (π : X₁ ⟶ X)
     (Z : X.IdealSheafData) (ι : S ⟶ X) (ι₁ : S₁ ⟶ X₁) (ρ : S₁ ⟶ S)
     [AlgebraicGeometry.IsClosedImmersion ι] [AlgebraicGeometry.IsClosedImmersion ι₁]
     (hsq : ι₁ ≫ π = ρ ≫ ι)
@@ -130,7 +130,7 @@ theorem exists_iso_subscheme_of_ker_eq_strictTransform {X X₁ S S₁ : Scheme.{
   simp only [asIso_hom]
   rw [hu₁, Category.assoc, hu, hsq]
 
-theorem comap_strictTransform_of_closedImmersion_commSq {X X₁ S S₁ : Scheme.{u}}
+private theorem comap_strictTransform_of_closedImmersion_commSq {X X₁ S S₁ : Scheme.{u}}
     {k : Type u} [Field k] (p : X ⟶ Spec (CommRingCat.of k)) (π : X₁ ⟶ X)
     (Z : X.IdealSheafData) (ι : S ⟶ X) (ι₁ : S₁ ⟶ X₁) (ρ : S₁ ⟶ S)
     [AlgebraicGeometry.IsClosedImmersion ι] [AlgebraicGeometry.IsClosedImmersion ι₁]
@@ -163,7 +163,7 @@ theorem comap_strictTransform_of_closedImmersion_commSq {X X₁ S S₁ : Scheme.
   · rw [← Scheme.IdealSheafData.comap_comp, ← Scheme.IdealSheafData.comap_comp, hfinal]
   · rw [← Scheme.IdealSheafData.comap_comp, ← Scheme.IdealSheafData.comap_comp, hfinal]
 
-theorem comap_exceptionalIdeal_of_commSq {X X₁ S S₁ : Scheme.{u}} (π : X₁ ⟶ X)
+private theorem comap_exceptionalIdeal_of_commSq {X X₁ S S₁ : Scheme.{u}} (π : X₁ ⟶ X)
     (ι : S ⟶ X) (ι₁ : S₁ ⟶ X₁) (ρ : S₁ ⟶ S) (hsq : ι₁ ≫ π = ρ ≫ ι)
     (Z : X.IdealSheafData) :
     (Blowup.exceptionalIdeal π Z).comap ι₁ = Blowup.exceptionalIdeal ρ (Z.comap ι) := by

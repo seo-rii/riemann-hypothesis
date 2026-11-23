@@ -23,7 +23,7 @@ variable {X X₁ : Scheme.{u}} {k : Type u} [Field k]
   {p : X ⟶ Spec (CommRingCat.of k)} {π : X₁ ⟶ X} {Z : X.IdealSheafData}
   {E : List X.IdealSheafData}
 
-theorem hasStrictNormalCrossingsWith_exceptionalIdeal (hZ : HasStrictNormalCrossingsWith p Z E) (hπ : Blowup.IsBlowupAlongIdealSheaf π Z) :
+private theorem hasStrictNormalCrossingsWith_exceptionalIdeal (hZ : HasStrictNormalCrossingsWith p Z E) (hπ : Blowup.IsBlowupAlongIdealSheaf π Z) :
     HasStrictNormalCrossingsWith (π ≫ p) (Blowup.exceptionalIdeal π Z) [] := by
   rw [hasStrictNormalCrossingsWith_iff]
   intro x hx

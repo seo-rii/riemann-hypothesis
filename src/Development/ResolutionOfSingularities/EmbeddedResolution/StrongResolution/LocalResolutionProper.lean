@@ -24,7 +24,7 @@ def pullbackIsoLastObj (d : LocalResolutionData k f s) (i : d.cover.I₀) :
     ((pullback s.lastStructMap (d.cover.f i) : Scheme.{u}) ≅ (d.seq i).lastObj) :=
   (pullbackSymmetry s.lastStructMap (d.cover.f i)).trans (d.lastObjIsoPullback i).symm
 
-theorem pullbackIsoLastObj_hom_lastStructMap (d : LocalResolutionData k f s) (i : d.cover.I₀) :
+private theorem pullbackIsoLastObj_hom_lastStructMap (d : LocalResolutionData k f s) (i : d.cover.I₀) :
     (d.pullbackIsoLastObj i).hom ≫ (d.seq i).lastStructMap = pullback.snd s.lastStructMap (d.cover.f i) := by
   rw [pullbackIsoLastObj]
   simp only [Iso.trans_hom, Iso.symm_hom, Category.assoc]

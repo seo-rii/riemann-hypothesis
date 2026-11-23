@@ -39,7 +39,7 @@ private theorem isClosedImmersion_of_isPullback {A B C D : Scheme.{u}}
   rw [← sq.flip.isoPullback_hom_snd]
   infer_instance
 
-theorem comp_projectionToBase_of_comp_blowupMorphism {S X : Scheme.{u}} (s : SequenceOfBlowups S) (t : SequenceOfBlowups X)
+private theorem comp_projectionToBase_of_comp_blowupMorphism {S X : Scheme.{u}} (s : SequenceOfBlowups S) (t : SequenceOfBlowups X)
     (L : ℕ) (j : S ⟶ X) (σ : ∀ i : ℕ, i ≤ L → (s.schemeAt i ⟶ t.schemeAt i))
     (hzero : σ 0 (Nat.zero_le _) ≫ t.isoZero.hom = s.isoZero.hom ≫ j)
     (hstep : ∀ i : ℕ, ∀ hi : i < L,

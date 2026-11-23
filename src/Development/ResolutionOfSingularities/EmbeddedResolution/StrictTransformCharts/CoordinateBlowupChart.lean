@@ -112,7 +112,7 @@ def coordBlowupSubst (R : Type u) [CommRing R] {σ : Type v} [DecidableEq σ] (S
     if i ∈ S ∧ i ≠ s then (MvPolynomial.X i : MvPolynomial σ R) * MvPolynomial.X s
     else MvPolynomial.X i
 
-theorem coordBlowupSubst_X (R : Type u) [CommRing R] {σ : Type v} [DecidableEq σ] (S : Finset σ)
+private theorem coordBlowupSubst_X (R : Type u) [CommRing R] {σ : Type v} [DecidableEq σ] (S : Finset σ)
     (s : σ) (i : σ) :
     coordBlowupSubst R S s (MvPolynomial.X i) =
       if i ∈ S ∧ i ≠ s then (MvPolynomial.X i : MvPolynomial σ R) * MvPolynomial.X s
@@ -137,13 +137,13 @@ theorem coordBlowupSubst_X (R : Type u) [CommRing R] {σ : Type v} [DecidableEq 
     coordBlowupSubst R S s (MvPolynomial.X i) = (MvPolynomial.X i : MvPolynomial σ R) := by
   rw [coordBlowupSubst_X, if_neg h]
 
-theorem coordBlowupSubst_C (R : Type u) [CommRing R] {σ : Type v} [DecidableEq σ]
+private theorem coordBlowupSubst_C (R : Type u) [CommRing R] {σ : Type v} [DecidableEq σ]
     (S : Finset σ) (s : σ) (r : R) :
     coordBlowupSubst R S s (MvPolynomial.C r) = (MvPolynomial.C r : MvPolynomial σ R) := by
   rw [← MvPolynomial.algebraMap_eq]
   exact (coordBlowupSubst R S s).commutes r
 
-theorem map_coordIdeal_coordBlowupSubst (R : Type u) [CommRing R] {σ : Type v} [DecidableEq σ]
+private theorem map_coordIdeal_coordBlowupSubst (R : Type u) [CommRing R] {σ : Type v} [DecidableEq σ]
     (S : Finset σ) (s : σ) (hs : s ∈ S) :
     Ideal.map (coordBlowupSubst R S s).toRingHom (coordIdeal R S)
       = Ideal.span {(MvPolynomial.X s : MvPolynomial σ R)} := by

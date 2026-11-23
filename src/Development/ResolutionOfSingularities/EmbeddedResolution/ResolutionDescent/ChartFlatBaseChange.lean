@@ -83,7 +83,7 @@ theorem reindex_le_length (F : ChartFlatBaseChange S S') {j : ℕ} (hj : j ≤ S
     exact le_of_eq F.reindex_len
   · exact le_of_lt (F.reindex_lt j h)
 
-theorem flat_levelMap (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j ≤ S'.length) :
+private theorem flat_levelMap (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j ≤ S'.length) :
     AlgebraicGeometry.Flat (F.levelMap j hj) := by
   have hst : MorphismProperty.IsStableUnderBaseChange
       (@AlgebraicGeometry.Flat : MorphismProperty Scheme.{u}) := inferInstance
@@ -153,7 +153,7 @@ private theorem strictTransformIdeal_comap_transitionMap_eq (F : ChartFlatBaseCh
       rw [← hIH, S.strictTransformIdeal_succ i, hst, ← Scheme.IdealSheafData.comap_comp, Category.assoc,
         hdown]
 
-theorem strictTransformIdeal_eq_comap (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j ≤ S'.length) :
+private theorem strictTransformIdeal_eq_comap (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j ≤ S'.length) :
     S'.strictTransformIdeal j = (S.strictTransformIdeal (F.reindex j)).comap (F.levelMap j hj) := by
   revert hj
   induction j with

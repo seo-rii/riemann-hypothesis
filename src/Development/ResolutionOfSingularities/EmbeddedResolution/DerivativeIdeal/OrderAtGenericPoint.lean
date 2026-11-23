@@ -145,7 +145,7 @@ theorem stalkIdeal_eq_span_germ_coord {V : X.Opens} (hV : IsAffineOpen V) {n : �
   rw [h1, h2, Ideal.map_span]
   simp
 
-theorem coord_mem_primeIdealOf_of_mem_support {V : X.Opens} (hV : IsAffineOpen V) {n : ℕ}
+private theorem coord_mem_primeIdealOf_of_mem_support {V : X.Opens} (hV : IsAffineOpen V) {n : ℕ}
     (c : EtaleChart p V n) (j : Fin n) (D : X.IdealSheafData)
     (hD : restrictIdeal D V = c.coordIdeal {j}) (y : X) (hy : y ∈ V) (hys : y ∈ D.support) :
     c.coord j ∈ (hV.primeIdealOf ⟨y, hy⟩).asIdeal := by
@@ -259,7 +259,7 @@ theorem primeIdealOf_eq_comap_span_germ_coord {V : X.Opens} (hV : IsAffineOpen V
     exact ((hV.primeIdealOf ⟨η, hη⟩).isPrime.mem_or_mem (hle hsa)).resolve_left hsq
   exact (hmin _ hPprime htP hPle).symm
 
-theorem stalkIdeal_eq_maximalIdeal_of_minimal {V : X.Opens} (hV : IsAffineOpen V) {n : ℕ}
+private theorem stalkIdeal_eq_maximalIdeal_of_minimal {V : X.Opens} (hV : IsAffineOpen V) {n : ℕ}
     (c : EtaleChart p V n) (j : Fin n) (D : X.IdealSheafData)
     (hD : restrictIdeal D V = c.coordIdeal {j}) (x η : X) (_hx : x ∈ V) (hη : η ∈ V)
     (_hspec : η ⤳ x) (hηs : η ∈ D.support)
@@ -330,7 +330,7 @@ private theorem mem_span_pow_of_mul_mem_span_pow {A : Type*} [CommRing A] (τ : 
       rw [he]
       ring
 
-theorem stalkIdeal_le_pow_stalkIdeal_of_minimal {V : X.Opens} (hV : IsAffineOpen V) {n : ℕ}
+private theorem stalkIdeal_le_pow_stalkIdeal_of_minimal {V : X.Opens} (hV : IsAffineOpen V) {n : ℕ}
     (c : EtaleChart p V n) (j : Fin n) (D : X.IdealSheafData)
     (hD : restrictIdeal D V = c.coordIdeal {j}) (x η : X) (hx : x ∈ V) (hη : η ∈ V)
     (hspec : η ⤳ x) (hηs : η ∈ D.support)

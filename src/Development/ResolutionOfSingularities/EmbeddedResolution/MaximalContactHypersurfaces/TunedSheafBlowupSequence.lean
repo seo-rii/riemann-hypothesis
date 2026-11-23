@@ -76,7 +76,7 @@ private theorem mem_orderAtLeastLocus_prod_map_of_forall {X : Scheme.{u}} (x : X
       simp only [List.map_cons, List.prod_cons, List.sum_cons]
       exact inter_orderAtLeastLocus_subset_orderAtLeastLocus_mul _ _ _ _ ⟨h a, ih⟩
 
-theorem orderAtLeastLocus_subset_orderAtLeastLocus_tunedSheaf (k : Type u) [Field k] [IsNoetherianRing k]
+private theorem orderAtLeastLocus_subset_orderAtLeastLocus_tunedSheaf (k : Type u) [Field k] [IsNoetherianRing k]
     {Y : Scheme.{u}} (p : Y ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType p]
     (A : Y.IdealSheafData) (m n : ℕ) :
     orderAtLeastLocus A m ⊆ orderAtLeastLocus (tunedSheaf k p A m n) n := by
@@ -95,14 +95,14 @@ theorem orderAtLeastLocus_subset_orderAtLeastLocus_tunedSheaf (k : Type u) [Fiel
     exact Finset.sum_congr rfl fun j _ => Nat.mul_comm _ _
   exact orderAtLeastLocus_subset_of_le _ hn key
 
-theorem orderAtLeastLocus_pow_mul_eq_orderAtLeastLocus (k : Type u) [Field k] [CharZero k] {X : Scheme.{u}}
+private theorem orderAtLeastLocus_pow_mul_eq_orderAtLeastLocus (k : Type u) [Field k] [CharZero k] {X : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] (A : X.IdealSheafData)
     (m : ℕ) {s : ℕ} (hs : 1 ≤ s) :
     orderAtLeastLocus (A ^ s) (m * s) = orderAtLeastLocus A m := by
   rw [mul_comm]
   exact orderAtLeastLocus_pow_mul k p A hs m
 
-theorem orderAtLeastLocus_eq_of_pow_le_of_le_tunedSheaf (k : Type u) [Field k] [CharZero k]
+private theorem orderAtLeastLocus_eq_of_pow_le_of_le_tunedSheaf (k : Type u) [Field k] [CharZero k]
     [IsNoetherianRing k] {X : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k))
     [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p] (I J : X.IdealSheafData) (m : ℕ)
     {s : ℕ} (hs : 1 ≤ s) (h1 : I ^ s ≤ J) (h2 : J ≤ tunedSheaf k p I m (m * s)) :
@@ -113,7 +113,7 @@ theorem orderAtLeastLocus_eq_of_pow_le_of_le_tunedSheaf (k : Type u) [Field k] [
   · exact fun x hx => orderAtLeastLocus_subset_of_le_ideal h2 (m * s)
       (orderAtLeastLocus_subset_orderAtLeastLocus_tunedSheaf k p I m (m * s) hx)
 
-theorem pow_le_tunedSheaf (k : Type u) [Field k] [IsNoetherianRing k] {X : Scheme.{u}}
+private theorem pow_le_tunedSheaf (k : Type u) [Field k] [IsNoetherianRing k] {X : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType p] (I : X.IdealSheafData)
     {m : ℕ} (hm : 1 ≤ m) (s : ℕ) :
     I ^ s ≤ tunedSheaf k p I m (m * s) := by
@@ -136,7 +136,7 @@ theorem pow_le_tunedSheaf (k : Type u) [Field k] [IsNoetherianRing k] {X : Schem
   rw [this]
   simp
 
-theorem exists_tuningExponent_eq {m : ℕ} (hm : 1 ≤ m) :
+private theorem exists_tuningExponent_eq {m : ℕ} (hm : 1 ≤ m) :
     ∃ r s : ℕ, m - 1 ≤ r ∧ tuningExponent m = r * lcmUpTo m ∧ 1 ≤ s ∧ tuningExponent m = m * s := by
   rcases Nat.lt_or_ge m 2 with h | h
   · have hm1 : m = 1 := by omega
@@ -376,7 +376,7 @@ theorem isMarked_iff_of_pow_le_of_le_tunedSheaf : IsMarkedIffOfPowLeOfLeTunedShe
       hiso hft hI.center_snc (fun i hi _ => hI.center_order i hi)
     exact hc i hi
 
-theorem isMarked_iff_balanced_tunedSheaf : IsMarkedIffBalancedTunedSheaf.{u} := by
+private theorem isMarked_iff_balanced_tunedSheaf : IsMarkedIffBalancedTunedSheaf.{u} := by
   intro k hk1 hk2 hk3 X p hp1 hp2 I m hm hmax E d
   obtain ⟨r, s, hr, hre, hs, hms⟩ := exists_tuningExponent_eq hm
   have hWe : balancedTunedSheaf k p I m = tunedSheaf k p I m (m * s) := by rw [balancedTunedSheaf_eq, hms]

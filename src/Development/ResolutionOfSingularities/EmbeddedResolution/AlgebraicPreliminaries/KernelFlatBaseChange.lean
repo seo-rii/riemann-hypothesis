@@ -36,7 +36,7 @@ private theorem algebraMap_tmul_one_eq_one_tmul_algebraMap {A B A' : Type*} [Com
     _ = (1 : B) ⊗ₜ[A] (a • (1 : A')) := (TensorProduct.tmul_smul a (1 : B) (1 : A')).symm
     _ = (1 : B) ⊗ₜ[A] (algebraMap A A' a) := by rw [Algebra.algebraMap_eq_smul_one]
 
-theorem ker_includeRight_eq_map_ker (R B A' : Type*) [CommRing R] [CommRing B] [CommRing A']
+private theorem ker_includeRight_eq_map_ker (R B A' : Type*) [CommRing R] [CommRing B] [CommRing A']
     [Algebra R B] [Algebra R A'] [Module.Flat R A'] :
     RingHom.ker (Algebra.TensorProduct.includeRight : A' →ₐ[R] B ⊗[R] A').toRingHom =
       (RingHom.ker (algebraMap R B)).map (algebraMap R A') := by

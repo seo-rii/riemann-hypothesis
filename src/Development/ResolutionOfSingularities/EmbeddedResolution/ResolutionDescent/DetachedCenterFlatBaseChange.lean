@@ -28,7 +28,7 @@ variable {k : Type u} [Field k] [CharZero k] {Y : Scheme.{u}} [AlgebraicGeometry
 private theorem map_eq_ker_subschemeι_comp {X Y : Scheme.{u}} (f : X ⟶ Y) (I : X.IdealSheafData) :
     I.map f = Scheme.Hom.ker (I.subschemeι ≫ f) := rfl
 
-theorem comapAmbientCenter_eq_comap (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j < S'.length) :
+private theorem comapAmbientCenter_eq_comap (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j < S'.length) :
     S'.comapAmbientCenter j =
       (S.comapAmbientCenter (F.reindex j)).comap (F.strictTransformComparison j hj.le) := by
   have h1 : S'.ambientCenter j

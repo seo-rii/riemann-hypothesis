@@ -197,7 +197,7 @@ def ofLengthOne {X Y : Scheme.{u}} (g : Y ⟶ X) (t : BlowupSequenceData X) (t' 
 
 end
 
-theorem comap_eq_top_of_forall_support_not_mem_range {X Y T : Scheme.{u}} (g : Y ⟶ X) (π : T ⟶ X)
+private theorem comap_eq_top_of_forall_support_not_mem_range {X Y T : Scheme.{u}} (g : Y ⟶ X) (π : T ⟶ X)
     (I : T.IdealSheafData)
     (hmiss : ∀ z : ↥T, z ∈ I.support → ∀ y : ↥Y, g.base y ≠ π.base z)
     (u : Y ⟶ T) (hu : IsPullback u (𝟙 Y) π g) : I.comap u = ⊤ := by
@@ -598,7 +598,7 @@ end
 
 section
 
-theorem isIso_pullback_snd_of_comap_eq_top {Y T T' : Scheme.{u}} {π : T' ⟶ T}
+private theorem isIso_pullback_snd_of_comap_eq_top {Y T T' : Scheme.{u}} {π : T' ⟶ T}
     {I : T.IdealSheafData} (hB : Blowup.IsBlowupAlongIdealSheaf π I) (u : Y ⟶ T) (htop : I.comap u = ⊤) :
     IsIso (pullback.snd π u) := by
   have hEC : Blowup.IsLocallyGeneratedByNonZeroDivisor (I.comap u) := by
@@ -619,7 +619,7 @@ theorem isIso_pullback_snd_of_comap_eq_top {Y T T' : Scheme.{u}} {π : T' ⟶ T}
     · rw [Category.assoc, pullback.lift_snd, Category.comp_id, Category.id_comp]
   · rw [pullback.lift_snd]
 
-theorem exists_lift_of_comap_eq_top {Y T T' : Scheme.{u}} {π : T' ⟶ T}
+private theorem exists_lift_of_comap_eq_top {Y T T' : Scheme.{u}} {π : T' ⟶ T}
     {I : T.IdealSheafData} (hB : Blowup.IsBlowupAlongIdealSheaf π I) (u : Y ⟶ T) (htop : I.comap u = ⊤) :
     ∃ v : Y ⟶ T', IsPullback v (𝟙 Y) π u ∧ v ≫ π = u := by
   have hiso : IsIso (pullback.snd π u) := isIso_pullback_snd_of_comap_eq_top hB u htop
@@ -630,7 +630,7 @@ theorem exists_lift_of_comap_eq_top {Y T T' : Scheme.{u}} {π : T' ⟶ T}
     · simp
   · rw [Category.assoc, pullback.condition, IsIso.inv_hom_id_assoc]
 
-theorem exists_lift_succ_of_comap_center_eq_top {X Y : Scheme.{u}} (g : Y ⟶ X)
+private theorem exists_lift_succ_of_comap_center_eq_top {X Y : Scheme.{u}} (g : Y ⟶ X)
     (t : BlowupSequenceData X) (i : ℕ) (hi : i < t.length) (u : Y ⟶ t.obj i)
     (hu : IsPullback u (𝟙 Y) (t.projectionToBase i) g) (htop : (t.center i).comap u = ⊤) :
     ∃ v : Y ⟶ t.obj (i + 1), IsPullback v (𝟙 Y) (t.projectionToBase (i + 1)) g ∧ v ≫ t.map i = u := by
@@ -641,7 +641,7 @@ theorem exists_lift_succ_of_comap_center_eq_top {X Y : Scheme.{u}} (g : Y ⟶ X)
   rw [BlowupSequenceData.projectionToBase_succ]
   exact hpaste
 
-theorem exists_lift_of_forall_comap_eq_top {X Y : Scheme.{u}} (g : Y ⟶ X) (t : BlowupSequenceData X)
+private theorem exists_lift_of_forall_comap_eq_top {X Y : Scheme.{u}} (g : Y ⟶ X) (t : BlowupSequenceData X)
     (h : ∀ i : ℕ, i < t.length → ∀ u : Y ⟶ t.obj i, IsPullback u (𝟙 Y) (t.projectionToBase i) g →
       (t.center i).comap u = ⊤) :
     ∀ i : ℕ, i ≤ t.length → ∃ u : Y ⟶ t.obj i, IsPullback u (𝟙 Y) (t.projectionToBase i) g := by

@@ -20,7 +20,7 @@ variable {S R B : Type u} [CommRing S] [CommRing R] [CommRing B]
   (hsurj : Function.Surjective (algebraMap S R))
   (P : Algebra.SubmersivePresentation R B ι σ)
 
-theorem liftedSubmersivePresentation_dimension :
+private theorem liftedSubmersivePresentation_dimension :
     (liftedSubmersivePresentation hsurj P).dimension = P.dimension := by
   have hu : Nat.card Unit = 1 := by
     rw [Nat.card_eq_fintype_card, Fintype.card_unit]

@@ -82,7 +82,7 @@ private theorem exists_mul_mem_of_algebraMap_mem_map {A : Type*} [CommRing A] {B
   rw [heq]
   exact P.mul_mem_left _ hp
 
-theorem mapToLocalization_mem_tangentDerivations (M : Submonoid S) [IsLocalization M S']
+private theorem mapToLocalization_mem_tangentDerivations (M : Submonoid S) [IsLocalization M S']
     {P : Ideal S} {D : Derivation k S S} (hD : D ∈ tangentDerivations k P) :
     (D.mapToLocalization (S' := S') M) ∈
       tangentDerivations k (P.map (algebraMap S S')) := by
@@ -93,7 +93,7 @@ theorem mapToLocalization_mem_tangentDerivations (M : Submonoid S) [IsLocalizati
   rw [Derivation.mapToLocalization_algebraMap]
   exact Ideal.mem_map_of_mem _ (hD' p hp)
 
-theorem map_logDerivIdeal_le (M : Submonoid S) [IsLocalization M S'] (P J : Ideal S) :
+private theorem map_logDerivIdeal_le (M : Submonoid S) [IsLocalization M S'] (P J : Ideal S) :
     (logDerivIdeal k P J).map (algebraMap S S') ≤
       logDerivIdeal k (P.map (algebraMap S S')) (J.map (algebraMap S S')) := by
   rw [Ideal.map_le_iff_le_comap, logDerivIdeal_le_iff]
@@ -111,7 +111,7 @@ theorem map_logDerivIdeal_le (M : Submonoid S) [IsLocalization M S'] (P J : Idea
       (mapToLocalization_mem_tangentDerivations (S' := S') k M hD)
       (Ideal.mem_map_of_mem _ hx)
 
-theorem exists_mem_tangentDerivations_mul_eq (M : Submonoid S) [IsLocalization M S']
+private theorem exists_mem_tangentDerivations_mul_eq (M : Submonoid S) [IsLocalization M S']
     [Module.FinitePresentation S (KaehlerDifferential k S)]
     {P : Ideal S} (hP : P.FG) (D : Derivation k S' S')
     (hD : D ∈ tangentDerivations k (P.map (algebraMap S S'))) :
@@ -156,7 +156,7 @@ theorem exists_mem_tangentDerivations_mul_eq (M : Submonoid S) [IsLocalization M
         = algebraMap S S' ((c • D₀) s)
     rw [derivation_smul_apply, map_mul, map_mul, mul_assoc, hD₀ s]
 
-theorem logDerivIdeal_map_le_map_logDerivIdeal (M : Submonoid S) [IsLocalization M S']
+private theorem logDerivIdeal_map_le_map_logDerivIdeal (M : Submonoid S) [IsLocalization M S']
     [Module.FinitePresentation S (KaehlerDifferential k S)]
     {P : Ideal S} (hP : P.FG) (J : Ideal S) :
     logDerivIdeal k (P.map (algebraMap S S')) (J.map (algebraMap S S')) ≤
@@ -193,14 +193,14 @@ theorem logDerivIdeal_map_le_map_logDerivIdeal (M : Submonoid S) [IsLocalization
   rw [hrw]
   exact Ideal.mul_mem_left _ _ hmem
 
-theorem logDerivIdeal_map (M : Submonoid S) [IsLocalization M S']
+private theorem logDerivIdeal_map (M : Submonoid S) [IsLocalization M S']
     [Module.FinitePresentation S (KaehlerDifferential k S)]
     {P : Ideal S} (hP : P.FG) (J : Ideal S) :
     (logDerivIdeal k P J).map (algebraMap S S') =
       logDerivIdeal k (P.map (algebraMap S S')) (J.map (algebraMap S S')) :=
   le_antisymm (map_logDerivIdeal_le k M P J) (logDerivIdeal_map_le_map_logDerivIdeal k M hP J)
 
-theorem logDerivIdealIterate_map (M : Submonoid S) [IsLocalization M S']
+private theorem logDerivIdealIterate_map (M : Submonoid S) [IsLocalization M S']
     [Module.FinitePresentation S (KaehlerDifferential k S)]
     {P : Ideal S} (hP : P.FG) (r : ℕ) (J : Ideal S) :
     (logDerivIdealIterate k P r J).map (algebraMap S S') =

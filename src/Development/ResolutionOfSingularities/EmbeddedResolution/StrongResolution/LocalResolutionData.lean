@@ -23,7 +23,7 @@ variable {X : Scheme.{u}}
 def SequenceOfBlowups.schemeAtIsoOfEq (s : SequenceOfBlowups X) {i j : ℕ} (h : i = j) : s.schemeAt i ≅ s.schemeAt j :=
   eqToIso (congrArg s.schemeAt h)
 
-theorem SequenceOfBlowups.schemeAtIsoOfEq_hom_projectionToBase (s : SequenceOfBlowups X) {i j : ℕ} (h : i = j) :
+private theorem SequenceOfBlowups.schemeAtIsoOfEq_hom_projectionToBase (s : SequenceOfBlowups X) {i j : ℕ} (h : i = j) :
     (s.schemeAtIsoOfEq h).hom ≫ s.projectionToBase j = s.projectionToBase i := by
   subst h
   simp [SequenceOfBlowups.schemeAtIsoOfEq]
@@ -87,7 +87,7 @@ def schemeAtIsoPullback (d : LocalResolutionData k f s) (i : d.cover.I₀) (j : 
     ((d.seq i).schemeAt j ≅ (pullback (d.cover.f i) (s.projectionToBase (d.reindex i j)) : Scheme.{u})) :=
   (d.comparison i).iso j hj
 
-theorem reindex_length (d : LocalResolutionData k f s) (i : d.cover.I₀) :
+private theorem reindex_length (d : LocalResolutionData k f s) (i : d.cover.I₀) :
     d.reindex i (d.seq i).length = s.length :=
   (d.comparison i).reindex_length
 

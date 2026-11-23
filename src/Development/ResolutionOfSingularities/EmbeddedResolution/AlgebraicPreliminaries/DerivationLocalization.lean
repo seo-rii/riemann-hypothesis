@@ -74,7 +74,7 @@ theorem mapToLocalization_algebraMap (D : Derivation R S S) (M : Submonoid S)
     (D.mapToLocalization (S' := S') M) (algebraMap S S' s) = algebraMap S S' (D s) :=
   (exists_mapToLocalization (S' := S') D M).choose_spec s
 
-theorem exists_derivation_mul_eq (M : Submonoid S) [IsLocalization M S']
+private theorem exists_derivation_mul_eq (M : Submonoid S) [IsLocalization M S']
     [Module.FinitePresentation S (KaehlerDifferential R S)] (D : Derivation R S S') :
     ∃ (m : M) (D₀ : Derivation R S S), ∀ s : S,
       algebraMap S S' (m : S) * D s = algebraMap S S' (D₀ s) := by

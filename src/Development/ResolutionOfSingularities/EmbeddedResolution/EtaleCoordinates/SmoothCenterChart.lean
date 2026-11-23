@@ -120,7 +120,7 @@ private def affineSpaceGlobalSectionsEquiv (k : Type u) [Field k] (m : ℕ) :
   map_mul' := (affineSpaceGlobalSectionsHom k m).map_mul
   map_add' := (affineSpaceGlobalSectionsHom k m).map_add
 
-theorem sectionsAlgebraMap_apply_eq (k : Type u) [CommRing k] {X : Scheme.{u}}
+private theorem sectionsAlgebraMap_apply_eq (k : Type u) [CommRing k] {X : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) (U : X.Opens) (a : k) :
     sectionsAlgebraMap k p U a =
       (p.appLE ⊤ U (le_preimage_top k p U)).hom

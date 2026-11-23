@@ -58,7 +58,7 @@ private theorem nonempty_irreducibleCloseds {Z : Type u} [TopologicalSpace Z] (z
     isClosed_closure⟩⟩
 
 open Order in
-theorem topologicalKrullDim_lt_of_isClosed_of_not_subset_irreducibleComponents
+private theorem topologicalKrullDim_lt_of_isClosed_of_not_subset_irreducibleComponents
     {X : Type u} [TopologicalSpace X] (Y : Set X) (hY : IsClosed Y) (hne : Y.Nonempty)
     (hcomp : ∀ C ∈ irreducibleComponents X, ¬ C ⊆ Y)
     (hfin : topologicalKrullDim X < ⊤) :
@@ -185,7 +185,7 @@ private theorem withBotSuccToNat_lt_withBotSuccToNat {a b : WithBot ℕ∞} (h :
       have e2 : ((N : ℕ∞)).toNat = N := by simp
       omega
 
-theorem krullDimSucc_lt_of_topologicalKrullDim_lt (Z X : Scheme.{u})
+private theorem krullDimSucc_lt_of_topologicalKrullDim_lt (Z X : Scheme.{u})
     (h : topologicalKrullDim ↥Z < topologicalKrullDim ↥X)
     (hfin : topologicalKrullDim ↥X < ⊤) :
     krullDimSucc Z < krullDimSucc X := withBotSuccToNat_lt_withBotSuccToNat h hfin

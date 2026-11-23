@@ -56,7 +56,7 @@ private theorem ideal_affineOpen_eq_top_of_restrictIdeal_eq_top {Y : Scheme.{u}}
     exact h
   rw [ideal_eq_of_restrictIdeal_eq D ⊤ ⟨V, hV⟩ h2, top_ideal_eq_top]
 
-theorem exists_affineOpen_derivIdealSheafIterate_le_biSup_logDerivIdealSheafIterate
+private theorem exists_affineOpen_derivIdealSheafIterate_le_biSup_logDerivIdealSheafIterate
     (k : Type u) [Field k] [CharZero k] {X X₁ : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     (π : X₁ ⟶ X) [IsLocallyNoetherian X₁]

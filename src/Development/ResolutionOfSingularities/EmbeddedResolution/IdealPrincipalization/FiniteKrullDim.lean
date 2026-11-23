@@ -114,7 +114,7 @@ private theorem exists_le_natCast_of_lt_top {a : WithBot ℕ∞} (h : a < ⊤) :
     | top => exact absurd h (lt_irrefl _)
     | coe n => exact ⟨n, le_rfl⟩
 
-theorem topologicalKrullDim_lt_top_of_finite_isOpenCover {X : Type u} [TopologicalSpace X]
+private theorem topologicalKrullDim_lt_top_of_finite_isOpenCover {X : Type u} [TopologicalSpace X]
     {ι : Type v} [Finite ι] (U : ι → Set X) (hU : ∀ i, IsOpen (U i))
     (hcov : ⋃ i, U i = Set.univ) (h : ∀ i, topologicalKrullDim ↥(U i) < ⊤) :
     topologicalKrullDim X < ⊤ := by
@@ -164,19 +164,19 @@ private theorem ringKrullDim_mvPolynomial_lt_top (k : Type u) [Field k] (n : ℕ
     rw [ringKrullDim_eq_of_ringEquiv (MvPolynomial.finSuccEquiv k m).toRingEquiv]
     exact lt_of_le_of_lt Polynomial.ringKrullDim_le (two_mul_add_one_lt_top (ne_of_lt ih))
 
-theorem ringKrullDim_lt_top_of_finiteType (k : Type u) [Field k] (A : Type v) [CommRing A]
+private theorem ringKrullDim_lt_top_of_finiteType (k : Type u) [Field k] (A : Type v) [CommRing A]
     [Algebra k A] [Algebra.FiniteType k A] : ringKrullDim A < ⊤ := by
   obtain ⟨n, φ, hφ⟩ :=
     Algebra.FiniteType.iff_quotient_mvPolynomial''.mp ‹Algebra.FiniteType k A›
   refine lt_of_le_of_lt (ringKrullDim_le_of_surjective φ.toRingHom hφ) ?_
   exact ringKrullDim_mvPolynomial_lt_top k n
 
-theorem topologicalKrullDim_primeSpectrum_lt_top (k : Type u) [Field k] (A : Type v) [CommRing A]
+private theorem topologicalKrullDim_primeSpectrum_lt_top (k : Type u) [Field k] (A : Type v) [CommRing A]
     [Algebra k A] [Algebra.FiniteType k A] : topologicalKrullDim (PrimeSpectrum A) < ⊤ := by
   rw [PrimeSpectrum.topologicalKrullDim_eq_ringKrullDim]
   exact ringKrullDim_lt_top_of_finiteType k A
 
-theorem topologicalKrullDim_spec_lt_top (k : Type u) [Field k] (R : CommRingCat.{v})
+private theorem topologicalKrullDim_spec_lt_top (k : Type u) [Field k] (R : CommRingCat.{v})
     [Algebra k R] [Algebra.FiniteType k R] : topologicalKrullDim ↥(Spec R) < ⊤ :=
   topologicalKrullDim_primeSpectrum_lt_top k R
 

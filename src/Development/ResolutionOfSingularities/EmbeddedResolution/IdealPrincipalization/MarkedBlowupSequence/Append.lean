@@ -153,7 +153,7 @@ theorem append_schemeAt_succ_of_length_lt {i : ℕ} (h : s.length < i) :
 theorem append_schemeAt_length_succ : (s.append t).obj (s.length + 1) = t.obj 1 :=
   appendSchemeAt_succ_of_eq_length s t rfl
 
-theorem append_schemeAt_length_add_length (h : 0 < t.length) :
+private theorem append_schemeAt_length_add_length (h : 0 < t.length) :
     (s.append t).obj (s.length + t.length) = t.obj t.length := by
   have h2 : s.length + t.length - s.length = t.length := by omega
   show appendSchemeAt s t (s.length + t.length) = t.obj t.length
@@ -308,14 +308,14 @@ theorem appendToBlowupSequenceData_schemeAt_of_length_lt {i : ℕ} (h : s.toBlow
     (s.appendToBlowupSequenceData t).obj i = t.toBlowupSequenceData.obj (i - s.toBlowupSequenceData.length) :=
   BlowupSequenceData.append_schemeAt_of_length_lt s.toBlowupSequenceData t.toBlowupSequenceData h
 
-theorem appendToBlowupSequenceData_schemeAt_zero : (s.appendToBlowupSequenceData t).obj 0 = s.toBlowupSequenceData.obj 0 :=
+private theorem appendToBlowupSequenceData_schemeAt_zero : (s.appendToBlowupSequenceData t).obj 0 = s.toBlowupSequenceData.obj 0 :=
   BlowupSequenceData.append_schemeAt_zero s.toBlowupSequenceData t.toBlowupSequenceData
 
 theorem appendToBlowupSequenceData_schemeAt_succ_of_lt_length {i : ℕ} (h : i < s.toBlowupSequenceData.length) :
     (s.appendToBlowupSequenceData t).obj (i + 1) = s.toBlowupSequenceData.obj (i + 1) :=
   BlowupSequenceData.append_schemeAt_succ_of_lt_length s.toBlowupSequenceData t.toBlowupSequenceData h
 
-theorem appendToBlowupSequenceData_schemeAt_succ_of_length_lt {i : ℕ} (h : s.toBlowupSequenceData.length < i) :
+private theorem appendToBlowupSequenceData_schemeAt_succ_of_length_lt {i : ℕ} (h : s.toBlowupSequenceData.length < i) :
     (s.appendToBlowupSequenceData t).obj (i + 1) =
       t.toBlowupSequenceData.obj (i - s.toBlowupSequenceData.length + 1) :=
   BlowupSequenceData.append_schemeAt_succ_of_length_lt s.toBlowupSequenceData t.toBlowupSequenceData h
@@ -329,7 +329,7 @@ theorem appendToBlowupSequenceData_schemeAt_length_add_length (h : 0 < t.toBlowu
       t.toBlowupSequenceData.obj t.toBlowupSequenceData.length :=
   BlowupSequenceData.append_schemeAt_length_add_length s.toBlowupSequenceData t.toBlowupSequenceData h
 
-theorem appendToBlowupSequenceData_isoObjZero_hom :
+private theorem appendToBlowupSequenceData_isoObjZero_hom :
     (s.appendToBlowupSequenceData t).isoZero.hom =
       eqToHom (appendToBlowupSequenceData_schemeAt_zero s t) ≫ s.toBlowupSequenceData.isoZero.hom := rfl
 
@@ -339,14 +339,14 @@ theorem appendToBlowupSequenceData_blowupMorphism_of_lt_length {i : ℕ} (h : i 
         eqToHom (appendToBlowupSequenceData_schemeAt_of_le_length s t (le_of_lt h)).symm :=
   BlowupSequenceData.append_blowupMorphism_of_lt_length s.toBlowupSequenceData t.toBlowupSequenceData h
 
-theorem appendToBlowupSequenceData_blowupMorphism_of_length_lt {i : ℕ} (h : s.toBlowupSequenceData.length < i) :
+private theorem appendToBlowupSequenceData_blowupMorphism_of_length_lt {i : ℕ} (h : s.toBlowupSequenceData.length < i) :
     (s.appendToBlowupSequenceData t).map i =
       eqToHom (appendToBlowupSequenceData_schemeAt_succ_of_length_lt s t h) ≫
         t.toBlowupSequenceData.map (i - s.toBlowupSequenceData.length) ≫
         eqToHom (appendToBlowupSequenceData_schemeAt_of_length_lt s t h).symm :=
   BlowupSequenceData.append_blowupMorphism_of_length_lt s.toBlowupSequenceData t.toBlowupSequenceData h
 
-theorem appendToBlowupSequenceData_blowupMorphism_length :
+private theorem appendToBlowupSequenceData_blowupMorphism_length :
     (s.appendToBlowupSequenceData t).map s.toBlowupSequenceData.length =
       eqToHom (appendToBlowupSequenceData_schemeAt_length_succ s t) ≫ t.toBlowupSequenceData.map 0 ≫
         t.toBlowupSequenceData.isoZero.hom ≫

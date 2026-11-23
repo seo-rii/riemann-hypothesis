@@ -32,7 +32,7 @@ variable {k K : Type u} [Field k] [Field K] {φ : CommRingCat.of k ⟶ CommRingC
   {X Y : Scheme.{u}} {p : X ⟶ Spec (CommRingCat.of k)} {q : Y ⟶ Spec (CommRingCat.of K)}
   {f : Y ⟶ X}
 
-theorem smooth_of_isPullback_field [AlgebraicGeometry.Smooth p]
+private theorem smooth_of_isPullback_field [AlgebraicGeometry.Smooth p]
     (hsq : IsPullback q f (Spec.map φ) p) :
     AlgebraicGeometry.Smooth q := by
   have hp : AlgebraicGeometry.Smooth p := inferInstance
@@ -43,7 +43,7 @@ def baseChangeCoords (g : Y ⟶ X) {U : X.Opens} {m : ℕ} (c : EtaleChart p U m
     ULift.{u} (Fin m) → Γ(↑(g ⁻¹ᵁ U), ⊤) :=
   fun i => (g ⁻¹ᵁ U).topIso.inv.hom ((g.appLE U (g ⁻¹ᵁ U) le_rfl).hom (c.coord i.down))
 
-theorem baseChangeCoords_apply (g : Y ⟶ X) {U : X.Opens} {m : ℕ} (c : EtaleChart p U m)
+private theorem baseChangeCoords_apply (g : Y ⟶ X) {U : X.Opens} {m : ℕ} (c : EtaleChart p U m)
     (i : ULift.{u} (Fin m)) :
     baseChangeCoords g c i =
       (g ⁻¹ᵁ U).topIso.inv.hom ((g.appLE U (g ⁻¹ᵁ U) le_rfl).hom (c.coord i.down)) :=
@@ -235,7 +235,7 @@ private theorem ideal_eq_top_of_isAffineOpen_of_restrictIdeal_eq_top {Z : Scheme
   rw [h1, Ideal.map_top] at h2
   exact h2.symm
 
-theorem inStrictNormalCrossingPositionAt_comap_of_isPullback (hsq : IsPullback q f (Spec.map φ) p)
+private theorem inStrictNormalCrossingPositionAt_comap_of_isPullback (hsq : IsPullback q f (Spec.map φ) p)
     (E : List X.IdealSheafData) (y : ↥Y) (hy : InStrictNormalCrossingPositionAt p E (f.base y)) :
     InStrictNormalCrossingPositionAt q (E.map fun D => D.comap f) y := by
   obtain ⟨U, hxU, m, c, a, hinj, hnone, hsome⟩ := hy.exists_etaleChart
@@ -273,7 +273,7 @@ theorem inStrictNormalCrossingPositionAt_comap_of_isPullback (hsq : IsPullback q
     rw [Set.image_image]
     exact Set.image_congr fun j _ => (hcoord j).symm
 
-theorem isSmoothDivisor_comap_of_isPullback_field [AlgebraicGeometry.Smooth p]
+private theorem isSmoothDivisor_comap_of_isPullback_field [AlgebraicGeometry.Smooth p]
     (hsq : IsPullback q f (Spec.map φ) p) (E : List X.IdealSheafData) (hE : InStrictNormalCrossingPosition p E)
     (D : X.IdealSheafData) (hD : D ∈ E) :
     IsSmoothDivisor q (D.comap f) := by
@@ -314,7 +314,7 @@ theorem isSmoothDivisor_comap_of_isPullback_field [AlgebraicGeometry.Smooth p]
       rw [hcomap, h3, Ideal.map_span, Set.image_image]
       exact congrArg Ideal.span (Set.image_congr fun j _ => (hcoord j).symm)
 
-theorem inStrictNormalCrossingPosition_comap_of_isPullback [AlgebraicGeometry.Smooth p]
+private theorem inStrictNormalCrossingPosition_comap_of_isPullback [AlgebraicGeometry.Smooth p]
     (hsq : IsPullback q f (Spec.map φ) p) (E : List X.IdealSheafData) (hE : InStrictNormalCrossingPosition p E) :
     InStrictNormalCrossingPosition q (E.map fun D => D.comap f) := by
   rw [inStrictNormalCrossingPosition_iff]

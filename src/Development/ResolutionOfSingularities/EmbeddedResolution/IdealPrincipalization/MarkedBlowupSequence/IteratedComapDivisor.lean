@@ -45,7 +45,7 @@ theorem support_strictTransform_subset_preimage {Y Y' : Scheme.{u}} [IsLocallyNo
   rw [support_strictTransform_eq_closure_sdiff π Z D, ← hpre]
   exact closure_minimal Set.sdiff_subset hclosed
 
-theorem isSmoothDivisor_iteratedComap {k : Type u} [Field k] [CharZero k] {X : Scheme.{u}}
+private theorem isSmoothDivisor_iteratedComap {k : Type u} [Field k] [CharZero k] {X : Scheme.{u}}
     (p : X ⟶ Spec (CommRingCat.of k)) (d : BlowupSequenceData X) (L : ℕ) (hL : L ≤ d.length)
     (hsm : ∀ t, t ≤ L → AlgebraicGeometry.Smooth (BlowupSequenceData.projectionToBase d t ≫ p))
     (B₀ : (d.obj 0).IdealSheafData)
@@ -75,7 +75,7 @@ theorem isSmoothDivisor_iteratedComap {k : Type u} [Field k] [CharZero k] {X : S
     rw [iteratedComap_succ, heq]
     exact key
 
-theorem strictTransform_eq_mul_iteratedComap {X : Scheme.{u}} (d : BlowupSequenceData X) (L : ℕ)
+private theorem strictTransform_eq_mul_iteratedComap {X : Scheme.{u}} (d : BlowupSequenceData X) (L : ℕ)
     (hnoeth : ∀ t, t ≤ L → IsLocallyNoetherian (d.obj t))
     (K A : ∀ t : ℕ, (d.obj t).IdealSheafData) (B₀ : (d.obj 0).IdealSheafData)
     (hK0 : K 0 = A 0 * B₀)

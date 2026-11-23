@@ -64,7 +64,7 @@ private theorem isIso_restrict_projectionToBase_of_centersLieOver {X : Scheme.{u
     rw [hcomp] at key
     exact key
 
-theorem isIso_restrict_lastStructMap_of_centersLieOver {X : Scheme.{u}} (s : SequenceOfBlowups X)
+private theorem isIso_restrict_lastStructMap_of_centersLieOver {X : Scheme.{u}} (s : SequenceOfBlowups X)
     (S : Set X) (U : X.Opens) (hU : Disjoint (U : Set X) S) (hs : s.CentersLieOver S) :
     IsIso (s.lastStructMap ∣_ U) := by
   rw [SequenceOfBlowups.lastStructMap_eq_projectionToBase]

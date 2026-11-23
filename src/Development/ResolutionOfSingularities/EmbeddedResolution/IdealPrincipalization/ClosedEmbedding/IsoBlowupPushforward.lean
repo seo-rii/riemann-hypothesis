@@ -24,13 +24,13 @@ private theorem isIso_subschemeι_comap_bot {X X' : Scheme.{u}} (π : X' ⟶ X) 
   rw [show (⊥ : X.IdealSheafData).comap π = ⊥ from by simp]
   infer_instance
 
-theorem ker_preimage_ι_comp_of_isIso {X Y : Scheme.{u}} (f : X ⟶ Y) [IsIso f] (U : Y.Opens) :
+private theorem ker_preimage_ι_comp_of_isIso {X Y : Scheme.{u}} (f : X ⟶ Y) [IsIso f] (U : Y.Opens) :
     ((f ⁻¹ᵁ U).ι ≫ f).ker = U.ι.ker := by
   have : IsIso (AlgebraicGeometry.morphismRestrict f U) := inferInstance
   rw [← (isPullback_morphismRestrict f U).w]
   exact Scheme.Hom.ker_comp_of_isIso ..
 
-theorem section_eq_zero_of_locally_zero {X : Scheme.{u}} (U : X.Opens)
+private theorem section_eq_zero_of_locally_zero {X : Scheme.{u}} (U : X.Opens)
     (s : X.presheaf.obj (op U))
     (h : ∀ x ∈ U, ∃ V : X.Opens, ∃ hV : V ≤ U, x ∈ V ∧
       X.presheaf.map (homOfLE hV).op s = 0) :
@@ -125,7 +125,7 @@ private theorem map_basicOpen_eq_zero_of_app_ι_eq_zero {X : Scheme.{u}} (W V U�
   refine (mem_nonZeroDivisors_iff.mp hmem).1 (X.presheaf.map (homOfLE hbV).op s) ?_
   exact hm
 
-theorem _root_.FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor.ker_supportCompl_ι_eq_bot {X : Scheme.{u}} {I : X.IdealSheafData}
+private theorem _root_.FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor.ker_supportCompl_ι_eq_bot {X : Scheme.{u}} {I : X.IdealSheafData}
     (h : FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor I) :
     (Scheme.Opens.ι (X := X) I.support.compl).ker = ⊥ := by
   refine le_antisymm (fun U => ?_) bot_le
@@ -147,7 +147,7 @@ theorem _root_.FunctorialResolution.Blowup.IsLocallyGeneratedByNonZeroDivisor.ke
   rw [hIf]
   exact Ideal.mem_span_singleton_self f
 
-theorem strictTransform_bot_of_isBlowupAlongIdealSheaf {X X' : Scheme.{u}} {π : X' ⟶ X}
+private theorem strictTransform_bot_of_isBlowupAlongIdealSheaf {X X' : Scheme.{u}} {π : X' ⟶ X}
     {I : X.IdealSheafData} (h : Blowup.IsBlowupAlongIdealSheaf π I) :
     Blowup.strictTransform π I (⊥ : X.IdealSheafData) = (⊥ : X'.IdealSheafData) := by
   have := isIso_subschemeι_comap_bot π

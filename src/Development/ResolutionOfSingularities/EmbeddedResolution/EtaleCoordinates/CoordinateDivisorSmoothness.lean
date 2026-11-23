@@ -48,7 +48,7 @@ theorem restrictIdeal_eq_top_of_le {Y : Scheme.{u}} (Z : Y.IdealSheafData) {U V 
     (hVU : V ≤ U) (h : restrictIdeal Z U = ⊤) : restrictIdeal Z V = ⊤ := by
   rw [restrictIdeal_eq_comap_homOfLE_restrictIdeal Z hVU, h, Scheme.IdealSheafData.comap_top]
 
-theorem smooth_ι_comp_subschemeι_comp_of_eq_coordIdeal (Z : X.IdealSheafData) {U : X.Opens}
+private theorem smooth_ι_comp_subschemeι_comp_of_eq_coordIdeal (Z : X.IdealSheafData) {U : X.Opens}
     (hU : IsAffineOpen U) (c : EtaleChart p U m) (S : Finset (Fin m))
     (h : restrictIdeal Z U = c.coordIdeal S) :
     Smooth ((Z.subschemeι ⁻¹ᵁ U).ι ≫ (Z.subschemeι ≫ p)) := by

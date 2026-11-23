@@ -39,7 +39,7 @@ def totalSpaceToBase (j : ℕ) : S.totalSpace j ⟶ Y :=
 @[simp] theorem totalSpaceToBase_succ (j : ℕ) :
     S.totalSpaceToBase (j + 1) = S.transitionMap j ≫ S.totalSpaceToBase j := rfl
 
-theorem totalSpaceToBase_eq_blowupSequence_projectionToBase (h : S.TransitionsAreBlowups) (j : ℕ) :
+private theorem totalSpaceToBase_eq_blowupSequence_projectionToBase (h : S.TransitionsAreBlowups) (j : ℕ) :
     S.totalSpaceToBase j = (S.blowupSequence h).projectionToBase j := by
   induction j with
   | zero =>
@@ -51,7 +51,7 @@ theorem totalSpaceToBase_eq_blowupSequence_projectionToBase (h : S.TransitionsAr
       rw [totalSpaceToBase_succ, ih, (S.blowupSequence h).projectionToBase_succ, hb]
       rfl
 
-theorem inl_comp_totalSpaceToBase (j : ℕ) :
+private theorem inl_comp_totalSpaceToBase (j : ℕ) :
     (coprod.inl : S.strictTransform j ⟶ S.totalSpace j) ≫ S.totalSpaceToBase j =
       S.strictTransformToZero j ≫ S.strictTransformZeroToBase := by
   induction j with

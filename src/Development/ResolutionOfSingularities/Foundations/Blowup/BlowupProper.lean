@@ -40,12 +40,12 @@ private theorem exists_isBlowupAlongIdealSheaf_isProper_spec_of_isNoetherianRing
   rw [← hJ]
   exact FunctorialResolution.Blowup.isBlowupAlongIdealSheaf_affineBlowup_toSpec J
 
-theorem exists_isBlowupAlongIdealSheaf_isProper_spec (R : CommRingCat.{u}) [IsNoetherianRing ↑R]
+private theorem exists_isBlowupAlongIdealSheaf_isProper_spec (R : CommRingCat.{u}) [IsNoetherianRing ↑R]
     (I : (Spec R).IdealSheafData) :
     ∃ (Y : Scheme.{u}) (π : Y ⟶ Spec R), IsBlowupAlongIdealSheaf π I ∧ AlgebraicGeometry.IsProper π :=
   exists_isBlowupAlongIdealSheaf_isProper_spec_of_isNoetherianRing (↑R) I
 
-theorem isProper_of_isBlowupAlongIdealSheaf_of_isAffine {Y B : Scheme.{u}} [IsAffine Y]
+private theorem isProper_of_isBlowupAlongIdealSheaf_of_isAffine {Y B : Scheme.{u}} [IsAffine Y]
     [IsNoetherianRing Γ(Y, ⊤)] (J : Y.IdealSheafData) {p : B ⟶ Y} (h : IsBlowupAlongIdealSheaf p J) :
     AlgebraicGeometry.IsProper p := by
   obtain ⟨Y', π, hπ, hproper⟩ :=

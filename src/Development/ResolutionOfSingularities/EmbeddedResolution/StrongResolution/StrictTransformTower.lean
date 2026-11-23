@@ -119,7 +119,7 @@ theorem strictTransformZeroIso_hom_emb :
     S.strictTransformZeroIso.hom ≫ S.emb = S.strictTransformι 0 ≫ S.ambientSeq.isoZero.hom :=
   S.exists_strictTransformZeroIso.choose_spec
 
-theorem totalSpaceZeroIso_inv_eq :
+private theorem totalSpaceZeroIso_inv_eq :
     S.totalSpaceZeroIso.inv =
       S.strictTransformZeroIso.inv ≫ (coprod.inl : S.strictTransform 0 ⟶ S.totalSpace 0) := by
   have h2 : S.strictTransformZeroIso.hom ≫ (S.emb ≫ S.ambientSeq.isoZero.inv) = S.strictTransformι 0 := by
@@ -178,7 +178,7 @@ theorem detachedCoprodInl_inr_totalTransition_assoc (i : ℕ) {T : Scheme.{u}}
 def detachedCoprodInr (i : ℕ) : S.detachedScheme i ⟶ S.detachedCoprod (i + 1) :=
   (coprod.inr : S.detachedScheme i ⟶ S.detachedCoprod i ⨿ S.detachedScheme i)
 
-theorem detachedCoprodInr_eq (i : ℕ) :
+private theorem detachedCoprodInr_eq (i : ℕ) :
     S.detachedCoprodInr i = (coprod.inr : S.detachedScheme i ⟶ S.detachedCoprod i ⨿ S.detachedScheme i) :=
   rfl
 
@@ -266,7 +266,7 @@ def totalMapOfLE {a b : ℕ} (h : a ≤ b) : S.totalSpace b ⟶ S.totalSpace a :
     S.totalMapOfLE (le_refl a) = 𝟙 (S.totalSpace a) := by
   exact Nat.leRec_self ..
 
-theorem totalMapOfLE_succ {a b : ℕ} (h : a ≤ b) :
+private theorem totalMapOfLE_succ {a b : ℕ} (h : a ≤ b) :
     S.totalMapOfLE (h.trans (Nat.le_succ b)) = S.totalTransition b ≫ S.totalMapOfLE h := by
   simp [totalMapOfLE, Nat.leRec_succ, h]
 
@@ -364,7 +364,7 @@ theorem detachedCoprodMapOfLE_inr_totalMapOfLE {a b : ℕ} (hab : a ≤ b) :
       rw [detachedCoprodMapOfLE_succ_of_le S hb, totalMapOfLE_succ_of_le S hb, Category.assoc,
         S.detachedCoprodInl_inr_totalTransition_assoc b (S.totalMapOfLE hb), ih]
 
-theorem comapAmbientCenter_le_centerOffDetached (i : ℕ) :
+private theorem comapAmbientCenter_le_centerOffDetached (i : ℕ) :
     S.comapAmbientCenter i ≤ S.centerOffDetached i := by
   have h : S.centerOffDetached i =
       ((S.comapAmbientCenter i).comap (S.detachedClosureCompl i).ι).map (S.detachedClosureCompl i).ι := rfl

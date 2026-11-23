@@ -75,7 +75,7 @@ private theorem logDerivIdealSheafIterate_congr_hom (k : Type u) [CommRing k]
   subst h
   rfl
 
-theorem exists_affineOpen_comap_logDerivIdealSheafIterate_eq (k : Type u) [Field k] [CharZero k]
+private theorem exists_affineOpen_comap_logDerivIdealSheafIterate_eq (k : Type u) [Field k] [CharZero k]
     {X X₁ : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     (π : X₁ ⟶ X) [AlgebraicGeometry.Smooth (π ≫ p)] (W : X.Opens)
     [IsIso (AlgebraicGeometry.morphismRestrict π W)] (x₁ : ↥X₁) (hx₁ : x₁ ∈ π ⁻¹ᵁ W)
@@ -127,7 +127,7 @@ theorem exists_affineOpen_comap_logDerivIdealSheafIterate_eq (k : Type u) [Field
     e1.trans (e2.trans (e3.trans (e4.trans e5.symm)))
   exact ideal_eq_of_restrictIdeal_eq _ _ ⟨V, hVaff⟩ (FunctorialResolution.EmbeddedResolution.restrictIdeal_eq_of_le_of_eq hVU hmain)
 
-theorem exists_affineOpen_comap_logDerivIdealSheafIterate_le (k : Type u) [Field k] [CharZero k]
+private theorem exists_affineOpen_comap_logDerivIdealSheafIterate_le (k : Type u) [Field k] [CharZero k]
     {X X₁ : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     (π : X₁ ⟶ X) [IsLocallyNoetherian X₁] (Z H : X.IdealSheafData) (E : List X.IdealSheafData)
     [QuasiCompact (strictTransformι π Z H)]

@@ -430,7 +430,7 @@ theorem isReduced_strictTransform [AlgebraicGeometry.IsReduced Y]
     exact isReduced_subscheme_strictTransform (S.ambientBlowupMorphism n) (S.ambientCenter n)
       (S.strictTransformIdeal n) (S.ambientBlowups.isBlowupAlongIdealSheaf_blowupMorphism n hn)
 
-theorem isBlowupAlongIdealSheaf_transitionMap_of_coprodDesc (i : ℕ)
+private theorem isBlowupAlongIdealSheaf_transitionMap_of_coprodDesc (i : ℕ)
     (h : Blowup.IsBlowupAlongIdealSheaf (coprod.desc (S.strictTransformMap i) (S.discardedι i)) (S.centerOffDetached i)) :
     Blowup.IsBlowupAlongIdealSheaf (S.transitionMap i) (S.centerOnTotalSpace i) := by
   have hq1 : AlgebraicGeometry.QuasiCompact (S.centerOffDetached i).subschemeι := inferInstance

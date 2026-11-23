@@ -51,7 +51,7 @@ private theorem jacobianDetSection_mvPolynomialToSumCoordinateRing (k : Type u) 
   rw [hmat, ← RingHom.map_det]
   simp
 
-theorem appTop_specToAffineSpaceExtendCoords_jacobianDetSection (k : Type u) [Field k] (A : Scheme.{u})
+private theorem appTop_specToAffineSpaceExtendCoords_jacobianDetSection (k : Type u) [Field k] (A : Scheme.{u})
     [AlgebraicGeometry.IsAffine A] (pA : A ⟶ Spec (CommRingCat.of k)) (M : ℕ)
     (e : A ⟶ affineSpaceIndexedBy k (ULift.{u, 0} (Fin M)))
     [AlgebraicGeometry.IsClosedImmersion e] {B' : CommRingCat.{u}}

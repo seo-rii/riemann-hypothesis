@@ -83,7 +83,7 @@ structure BlowupDescentData (g : W ⟶ Y) (t₁ t₂ : SequenceOfBlowups W) (s�
   step_φ : ∀ i : ℕ, ∀ hi : i < L,
     (φ (i + 1) hi).hom ≫ t₂.transitionMapSucc i = t₁.transitionMapSucc i ≫ (φ i hi.le).hom
 
-theorem comp_isoObjZero_trans_symm_eq {g : W ⟶ Y} {t₁ t₂ : SequenceOfBlowups W} {s₁ s₂ : SequenceOfBlowups Y} {L : ℕ}
+private theorem comp_isoObjZero_trans_symm_eq {g : W ⟶ Y} {t₁ t₂ : SequenceOfBlowups W} {s₁ s₂ : SequenceOfBlowups Y} {L : ℕ}
     {γ₁ : ∀ i : ℕ, i ≤ L → (t₁.schemeAt i ⟶ s₁.schemeAt i)}
     {γ₂ : ∀ i : ℕ, i ≤ L → (t₂.schemeAt i ⟶ s₂.schemeAt i)}
     {φ : ∀ i : ℕ, i ≤ L → (t₁.schemeAt i ≅ t₂.schemeAt i)}
@@ -100,7 +100,7 @@ theorem comp_isoObjZero_trans_symm_eq {g : W ⟶ Y} {t₁ t₂ : SequenceOfBlowu
     rw [h1, h2, ← Category.assoc, h3]
   exact (cancel_mono s₂.isoZero.hom).mp key
 
-theorem CompatibleBaseIsoAt.center_comap_eq {g : W ⟶ Y} {t₁ t₂ : SequenceOfBlowups W} {s₁ s₂ : SequenceOfBlowups Y}
+private theorem CompatibleBaseIsoAt.center_comap_eq {g : W ⟶ Y} {t₁ t₂ : SequenceOfBlowups W} {s₁ s₂ : SequenceOfBlowups Y}
     {L : ℕ}
     {γ₁ : ∀ i : ℕ, i ≤ L → (t₁.schemeAt i ⟶ s₁.schemeAt i)}
     {γ₂ : ∀ i : ℕ, i ≤ L → (t₂.schemeAt i ⟶ s₂.schemeAt i)}
@@ -115,7 +115,7 @@ theorem CompatibleBaseIsoAt.center_comap_eq {g : W ⟶ Y} {t₁ t₂ : SequenceO
     ← hd.center_t₂ i hi, hd.center_φ i hi]
   exact hd.center_t₁ i hi
 
-theorem CompatibleBaseIsoAt.exists_iso_succ_blowupMorphism_comm {g : W ⟶ Y} {t₁ t₂ : SequenceOfBlowups W} {s₁ s₂ : SequenceOfBlowups Y}
+private theorem CompatibleBaseIsoAt.exists_iso_succ_blowupMorphism_comm {g : W ⟶ Y} {t₁ t₂ : SequenceOfBlowups W} {s₁ s₂ : SequenceOfBlowups Y}
     {L : ℕ}
     {γ₁ : ∀ i : ℕ, i ≤ L → (t₁.schemeAt i ⟶ s₁.schemeAt i)}
     {γ₂ : ∀ i : ℕ, i ≤ L → (t₂.schemeAt i ⟶ s₂.schemeAt i)}
@@ -129,7 +129,7 @@ theorem CompatibleBaseIsoAt.exists_iso_succ_blowupMorphism_comm {g : W ⟶ Y} {t
   rw [CompatibleBaseIsoAt.center_comap_eq hd hi st] at h2
   exact (hd.isBlowup_s₁ i hi).exists_iso h2
 
-theorem CompatibleBaseIsoAt.blowupMorphism_square_comm {t₁ t₂ : SequenceOfBlowups W} {s₁ s₂ : SequenceOfBlowups Y}
+private theorem CompatibleBaseIsoAt.blowupMorphism_square_comm {t₁ t₂ : SequenceOfBlowups W} {s₁ s₂ : SequenceOfBlowups Y}
     {L : ℕ}
     {γ₁ : ∀ i : ℕ, i ≤ L → (t₁.schemeAt i ⟶ s₁.schemeAt i)}
     {γ₂ : ∀ i : ℕ, i ≤ L → (t₂.schemeAt i ⟶ s₂.schemeAt i)}

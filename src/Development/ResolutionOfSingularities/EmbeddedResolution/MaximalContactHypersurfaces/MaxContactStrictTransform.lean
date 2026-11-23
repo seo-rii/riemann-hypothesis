@@ -180,7 +180,7 @@ private theorem inStrictNormalCrossingPosition_singleton_of_isMaxContactHypersur
         subst hjt
         simpa using hj
 
-theorem comap_maxContactIdeal_le_exceptionalIdeal_mul (k : Type u) [Field k] [CharZero k] {P P₁ : Scheme.{u}}
+private theorem comap_maxContactIdeal_le_exceptionalIdeal_mul (k : Type u) [Field k] [CharZero k] {P P₁ : Scheme.{u}}
     (p : P ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p]
     (π : P₁ ⟶ P) [IsLocallyNoetherian P₁] [AlgebraicGeometry.Smooth (π ≫ p)]
     [LocallyOfFiniteType (π ≫ p)] (Z : P.IdealSheafData) (E : List P.IdealSheafData)
@@ -202,7 +202,7 @@ theorem comap_maxContactIdeal_le_exceptionalIdeal_mul (k : Type u) [Field k] [Ch
   rw [maxContactIdeal_eq_derivIdealSheafIterate, maxContactIdeal_eq_derivIdealSheafIterate]
   exact h
 
-theorem mem_orderAtLeastLocus_base_of_mem_orderAtLeastLocus_transform (k : Type u) [Field k] [CharZero k]
+private theorem mem_orderAtLeastLocus_base_of_mem_orderAtLeastLocus_transform (k : Type u) [Field k] [CharZero k]
     {P P₁ : Scheme.{u}} (p : P ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     [LocallyOfFiniteType p] (π : P₁ ⟶ P) [IsLocallyNoetherian P₁]
     [AlgebraicGeometry.Smooth (π ≫ p)] [LocallyOfFiniteType (π ≫ p)] (Z : P.IdealSheafData)
@@ -235,7 +235,7 @@ theorem mem_orderAtLeastLocus_base_of_mem_orderAtLeastLocus_transform (k : Type 
   rw [orderAt_le_iff_notMem_orderAtLeastLocus, hsucc] at h2
   exact h2 hy
 
-theorem le_center_of_isMaxContactHypersurface (k : Type u) [Field k] [CharZero k]
+private theorem le_center_of_isMaxContactHypersurface (k : Type u) [Field k] [CharZero k]
     {P : Scheme.{u}} (p : P ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     [LocallyOfFiniteType p] (Z : P.IdealSheafData) (E : List P.IdealSheafData)
     (hZ : HasStrictNormalCrossingsWith p Z E) (A : P.IdealSheafData) (μ : ℕ) (hμ : 1 ≤ μ)
@@ -251,7 +251,7 @@ theorem le_center_of_isMaxContactHypersurface (k : Type u) [Field k] [CharZero k
   have h3 := le_pow_of_hasStrictNormalCrossingsWith p Z H E hZ 1 h2
   rwa [pow_one] at h3
 
-theorem isMaxContactHypersurfaceAt_strictTransform_of_etaleChart (k : Type u) [Field k] [CharZero k]
+private theorem isMaxContactHypersurfaceAt_strictTransform_of_etaleChart (k : Type u) [Field k] [CharZero k]
     {P P₁ : Scheme.{u}} (p : P ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     [LocallyOfFiniteType p] (π : P₁ ⟶ P) [IsLocallyNoetherian P₁]
     [AlgebraicGeometry.Smooth (π ≫ p)] [LocallyOfFiniteType (π ≫ p)] (Z : P.IdealSheafData)
@@ -335,7 +335,7 @@ theorem isMaxContactHypersurfaceAt_strictTransform_of_etaleChart (k : Type u) [F
     rw [← hSTV]
     exact h5
 
-theorem isMaxContactHypersurfaceAt_strictTransform_of_mem_support (k : Type u) [Field k] [CharZero k]
+private theorem isMaxContactHypersurfaceAt_strictTransform_of_mem_support (k : Type u) [Field k] [CharZero k]
     {P P₁ : Scheme.{u}} (p : P ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     [LocallyOfFiniteType p] (π : P₁ ⟶ P) [IsLocallyNoetherian P₁]
     [AlgebraicGeometry.Smooth (π ≫ p)] [LocallyOfFiniteType (π ≫ p)] (Z : P.IdealSheafData)
@@ -419,7 +419,7 @@ theorem isMaxContactHypersurfaceAt_strictTransform_of_mem_support (k : Type u) [
   exact isMaxContactHypersurfaceAt_strictTransform_of_etaleChart k p π Z E hZ hπ A A₁ μ hμ hA htr H
     hV'aff (cV.restrict hV'V) S j hjS hZV' hHV' hcoordmem x₁ hzV'
 
-theorem isMaxContactHypersurfaceAt_strictTransform_of_notMem_support (k : Type u) [Field k] [CharZero k]
+private theorem isMaxContactHypersurfaceAt_strictTransform_of_notMem_support (k : Type u) [Field k] [CharZero k]
     {P P₁ : Scheme.{u}} (p : P ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
     [LocallyOfFiniteType p] (π : P₁ ⟶ P) [IsLocallyNoetherian P₁]
     [AlgebraicGeometry.Smooth (π ≫ p)] [LocallyOfFiniteType (π ≫ p)] (Z : P.IdealSheafData)
@@ -510,7 +510,7 @@ theorem isMaxContactHypersurfaceAt_strictTransform_of_notMem_support (k : Type u
     rw [← hSTV₁]
     exact h5
 
-theorem isMaxContactHypersurface_strictTransform_of_quasiCompact (k : Type u) [Field k]
+private theorem isMaxContactHypersurface_strictTransform_of_quasiCompact (k : Type u) [Field k]
     [CharZero k] {P P₁ : Scheme.{u}} (p : P ⟶ Spec (CommRingCat.of k))
     [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p] (π : P₁ ⟶ P) [IsLocallyNoetherian P₁]
     [LocallyOfFiniteType (π ≫ p)] (Z : P.IdealSheafData) (E : List P.IdealSheafData)

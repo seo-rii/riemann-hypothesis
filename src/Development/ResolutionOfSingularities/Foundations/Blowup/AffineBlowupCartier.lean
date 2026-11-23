@@ -40,7 +40,7 @@ def chartSectionsIso (I : Ideal R) (a : ↥I) :
       (CommRingCat.of (HomogeneousLocalization.Away (reesGrading I) (reesGenerator I a)))).symm ≪≫
     ((affineBlowupChart I a).appIso ⊤).symm
 
-theorem chartSectionsIso_hom (I : Ideal R) (a : ↥I) :
+private theorem chartSectionsIso_hom (I : Ideal R) (a : ↥I) :
     (chartSectionsIso I a).hom =
       (Scheme.ΓSpecIso
           (CommRingCat.of
@@ -83,7 +83,7 @@ theorem chartRingHom_comp_chartSectionsIso_hom (I : Ideal R) (a : ↥I) :
     appLE_image_top_comp_appIso_hom, affineBlowupChart_comp_toSpec, algebraMap_chart_eq_chartRingHom]
   exact Scheme.ΓSpecIso_inv_naturality _
 
-theorem ideal_comap_toSpec_chart_eq_span (I : Ideal R) (a : ↥I)
+private theorem ideal_comap_toSpec_chart_eq_span (I : Ideal R) (a : ↥I)
     (hW : IsAffineOpen (affineBlowupChart I a ''ᵁ ⊤)) :
     ((specIdealSheaf I).comap (AffineBlowup.toSpec I)).ideal ⟨_, hW⟩ =
       Ideal.span {(chartSectionsIso I a).hom.hom (chartRingHom I a (a : R))} := by

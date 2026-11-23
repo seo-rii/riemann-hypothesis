@@ -18,7 +18,7 @@ variable (k : Type*) [CommRing k] (ι : Type*)
   (S : Type*) [CommRing S] [Algebra k S] [Algebra (MvPolynomial ι k) S]
   [IsScalarTower k (MvPolynomial ι k) S] [Algebra.FormallyEtale (MvPolynomial ι k) S]
 
-theorem partialDerivIdeal_iSup_le {κ : Sort*} (h : ι) (F : κ → Ideal S) :
+private theorem partialDerivIdeal_iSup_le {κ : Sort*} (h : ι) (F : κ → Ideal S) :
     partialDerivIdeal k ι S h (⨆ j, F j) ≤ ⨆ j, partialDerivIdeal k ι S h (F j) := by
   refine partialDerivIdeal_le k ι S h (iSup_mono fun j => le_partialDerivIdeal k ι S h (F j)) ?_
   intro g hg
@@ -33,7 +33,7 @@ theorem partialDerivIdeal_iSup_le {κ : Sort*} (h : ι) (F : κ → Ideal S) :
     simp only [map_add (f := _)]
     exact Submodule.add_mem _ hx hy
 
-theorem partialDerivIdeal_biSup_le (h : ι) (n : ℕ) (F : ℕ → Ideal S) :
+private theorem partialDerivIdeal_biSup_le (h : ι) (n : ℕ) (F : ℕ → Ideal S) :
     partialDerivIdeal k ι S h (⨆ i, ⨆ _ : i ≤ n, F i) ≤
       ⨆ i, ⨆ _ : i ≤ n, partialDerivIdeal k ι S h (F i) :=
   (partialDerivIdeal_iSup_le k ι S h (fun i => ⨆ _ : i ≤ n, F i)).trans
@@ -50,7 +50,7 @@ variable (k : Type*) [CommRing k] (ι : Type*) [DecidableEq ι]
   [IsScalarTower k (MvPolynomial ι k) S₁] [Algebra.FormallyEtale (MvPolynomial ι k) S₁]
   (φ : S →ₐ[k] S₁) (T : Finset ι) (s h : ι)
 
-theorem partialDerivIdeal_controlledTransform_le_sup
+private theorem partialDerivIdeal_controlledTransform_le_sup
     (_hsT : s ∈ T)
     (hin : ∀ i ∈ T, i ≠ s → φ (coord k ι S i) = coord k ι S₁ i * coord k ι S₁ s)
     (hs : φ (coord k ι S s) = coord k ι S₁ s)
@@ -79,7 +79,7 @@ theorem partialDerivIdeal_controlledTransform_le_sup
   exact partialDeriv_mem_sup_of_span_pow_mul_eq_map k ι S S₁ φ T s hin hs hout hnzd h hhT hhs
     (derivIdealIterate k i J) (L i) (L (i + 1)) (m - i - 1) hJ hD g hg
 
-theorem partialDerivIdealIterate_controlledTransform_le_iSup
+private theorem partialDerivIdealIterate_controlledTransform_le_iSup
     (hsT : s ∈ T)
     (hin : ∀ i ∈ T, i ≠ s → φ (coord k ι S i) = coord k ι S₁ i * coord k ι S₁ s)
     (hs : φ (coord k ι S s) = coord k ι S₁ s)

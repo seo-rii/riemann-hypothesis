@@ -56,7 +56,7 @@ theorem EtaleChart.restrictIdeal_coordIdeal {X : Scheme.{u}} {k : Type u} [Field
   simp only [restrictIdeal_eq_comap_ι, EtaleChart.coordIdeal_eq_comap_coordSubspaceIdeal, EtaleChart.restrictOpens_map,
     Scheme.IdealSheafData.comap_comp]
 
-theorem EtaleChart.coordIdeal_ideal_eq_span {X : Scheme.{u}} {k : Type u} [Field k]
+private theorem EtaleChart.coordIdeal_ideal_eq_span {X : Scheme.{u}} {k : Type u} [Field k]
     {p : X ⟶ Spec (CommRingCat.of k)} {U : X.Opens} {m : ℕ} (c : EtaleChart p U m)
     {V : U.toScheme.Opens} (hV : IsAffineOpen V) (T : Finset (Fin m)) :
     (c.coordIdeal T).ideal ⟨V, hV⟩ = Ideal.span ((c.restrictOpens V).coord '' ↑T) :=
@@ -69,7 +69,7 @@ theorem EtaleChart.coordIdeal_singleton_ideal_eq_span {X : Scheme.{u}} {k : Type
     (c.coordIdeal {i}).ideal ⟨V, hV⟩ = Ideal.span {(c.restrictOpens V).coord i} := by
   rw [c.coordIdeal_ideal_eq_span hV {i}, Finset.coe_singleton, Set.image_singleton]
 
-theorem EtaleChart.saturation_mul_coordIdeal {X : Scheme.{u}} {k : Type u} [Field k]
+private theorem EtaleChart.saturation_mul_coordIdeal {X : Scheme.{u}} {k : Type u} [Field k]
     {p : X ⟶ Spec (CommRingCat.of k)} {U : X.Opens} {m : ℕ} (c : EtaleChart p U m)
     (j s : Fin m) (hjs : j ≠ s)
     [QuasiCompact (saturationι (c.coordIdeal {s})

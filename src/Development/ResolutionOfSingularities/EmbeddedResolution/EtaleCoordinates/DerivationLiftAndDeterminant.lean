@@ -60,7 +60,7 @@ section
 
 variable {R : Type*} [CommRing R]
 
-theorem exists_unit_mul_of_span_eq {a b : R} (hb : b ∈ nonZeroDivisors R)
+private theorem exists_unit_mul_of_span_eq {a b : R} (hb : b ∈ nonZeroDivisors R)
     (h : Ideal.span ({a} : Set R) = Ideal.span ({b} : Set R)) :
     ∃ u : Rˣ, a = (u : R) * b := by
   have ha : a ∈ Ideal.span ({b} : Set R) := by
@@ -84,7 +84,7 @@ section
 
 variable {k R S : Type*} [CommRing k] [CommRing R] [CommRing S] [Algebra k R] [Algebra k S]
 
-theorem derivation_mapsTo_span_self {B : Type*} [CommRing B] [Algebra k B]
+private theorem derivation_mapsTo_span_self {B : Type*} [CommRing B] [Algebra k B]
     (D : Derivation k B B) (h : B) (hD : D h = 0) :
     ∀ x ∈ Ideal.span ({h} : Set B), D x ∈ Ideal.span ({h} : Set B) := by
   intro x hx
@@ -133,7 +133,7 @@ private theorem det_eq_det_submatrix_succ (M : Matrix (Fin (n + 1)) (Fin (n + 1)
   · intro hb
     exact absurd (Finset.mem_univ (0 : Fin (n + 1))) hb
 
-theorem det_eq_det_submatrix_of_row_eq_single (e : ι ≃ Fin (n + 1)) (M : Matrix ι ι R)
+private theorem det_eq_det_submatrix_of_row_eq_single (e : ι ≃ Fin (n + 1)) (M : Matrix ι ι R)
     (h : ∀ b : ι, M (e.symm 0) b = if b = e.symm 0 then (1 : R) else 0) :
     M.det =
       (M.submatrix (fun i : Fin n => e.symm i.succ) (fun i : Fin n => e.symm i.succ)).det := by

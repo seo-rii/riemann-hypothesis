@@ -77,7 +77,7 @@ abbrev strictTransform (i : ℕ) : Scheme.{u} := (T.strictTransformIdeal i).subs
 
 abbrev strictTransformι (i : ℕ) : T.strictTransform i ⟶ T.schemeAt i := (T.strictTransformIdeal i).subschemeι
 
-theorem comap_strictTransformIdeal_le (i : ℕ) :
+private theorem comap_strictTransformIdeal_le (i : ℕ) :
     (T.strictTransformIdeal i).comap (T.blowdown i) ≤ T.strictTransformIdeal (i + 1) :=
   Blowup.comap_le_strictTransform _ _ _
 
@@ -348,7 +348,7 @@ theorem toEmbeddedBlowupSequence_transitionsAreBlowups_iff (S : AffineSpacePrinc
 theorem embeddedInducedBlowups_eq (S : AffineSpacePrincipalizationData k Y pY) (h : S.TransitionsAreBlowups) :
     S.toEmbeddedBlowupSequence.inducedBlowups ((toEmbeddedBlowupSequence_transitionsAreBlowups_iff S).mpr h) = S.blowupSequence h := rfl
 
-theorem embeddedInducedBlowupsWithoutIso_eq (S : AffineSpacePrincipalizationData k Y pY) (h : S.TransitionsAreBlowups) :
+private theorem embeddedInducedBlowupsWithoutIso_eq (S : AffineSpacePrincipalizationData k Y pY) (h : S.TransitionsAreBlowups) :
     S.toEmbeddedBlowupSequence.inducedBlowupsWithoutIso ((toEmbeddedBlowupSequence_transitionsAreBlowups_iff S).mpr h) = S.blowupSequenceWithoutIsos h := by
   show (S.toEmbeddedBlowupSequence.inducedBlowups ((toEmbeddedBlowupSequence_transitionsAreBlowups_iff S).mpr h)).withoutIsoBlowups
       = (S.blowupSequence h).withoutIsoBlowups

@@ -22,7 +22,7 @@ private theorem radical_ringHom_ker_eq {R S : Type*} [CommRing R] [CommRing S] [
   have hx : φ x ^ n = 0 := by rw [← map_pow]; exact hn
   exact IsNilpotent.eq_zero ⟨n, hx⟩
 
-theorem isClosed_sUnion_irreducibleComponents [NoetherianSpace α]
+private theorem isClosed_sUnion_irreducibleComponents [NoetherianSpace α]
     {S : Set (Set α)} (hS : S ⊆ irreducibleComponents α) :
     IsClosed (⋃₀ S) := by
   have hfin : S.Finite :=
@@ -38,7 +38,7 @@ theorem isOpen_compl_sUnion_irreducibleComponents_sdiff [NoetherianSpace α]
     IsOpen ((⋃₀ (irreducibleComponents α \ S))ᶜ) :=
   (isClosed_sUnion_irreducibleComponents Set.sdiff_subset).isOpen_compl
 
-theorem compl_sUnion_irreducibleComponents_sdiff_subset (S : Set (Set α)) :
+private theorem compl_sUnion_irreducibleComponents_sdiff_subset (S : Set (Set α)) :
     (⋃₀ (irreducibleComponents α \ S))ᶜ ⊆ ⋃₀ S := by
   intro x hx
   rw [Set.mem_compl_iff] at hx
@@ -49,7 +49,7 @@ theorem compl_sUnion_irreducibleComponents_sdiff_subset (S : Set (Set α)) :
   · exact ⟨irreducibleComponent x, hC, hmem⟩
   · exact (hx ⟨irreducibleComponent x, ⟨hcomp, hC⟩, hmem⟩).elim
 
-theorem closure_compl_sUnion_irreducibleComponents_sdiff [NoetherianSpace α]
+private theorem closure_compl_sUnion_irreducibleComponents_sdiff [NoetherianSpace α]
     {S : Set (Set α)} (hS : S ⊆ irreducibleComponents α) :
     closure ((⋃₀ (irreducibleComponents α \ S))ᶜ) = ⋃₀ S := by
   have hZcl : IsClosed (⋃₀ (irreducibleComponents α \ S)) :=
@@ -78,7 +78,7 @@ theorem closure_compl_sUnion_irreducibleComponents_sdiff [NoetherianSpace α]
       hZcl.isOpen_compl ⟨x, hxC, hxo⟩ ⟨y, hyC, hyZ⟩
     exact ⟨z, hzo, hzZ⟩
 
-theorem vanishingIdeal_congr {X : Scheme.{u}} {Z₁ Z₂ : Closeds ↥X}
+private theorem vanishingIdeal_congr {X : Scheme.{u}} {Z₁ Z₂ : Closeds ↥X}
     (h : (Z₁ : Set ↥X) = (Z₂ : Set ↥X)) :
     Scheme.IdealSheafData.vanishingIdeal Z₁ = Scheme.IdealSheafData.vanishingIdeal Z₂ := by
   have hZ : Z₁ = Z₂ := SetLike.coe_injective h

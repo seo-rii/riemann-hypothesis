@@ -21,10 +21,10 @@ def closedPreimage {X X' : Scheme.{u}} (f : X' ⟶ X) (S : TopologicalSpace.Clos
     TopologicalSpace.Closeds X' :=
   ⟨f.base ⁻¹' (S : Set X), S.isClosed.preimage f.continuous⟩
 
-theorem closedPreimage_coe {X X' : Scheme.{u}} (f : X' ⟶ X) (S : TopologicalSpace.Closeds X) :
+private theorem closedPreimage_coe {X X' : Scheme.{u}} (f : X' ⟶ X) (S : TopologicalSpace.Closeds X) :
     (closedPreimage f S : Set X') = f.base ⁻¹' (S : Set X) := rfl
 
-theorem reducedInverseImage_eq_vanishingIdeal_closedPreimage {X X' : Scheme.{u}} (f : X' ⟶ X)
+private theorem reducedInverseImage_eq_vanishingIdeal_closedPreimage {X X' : Scheme.{u}} (f : X' ⟶ X)
     (S : TopologicalSpace.Closeds X) :
     reducedInverseImage f S = Scheme.IdealSheafData.vanishingIdeal (closedPreimage f S) := rfl
 
@@ -133,7 +133,7 @@ theorem comap_vanishingIdeal_of_isOpenImmersion_of_coe_eq {X' Y' : Scheme.{u}} (
   have h1 : closedPreimage h Z = Z' := SetLike.ext' (by rw [closedPreimage_coe, hZ'])
   rw [comap_vanishingIdeal_of_isOpenImmersion, h1]
 
-theorem isStrictNormalCrossingsAt_base_of_comap {X' Y' : Scheme.{u}} (h : X' ⟶ Y') [IsOpenImmersion h]
+private theorem isStrictNormalCrossingsAt_base_of_comap {X' Y' : Scheme.{u}} (h : X' ⟶ Y') [IsOpenImmersion h]
     (E : Y'.IdealSheafData) (hE : IsStrictNormalCrossingsDivisor (E.comap h)) (x : X') :
     IsRegularLocalRing (Y'.presheaf.stalk (h.base x)) ∧
       ∃ (U : Y'.affineOpens) (hy : h.base x ∈ U.1) (n : ℕ) (f : Fin n → Γ(Y', U.1))
@@ -175,7 +175,7 @@ theorem isStrictNormalCrossingsAt_base_of_comap {X' Y' : Scheme.{u}} (h : X' ⟶
       (ε.symm : Γ(X', U'.1) →+* Γ(Y', h ''ᵁ U'.1)) (fun r => ε.symm_apply_apply r)
       (E.ideal ⟨h ''ᵁ U'.1, hU⟩) (∏ i ∈ J, g i) hmap.symm, hprod]
 
-theorem reducedInverseImage_comp {A B Z : Scheme.{u}} (g : A ⟶ B) (f : B ⟶ Z)
+private theorem reducedInverseImage_comp {A B Z : Scheme.{u}} (g : A ⟶ B) (f : B ⟶ Z)
     (W : TopologicalSpace.Closeds Z) :
     reducedInverseImage (g ≫ f) W
       = Scheme.IdealSheafData.vanishingIdeal (closedPreimage g (closedPreimage f W)) := by

@@ -57,7 +57,7 @@ private theorem isPullback_baseChangeMap (f : X ⟶ Spec (CommRingCat.of k)) (c 
   rw [baseChangeMap_comp_baseChangeToSpec]
   exact h1
 
-theorem etale_baseChangeMap (f : X ⟶ Spec (CommRingCat.of k)) (c : W ⟶ X) [Etale c]
+private theorem etale_baseChangeMap (f : X ⟶ Spec (CommRingCat.of k)) (c : W ⟶ X) [Etale c]
     (K : Type u) [Field K] [Algebra k K] : Etale (baseChangeMap f c K) :=
   morphismProperty_of_isPullback (P := @Etale) (isPullback_baseChangeMap f c K) ‹Etale c›
 
@@ -65,7 +65,7 @@ instance instEtaleBaseChangeMap (f : X ⟶ Spec (CommRingCat.of k)) (c : W ⟶ X
     (K : Type u) [Field K] [Algebra k K] : Etale (baseChangeMap f c K) :=
   etale_baseChangeMap f c K
 
-theorem surjective_baseChangeMap (f : X ⟶ Spec (CommRingCat.of k)) (c : W ⟶ X) [Surjective c]
+private theorem surjective_baseChangeMap (f : X ⟶ Spec (CommRingCat.of k)) (c : W ⟶ X) [Surjective c]
     (K : Type u) [Field K] [Algebra k K] : Surjective (baseChangeMap f c K) :=
   morphismProperty_of_isPullback (P := @Surjective) (isPullback_baseChangeMap f c K) ‹Surjective c›
 
@@ -80,7 +80,7 @@ theorem isAffine_baseChange (p : W ⟶ Spec (CommRingCat.of k)) [IsAffine W]
       inferInstance
   exact isAffine_of_isAffineHom (f := baseChangeProjection p K)
 
-theorem isAffine_baseChange_comp (f : X ⟶ Spec (CommRingCat.of k)) (c : W ⟶ X) [IsAffine W]
+private theorem isAffine_baseChange_comp (f : X ⟶ Spec (CommRingCat.of k)) (c : W ⟶ X) [IsAffine W]
     (K : Type u) [Field K] [Algebra k K] : IsAffine (baseChange (c ≫ f) K) :=
   isAffine_baseChange (c ≫ f) K
 
@@ -117,7 +117,7 @@ private theorem exists_pullback_snd_base_eq {A B C' : Scheme.{u}} (g1 : A ⟶ C'
   obtain ⟨z, _, hz2⟩ := Scheme.Pullback.exists_preimage_pullback (f := g1) (g := g2) a b h
   exact ⟨z, hz2⟩
 
-theorem isReduced_baseChange_sigmaOpensDesc (f : X ⟶ Spec (CommRingCat.of k))
+private theorem isReduced_baseChange_sigmaOpensDesc (f : X ⟶ Spec (CommRingCat.of k))
     (K : Type u) [Field K] [Algebra k K] [IsReduced (baseChange f K)]
     {ι : Type u} (U : ι → X.Opens) :
     IsReduced (baseChange (sigmaOpensDesc X U ≫ f) K) := by

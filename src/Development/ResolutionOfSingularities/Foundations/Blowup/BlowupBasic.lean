@@ -115,7 +115,7 @@ theorem IsBlowupAlongIdealSheaf.hom_ext_of_comp_eq {X X' : Scheme.{u}} {π : X' 
     {a b : W ⟶ X'} (ha : a ≫ π = g) (hb : b ≫ π = g) : a = b :=
   (h.2 W g hg).unique ha hb
 
-theorem IsBlowupAlongIdealSheaf.isIso_of_isLocallyGeneratedByNonZeroDivisor {X X' : Scheme.{u}} {π : X' ⟶ X} {I : X.IdealSheafData}
+private theorem IsBlowupAlongIdealSheaf.isIso_of_isLocallyGeneratedByNonZeroDivisor {X X' : Scheme.{u}} {π : X' ⟶ X} {I : X.IdealSheafData}
     (h : IsBlowupAlongIdealSheaf π I) (hI : IsLocallyGeneratedByNonZeroDivisor I) : IsIso π := by
   obtain ⟨s, hs, -⟩ := h.2 X (𝟙 X) (isLocallyGeneratedByNonZeroDivisor_comap_id hI)
   refine ⟨⟨s, ?_, hs⟩⟩

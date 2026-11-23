@@ -26,11 +26,11 @@ def renameSumInl (k : Type u) [Field k] (M n : ℕ) :
       (fun a : ULift.{u} (Fin M) =>
         (ULift.up (Sum.inl a.down) : ULift.{u} (Fin M ⊕ Fin n)))).toRingHom
 
-theorem renameSumInl_C (k : Type u) [Field k] (M n : ℕ) (c : k) :
+private theorem renameSumInl_C (k : Type u) [Field k] (M n : ℕ) (c : k) :
     renameSumInl k M n (MvPolynomial.C c) = MvPolynomial.C c := by
   simp [renameSumInl]
 
-theorem renameSumInl_X (k : Type u) [Field k] (M n : ℕ) (a : Fin M) :
+private theorem renameSumInl_X (k : Type u) [Field k] (M n : ℕ) (a : Fin M) :
     renameSumInl k M n (MvPolynomial.X (ULift.up a)) =
       MvPolynomial.X (ULift.up (Sum.inl a) : ULift.{u} (Fin M ⊕ Fin n)) := by
   simp [renameSumInl]
@@ -42,7 +42,7 @@ private theorem pderiv_inr_X_inl (k : Type u) [Field k] (M n : ℕ) (i : Fin n) 
   classical
   simp [MvPolynomial.pderiv_X]
 
-theorem pderiv_inr_renameSumInl (k : Type u) [Field k] (M n : ℕ) (i : Fin n)
+private theorem pderiv_inr_renameSumInl (k : Type u) [Field k] (M n : ℕ) (i : Fin n)
     (p : MvPolynomial (ULift.{u} (Fin M)) k) :
     MvPolynomial.pderiv (ULift.up (Sum.inr i) : ULift.{u} (Fin M ⊕ Fin n))
         (renameSumInl k M n p) = 0 := by
@@ -79,7 +79,7 @@ private theorem projLeft_appTop_mvPolynomialEquivGlobalSections_X (k : Type u) [
   obtain ⟨a⟩ := a
   simp
 
-theorem mvPolynomialEquivGlobalSections_symm_projLeft_appTop (k : Type u) [Field k] (M n : ℕ)
+private theorem mvPolynomialEquivGlobalSections_symm_projLeft_appTop (k : Type u) [Field k] (M n : ℕ)
     (p : MvPolynomial (ULift.{u} (Fin M)) k) :
     (mvPolynomialEquivGlobalSections k (ULift.{u} (Fin M ⊕ Fin n))).symm
         ((projLeft k M n).appTop (mvPolynomialEquivGlobalSections k (ULift.{u} (Fin M)) p)) =
@@ -105,7 +105,7 @@ theorem mvPolynomialEquivGlobalSections_symm_projLeft_appTop (k : Type u) [Field
       simp [renameSumInl]
   exact RingHom.congr_fun key p
 
-theorem mvPolynomialEquivGlobalSections_symm_comp_mvPolynomialToSumCoordinateRing (k : Type u) [Field k] (M n : ℕ) :
+private theorem mvPolynomialEquivGlobalSections_symm_comp_mvPolynomialToSumCoordinateRing (k : Type u) [Field k] (M n : ℕ) :
     ((mvPolynomialEquivGlobalSections k (ULift.{u} (Fin M ⊕ Fin n))).symm.toRingHom).comp (mvPolynomialToSumCoordinateRing k M n) =
       MvPolynomial.eval₂Hom
         ((renameSumInl k M n).comp ((mvPolynomialEquivGlobalSections k (ULift.{u} (Fin M))).symm.toRingHom))
@@ -120,7 +120,7 @@ theorem mvPolynomialEquivGlobalSections_symm_comp_mvPolynomialToSumCoordinateRin
   · intro i
     simp
 
-theorem mvPolynomialEquivGlobalSections_symm_mvPolynomialToSumCoordinateRing (k : Type u) [Field k] (M n : ℕ)
+private theorem mvPolynomialEquivGlobalSections_symm_mvPolynomialToSumCoordinateRing (k : Type u) [Field k] (M n : ℕ)
     (p : MvPolynomial (Fin n) Γ(affineSpaceIndexedBy k (ULift.{u} (Fin M)), ⊤)) :
     (mvPolynomialEquivGlobalSections k (ULift.{u} (Fin M ⊕ Fin n))).symm (mvPolynomialToSumCoordinateRing k M n p) =
       MvPolynomial.eval₂

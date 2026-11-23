@@ -108,7 +108,7 @@ variable (k : Type u) [CommRing k] [IsNoetherianRing k] {X Y : Scheme.{u}}
   (p : X ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType p]
   (g : Y ⟶ X) [IsOpenImmersion g] [LocallyOfFiniteType (g ≫ p)]
 
-theorem logDerivIdealSheafIterate_comap_ideal_of_isOpenImmersion
+private theorem logDerivIdealSheafIterate_comap_ideal_of_isOpenImmersion
     (P A : X.IdealSheafData) (r : ℕ) (V : Y.affineOpens) :
     ((logDerivIdealSheafIterate k p P r A).comap g).ideal V =
       (logDerivIdealSheafIterate k (g ≫ p) (P.comap g) r (A.comap g)).ideal V := by

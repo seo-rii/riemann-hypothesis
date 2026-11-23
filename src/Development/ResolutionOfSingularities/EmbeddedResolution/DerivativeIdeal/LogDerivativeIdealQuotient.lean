@@ -12,7 +12,7 @@ namespace FunctorialResolution.EmbeddedResolution
 variable (k : Type*) [CommRing k] {S T : Type*} [CommRing S] [CommRing T]
   [Algebra k S] [Algebra k T]
 
-theorem map_logDerivIdeal_ker_le_derivIdeal_map (f : S →ₐ[k] T)
+private theorem map_logDerivIdeal_ker_le_derivIdeal_map (f : S →ₐ[k] T)
     (hf : Function.Surjective f) (J : Ideal S) :
     Ideal.map f.toRingHom (logDerivIdeal k (RingHom.ker f.toRingHom) J)
       ≤ derivIdeal k (Ideal.map f.toRingHom J) := by
@@ -31,7 +31,7 @@ theorem map_logDerivIdeal_ker_le_derivIdeal_map (f : S →ₐ[k] T)
     rw [Ideal.mem_comap]
     exact h2
 
-theorem map_logDerivIdealIterate_ker_le_derivIdealIterate_map (f : S →ₐ[k] T)
+private theorem map_logDerivIdealIterate_ker_le_derivIdealIterate_map (f : S →ₐ[k] T)
     (hf : Function.Surjective f) (r : ℕ) (J : Ideal S) :
     Ideal.map f.toRingHom (logDerivIdealIterate k (RingHom.ker f.toRingHom) r J)
       ≤ derivIdealIterate k r (Ideal.map f.toRingHom J) := by

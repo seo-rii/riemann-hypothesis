@@ -74,7 +74,7 @@ theorem orderAtLeastLocus_comap_iso_hom_eq_preimage {X Y : Scheme.{u}} (e : X �
   simp only [Set.mem_preimage, mem_orderAtLeastLocus_iff]
   exact ⟨fun hm => le_trans hm h2, fun hm => le_trans hm h1⟩
 
-theorem strictTransform_comp_iso_hom {X X₁ Y : Scheme.{u}} (π : X₁ ⟶ X) (e : X ≅ Y)
+private theorem strictTransform_comp_iso_hom {X X₁ Y : Scheme.{u}} (π : X₁ ⟶ X) (e : X ≅ Y)
     (Z D : Y.IdealSheafData) :
     Blowup.strictTransform (π ≫ e.hom) Z D = Blowup.strictTransform π (Z.comap e.hom) (D.comap e.hom) := by
   have hZ : Z.comap (π ≫ e.hom) = (Z.comap e.hom).comap π := by

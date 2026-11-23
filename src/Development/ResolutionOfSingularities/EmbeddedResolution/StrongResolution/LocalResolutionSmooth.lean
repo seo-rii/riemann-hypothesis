@@ -20,7 +20,7 @@ namespace LocalResolutionData
 variable {k : Type u} [Field k] {X : Scheme.{u}} {f : X ⟶ Spec (CommRingCat.of k)}
   [LocallyOfFiniteType f] {s : SequenceOfBlowups X}
 
-theorem chartToLastObj_comp_lastStructMap_assoc (d : LocalResolutionData k f s) (j : d.cover.I₀) :
+private theorem chartToLastObj_comp_lastStructMap_assoc (d : LocalResolutionData k f s) (j : d.cover.I₀) :
     d.chartToLastObj j ≫ (s.lastStructMap ≫ f) = (d.seq j).lastStructMap ≫ (d.cover.f j ≫ f) := by
   rw [← Category.assoc, d.chartToLastObj_comp_lastStructMap j, Category.assoc]
 

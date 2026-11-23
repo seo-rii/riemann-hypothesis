@@ -66,7 +66,7 @@ theorem flat_map [AlgebraicGeometry.Flat g] (D : StrictPullbackBlowupSeq g t s)
       have hjl : j < t.length := hi
       exact flat_snd_of_isPullback (D.pullback j hjl).flip (ih hjl.le)
 
-theorem surjective_map [AlgebraicGeometry.Flat g] [AlgebraicGeometry.Surjective g]
+private theorem surjective_map [AlgebraicGeometry.Flat g] [AlgebraicGeometry.Surjective g]
     (D : StrictPullbackBlowupSeq g t s) (i : ℕ) (hi : i ≤ t.length) :
     AlgebraicGeometry.Surjective (D.comp i hi) :=
   (flat_and_surjective_of_isPullback_blowupMorphism g t s t.length D.comp D.comp_zero D.pullback i hi).2
@@ -107,7 +107,7 @@ def MarkedBlowupSequenceData.strictPullbackComparisonMap
     (i : ℕ) (hi : i ≤ t.length) : t.obj i ⟶ d.obj i :=
   D.comp i (t.le_toSequenceOfBlowups_length hi)
 
-theorem MarkedBlowupSequenceData.strictPullbackComparisonMap_eq_map
+private theorem MarkedBlowupSequenceData.strictPullbackComparisonMap_eq_map
     (t : MarkedBlowupSequenceData q (I.comap g) m (E.map fun A => A.comap g))
     (D : StrictPullbackBlowupSeq g t.toMarkedSequenceOfBlowups.toSequenceOfBlowups d.toSequenceOfBlowups)
     (i : ℕ) (hi : i ≤ t.length) :
@@ -119,7 +119,7 @@ theorem MarkedBlowupSequenceData.strictPullbackComparisonMap_zero
     t.strictPullbackComparisonMap D 0 (Nat.zero_le _) ≫ d.isoZero.hom = t.isoZero.hom ≫ g :=
   D.comp_zero
 
-theorem MarkedBlowupSequenceData.flat_strictPullbackComparisonMap [AlgebraicGeometry.Flat g]
+private theorem MarkedBlowupSequenceData.flat_strictPullbackComparisonMap [AlgebraicGeometry.Flat g]
     (t : MarkedBlowupSequenceData q (I.comap g) m (E.map fun A => A.comap g))
     (D : StrictPullbackBlowupSeq g t.toMarkedSequenceOfBlowups.toSequenceOfBlowups d.toSequenceOfBlowups)
     (i : ℕ) (hi : i ≤ t.length) : AlgebraicGeometry.Flat (t.strictPullbackComparisonMap D i hi) := by
@@ -142,7 +142,7 @@ theorem MarkedBlowupSequenceData.length_eq_of_strictPullbackBlowupSeq
   rw [MarkedBlowupSequenceData.toMarkedSequence_toSequenceOfBlowups] at h
   simpa only [BlowupSequenceData.toSequenceOfBlowups_length] using h
 
-theorem MarkedBlowupSequenceData.isPullback_strictPullbackComparisonMap
+private theorem MarkedBlowupSequenceData.isPullback_strictPullbackComparisonMap
     (t : MarkedBlowupSequenceData q (I.comap g) m (E.map fun A => A.comap g))
     (D : StrictPullbackBlowupSeq g t.toMarkedSequenceOfBlowups.toSequenceOfBlowups d.toSequenceOfBlowups)
     (i : ℕ) (hi : i < t.length) :

@@ -58,7 +58,7 @@ theorem logDerivIdealSheaf_mono (k : Type u) [CommRing k] [IsNoetherianRing k] {
   exact @logDerivIdeal_le_logDerivIdeal k _ _ _ (sectionsAlgebra k p U.1) (P.ideal U)
     (I.ideal U) (J.ideal U) (h U)
 
-theorem logDerivIdealSheaf_le_derivIdealSheaf (k : Type u) [CommRing k] [IsNoetherianRing k]
+private theorem logDerivIdealSheaf_le_derivIdealSheaf (k : Type u) [CommRing k] [IsNoetherianRing k]
     {X : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType p]
     (P I : X.IdealSheafData) :
     logDerivIdealSheaf k p P I ≤ derivIdealSheaf k p I := by

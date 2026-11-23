@@ -200,7 +200,7 @@ theorem inStrictNormalCrossingPositionAt_strictTransform_of_mem_support {X X₁ 
         rw [BlowupChart.restrictIdeal_strictTransform_coordIdeal B Z (E[i]'hi) hs hZU t hD,
           if_neg hts]
 
-theorem inStrictNormalCrossingPositionAt_strictTransform_of_notMem_support {X X₁ : Scheme.{u}} {k : Type u}
+private theorem inStrictNormalCrossingPositionAt_strictTransform_of_notMem_support {X X₁ : Scheme.{u}} {k : Type u}
     [Field k] [NoetherianSpace X₁] (p : X ⟶ Spec (CommRingCat.of k)) (π : X₁ ⟶ X)
     (Z : X.IdealSheafData) (E : List X.IdealSheafData) (hπ : Blowup.IsBlowupAlongIdealSheaf π Z)
     (hE : InStrictNormalCrossingPosition p E) (x₁ : X₁) (hx₁ : π.base x₁ ∉ Z.support) :

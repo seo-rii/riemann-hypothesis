@@ -113,7 +113,7 @@ variable (s : MarkedBlowupSequenceData p I m E)
   (t : MarkedBlowupSequenceData (s.proj s.toBlowupSequenceData.length ≫ p) (s.ideal s.toBlowupSequenceData.length) m
     (s.boundary s.toBlowupSequenceData.length))
 
-theorem append_dataAt_of_lt_length (hinv : ComapIsoInvariance.{u}) {i : ℕ} (h : i < s.toBlowupSequenceData.length) :
+private theorem append_dataAt_of_lt_length (hinv : ComapIsoInvariance.{u}) {i : ℕ} (h : i < s.toBlowupSequenceData.length) :
     (s.append t hinv).dataAt i =
       (s.dataAt i).transport (eqToIso (appendToBlowupSequenceData_schemeAt_of_le_length s t (le_of_lt h))) := by
   have hle : i ≤ s.toBlowupSequenceData.length := le_of_lt h
@@ -131,7 +131,7 @@ theorem append_dataAt_of_lt_length (hinv : ComapIsoInvariance.{u}) {i : ℕ} (h 
     appendToBlowupSequenceData_center_of_lt_length s t h
   exact MarkedSchemeWithCenter.mk_congr _ _ _ _ _ _ _ _ _ h1 h2 h3 h4
 
-theorem append_dataAt_length (hinv : ComapIsoInvariance.{u}) :
+private theorem append_dataAt_length (hinv : ComapIsoInvariance.{u}) :
     (s.append t hinv).dataAt s.toBlowupSequenceData.length =
       ((t.dataAt 0).transport t.toBlowupSequenceData.isoZero.symm).transport
         (eqToIso (appendToBlowupSequenceData_schemeAt_of_le_length s t (le_refl s.toBlowupSequenceData.length))) := by
@@ -156,7 +156,7 @@ theorem append_dataAt_length (hinv : ComapIsoInvariance.{u}) :
     appendToBlowupSequenceData_center_length s t
   exact MarkedSchemeWithCenter.mk_congr _ _ _ _ _ _ _ _ _ h1 h2 h3 h4
 
-theorem append_dataAt_of_length_lt (hinv : ComapIsoInvariance.{u}) {i : ℕ} (h : s.toBlowupSequenceData.length < i) :
+private theorem append_dataAt_of_length_lt (hinv : ComapIsoInvariance.{u}) {i : ℕ} (h : s.toBlowupSequenceData.length < i) :
     (s.append t hinv).dataAt i =
       (t.dataAt (i - s.toBlowupSequenceData.length)).transport
         (eqToIso (appendToBlowupSequenceData_schemeAt_of_length_lt s t h)) := by

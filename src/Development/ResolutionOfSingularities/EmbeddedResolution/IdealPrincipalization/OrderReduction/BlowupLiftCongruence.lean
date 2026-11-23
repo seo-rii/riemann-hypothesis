@@ -58,7 +58,7 @@ private theorem exists_isoSpec_of_isAffineOpen {P : Scheme.{u}} {U : P.Opens}
     ∃ (R : Type u) (_ : CommRing R), Nonempty (U.toScheme ≅ Spec (CommRingCat.of R)) :=
   ⟨↥Γ(P, U), inferInstance, ⟨hU.isoSpec⟩⟩
 
-theorem comap_mul_of_isOpenImmersion {X U : Scheme.{u}} (f : U ⟶ X) [IsOpenImmersion f]
+private theorem comap_mul_of_isOpenImmersion {X U : Scheme.{u}} (f : U ⟶ X) [IsOpenImmersion f]
     (I J : X.IdealSheafData) :
     (I * J).comap f = I.comap f * J.comap f := by
   refine Scheme.IdealSheafData.ext (funext fun V => ?_)
@@ -72,7 +72,7 @@ theorem comap_mul_of_isOpenImmersion {X U : Scheme.{u}} (f : U ⟶ X) [IsOpenImm
   simp only [Scheme.IdealSheafData.ideal_mul, Pi.mul_apply]
   rw [Ideal.map_mul]
 
-theorem exists_specIdealSheaf_eq (R : Type u) [CommRing R]
+private theorem exists_specIdealSheaf_eq (R : Type u) [CommRing R]
     (I : (Spec (CommRingCat.of R)).IdealSheafData) :
     ∃ J : Ideal R, Blowup.specIdealSheaf J = I := by
   refine ⟨Ideal.map (Scheme.ΓSpecIso (CommRingCat.of R)).hom.hom
@@ -85,7 +85,7 @@ theorem exists_specIdealSheaf_eq (R : Type u) [CommRing R]
     (Scheme.ΓSpecIso (CommRingCat.of R)).hom_inv_id, CommRingCat.hom_id, Ideal.map_id]
   exact h
 
-theorem subschemeι_comap_comp_eq_of_subschemeι_comp_eq {X Y P : Scheme.{u}} (f : X ⟶ Y) (u v : Y ⟶ P)
+private theorem subschemeι_comap_comp_eq_of_subschemeι_comp_eq {X Y P : Scheme.{u}} (f : X ⟶ Y) (u v : Y ⟶ P)
     (𝔟 : Y.IdealSheafData) (hagree : 𝔟.subschemeι ≫ u = 𝔟.subschemeι ≫ v) :
     (𝔟.comap f).subschemeι ≫ f ≫ u = (𝔟.comap f).subschemeι ≫ f ≫ v := by
   obtain ⟨t, ht⟩ : ∃ t : (𝔟.comap f).subscheme ⟶ 𝔟.subscheme,
@@ -98,7 +98,7 @@ theorem subschemeι_comap_comp_eq_of_subschemeι_comp_eq {X Y P : Scheme.{u}} (f
     _ = t ≫ 𝔟.subschemeι ≫ v := by rw [hagree]
     _ = (𝔟.comap f).subschemeι ≫ f ≫ v := by rw [← Category.assoc, ← ht, Category.assoc]
 
-theorem subschemeι_comp_eq_of_mul_comap {V V₁ P : Scheme.{u}} (f : V₁ ⟶ V) (u v : V ⟶ P)
+private theorem subschemeι_comp_eq_of_mul_comap {V V₁ P : Scheme.{u}} (f : V₁ ⟶ V) (u v : V ⟶ P)
     (𝔟 : V.IdealSheafData) (hagree : 𝔟.subschemeι ≫ u = 𝔟.subschemeι ≫ v)
     (e 𝔟₁ : V₁.IdealSheafData) (hmul : e * 𝔟₁ = 𝔟.comap f) :
     𝔟₁.subschemeι ≫ f ≫ u = 𝔟₁.subschemeι ≫ f ≫ v := by
@@ -116,7 +116,7 @@ theorem subschemeι_comp_eq_of_mul_comap {V V₁ P : Scheme.{u}} (f : V₁ ⟶ V
     _ = (t ≫ (𝔟.comap f).subschemeι) ≫ f ≫ v := by rw [Category.assoc]
     _ = 𝔟₁.subschemeι ≫ f ≫ v := by rw [ht]
 
-theorem subschemeι_comp_eq_of_blowup_lifts_spec {R : Type u} [CommRing R] {B W : Scheme.{u}}
+private theorem subschemeι_comp_eq_of_blowup_lifts_spec {R : Type u} [CommRing R] {B W : Scheme.{u}}
     (p : B ⟶ Spec (CommRingCat.of R)) (J : (Spec (CommRingCat.of R)).IdealSheafData)
     (hp : Blowup.IsBlowupAlongIdealSheaf p J) (ρ ρ' : W ⟶ Spec (CommRingCat.of R)) (𝔞 𝔟₁ : W.IdealSheafData)
     (hagree : 𝔞.subschemeι ≫ ρ = 𝔞.subschemeι ≫ ρ')
@@ -139,7 +139,7 @@ theorem subschemeι_comp_eq_of_blowup_lifts_spec {R : Type u} [CommRing R] {B W 
   simp only [Category.assoc, hβα, Category.comp_id] at hfin
   exact hfin
 
-theorem subschemeι_comap_ι_comp_eq_of_blowup_lifts_affine {P P₁ V V₁ : Scheme.{u}} (π : P₁ ⟶ P)
+private theorem subschemeι_comap_ι_comp_eq_of_blowup_lifts_affine {P P₁ V V₁ : Scheme.{u}} (π : P₁ ⟶ P)
     (Z : P.IdealSheafData) (hπ : Blowup.IsBlowupAlongIdealSheaf π Z) (ψ ψ' : V ⟶ P)
     (hZ : Z.comap ψ = Z.comap ψ') (ρ : V₁ ⟶ V)
     (hcart : Blowup.IsLocallyGeneratedByNonZeroDivisor ((Z.comap ψ).comap ρ))

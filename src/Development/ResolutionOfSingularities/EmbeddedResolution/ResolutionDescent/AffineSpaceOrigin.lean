@@ -37,7 +37,7 @@ theorem affineSpaceOrigin_comp_toSpec (k : Type u) [Field k] (m : ℕ) :
   unfold affineSpaceOrigin
   simp
 
-theorem pullbackCoord_affineSpaceOrigin (k : Type u) [Field k] (m : ℕ)
+private theorem pullbackCoord_affineSpaceOrigin (k : Type u) [Field k] (m : ℕ)
     (i : ULift.{u, 0} (Fin m)) :
     pullbackCoord (affineSpaceOrigin k m) i = 0 := by
   simp [pullbackCoord_def, affineSpaceOrigin]
@@ -60,7 +60,7 @@ theorem eq_affineSpaceOrigin_of_pullbackCoord_eq_zero (k : Type u) [Field k] (m 
     simpa only [affineSpaceOrigin, AffineSpace.homOfVector_appTop_coord, pullbackCoord_def]
       using hcoord i
 
-theorem isClosedImmersion_affineSpaceOrigin (k : Type u) [Field k] (m : ℕ) :
+private theorem isClosedImmersion_affineSpaceOrigin (k : Type u) [Field k] (m : ℕ) :
     IsClosedImmersion (affineSpaceOrigin k m) := by
   have hsurj : Function.Surjective
       (ConcreteCategory.hom (Scheme.Hom.appTop (affineSpaceOrigin k m))) := by
@@ -314,7 +314,7 @@ theorem affineSpaceInl_comp_projRight (k : Type u) [Field k] (n m : ℕ) :
       rw [pullbackCoord_comp_eq_hom_appTop_apply, pullbackCoord_affineSpaceOrigin, map_zero]
     rw [← pullbackCoord_def, ← pullbackCoord_def, h, h2]
 
-theorem affineSpaceInrEmbedding_comp_projLeft (k : Type u) [Field k] (n m : ℕ) :
+private theorem affineSpaceInrEmbedding_comp_projLeft (k : Type u) [Field k] (n m : ℕ) :
     affineSpaceInrEmbedding k n m ≫ projLeft k n m =
       affineSpaceIndexedByToSpec k (ULift.{u, 0} (Fin m)) ≫ affineSpaceOrigin k n := by
   refine AffineSpace.hom_ext ?_ ?_
@@ -330,7 +330,7 @@ theorem affineSpaceInrEmbedding_comp_projLeft (k : Type u) [Field k] (n m : ℕ)
       simp
     rw [← pullbackCoord_def, ← pullbackCoord_def, h, h2]
 
-theorem ker_affineSpaceInl_eq_comap (hsm : AffineSpaceIsSmooth.{u}) (k : Type u) [Field k] (n m : ℕ) :
+private theorem ker_affineSpaceInl_eq_comap (hsm : AffineSpaceIsSmooth.{u}) (k : Type u) [Field k] (n m : ℕ) :
     Scheme.Hom.ker (affineSpaceInl k n m) =
       (Scheme.Hom.ker (affineSpaceOrigin k m)).comap (projRight k n m) := by
   have hsmooth : AlgebraicGeometry.Smooth (projRight k n m) := smooth_projRight hsm k n m
@@ -366,7 +366,7 @@ private theorem isPullback_affineSpaceInrEmbedding_projLeft (k : Type u) [Field 
   exact IsPullback.of_bot s (affineSpaceInrEmbedding_comp_projLeft k n m).symm
     (isPullback_projLeft_projRight k n m)
 
-theorem ker_affineSpaceInrEmbedding_eq_comap (hsm : AffineSpaceIsSmooth.{u}) (k : Type u) [Field k] (n m : ℕ) :
+private theorem ker_affineSpaceInrEmbedding_eq_comap (hsm : AffineSpaceIsSmooth.{u}) (k : Type u) [Field k] (n m : ℕ) :
     Scheme.Hom.ker (affineSpaceInrEmbedding k n m) =
       (Scheme.Hom.ker (affineSpaceOrigin k n)).comap (projLeft k n m) := by
   have hsmooth : AlgebraicGeometry.Smooth (projLeft k n m) := smooth_projLeft hsm k n m

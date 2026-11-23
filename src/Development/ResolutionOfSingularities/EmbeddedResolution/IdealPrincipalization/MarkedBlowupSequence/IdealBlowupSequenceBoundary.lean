@@ -21,7 +21,7 @@ noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
-theorem inStrictNormalCrossingPositionAt_comap_iso {X X₀ : Scheme.{u}} {k : Type u} [Field k]
+private theorem inStrictNormalCrossingPositionAt_comap_iso {X X₀ : Scheme.{u}} {k : Type u} [Field k]
     (p : X ⟶ Spec (CommRingCat.of k)) (e : X₀ ≅ X) (E : List X.IdealSheafData) (x₀ : X₀)
     (h : InStrictNormalCrossingPositionAt p E (e.hom.base x₀)) :
     InStrictNormalCrossingPositionAt (e.hom ≫ p) (E.map (fun D => D.comap e.hom)) x₀ := by
@@ -55,7 +55,7 @@ theorem inStrictNormalCrossingPositionAt_comap_iso {X X₀ : Scheme.{u}} {k : Ty
     rw [hget]
     exact key
 
-theorem inStrictNormalCrossingPosition_comp_iso_hom {X X₀ : Scheme.{u}} {k : Type u} [Field k]
+private theorem inStrictNormalCrossingPosition_comp_iso_hom {X X₀ : Scheme.{u}} {k : Type u} [Field k]
     (p : X ⟶ Spec (CommRingCat.of k)) (e : X₀ ≅ X) (E : List X.IdealSheafData)
     (h : InStrictNormalCrossingPosition p E) :
     InStrictNormalCrossingPosition (e.hom ≫ p) (E.map (fun D => D.comap e.hom)) := by
@@ -78,11 +78,11 @@ namespace IdealBlowupSequence
 variable {k : Type u} [Field k] {X : Scheme.{u}} {p : X ⟶ Spec (CommRingCat.of k)}
   {I : X.IdealSheafData} {E : List X.IdealSheafData}
 
-theorem structureMorphism_zero (s : IdealBlowupSequence p I E) :
+private theorem structureMorphism_zero (s : IdealBlowupSequence p I E) :
     s.structureMorphism 0 = s.toSequenceOfBlowups.isoZero.hom ≫ p := by
   rw [structureMorphism_def, SequenceOfBlowups.projectionToBase_zero]
 
-theorem structureMorphism_succ (s : IdealBlowupSequence p I E) (i : ℕ) :
+private theorem structureMorphism_succ (s : IdealBlowupSequence p I E) (i : ℕ) :
     s.structureMorphism (i + 1) = s.toSequenceOfBlowups.transitionMapSucc i ≫ s.structureMorphism i := by
   rw [structureMorphism_def, structureMorphism_def, SequenceOfBlowups.blowupMorphism_eq_transitionMap, ← Category.assoc,
     SequenceOfBlowups.transitionMap_comp_projectionToBase]
@@ -104,7 +104,7 @@ theorem smooth_structureMorphism [AlgebraicGeometry.Smooth p] (s : IdealBlowupSe
     exact smooth_comp_of_isBlowupAlongIdealSheaf (s.hasStrictNormalCrossingsWith_center n hn)
       (s.toSequenceOfBlowups.isBlowupAlongIdealSheaf_blowupMorphism n hn)
 
-theorem inStrictNormalCrossingPosition_boundary [AlgebraicGeometry.Smooth p] (s : IdealBlowupSequence p I E)
+private theorem inStrictNormalCrossingPosition_boundary [AlgebraicGeometry.Smooth p] (s : IdealBlowupSequence p I E)
     (hE : InStrictNormalCrossingPosition p E)
     (hN : ∀ i, i ≤ s.toSequenceOfBlowups.length → NoetherianSpace ↥(s.toSequenceOfBlowups.schemeAt i)) :
     ∀ i, i ≤ s.toSequenceOfBlowups.length → InStrictNormalCrossingPosition (s.structureMorphism i) (s.boundary i) := by

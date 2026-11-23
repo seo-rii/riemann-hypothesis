@@ -49,7 +49,7 @@ private theorem ideal_eq_of_map_eq_of_leftInverse {R S : Type*} [CommRing R] [Co
   have h2 := congrArg (Ideal.map τ) hmap
   rwa [Ideal.map_map, Ideal.map_map, hτσ, Ideal.map_id, Ideal.map_id] at h2
 
-theorem idealSheafData_eq_of_forall_comap_eq {X : Scheme.{u}} {ι : Type u} (Y : ι → Scheme.{u})
+private theorem idealSheafData_eq_of_forall_comap_eq {X : Scheme.{u}} {ι : Type u} (Y : ι → Scheme.{u})
     (f : ∀ i, Y i ⟶ X) [∀ i, IsOpenImmersion (f i)]
     (hcov : (⋃ i, Set.range ⇑(f i).base) = Set.univ)
     (I J : X.IdealSheafData) (h : ∀ i, I.comap (f i) = J.comap (f i)) : I = J := by

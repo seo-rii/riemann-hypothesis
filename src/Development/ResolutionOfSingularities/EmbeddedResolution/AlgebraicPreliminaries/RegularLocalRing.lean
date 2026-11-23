@@ -276,7 +276,7 @@ private theorem exists_mem_maximalIdeal_notMem_sq_notMem_minimalPrimes (R : Type
     rw [← ht]
     exact Finset.mem_coe.mpr hh
 
-theorem isRegularLocalRing_quotient_span_singleton {R : Type*} [CommRing R]
+private theorem isRegularLocalRing_quotient_span_singleton {R : Type*} [CommRing R]
     [IsRegularLocalRing R] {x : R} (hx : x ∈ IsLocalRing.maximalIdeal R)
     (hx2 : x ∉ IsLocalRing.maximalIdeal R ^ 2) :
     IsRegularLocalRing (R ⧸ Ideal.span ({x} : Set R)) := by
@@ -431,7 +431,7 @@ theorem isPrime_span_singleton {R : Type*} [CommRing R] [IsRegularLocalRing R] {
   rw [← Ideal.Quotient.isDomain_iff_prime]
   exact IsRegularLocalRing.isDomain _
 
-theorem notMem_span_singleton {R : Type*} [CommRing R] [IsRegularLocalRing R] {ι : Type*}
+private theorem notMem_span_singleton {R : Type*} [CommRing R] [IsRegularLocalRing R] {ι : Type*}
     (x : ι → R) (hx : ∀ i, x i ∈ IsLocalRing.maximalIdeal R)
     (hli : LinearIndependent (IsLocalRing.ResidueField R)
       (fun i => (IsLocalRing.maximalIdeal R).toCotangent ⟨x i, hx i⟩ :

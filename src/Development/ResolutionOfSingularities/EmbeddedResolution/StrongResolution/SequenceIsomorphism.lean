@@ -257,7 +257,7 @@ theorem SequenceOfBlowups.Isomorphic.trans {X : Scheme.{u}} {B B' B'' : Sequence
     rw [Scheme.IdealSheafData.comap_comp, gcen i hi', hcen i hi]
   exact ⟨hL.trans hL', fun i hi => (e i hi) ≪≫ (g i (by omega)), p1, p2, p3⟩
 
-theorem SequenceOfBlowups.Isomorphic.exists_lastObjIso {X : Scheme.{u}} {B B' : SequenceOfBlowups X}
+private theorem SequenceOfBlowups.Isomorphic.exists_lastObjIso {X : Scheme.{u}} {B B' : SequenceOfBlowups X}
     (h : B.Isomorphic B') :
     ∃ e : B.lastObj ≅ B'.lastObj, e.hom ≫ B'.lastStructMap = B.lastStructMap := by
   obtain ⟨hL, e, h0, hstep, _⟩ := h

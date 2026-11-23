@@ -96,7 +96,7 @@ theorem le_ker_comp_subschemeι (H : P.IdealSheafData) (Z : H.subscheme.IdealShe
 
 variable {k : Type u} [Field k]
 
-theorem ker_comp_subschemeι_ideal_eq_span_coord (p : P ⟶ Spec (CommRingCat.of k)) (H : P.IdealSheafData)
+private theorem ker_comp_subschemeι_ideal_eq_span_coord (p : P ⟶ Spec (CommRingCat.of k)) (H : P.IdealSheafData)
     (Z : H.subscheme.IdealSheafData) {U : P.Opens} (hU : IsAffineOpen U) {n : ℕ}
     (c : EtaleChart p U n) (j₀ : Fin n) (S : Finset (Fin n))
     (hH : restrictIdeal H U = c.coordIdeal {j₀})
@@ -142,7 +142,7 @@ section
 
 variable {X : Scheme.{u}} {k : Type u} [Field k]
 
-theorem etaleChart_numCoords_eq (p : X ⟶ Spec (CommRingCat.of k))
+private theorem etaleChart_numCoords_eq (p : X ⟶ Spec (CommRingCat.of k))
     [AlgebraicGeometry.LocallyOfFiniteType p] {U : X.Opens} (hU : IsAffineOpen U) (x : X)
     (hx : x ∈ U) {m m' : ℕ} (c : EtaleChart p U m) (c' : EtaleChart p U m') : m = m' := by
   let instk : Algebra k Γ(X, U) := sectionsAlgebra k p U

@@ -29,7 +29,7 @@ namespace FunctorialResolution.EmbeddedResolution
 
 variable {X : Scheme.{u}}
 
-theorem orderAt_eq_of_stalkIdeal_eq_maximalIdeal_pow [IsLocallyNoetherian X]
+private theorem orderAt_eq_of_stalkIdeal_eq_maximalIdeal_pow [IsLocallyNoetherian X]
     (M : X.IdealSheafData) (η : X) (a : ℕ)
     (hM : stalkIdeal M η = IsLocalRing.maximalIdeal ↥(X.presheaf.stalk η) ^ a)
     (hfin : orderAt M η ≠ ⊤) :
@@ -98,7 +98,7 @@ private theorem inv_hom_apply_hom_apply {A B : CommRingCat.{u}} (f : A ⟶ B) [I
   rw [hom_apply_hom_apply_of_comp_eq f (inv f) (𝟙 A) (IsIso.hom_inv_id f) z, CommRingCat.hom_id]
   rfl
 
-theorem stalkIdeal_eq_prod_of_isMonomialOnOpen (E : List X.IdealSheafData) (M : X.IdealSheafData)
+private theorem stalkIdeal_eq_prod_of_isMonomialOnOpen (E : List X.IdealSheafData) (M : X.IdealSheafData)
     (U : X.Opens) (a : Fin E.length → ℕ) (h : IsMonomialOnOpen E M U a) (x : X) (hx : x ∈ U) :
     stalkIdeal M x =
       ((List.finRange E.length).map (fun j => stalkIdeal (E.get j) x ^ a j)).prod := by
@@ -126,7 +126,7 @@ theorem stalkIdeal_eq_prod_of_isMonomialOnOpen (E : List X.IdealSheafData) (M : 
   rw [ideal_map_listProd, hL, ← stalkIdeal_listProd, ← h', restrictIdeal_eq_comap_ι,
     stalkIdeal_comap]
 
-theorem orderAt_genericPoint_eq_of_isMonomialSplitting {k : Type u} [Field k] [CharZero k]
+private theorem orderAt_genericPoint_eq_of_isMonomialSplitting {k : Type u} [Field k] [CharZero k]
     [TopologicalSpace.NoetherianSpace ↥X] [IsLocallyNoetherian X]
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p]
     (E : List X.IdealSheafData) (_hE : InStrictNormalCrossingPosition p E) {I M N : X.IdealSheafData}
@@ -150,7 +150,7 @@ theorem orderAt_genericPoint_eq_of_isMonomialSplitting {k : Type u} [Field k] [C
     (orderAt_eq_zero_iff_not_mem_support N hC.isIrreducible.genericPoint).mpr hηN
   rw [hsplit.eq_mul, orderAt_mul k p M N hC.isIrreducible.genericPoint, h0, add_zero]
 
-theorem exponent_le_orderAlongComponent {k : Type u} [Field k] [CharZero k]
+private theorem exponent_le_orderAlongComponent {k : Type u} [Field k] [CharZero k]
     [TopologicalSpace.NoetherianSpace ↥X] [IsLocallyNoetherian X]
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p]
     (E : List X.IdealSheafData) (_hE : InStrictNormalCrossingPosition p E) {I M N : X.IdealSheafData}
@@ -253,7 +253,7 @@ private theorem ideal_listProd_finRange_eq_of_ne_eq_top {R : Type*} [CommRing R]
   refine Finset.prod_eq_single j (fun l _ hl => ?_) (fun hj => absurd (Finset.mem_univ j) hj)
   rw [h l hl, Ideal.one_eq_top]
 
-theorem exponent_eq_orderAlongComponent {k : Type u} [Field k] [CharZero k]
+private theorem exponent_eq_orderAlongComponent {k : Type u} [Field k] [CharZero k]
     [TopologicalSpace.NoetherianSpace ↥X] [IsLocallyNoetherian X]
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p]
     (E : List X.IdealSheafData) (hE : InStrictNormalCrossingPosition p E) {I M N : X.IdealSheafData}
@@ -396,7 +396,7 @@ private theorem map_finRange_get_eq_map {α : Type*} {β : Type*} (l : List α) 
   intro n h1 h2
   simp
 
-theorem stalkIdeal_eq_stalkIdeal_monomialFactorIdeal {k : Type u} [Field k] [CharZero k]
+private theorem stalkIdeal_eq_stalkIdeal_monomialFactorIdeal {k : Type u} [Field k] [CharZero k]
     [TopologicalSpace.NoetherianSpace ↥X] [IsLocallyNoetherian X]
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p]
     (E : List X.IdealSheafData) (hE : InStrictNormalCrossingPosition p E) {I M N : X.IdealSheafData}
@@ -429,7 +429,7 @@ theorem stalkIdeal_eq_stalkIdeal_monomialFactorIdeal {k : Type u} [Field k] [Cha
   rw [stalkIdeal_eq_prod_of_isMonomialOnOpen E M U a hmon x hxU,
     stalkIdeal_monomialFactorIdeal E I x, hlist]
 
-theorem eq_monomialFactorIdeal {k : Type u} [Field k] [CharZero k]
+private theorem eq_monomialFactorIdeal {k : Type u} [Field k] [CharZero k]
     [TopologicalSpace.NoetherianSpace ↥X] [IsLocallyNoetherian X]
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p]
     (E : List X.IdealSheafData) (hE : InStrictNormalCrossingPosition p E) {I M N : X.IdealSheafData}
@@ -443,7 +443,7 @@ theorem eq_monomialFactorIdeal {k : Type u} [Field k] [CharZero k]
   · exact (le_iff_forall_stalkIdeal_le (monomialFactorIdeal E I) M).mpr
       (fun x => le_of_eq (hstalk x).symm)
 
-theorem eq_nonMonomialFactorIdeal {k : Type u} [Field k] [CharZero k]
+private theorem eq_nonMonomialFactorIdeal {k : Type u} [Field k] [CharZero k]
     [TopologicalSpace.NoetherianSpace ↥X] [IsLocallyNoetherian X]
     (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p] [LocallyOfFiniteType p]
     (E : List X.IdealSheafData) (hE : InStrictNormalCrossingPosition p E) {I M N : X.IdealSheafData}

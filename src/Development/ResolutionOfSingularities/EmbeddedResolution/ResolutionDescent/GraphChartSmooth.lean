@@ -30,7 +30,7 @@ def polynomialOfSection (k : Type u) [Field k] (M n q : ℕ)
     (j : Fin q) : MvPolynomial (ULift.{u, 0} (Fin M ⊕ Fin n)) k :=
   (mvPolynomialEquivGlobalSections k (ULift.{u, 0} (Fin M ⊕ Fin n))).symm (F j)
 
-theorem mvPolynomialEquivGlobalSections_polynomialOfSection (k : Type u) [Field k] (M n q : ℕ)
+private theorem mvPolynomialEquivGlobalSections_polynomialOfSection (k : Type u) [Field k] (M n q : ℕ)
     (F : Fin q →
       ↑((affineSpaceIndexedBy k (ULift.{u, 0} (Fin M ⊕ Fin n))).presheaf.obj (Opposite.op ⊤)))
     (j : Fin q) :
@@ -42,7 +42,7 @@ def sumVariableMap (M n q : ℕ) (s : Fin q → Fin n) :
   fun i =>
     ULift.up (Sum.elim (fun a : Fin M => Sum.inl a) (fun j : Fin q => Sum.inr (s j)) i.down)
 
-theorem sumVariableMap_injective (M n q : ℕ) (s : Fin q → Fin n) (hs : Function.Injective s) :
+private theorem sumVariableMap_injective (M n q : ℕ) (s : Fin q → Fin n) (hs : Function.Injective s) :
     Function.Injective (sumVariableMap.{u} M n q s) := by
   rintro ⟨x⟩ ⟨y⟩ h
   have h' : Sum.elim (fun a : Fin M => Sum.inl a) (fun j : Fin q => Sum.inr (s j)) x
@@ -90,14 +90,14 @@ def graphCoordinates (k : Type u) [Field k] (M n q : ℕ)
       (fun a : Fin M => MvPolynomial.X (ULift.up (Sum.inl a) : ULift.{u, 0} (Fin M ⊕ Fin n)))
       (fun j : Fin q => polynomialOfSection k M n q F j) i.down
 
-theorem graphCoordinates_inl (k : Type u) [Field k] (M n q : ℕ)
+private theorem graphCoordinates_inl (k : Type u) [Field k] (M n q : ℕ)
     (F : Fin q →
       ↑((affineSpaceIndexedBy k (ULift.{u, 0} (Fin M ⊕ Fin n))).presheaf.obj (Opposite.op ⊤)))
     (a : Fin M) :
     graphCoordinates k M n q F (ULift.up (Sum.inl a)) =
       MvPolynomial.X (ULift.up (Sum.inl a) : ULift.{u, 0} (Fin M ⊕ Fin n)) := rfl
 
-theorem graphCoordinates_inr (k : Type u) [Field k] (M n q : ℕ)
+private theorem graphCoordinates_inr (k : Type u) [Field k] (M n q : ℕ)
     (F : Fin q →
       ↑((affineSpaceIndexedBy k (ULift.{u, 0} (Fin M ⊕ Fin n))).presheaf.obj (Opposite.op ⊤)))
     (j : Fin q) :
@@ -159,7 +159,7 @@ private theorem det_graphJacobianMinorMatrix_eq_det_jacobianMatrix (k : Type u) 
   rw [key, Matrix.det_fromBlocks_zero₂₁, Matrix.det_one, one_mul] at hdet
   exact hdet.symm
 
-theorem graphJacobianMinorDet_graphCoordinates (k : Type u) [Field k] (M n q : ℕ)
+private theorem graphJacobianMinorDet_graphCoordinates (k : Type u) [Field k] (M n q : ℕ)
     (F : Fin q →
       ↑((affineSpaceIndexedBy k (ULift.{u, 0} (Fin M ⊕ Fin n))).presheaf.obj (Opposite.op ⊤)))
     (s : Fin q → Fin n) :
@@ -188,7 +188,7 @@ def specGraphAwayToSpecGraphAlgebra (k : Type u) [Field k] (M n q : ℕ)
     (algebraMap (GraphAlgebra (graphCoordinates k M n q F))
       (GraphAlgebraAway (graphCoordinates k M n q F) (sumVariableMap.{u} M n q s))))
 
-theorem isOpenImmersion_specGraphAwayToSpecGraphAlgebra (k : Type u) [Field k] (M n q : ℕ)
+private theorem isOpenImmersion_specGraphAwayToSpecGraphAlgebra (k : Type u) [Field k] (M n q : ℕ)
     (F : Fin q →
       ↑((affineSpaceIndexedBy k (ULift.{u, 0} (Fin M ⊕ Fin n))).presheaf.obj (Opposite.op ⊤)))
     (s : Fin q → Fin n) :
@@ -226,7 +226,7 @@ private theorem isIso_spec_map_ringEquiv {A B : Type u} [CommRing A] [CommRing B
   · exact (specIsoOfRingEquiv e).hom_inv_id
   · exact (specIsoOfRingEquiv e).inv_hom_id
 
-theorem isOpenImmersion_basicOpenToSpecGraphAlgebra (k : Type u) [Field k] (M n q : ℕ)
+private theorem isOpenImmersion_basicOpenToSpecGraphAlgebra (k : Type u) [Field k] (M n q : ℕ)
     (F : Fin q →
       ↑((affineSpaceIndexedBy k (ULift.{u, 0} (Fin M ⊕ Fin n))).presheaf.obj (Opposite.op ⊤)))
     (s : Fin q → Fin n) :
@@ -411,7 +411,7 @@ def specGraphAwayIsoBasicOpen (k : Type u) [Field k] (M n q : ℕ)
   IsOpenImmersion.isoOfRangeEq (specGraphAwayToSpecGraphAlgebra k M n q F s) (basicOpenToSpecGraphAlgebra k M n q F s)
     (range_specGraphAwayToSpecGraphAlgebra_eq k M n q F s)
 
-theorem specGraphAwayIsoBasicOpen_inv_comp (k : Type u) [Field k] (M n q : ℕ)
+private theorem specGraphAwayIsoBasicOpen_inv_comp (k : Type u) [Field k] (M n q : ℕ)
     (F : Fin q →
       ↑((affineSpaceIndexedBy k (ULift.{u, 0} (Fin M ⊕ Fin n))).presheaf.obj (Opposite.op ⊤)))
     (s : Fin q → Fin n) :
@@ -456,7 +456,7 @@ private theorem appTop_comp_apply {X Y Z : Scheme.{u}} (a : X ⟶ Y) (b : Y ⟶ 
     (Scheme.Hom.appTop (a ≫ b)) x
       = (Scheme.Hom.appTop a) ((Scheme.Hom.appTop b) x) := rfl
 
-theorem graphMorphismToAffineSpace_basicOpen_jacobianDetSection_eq (k : Type u) [Field k] (M n q : ℕ)
+private theorem graphMorphismToAffineSpace_basicOpen_jacobianDetSection_eq (k : Type u) [Field k] (M n q : ℕ)
     (F : Fin q →
       ↑((affineSpaceIndexedBy k (ULift.{u, 0} (Fin M ⊕ Fin n))).presheaf.obj (Opposite.op ⊤)))
     (s : Fin q → Fin n) :

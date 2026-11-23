@@ -16,22 +16,22 @@ theorem tuningWeight_fun_add (m : ℕ) (c d : ℕ → ℕ) :
     tuningWeight m (fun j => c j + d j) = tuningWeight m c + tuningWeight m d := by
   simp [tuningWeight, Nat.mul_add, Finset.sum_add_distrib]
 
-theorem tuningWeight_add (m : ℕ) (c d : ℕ → ℕ) :
+private theorem tuningWeight_add (m : ℕ) (c d : ℕ → ℕ) :
     tuningWeight m (c + d) = tuningWeight m c + tuningWeight m d :=
   tuningWeight_fun_add m c d
 
-theorem tuningWeight_mul_left (m n : ℕ) (c : ℕ → ℕ) :
+private theorem tuningWeight_mul_left (m n : ℕ) (c : ℕ → ℕ) :
     tuningWeight m (fun j => n * c j) = n * tuningWeight m c := by
   simp [tuningWeight, Finset.mul_sum, Nat.mul_left_comm]
 
-theorem tuningWeight_nsmul (m n : ℕ) (c : ℕ → ℕ) :
+private theorem tuningWeight_nsmul (m n : ℕ) (c : ℕ → ℕ) :
     tuningWeight m (n • c) = n * tuningWeight m c := by
   have : (n • c) = fun j => n * c j := by
     funext j
     simp [Pi.smul_apply, smul_eq_mul]
   rw [this, tuningWeight_mul_left]
 
-theorem tuningWeight_single (m i : ℕ) (hi : i ∈ Finset.range m) :
+private theorem tuningWeight_single (m i : ℕ) (hi : i ∈ Finset.range m) :
     tuningWeight m (Pi.single i 1) = m - i := by
   rw [tuningWeight_eq_sum, Finset.sum_eq_single i]
   · simp
@@ -58,7 +58,7 @@ def tuningMonomial (J : Ideal S) (m : ℕ) (c : ℕ → ℕ) : Ideal S :=
 theorem tuningMonomial_eq_prod (J : Ideal S) (m : ℕ) (c : ℕ → ℕ) :
     tuningMonomial k J m c = ∏ j ∈ Finset.range m, derivIdealIterate k j J ^ c j := rfl
 
-theorem tuningMonomial_zero (J : Ideal S) (m : ℕ) :
+private theorem tuningMonomial_zero (J : Ideal S) (m : ℕ) :
     tuningMonomial k J m (fun _ => 0) = ⊤ := by
   simp [tuningMonomial_eq_prod, Ideal.one_eq_top]
 
@@ -67,7 +67,7 @@ theorem tuningMonomial_mul_fun_add (J : Ideal S) (m : ℕ) (c d : ℕ → ℕ) :
   rw [tuningMonomial_eq_prod, tuningMonomial_eq_prod, tuningMonomial_eq_prod, ← Finset.prod_mul_distrib]
   exact Finset.prod_congr rfl fun j _ => (pow_add _ _ _).symm
 
-theorem tuningMonomial_mul (J : Ideal S) (m : ℕ) (c d : ℕ → ℕ) :
+private theorem tuningMonomial_mul (J : Ideal S) (m : ℕ) (c d : ℕ → ℕ) :
     tuningMonomial k J m c * tuningMonomial k J m d = tuningMonomial k J m (c + d) :=
   tuningMonomial_mul_fun_add k J m c d
 
@@ -80,19 +80,19 @@ private theorem prod_derivIdealIterate_pow_pow (J : Ideal S) (m n : ℕ) (c : �
       rw [Finset.prod_range_succ, mul_pow, ih, Finset.prod_range_succ, ← pow_mul,
         Nat.mul_comm (c m) n]
 
-theorem tuningMonomial_pow_fun_mul (J : Ideal S) (m n : ℕ) (c : ℕ → ℕ) :
+private theorem tuningMonomial_pow_fun_mul (J : Ideal S) (m n : ℕ) (c : ℕ → ℕ) :
     tuningMonomial k J m c ^ n = tuningMonomial k J m (fun j => n * c j) := by
   rw [tuningMonomial_eq_prod, tuningMonomial_eq_prod]
   exact prod_derivIdealIterate_pow_pow k J m n c
 
-theorem tuningMonomial_pow (J : Ideal S) (m n : ℕ) (c : ℕ → ℕ) :
+private theorem tuningMonomial_pow (J : Ideal S) (m n : ℕ) (c : ℕ → ℕ) :
     tuningMonomial k J m c ^ n = tuningMonomial k J m (n • c) := by
   have h : (n • c) = fun j => n * c j := by
     funext j
     simp [Pi.smul_apply, smul_eq_mul]
   rw [h, tuningMonomial_pow_fun_mul]
 
-theorem tuningMonomial_single (J : Ideal S) (m i : ℕ) (hi : i ∈ Finset.range m) :
+private theorem tuningMonomial_single (J : Ideal S) (m i : ℕ) (hi : i ∈ Finset.range m) :
     tuningMonomial k J m (Pi.single i 1) = derivIdealIterate k i J := by
   rw [tuningMonomial_eq_prod, Finset.prod_eq_single i]
   · simp
@@ -104,7 +104,7 @@ theorem tuningMonomial_single (J : Ideal S) (m i : ℕ) (hi : i ∈ Finset.range
 def tunedIdeal (J : Ideal S) (m s : ℕ) : Ideal S :=
   ⨆ c : ℕ → ℕ, ⨆ _ : s ≤ tuningWeight m c, tuningMonomial k J m c
 
-theorem tunedIdeal_eq_iSup (J : Ideal S) (m s : ℕ) :
+private theorem tunedIdeal_eq_iSup (J : Ideal S) (m s : ℕ) :
     tunedIdeal k J m s = ⨆ c : ℕ → ℕ, ⨆ _ : s ≤ tuningWeight m c, tuningMonomial k J m c := rfl
 
 theorem tuningMonomial_le_tunedIdeal (J : Ideal S) (m s : ℕ) (c : ℕ → ℕ)
@@ -124,7 +124,7 @@ theorem tunedIdeal_zero (J : Ideal S) (m : ℕ) : tunedIdeal k J m 0 = ⊤ := by
   rw [← tuningMonomial_zero k J m]
   exact tuningMonomial_le_tunedIdeal k J m 0 (fun _ => 0) (Nat.zero_le _)
 
-theorem tunedIdeal_antitone (J : Ideal S) (m : ℕ) {s t : ℕ} (h : s ≤ t) :
+private theorem tunedIdeal_antitone (J : Ideal S) (m : ℕ) {s t : ℕ} (h : s ≤ t) :
     tunedIdeal k J m t ≤ tunedIdeal k J m s := by
   rw [tunedIdeal_le_iff]
   intro c hc
@@ -358,7 +358,7 @@ theorem tunedIdeal_one_le_derivIdealIterate (J : Ideal S) (m : ℕ) (_hm : 1 ≤
   rw [tuningMonomial_eq_prod, ← hsplit]
   exact le_trans Ideal.mul_le_left (Ideal.pow_le_self hcj)
 
-theorem mul_tunedIdeal_le_iff (I J : Ideal S) (m s : ℕ) (K : Ideal S) :
+private theorem mul_tunedIdeal_le_iff (I J : Ideal S) (m s : ℕ) (K : Ideal S) :
     I * tunedIdeal k J m s ≤ K ↔
       ∀ c : ℕ → ℕ, s ≤ tuningWeight m c → I * tuningMonomial k J m c ≤ K := by
   constructor
@@ -370,7 +370,7 @@ theorem mul_tunedIdeal_le_iff (I J : Ideal S) (m s : ℕ) (K : Ideal S) :
     rw [Submodule.mul_iSup]
     exact iSup_le fun hc => h c hc
 
-theorem span_pow_mul_tuningMonomial_le (J : Ideal S) (m : ℕ) (hm : 1 ≤ m) {x : S}
+private theorem span_pow_mul_tuningMonomial_le (J : Ideal S) (m : ℕ) (hm : 1 ≤ m) {x : S}
     (hx : x ∈ derivIdealIterate k (m - 1) J) (n : ℕ) (c : ℕ → ℕ) :
     Ideal.span {x ^ n} * tuningMonomial k J m c ≤ tunedIdeal k J m (tuningWeight m c + n) := by
   have hmem : (m - 1) ∈ Finset.range m := Finset.mem_range.mpr (by omega)
@@ -386,7 +386,7 @@ theorem span_pow_mul_tuningMonomial_le (J : Ideal S) (m : ℕ) (hm : 1 ≤ m) {x
   rw [hmm]
   omega
 
-theorem span_pow_mul_tunedIdeal_le (J : Ideal S) (m : ℕ) (hm : 1 ≤ m) {x : S}
+private theorem span_pow_mul_tunedIdeal_le (J : Ideal S) (m : ℕ) (hm : 1 ≤ m) {x : S}
     (hx : x ∈ derivIdealIterate k (m - 1) J) (n t : ℕ) :
     Ideal.span {x ^ n} * tunedIdeal k J m t ≤ tunedIdeal k J m (t + n) := by
   rw [mul_tunedIdeal_le_iff]

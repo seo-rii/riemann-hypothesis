@@ -283,7 +283,7 @@ namespace MarkedBlowupSequenceData
 variable {k : Type u} [Field k] {X : Scheme.{u}} {p : X ⟶ Spec (CommRingCat.of k)}
   {I : X.IdealSheafData} {m : ℕ} {E : List X.IdealSheafData}
 
-theorem projectionToBase_eq (d : MarkedBlowupSequenceData p I m E) (i : ℕ) :
+private theorem projectionToBase_eq (d : MarkedBlowupSequenceData p I m E) (i : ℕ) :
     d.proj i = BlowupSequenceData.projectionToBase d.toBlowupSequenceData i := by
   induction i with
   | zero =>

@@ -23,12 +23,12 @@ def polynomialEvalInvSelf (φ : R →+* S) (s : S) : Polynomial R →+* Localiza
     (((algebraMap S (Localization.Away s)) : S →+* Localization.Away s).comp φ)
     (Localization.Away.invSelf s)
 
-theorem polynomialEvalInvSelf_monomial (φ : R →+* S) (s : S) (n : ℕ) (r : R) :
+private theorem polynomialEvalInvSelf_monomial (φ : R →+* S) (s : S) (n : ℕ) (r : R) :
     polynomialEvalInvSelf φ s (Polynomial.monomial n r) =
       algebraMap S (Localization.Away s) (φ r) * Localization.Away.invSelf s ^ n := by
   simp [polynomialEvalInvSelf]
 
-theorem exists_mul_pow_of_mem_pow (I : Ideal R) (φ : R →+* S) (s : S)
+private theorem exists_mul_pow_of_mem_pow (I : Ideal R) (φ : R →+* S) (s : S)
     (hI : Ideal.map φ I = Ideal.span {s}) (n : ℕ) (r : R) (hr : r ∈ I ^ n) :
     ∃ c : S, φ r = c * s ^ n := by
   have hmem : φ r ∈ Ideal.span {s ^ n} := by
@@ -69,7 +69,7 @@ def reesAlgebraLiftFun (I : Ideal R) (φ : R →+* S) (s : S)
     (p : ↥(reesAlgebra I)) : S :=
   (exists_algebraMap_eq_polynomialEvalInvSelf I φ s hI p).choose
 
-theorem algebraMap_reesAlgebraLiftFun (I : Ideal R) (φ : R →+* S) (s : S)
+private theorem algebraMap_reesAlgebraLiftFun (I : Ideal R) (φ : R →+* S) (s : S)
     (hI : Ideal.map φ I = Ideal.span {s}) (hs : s ∈ nonZeroDivisors S)
     (p : ↥(reesAlgebra I)) :
     algebraMap S (Localization.Away s) (reesAlgebraLiftFun I φ s hI hs p) =
@@ -133,7 +133,7 @@ def reesAlgebraLift (I : Ideal R) (φ : R →+* S) (s : S)
   map_zero' := reesAlgebraLiftFun_zero I φ s hI hs
   map_add' := reesAlgebraLiftFun_add I φ s hI hs
 
-theorem reesAlgebraLift_apply (I : Ideal R) (φ : R →+* S) (s : S)
+private theorem reesAlgebraLift_apply (I : Ideal R) (φ : R →+* S) (s : S)
     (hI : Ideal.map φ I = Ideal.span {s}) (hs : s ∈ nonZeroDivisors S)
     (p : ↥(reesAlgebra I)) :
     reesAlgebraLift I φ s hI hs p = reesAlgebraLiftFun I φ s hI hs p := rfl

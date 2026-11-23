@@ -111,7 +111,7 @@ private theorem exists_sections_iso_globalSectionsRingHom {R : Type u} [CommRing
   simp only [globalSectionsRingHom_eq, hcomp, asIso_hom, CommRingCat.hom_comp, RingHom.comp_apply,
     sectionsRingHom_apply]
 
-theorem exists_local_lift_toSpec_of_isLocallyGeneratedByNonZeroDivisor {R : Type u} [CommRing R] (I : Ideal R)
+private theorem exists_local_lift_toSpec_of_isLocallyGeneratedByNonZeroDivisor {R : Type u} [CommRing R] (I : Ideal R)
     {W : Scheme.{u}} (g : W ⟶ Spec (CommRingCat.of R))
     (hcart : IsLocallyGeneratedByNonZeroDivisor ((specIdealSheaf I).comap g)) (w : ↥W) :
     ∃ (U : W.Opens) (_ : w ∈ U) (h : U.toScheme ⟶ affineBlowup I),
@@ -171,7 +171,7 @@ private def openCoverOfForallMem {W : Scheme.{u}} (U : ↥W → W.Opens) (hU : �
   Scheme.Cover.mkOfCovers (↥W) (fun w => (U w).toScheme) (fun w => (U w).ι)
     (fun x => ⟨x, ⟨x, hU x⟩, rfl⟩)
 
-theorem exists_lift_toSpec_of_isLocallyGeneratedByNonZeroDivisor {R : Type u} [CommRing R] (I : Ideal R)
+private theorem exists_lift_toSpec_of_isLocallyGeneratedByNonZeroDivisor {R : Type u} [CommRing R] (I : Ideal R)
     {W : Scheme.{u}} (g : W ⟶ Spec (CommRingCat.of R))
     (hcart : IsLocallyGeneratedByNonZeroDivisor ((specIdealSheaf I).comap g)) :
     ∃ h : W ⟶ affineBlowup I, h ≫ AffineBlowup.toSpec I = g := by

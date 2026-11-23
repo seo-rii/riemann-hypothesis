@@ -45,7 +45,7 @@ private theorem congr_hom_apply {A B : Scheme.{u}} {f g : A ⟶ B} (e : f = g) (
   subst e
   rfl
 
-theorem levelMap_succ_comp_transitionMap (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j < S'.length)
+private theorem levelMap_succ_comp_transitionMap (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j < S'.length)
     (hσ : F.reindex j ≤ F.reindex (j + 1)) :
     F.levelMap (j + 1) (Nat.succ_le_of_lt hj) ≫ S.ambientSeq.transitionMap hσ =
       S'.blowdown j ≫ F.levelMap j (le_of_lt hj) := by
@@ -57,7 +57,7 @@ theorem levelMap_succ_comp_transitionMap (F : ChartFlatBaseChange S S') (j : ℕ
   rw [Category.assoc, key] at hw
   exact hw
 
-theorem strictTransformComparison_succ_comp_strictTransformMapOfLE (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j < S'.length)
+private theorem strictTransformComparison_succ_comp_strictTransformMapOfLE (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j < S'.length)
     (hσ : F.reindex j ≤ F.reindex (j + 1)) :
     F.strictTransformComparison (j + 1) (Nat.succ_le_of_lt hj) ≫ S.strictTransformMapOfLE hσ =
       S'.strictTransformMap j ≫ F.strictTransformComparison j (le_of_lt hj) := by
@@ -73,7 +73,7 @@ theorem strictTransformComparison_succ_comp_strictTransformMapOfLE (F : ChartFla
     rw [Category.assoc, F.strictTransformComparison_comp_strictTransformι, ← Category.assoc, S'.strictTransformMap_comp_strictTransformι, Category.assoc]
   rw [e1, e2]
 
-theorem inr_totalSpaceMap (F : ChartFlatBaseChange S S') [AlgebraicGeometry.IsReduced Y]
+private theorem inr_totalSpaceMap (F : ChartFlatBaseChange S S') [AlgebraicGeometry.IsReduced Y]
     [AlgebraicGeometry.IsReduced Y'] (j : ℕ) (hj : j ≤ S'.length) :
     (coprod.inr : S'.detachedCoprod j ⟶ S'.totalSpace j) ≫ F.totalSpaceMap j hj =
       F.inactiveTotalMap j hj ≫
@@ -227,7 +227,7 @@ private theorem inducedBlowupsIso_hom_snd (F : ChartFlatBaseChange S S') [Algebr
       = F.totalSpaceMap i (by rwa [FunctorialResolution.EmbeddedResolution.EmbeddedBlowupSequence.inducedBlowups_length] at hi) :=
   IsPullback.isoPullback_hom_snd _
 
-theorem isPullbackUpToEmptyCenters_inducedBlowups (F : ChartFlatBaseChange S S')
+private theorem isPullbackUpToEmptyCenters_inducedBlowups (F : ChartFlatBaseChange S S')
     [AlgebraicGeometry.IsReduced Y] [AlgebraicGeometry.IsReduced Y']
     (h : S.TransitionsAreBlowups) (h' : S'.TransitionsAreBlowups) :
     IsPullbackUpToEmptyCenters F.baseMap (S'.inducedBlowups h') (S.inducedBlowups h) := by

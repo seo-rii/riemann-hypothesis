@@ -225,7 +225,7 @@ theorem isLocallyGeneratedByNonZeroDivisor_exceptionalIdeal {X' X : Scheme.{u}} 
   rw [Blowup.exceptionalIdeal_eq_comap]
   exact Blowup.IsBlowupAlongIdealSheaf.isLocallyGeneratedByNonZeroDivisor_comap h
 
-theorem isLocallyGeneratedByNonZeroDivisor_pow {Y : Scheme.{u}} {F : Y.IdealSheafData}
+private theorem isLocallyGeneratedByNonZeroDivisor_pow {Y : Scheme.{u}} {F : Y.IdealSheafData}
     (hF : Blowup.IsLocallyGeneratedByNonZeroDivisor F) (m : ℕ) : Blowup.IsLocallyGeneratedByNonZeroDivisor (F ^ m) := by
   intro x
   obtain ⟨U, f, hxU, hf, hFU⟩ := hF x
@@ -234,7 +234,7 @@ theorem isLocallyGeneratedByNonZeroDivisor_pow {Y : Scheme.{u}} {F : Y.IdealShea
   show F.ideal U ^ m = _
   rw [hFU, Ideal.span_singleton_pow]
 
-theorem eq_of_isLocallyGeneratedByNonZeroDivisor_mul_eq_mul {Y : Scheme.{u}} {F A B : Y.IdealSheafData}
+private theorem eq_of_isLocallyGeneratedByNonZeroDivisor_mul_eq_mul {Y : Scheme.{u}} {F A B : Y.IdealSheafData}
     (hF : Blowup.IsLocallyGeneratedByNonZeroDivisor F) (h : F * A = F * B) : A = B :=
   eq_of_stalkIdeal_eq (stalkIdeal_eq_of_mul_eq_mul hF h)
 
@@ -242,7 +242,7 @@ theorem eq_of_isLocallyGeneratedByNonZeroDivisor_pow_mul_eq_mul {Y : Scheme.{u}}
     (hF : Blowup.IsLocallyGeneratedByNonZeroDivisor F) (m : ℕ) (h : F ^ m * A = F ^ m * B) : A = B :=
   eq_of_isLocallyGeneratedByNonZeroDivisor_mul_eq_mul (isLocallyGeneratedByNonZeroDivisor_pow hF m) h
 
-theorem BlowupSequenceData.eq_of_pow_exceptionalIdeal_mul_eq_mul {X : Scheme.{u}} (d : BlowupSequenceData X)
+private theorem BlowupSequenceData.eq_of_pow_exceptionalIdeal_mul_eq_mul {X : Scheme.{u}} (d : BlowupSequenceData X)
     {i : ℕ} (hi : i < d.length) (m : ℕ) (A B : (d.obj (i + 1)).IdealSheafData)
     (h : Blowup.exceptionalIdeal (d.map i) (d.center i) ^ m * A =
       Blowup.exceptionalIdeal (d.map i) (d.center i) ^ m * B) : A = B :=
@@ -292,7 +292,7 @@ theorem controlledTransform_and_boundary_eq_of_cancel {k : Type u} [Field k] {X 
       · rw [BlowupSequenceData.boundary_succ, ih2]
         exact (s.boundary_succ j hj).symm
 
-theorem controlledTransform_and_boundary_eq {k : Type u} [Field k] {X : Scheme.{u}}
+private theorem controlledTransform_and_boundary_eq {k : Type u} [Field k] {X : Scheme.{u}}
     {p : X ⟶ Spec (CommRingCat.of k)} {I : X.IdealSheafData} {m : ℕ}
     {E : List X.IdealSheafData} (s : MarkedBlowupSequenceData p I m E)
     (i : ℕ) (hi : i ≤ s.length) :

@@ -28,7 +28,7 @@ noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
-theorem nonzeroOnComponents_of_support_ne_univ {X : Scheme.{u}} [IrreducibleSpace ↥X]
+private theorem nonzeroOnComponents_of_support_ne_univ {X : Scheme.{u}} [IrreducibleSpace ↥X]
     (I : X.IdealSheafData) (h : (↑I.support : Set ↥X) ≠ Set.univ) :
     NonzeroOnComponents I := by
   intro T hT hsub
@@ -145,7 +145,7 @@ private theorem pullbackCoord_id {k : Type u} [Field k] {N : Type u} (j : N) :
       = AffineSpace.coord (Spec (CommRingCat.of k)) j := by
   simp
 
-theorem pullbackCoord_affineSpaceInl (k : Type u) [Field k] (n m : ℕ)
+private theorem pullbackCoord_affineSpaceInl (k : Type u) [Field k] (n m : ℕ)
     (i : ULift.{u, 0} (Fin n ⊕ Fin m)) :
     pullbackCoord (affineSpaceInl k n m) i =
       Sum.elim (fun a : Fin n =>
@@ -172,7 +172,7 @@ theorem pullbackCoord_affineSpaceInl_inr (k : Type u) [Field k] (n m : ℕ) (b :
     pullbackCoord (affineSpaceInl k n m) (ULift.up.{u, 0} (Sum.inr b)) = 0 :=
   pullbackCoord_affineSpaceInl k n m (ULift.up.{u, 0} (Sum.inr b))
 
-theorem pullbackCoord_affineSpaceInrEmbedding (k : Type u) [Field k] (n m : ℕ)
+private theorem pullbackCoord_affineSpaceInrEmbedding (k : Type u) [Field k] (n m : ℕ)
     (i : ULift.{u, 0} (Fin n ⊕ Fin m)) :
     pullbackCoord (affineSpaceInrEmbedding k n m) i =
       Sum.elim (fun _ : Fin n => 0)

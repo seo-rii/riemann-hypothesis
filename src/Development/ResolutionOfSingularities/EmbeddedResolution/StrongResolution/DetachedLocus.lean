@@ -91,11 +91,11 @@ theorem quasiCompact_strictTransformι_blowdown (i : ℕ)
 def detachedOpens (i : ℕ) (h : IsOpen (S.detachedLocus i)) : (S.strictTransform i).Opens :=
   ⟨S.detachedLocus i, h⟩
 
-theorem coe_detachedOpens (i : ℕ) (h : IsOpen (S.detachedLocus i)) :
+private theorem coe_detachedOpens (i : ℕ) (h : IsOpen (S.detachedLocus i)) :
     ((S.detachedOpens i h : (S.strictTransform i).Opens) : Set ↥(S.strictTransform i)) =
       S.detachedLocus i := rfl
 
-theorem disjoint_detachedOpens_detachedClosureCompl (i : ℕ) (h : IsOpen (S.detachedLocus i))
+private theorem disjoint_detachedOpens_detachedClosureCompl (i : ℕ) (h : IsOpen (S.detachedLocus i))
     (_hn : TopologicalSpace.NoetherianSpace ↥(S.strictTransform i)) :
     Disjoint ((S.detachedOpens i h : (S.strictTransform i).Opens) : Set ↥(S.strictTransform i))
       ((S.detachedClosureCompl i : (S.strictTransform i).Opens) : Set ↥(S.strictTransform i)) := by
@@ -105,7 +105,7 @@ theorem disjoint_detachedOpens_detachedClosureCompl (i : ℕ) (h : IsOpen (S.det
   have h2 : x ∈ closure (S.detachedLocus i) := subset_closure h1
   exact hx' h2
 
-theorem union_detachedOpens_detachedClosureCompl (i : ℕ) (h : IsOpen (S.detachedLocus i))
+private theorem union_detachedOpens_detachedClosureCompl (i : ℕ) (h : IsOpen (S.detachedLocus i))
     (hn : TopologicalSpace.NoetherianSpace ↥(S.strictTransform i)) :
     ((S.detachedOpens i h : (S.strictTransform i).Opens) : Set ↥(S.strictTransform i)) ∪
         ((S.detachedClosureCompl i : (S.strictTransform i).Opens) : Set ↥(S.strictTransform i)) = Set.univ := by
@@ -113,12 +113,12 @@ theorem union_detachedOpens_detachedClosureCompl (i : ℕ) (h : IsOpen (S.detach
   rw [S.coe_detachedOpens i h, S.detachedClosureCompl_coe i, S.detachedClosure_coe i]
   exact Set.union_compl_self _
 
-theorem coe_detachedClosureCompl (i : ℕ) :
+private theorem coe_detachedClosureCompl (i : ℕ) :
     ((S.detachedClosureCompl i : (S.strictTransform i).Opens) : Set ↥(S.strictTransform i)) =
       ((S.detachedClosure i : TopologicalSpace.Closeds ↥(S.strictTransform i)) :
         Set ↥(S.strictTransform i))ᶜ := rfl
 
-theorem isClosed_detachedClosureCompl (i : ℕ)
+private theorem isClosed_detachedClosureCompl (i : ℕ)
     (hn : TopologicalSpace.NoetherianSpace ↥(S.strictTransform i))
     (h : IsOpen (S.detachedLocus i)) :
     IsClosed ((S.detachedClosureCompl i : (S.strictTransform i).Opens) : Set ↥(S.strictTransform i)) := by
@@ -328,7 +328,7 @@ private theorem isBlowupAlongIdealSheaf_coprod_desc_of_disjoint_cover {A A' F : 
       have hb := hW.iso_hom_comp (pullbackRestrictIsoRestrict (coprod.desc g j) W)
       rwa [pullbackRestrictIsoRestrict_hom_morphismRestrict] at hb
 
-theorem isBlowupAlongIdealSheaf_coprod_desc_centerOffDetached [AlgebraicGeometry.IsReduced Y]
+private theorem isBlowupAlongIdealSheaf_coprod_desc_centerOffDetached [AlgebraicGeometry.IsReduced Y]
     [AlgebraicGeometry.QuasiCompact pY] (i : ℕ) (hi : i < S.length)
     (h : IsOpen (S.detachedLocus i))
     (hN : ∀ j ≤ S.length, AlgebraicGeometry.IsNoetherian (S.schemeAt j)) :
@@ -504,7 +504,7 @@ private def coprodSwapAssocIso (A F T : Scheme.{u}) : A ⨿ (T ⨿ F) ≅ (A ⨿
 private theorem coprodSwapAssocIso_hom (A F T : Scheme.{u}) :
     (coprodSwapAssocIso A F T).hom = coprodSwapAssocHom A F T := rfl
 
-theorem isBlowupAlongIdealSheaf_totalTransition_of_coprod_desc (i : ℕ)
+private theorem isBlowupAlongIdealSheaf_totalTransition_of_coprod_desc (i : ℕ)
     (h : Blowup.IsBlowupAlongIdealSheaf (coprod.desc (S.strictTransformMap i) (S.detachedι i)) (S.centerOffDetached i)) :
     Blowup.IsBlowupAlongIdealSheaf (S.totalTransition i) (S.totalCenter i) := by
   have hq1 : AlgebraicGeometry.QuasiCompact (S.centerOffDetached i).subschemeι := inferInstance
@@ -558,7 +558,7 @@ def EmbeddedBlowupSequence.AllLevelsNoetherian {k : Type u} [Field k] [CharZero 
     [AlgebraicGeometry.LocallyOfFiniteType pY] (S : EmbeddedBlowupSequence k Y pY) : Prop :=
   ∀ i ≤ S.length, AlgebraicGeometry.IsNoetherian (S.schemeAt i)
 
-theorem transitionsAreBlowups_of_detachedLocusIsOpen {k : Type u} [Field k] [CharZero k] {Y : Scheme.{u}}
+private theorem transitionsAreBlowups_of_detachedLocusIsOpen {k : Type u} [Field k] [CharZero k] {Y : Scheme.{u}}
     [AlgebraicGeometry.IsAffine Y] [AlgebraicGeometry.IsReduced Y]
     {pY : Y ⟶ Spec (CommRingCat.of k)} [AlgebraicGeometry.LocallyOfFiniteType pY]
     [AlgebraicGeometry.QuasiCompact pY] (S : EmbeddedBlowupSequence k Y pY)
@@ -576,7 +576,7 @@ def DetachedLocusIsOpenForEmbeddings (A : PrincipalizationAlgorithm.{u}) : Prop 
     [AlgebraicGeometry.IsAffine Y] (D : EmbeddingDatum k Y pY),
     EmbeddedBlowupSequence.DetachedLocusIsOpen (D.toEmbeddedBlowupSequence A)
 
-theorem allLevelsNoetherian_toEmbeddedBlowupSequence (A : PrincipalizationAlgorithm.{u}) (k : Type u) [Field k] [CharZero k]
+private theorem allLevelsNoetherian_toEmbeddedBlowupSequence (A : PrincipalizationAlgorithm.{u}) (k : Type u) [Field k] [CharZero k]
     (Y : Scheme.{u}) (pY : Y ⟶ Spec (CommRingCat.of k))
     [AlgebraicGeometry.LocallyOfFiniteType pY] [AlgebraicGeometry.QuasiCompact pY]
     [AlgebraicGeometry.IsReduced Y] [AlgebraicGeometry.IsAffine Y]
@@ -630,7 +630,7 @@ def strictTransformToSpec (i : ℕ) : S.strictTransform i ⟶ Spec (CommRingCat.
 theorem strictTransformToSpec_eq (i : ℕ) :
     S.strictTransformToSpec i = S.strictTransformι i ≫ S.schemeAtToSpec i := rfl
 
-theorem locallyOfFiniteType_schemeAtToSpec (i : ℕ) (hi : i ≤ S.length) :
+private theorem locallyOfFiniteType_schemeAtToSpec (i : ℕ) (hi : i ≤ S.length) :
     AlgebraicGeometry.LocallyOfFiniteType (S.schemeAtToSpec i) := by
   have key : ∀ j : ℕ, j ≤ S.length →
       AlgebraicGeometry.LocallyOfFiniteType (S.ambientSeq.projectionToBase j) := by

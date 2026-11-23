@@ -18,7 +18,7 @@ open AlgebraicGeometry CategoryTheory TopologicalSpace
 
 namespace FunctorialResolution.EmbeddedResolution
 
-theorem isOpen_setOf_stalkIdeal_eq_bot {X : Scheme.{u}} [AlgebraicGeometry.IsLocallyNoetherian X]
+private theorem isOpen_setOf_stalkIdeal_eq_bot {X : Scheme.{u}} [AlgebraicGeometry.IsLocallyNoetherian X]
     (J : X.IdealSheafData) :
     IsOpen {x : ↥X | stalkIdeal J x = (⊥ : Ideal (X.presheaf.stalk x))} := by
   rw [isOpen_iff_forall_mem_open]
