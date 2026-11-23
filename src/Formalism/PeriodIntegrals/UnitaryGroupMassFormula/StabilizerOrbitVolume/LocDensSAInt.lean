@@ -108,7 +108,7 @@ private theorem fg_of_addHom_intValued {F : Type} [Field F] [NumberField F] (Λ 
         funext i
         simp only [Pi.smul_apply, smul_eq_mul, Int.cast_mul, RingHom.id_apply, zsmul_eq_mul] }
   have hφ : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     by_contra hy0
     obtain ⟨w, hw⟩ := hne

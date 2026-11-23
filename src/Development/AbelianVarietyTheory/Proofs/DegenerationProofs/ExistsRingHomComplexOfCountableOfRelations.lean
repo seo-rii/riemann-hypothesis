@@ -91,7 +91,7 @@ theorem exists_ringHom_complex_of_countable_of_relations :
     refine (isAlgebraic_algHom_iff em.toIntAlgHom hem).1 ?_
     exact isAlgebraic_int_eval₂Hom_of_isAlgebraic y hy c
   have hβ : Function.Injective β := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro r hr
     by_contra h0
     refine Ideal.comap_ne_bot_of_algebraic_mem (R := ℤ) (I := RingHom.ker β) h0 hr (halg r) ?_

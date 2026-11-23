@@ -371,7 +371,7 @@ theorem stab_rat : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberF
             exact (stab_eq (A.L p) r k (G.S p)).1 (hp p) (hpSt p) _ ((decomp G p).2.2 x hx))
       exact fun x => LinearMap.congr_fun heq x
     have hinj : Function.Injective φ := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro x hx
       have h1 := hExt p0 x
       rw [hx] at h1

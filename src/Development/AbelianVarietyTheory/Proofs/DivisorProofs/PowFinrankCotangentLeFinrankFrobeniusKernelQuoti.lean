@@ -183,7 +183,7 @@ theorem pow_finrank_cot_le [Module.Finite k H] :
   have hε : (counitAlgHom k (H ⧸ J)).comp π = counitAlgHom k H := rfl
   have hbij : Function.Bijective (AugCot.map π hε) := by
     refine ⟨?_, AugCot.map_surjective π hε hπ⟩
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     obtain ⟨z, rfl⟩ := (AugCot.exact_kerMap_map π hε hπ y).1 hy
     rw [AugCot.kerMap_apply, AugCot.d_of_mem _ (AugCot.ker_le π hε z.2),

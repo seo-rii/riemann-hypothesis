@@ -72,7 +72,7 @@ theorem zp_neg (z : ℤ_[p]) : zp Ω (-z) = - zp Ω z := by
 
 theorem zpHom_injective (hc : IsClo p Ω) : Function.Injective (zpHom (p := p) (Ω := Ω)) := by
   haveI := Basic.charZero_of_isClo hc
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro m hm
   by_contra h0
   rw [PadicInt.unitCoeff_spec h0, map_mul, map_pow, map_natCast] at hm

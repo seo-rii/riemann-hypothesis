@@ -168,7 +168,7 @@ theorem gen_iso_of_lowest_type : admQ7 → admQ8 → ∀ (p q : ℕ) (lam : Ix p
           have h2 : y.2 = 0 := hy.2
           change M'.M.act Z y.2 = 0
           rw [h2, map_zero]⟩) (fun h => hu'.1 h.2)
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro x hx
       have : (x : M.M.V × M'.M.V) ∈ N ⊓ LinearMap.ker (LinearMap.snd ℂ _ _) := ⟨x.2, hx⟩
       rw [h] at this

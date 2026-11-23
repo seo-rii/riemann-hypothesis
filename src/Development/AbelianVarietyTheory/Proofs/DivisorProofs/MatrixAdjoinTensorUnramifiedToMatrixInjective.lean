@@ -98,7 +98,7 @@ theorem phi_apply_entry (x : PolyAlg p K n γ ⊗[ℚ_[p]] Qr p r) (j k : Fin n)
   | add a b ha hb => rw [map_add (f := _), Matrix.add_apply, ha, hb, map_add (f := _)]; rfl
 
 theorem phi_injective_any : Function.Injective (phi p K n γ r) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have hinj : Function.Injective ((entries p K n γ).rTensor (Qr p r)) :=
     Module.Flat.rTensor_preserves_injective_linearMap _ (entries_injective p K n γ)

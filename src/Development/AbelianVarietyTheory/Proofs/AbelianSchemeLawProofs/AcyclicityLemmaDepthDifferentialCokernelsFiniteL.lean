@@ -133,7 +133,7 @@ theorem length_ext_of_isFiniteLength [IsLocalRing R] (Y : ModuleCat.{0} R) (g : 
         exact Ext.precomp_mk₀_injective_of_epi Y (ModuleCat.shortComplexOfCompEqZero N.subtype N.mkQ
           (LinearMap.exact_subtype_mkQ N).linearMap_comp_eq_zero).g
       | succ g =>
-        set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+        rw [injective_iff_map_eq_zero]
         intro x hx
         obtain ⟨y, rfl⟩ := Ext.contravariant_sequence_exact₃ hS Y x hx (add_comm 1 g)
         rw [@Subsingleton.elim _ (subsingleton_ext_of_isFiniteLength Y g (hk g (by omega)) N hN) y 0]

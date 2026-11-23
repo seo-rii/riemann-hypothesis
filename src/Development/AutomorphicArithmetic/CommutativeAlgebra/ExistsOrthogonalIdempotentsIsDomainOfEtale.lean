@@ -146,7 +146,7 @@ private theorem core (T C : Type) [CommRing T] [IsDomain T] [IsIntegrallyClosed 
     (IsIdempotentElem.iff_eq_one_of_isUnit (IsLocalization.Away.algebraMap_isUnit (c j))).1
       (hidem.map _)
   have hinj : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     obtain ⟨x, rfl⟩ := hsurj a
     rw [hψ] at ha

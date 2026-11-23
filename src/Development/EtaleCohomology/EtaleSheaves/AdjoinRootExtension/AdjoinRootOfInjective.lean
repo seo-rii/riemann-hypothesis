@@ -81,7 +81,7 @@ lemma step_root (p : MonP R) :
 
 lemma adjoinRoot_of_injective {T : Type u} [CommRing T] (q : T[X]) (hq : q.Monic)
     (hd : 0 < q.natDegree) : Function.Injective (AdjoinRoot.of q) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro r hr
   by_contra h
   have h1 : AdjoinRoot.mk q (C r) = 0 := hr
@@ -113,7 +113,7 @@ lemma finite_roots (F : Finset (MonP R)) : ∃ (T : Type u) (_ : CommRing T) (φ
 
 theorem stepHom_injective : Function.Injective (stepHom R) := by
   classical
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro r hr
   have hmem : MvPolynomial.C r ∈ stepIdeal R := Ideal.Quotient.eq_zero_iff_mem.1 hr
   obtain ⟨S, hS, hx⟩ := Submodule.mem_span_finite_of_mem_span hmem

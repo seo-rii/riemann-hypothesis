@@ -76,7 +76,7 @@ theorem zmodToQZ_intCast (n : ℕ) [NeZero n] (m : ℤ) :
 
 theorem zmodToQZ_injective (n : ℕ) [NeZero n] : Injective (zmodToQZ n) := by
   have hn : (n : ℚ) ≠ 0 := Nat.cast_ne_zero.2 (NeZero.ne n)
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   obtain ⟨m, rfl⟩ := ZMod.intCast_surjective a
   rw [zmodToQZ_intCast, mk_eq_zero_QZ] at ha

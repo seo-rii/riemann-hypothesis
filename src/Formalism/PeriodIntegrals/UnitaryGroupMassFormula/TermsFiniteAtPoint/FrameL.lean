@@ -200,7 +200,7 @@ theorem gmap_of_isom (Λ : Submodule (𝓞 E) S.V) (hU : Formalism.HermitianLatt
     rwa [← hn y (n.symm v), LinearEquiv.apply_symm_apply]
 
 theorem inj_of_isom (g : S.V →ₗ[E] S.V) (hg : ∀ x y, S.hT (g x) (g y) = S.hT x y) : Function.Injective g := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   apply S.nondeg.1 x
   intro y

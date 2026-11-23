@@ -63,7 +63,7 @@ variable {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] {Ω : 
 
 theorem injective_of_map_ne_zero {B : Type} [CommRing B] [IsDomain B] (j : O →+* B) {π : O}
     (hπ : Irreducible π) (h : j π ≠ 0) : Function.Injective j := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra h0
   obtain ⟨n, u, rfl⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible h0 hπ

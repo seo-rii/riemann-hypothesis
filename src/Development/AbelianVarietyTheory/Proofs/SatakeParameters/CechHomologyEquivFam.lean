@@ -100,7 +100,7 @@ theorem famMap_d (hres : ∀ s t (h : s ⊆ t), s.Nonempty → ∀ x, g t (Cube.
 
 theorem famMap_injective (hinj : ∀ s, s.Nonempty → Function.Injective (g s)) (m : ℕ) :
     Function.Injective (famMap g (m + 1)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   funext s
   have h := congrFun hx s.1

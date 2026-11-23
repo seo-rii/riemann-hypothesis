@@ -64,7 +64,7 @@ variable {V : Type} [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 theorem surjective_of_nondegenerate {h : V →ₗ⋆[K] V →ₗ[K] K} (hn : h.Nondegenerate) :
     Function.Surjective h := by
   have hinj : Function.Injective h := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     exact hn.1 x (fun y => by rw [hx]; rfl)
   have hbij : Function.Bijective (h.rangeRestrict) :=

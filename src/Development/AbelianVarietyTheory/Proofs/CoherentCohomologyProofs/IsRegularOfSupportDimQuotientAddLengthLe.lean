@@ -130,7 +130,7 @@ theorem flat_of_basis_mod_pow [IsNoetherianRing A] (B : Type*) [CommRing B] [IsN
     | add x y hx hy => simp only [map_add (f := _), hx, hy]
     | single s j => simp [μ, φ]
   obtain ⟨c, hc⟩ := I.exists_pow_inf_eq_pow_smul (M := A) J
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro t ht
   have hμt : μ t = 0 := by simp [μ, ht]
   have key : ∀ n : ℕ, t ∈ (I ^ n • ⊤ : Submodule A (M ⊗[A] J)) := by

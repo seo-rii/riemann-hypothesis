@@ -351,7 +351,7 @@ theorem mean_eq {n g : ℕ} {τ : Matrix (Fin n) (Fin n) ℂ} {c₁ c₂ : Fin n
       ‖κ‖ ^ 2 * (Real.sqrt (2 ^ n * (τ.map Complex.im).det))⁻¹ := by
   obtain ⟨k1, k2⟩ := form_eq hs hp h₁ h₂ hκ hH hχ hθ F hF hρ hρn hρ0 e
   have hFi : Function.Injective F := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra h0
     have h1 := (GlobalTheory.ThetaSquareIntegrable.posDef_form (h := 1) hp (by simp)).2 x h0

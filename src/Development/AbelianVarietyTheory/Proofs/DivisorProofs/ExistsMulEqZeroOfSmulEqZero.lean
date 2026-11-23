@@ -121,7 +121,7 @@ theorem flat_of_divisibility : ∀ (q : ℕ) [NeZero q] (M : Type 1) [AddCommGro
       obtain ⟨y1, rfl⟩ := hs
       obtain ⟨y2, rfl⟩ := ht
       exact ⟨y1 + y2, (TensorProduct.tmul_add _ _ _).symm⟩
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro t ht
   obtain ⟨y, rfl⟩ := hall t
   have hy : a • y = 0 := by

@@ -118,7 +118,7 @@ theorem diag_le {g : ℕ} (d : Fin g → ℝ) (M : Matrix (Fin g) (Fin g) ℂ)
     rw [Matrix.mulVec_diagonal, Pi.star_apply, RCLike.star_def, mul_left_comm, Complex.mul_conj,
       ← Complex.ofReal_mul, Complex.ofReal_re, Complex.normSq_eq_norm_sq]
   have hinj : Function.Injective (Matrix.toLin' M) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     by_contra h0
     have := hpos v h0

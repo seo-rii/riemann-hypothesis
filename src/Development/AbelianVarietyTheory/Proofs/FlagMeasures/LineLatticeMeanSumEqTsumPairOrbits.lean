@@ -220,7 +220,7 @@ theorem mem_latAt (L : Submodule (𝓞 E) (Fin j → E)) (g : MatInf E j) (x : V
     exact ⟨n • p, zsmul_mem hp n, (vecHom g).map_zsmul n p⟩
 
 theorem vecHom_injective {g : MatInf E j} (hg : 0 < detNorm E j g) : Function.Injective (vecHom g) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   obtain ⟨w⟩ : Nonempty (InfinitePlace E) := inferInstance
   have h1 : (Matrix.of (g w))⁻¹ *ᵥ (fun a => w.embedding (y a)) = 0 := congrFun hy w

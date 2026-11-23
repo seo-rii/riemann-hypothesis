@@ -59,11 +59,11 @@ theorem finrank_eq_of_nondegenerate {LL : Type} [Field LL] {V V' : Type} [AddCom
     (h2 : ∀ (y : V'), (∀ (x : V), P x y = 0) → y = 0) :
     Module.finrank LL V = Module.finrank LL V' := by
   have i1 : Function.Injective P := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     exact h1 x (fun y => by simp [hx])
   have i2 : Function.Injective P.flip := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     exact h2 y (fun x => by
       have := LinearMap.congr_fun hy x

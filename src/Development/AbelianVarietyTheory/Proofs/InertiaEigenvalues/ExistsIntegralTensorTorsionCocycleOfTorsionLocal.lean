@@ -108,7 +108,7 @@ theorem coordQ_iotaW (lam : O) (a k : ℕ) (x : Fin k → ↥(Xq LL lam a)) (j :
   simp [map_sum, h]
 
 theorem iotaW_injective (lam : O) (a k : ℕ) : Function.Injective (iotaW LL lam a k) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro u hu
   obtain ⟨x, rfl⟩ := exists_sum LL k u
   have : x = 0 := by

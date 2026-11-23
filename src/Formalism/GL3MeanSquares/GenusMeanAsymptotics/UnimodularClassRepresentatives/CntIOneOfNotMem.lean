@@ -75,7 +75,7 @@ theorem map_mem {𝔭 : Ideal (𝓞 F)} {ϖ : 𝓞 F} (h1 : ϖ ∈ 𝔭) : ι ϖ
 
 theorem mulW_injective {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaximal) {ϖ : 𝓞 F} (h1 : ϖ ∈ 𝔭) (h2 : ϖ ∉ 𝔭 ^ 2)
     (j : ℕ) : Function.Injective (mulW (K := K) 𝔭 (map_mem h1) j) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   obtain ⟨z, rfl⟩ := Ideal.Quotient.mk_surjective a
   rw [mulW_mk, Ideal.Quotient.eq_zero_iff_mem] at ha

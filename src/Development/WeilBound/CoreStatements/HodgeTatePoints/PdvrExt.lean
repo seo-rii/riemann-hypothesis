@@ -206,7 +206,7 @@ theorem exists_complete (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuatio
       exact (Units.mul_right_eq_zero u).mp h2⟩
   have : IsDomain R := NoZeroDivisors.to_isDomain R
   have hinj : Function.Injective (algebraMap V R) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     by_contra h
     exact one_ne_zero (hreg a h 1 (by rw [ha, zero_mul]))

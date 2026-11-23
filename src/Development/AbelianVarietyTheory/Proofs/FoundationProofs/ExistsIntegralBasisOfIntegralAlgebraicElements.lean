@@ -340,7 +340,7 @@ theorem okbasis : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra (
   have hle : ∀ z, v (algebraMap ℤ_[p] Ω z) ≤ 1 := fun z =>
     (hv _).2 (isIntegral_algebraMap (x := algebraMap ℤ_[p] (O0 p) z))
   have hinj : Function.Injective (algebraMap ℤ_[p] Ω) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     by_contra hz0
     obtain ⟨n, hn⟩ := val_int v _ hle hz0

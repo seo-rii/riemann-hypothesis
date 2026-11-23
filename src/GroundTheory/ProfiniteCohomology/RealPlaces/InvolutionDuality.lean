@@ -152,7 +152,7 @@ theorem tatePair_mk (σ : M →+ M) (x : fixedSub σ) (f : fixedSub (dualInv σ)
 variable {σ : M →+ M}
 
 theorem tatePair_injective : Function.Injective (tatePair σ) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨x, rfl⟩ := QuotientAddGroup.mk_surjective x
   rw [QuotientAddGroup.eq_zero_iff, AddSubgroup.mem_addSubgroupOf]
@@ -170,7 +170,7 @@ theorem tatePair_injective : Function.Injective (tatePair σ) := by
   exact DFunLike.congr_fun hx (((⟨f, hf⟩ : fixedSub (dualInv σ))) : tateQuot (dualInv σ))
 
 theorem tatePair_flip_injective : Function.Injective (tatePair σ).flip := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro f hf
   obtain ⟨f, rfl⟩ := QuotientAddGroup.mk_surjective f
   rw [QuotientAddGroup.eq_zero_iff, AddSubgroup.mem_addSubgroupOf]

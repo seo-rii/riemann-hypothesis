@@ -225,7 +225,7 @@ variable {I M a} in
     toQuot (I := I) (M := M) (a := a) (mk I M a x) = Submodule.Quotient.mk (x : M) := rfl
 
 theorem toQuot_injective : Function.Injective (toQuot (I := I) (M := M) (a := a)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨x, rfl⟩ := mk_surjective I M a x
   rwa [toQuot_mk, Submodule.Quotient.mk_eq_zero, ← mk_eq_zero] at hx
@@ -297,7 +297,7 @@ theorem monoToPowGr_injective_iff (f : ι → R) (a : ℕ) :
     Function.Injective (monoToPowGr M f a) ↔ ∀ c : MonoDeg ι a → M,
       ∑ α, monoVal f α.1 • c α ∈ (Ideal.span (Set.range f) ^ (a + 1) • ⊤ : Submodule R M) →
         ∀ α, c α ∈ (Ideal.span (Set.range f) • ⊤ : Submodule R M) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   constructor
   · intro h c hc α
     have := h _ ((monoToPowGr_mk f a c).trans ((powGr.mk_eq_zero _).mpr hc))

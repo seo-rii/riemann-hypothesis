@@ -191,7 +191,7 @@ theorem UpperTheory.V.Pa.B2.odSES :
     exact hN
   refine ⟨inj, ex, surj, ?_, ?_⟩
   · intro w
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro q hq
     obtain ⟨m, rfl⟩ := D'.surj w q
     rw [f.comm] at hq

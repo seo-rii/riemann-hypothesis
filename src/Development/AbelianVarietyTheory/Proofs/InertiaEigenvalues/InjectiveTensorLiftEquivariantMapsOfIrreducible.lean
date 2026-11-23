@@ -140,7 +140,7 @@ theorem _root_.GlobalTheory.SmGL.EvalInj.lift_subtype_injective :
       ∀ (M : Submodule ℂ (Y →ₗ[ℂ] X)), (∀ φ ∈ M, ∀ g v, φ (ρ g v) = τ g (φ v)) →
       Function.Injective (TensorProduct.lift M.subtype) := by
   intro H X Y _ _ _ _ _ τ ρ hρ hschur M hM
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro t ht
   obtain ⟨M', hfin, hsub⟩ :=
     TensorProduct.exists_finite_submodule_left_of_setFinite {t} (Set.finite_singleton t)

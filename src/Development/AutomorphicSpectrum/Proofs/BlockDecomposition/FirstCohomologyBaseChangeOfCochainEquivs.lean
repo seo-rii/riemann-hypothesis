@@ -119,7 +119,7 @@ theorem h1_baseChange (R R' C : Type) [CommRing R] [CommRing R'] [Algebra R R'] 
     rw [← e, map_neg]
     abel
   have hinjΦ : Function.Injective Φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro w hw
     obtain ⟨t, rfl⟩ := LinearMap.lTensor_surjective R' (H1.mk_surjective F) w
     obtain ⟨z'', h1, h2⟩ := key t

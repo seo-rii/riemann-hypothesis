@@ -77,7 +77,7 @@ theorem le_of_isotropic_standard {p q k : ℕ} (N : Matrix (Fin p ⊕ Fin q) (Fi
     simpa [hL] using this
   constructor
   · have hf : Function.Injective ((LinearMap.funLeft ℂ ℂ (Sum.inl : Fin p → Fin p ⊕ Fin q)).comp N.mulVecLin) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro v hv
       have h1 : (N *ᵥ v) ∘ Sum.inl = 0 := hv
       have h2 := key v
@@ -85,7 +85,7 @@ theorem le_of_isotropic_standard {p q k : ℕ} (N : Matrix (Fin p ⊕ Fin q) (Fi
       exact inj v h1 (dotProduct_star_self_eq_zero.1 h2.symm)
     simpa using LinearMap.finrank_le_finrank_of_injective hf
   · have hf : Function.Injective ((LinearMap.funLeft ℂ ℂ (Sum.inr : Fin q → Fin p ⊕ Fin q)).comp N.mulVecLin) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro v hv
       have h1 : (N *ᵥ v) ∘ Sum.inr = 0 := hv
       have h2 := key v

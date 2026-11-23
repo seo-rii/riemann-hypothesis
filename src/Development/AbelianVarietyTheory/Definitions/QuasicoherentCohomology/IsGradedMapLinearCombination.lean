@@ -216,7 +216,7 @@ theorem exists_mem_of_mem_range {f : M →ₗ[MvPolynomial ι R] N} (hf : IsGrad
 theorem injective_iff {f : M →ₗ[MvPolynomial ι R] N} (hf : IsGradedMap ℳ 𝒩 f) :
     Function.Injective f ↔ ∀ n, Function.Injective (hf.piece n) := by
   refine ⟨fun h n a b hab => Subtype.ext (h (congrArg Subtype.val hab)), fun h => ?_⟩
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro m hm
   obtain ⟨T, hT⟩ := exists_sum_grProj ℳ m
   rw [← hT]

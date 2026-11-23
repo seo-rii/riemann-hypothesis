@@ -62,7 +62,7 @@ private theorem laurent_adjoin_eq_of_image_eq {F O : Type} [Field F] [NumberFiel
     [Module.Free ℤ O] [Module.Finite ℤ O] (h0 : 0 < Module.finrank ℤ O) :
     Function.Injective (algebraMap (𝓞 F) O) := by
   classical
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra hne
   have hI : Ideal.span {x} ≠ ⊥ := by

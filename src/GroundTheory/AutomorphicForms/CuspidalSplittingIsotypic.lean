@@ -147,7 +147,7 @@ theorem exists_retraction [π.IsIrreducible] (hπ : IsSmooth π) (hsc : IsSuperc
       (subrepIncl Y).comp (Representation.IntertwiningMap.snd ℂ π Y.toRepresentation)
   have hj : ∀ p : V × Y.toSubmodule, j p = t p.1 + (p.2 : U) := fun p => rfl
   have hjinj : Injective j := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro p hp
     rw [hj] at hp
     have h1 : p.1 = 0 := ht p.1 (by

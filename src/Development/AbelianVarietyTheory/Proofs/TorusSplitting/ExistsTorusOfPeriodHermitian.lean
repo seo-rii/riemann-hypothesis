@@ -143,7 +143,7 @@ theorem exists_root (Hm : Matrix (Fin g) (Fin g) ℂ) (hH : Hm.IsHermitian)
     rw [hermForm, ← hSS, ← mulVec_mulVec, dotProduct_mulVec, ← this]
     rfl
   have hinj : Function.Injective (S.vecMulLinear) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     by_contra h
     have := hpos z h

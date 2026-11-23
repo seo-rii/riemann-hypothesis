@@ -198,7 +198,7 @@ theorem exists_extend (l : Level H) (n : ℕ) (β : RZ H n l.A →+* KA l)
   have := hd.2.2
   have := BaseRing.finiteDimensional_KA l
   have hinj : Function.Injective δ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     by_contra h0
     have ha : IsAlgebraic ℤ z := by

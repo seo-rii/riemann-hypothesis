@@ -151,7 +151,7 @@ theorem toL_mul_iotaP (I : Finset (Fin (N + 1))) (p : Poly S N) (s : monos (S :=
   (localizationToLaurent_mk_eq_iff I p s _).mp rfl
 
 theorem localizationToLaurent_injective (I : Finset (Fin (N + 1))) : Function.Injective (iotaP (S := S) (N := N) I) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro z hz
   induction z using LocalizedModule.induction_on with
   | h p s =>

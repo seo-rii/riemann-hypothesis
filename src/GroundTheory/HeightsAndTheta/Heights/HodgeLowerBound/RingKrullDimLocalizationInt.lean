@@ -98,7 +98,7 @@ theorem DimX.proof : DimX.Statement := by
   have := hPp
 
   have hinj : Function.Injective (algebraMap ℤ (MRing ι ⧸ P)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro m hm
     have hm' : m ∈ P.comap (C : ℤ →+* MRing ι) := by
       rw [Ideal.mem_comap, ← Ideal.Quotient.eq_zero_iff_mem, ← hm]

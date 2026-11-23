@@ -917,7 +917,7 @@ open MvPolynomial
 
 theorem frobenius_poly_injective : FrPolyInj := by
   intro D u C O i hi
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro Q hQ
   set Dt : MvPolynomial (GL3Theta.FrV D (D.R.N i)) ℂ := ∏ τ, frDet ℂ (D.R.N i) τ with hDt
   have hev : ∀ v : GL3Theta.FrV D (D.R.N i) → ℂ, eval v Dt = ∏ τ, (Matrix.of fun α k => v (τ, α, k)).det := by

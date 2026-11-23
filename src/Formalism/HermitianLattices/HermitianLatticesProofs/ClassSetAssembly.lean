@@ -200,7 +200,7 @@ theorem classSetAssembly_span {n : ℕ} (h : V →ₗ⋆[K] V →ₗ[K] K)
       map_add' := fun a b => by funext j; simp [add_mul, Finset.sum_add_distrib]
       map_smul' := fun c a => by funext j; simp [Finset.mul_sum, mul_assoc] }
   have hinj : Function.Injective L := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro r hr0
     exact classSetAssembly_coord_zero h hpos ι hι u hu r (fun j => congrFun hr0 j)
   obtain ⟨t, ht⟩ := (LinearMap.injective_iff_surjective.mp hinj)

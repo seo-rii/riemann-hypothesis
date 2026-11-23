@@ -363,7 +363,7 @@ theorem mul_choose_le_finrank [Finite ι] (I : Ideal (MvPolynomial ι k)) {e d :
     have hj := j.2
     rwa [show 1 * (m + (d - j)) + 1 * (j : ℕ) = m + d by omega] at this
   have hinj : Function.Injective (LinearMap.codRestrict _ _ hmem) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have h1 : L a ∈ I := Ideal.Quotient.eq_zero_iff_mem.1 (congrArg Subtype.val ha)
     rw [hL] at h1

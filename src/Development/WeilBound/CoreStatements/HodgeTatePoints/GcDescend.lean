@@ -71,7 +71,7 @@ theorem test_descend : ∀ (A K : Type) [CommRing A] [IsDomain A] [IsNoetherianR
     IsLocalization.lift_eq hu a
   haveI : IsScalarTower A R O := IsScalarTower.of_algebraMap_eq fun a => (hcomp a).symm
   have hinjR : Function.Injective (algebraMap R O) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro r hr
     obtain ⟨⟨a, s⟩, rfl⟩ := IsLocalization.mk'_surjective q.primeCompl r
     have h2 : algebraMap A O a = 0 := by

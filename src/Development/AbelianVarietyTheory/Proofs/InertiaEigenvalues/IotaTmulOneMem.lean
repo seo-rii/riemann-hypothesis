@@ -156,7 +156,7 @@ theorem z1f_le_b1 : ∀ {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : T
     intro g
     rw [hψ, map_sub, ← frob_act, hz g]
   have hinj : Function.Injective (ψ.restrict hstab) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨z, hz⟩ h0
     have h1 : ψ z = 0 := congrArg Subtype.val h0
     rw [hψ, sub_eq_zero] at h1

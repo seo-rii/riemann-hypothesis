@@ -173,7 +173,7 @@ theorem UpperTheory.exists_injective_h1_gm_to_pic :
     rw [AddMonoidHom.mem_ker, AddMonoidHom.comp_apply, hψ]
     exact ((hT.2 α).2.mp ((CohomologyClass.mk_eq_zero_iff α).mpr hα))
   refine ⟨CohomologyClass.descAddMonoidHom (ψ.comp τ) hf, ?_⟩
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro c hc
   obtain ⟨α, rfl⟩ := CohomologyClass.mk_surjective c
   rw [CohomologyClass.descAddMonoidHom_cohomologyClass, AddMonoidHom.comp_apply, hψ] at hc

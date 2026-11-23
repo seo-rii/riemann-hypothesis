@@ -326,7 +326,7 @@ theorem adjoinRoot_map_injective {S : Type*} [CommRing S] {ι : R →+* S} (hι 
     {p : Polynomial R} (hp : p.Monic) {q : Polynomial S} (hq : q ∣ p.map ι) (hpq : p.map ι = q) :
     Function.Injective (AdjoinRoot.map ι p q hq) := by
   subst hpq
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro w hw
   obtain ⟨g, rfl⟩ := AdjoinRoot.mk_surjective w
   rw [adjoinRoot_map_mk, AdjoinRoot.mk_eq_zero, ← Polynomial.modByMonic_eq_zero_iff_dvd (hp.map ι),

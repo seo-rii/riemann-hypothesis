@@ -104,7 +104,7 @@ theorem hsRP {r : B ⟶ D} {p : D ⟶ Q} (hr : r ≫ p = 0) {m : ℤ} (z : Cocha
 theorem hsInj {r : B ⟶ D} {s : D ⟶ B} {p : D ⟶ Q} (hrs : r ≫ s = 𝟙 _) (hr : r ≫ p = 0)
     (hc : IsColimit (CokernelCofork.ofπ p hr)) (n : ℤ) :
     Function.Injective (cpre (Cocycle.ofHom p) I n n (zero_add n)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨x, rfl⟩ := x.mk_surjective
   change CohomologyClass.mk _ = 0 at hx

@@ -222,7 +222,7 @@ lemma exists_loc (τ : E →+* ℂ) (Gm : Matrix (Fin r) (Fin r) E) (hG : ∀ a 
       · exact this.symm
     rw [← hc u, this]; simp
   have hinj : Function.Injective (locPer τ Gm q M) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro u hu
     apply hS0; rw [hu, mulVec_zero]
   have hsurj := LinearMap.injective_iff_surjective.1 hinj

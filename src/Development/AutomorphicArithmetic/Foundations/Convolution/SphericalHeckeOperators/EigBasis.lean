@@ -168,7 +168,7 @@ theorem UpperTheory.ConvolutionTheory.H.eigBasis :
   have hB : ∀ σ, B σ = v σ := fun σ => by
     simp [B, coe_basisOfLinearIndependentOfCardEqFinrank]
   have hΦinj : Function.Injective Φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     rw [← B.sum_repr x] at hx ⊢
 

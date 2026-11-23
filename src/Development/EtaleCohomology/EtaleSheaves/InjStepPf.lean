@@ -131,7 +131,7 @@ theorem TwoStep_of (hO : OverMV) : TwoStep := by
 
 theorem InjStep_of (hT : TwoStep) (hE : EmptyH) : InjStep := by
   intro hM hH q Y X S f p _ _ _ _ _ _ hq i n hg hb U hU
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_cases hne : (U : Set S) = ∅
   · exact hE hH q p U hne i n x

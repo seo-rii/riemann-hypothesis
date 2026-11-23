@@ -227,7 +227,7 @@ theorem les_of (hs : SES i p) (δ : ∀ n, C.H n →ₗ[R] A.H (n + 1)) (hδ : I
     LES i p δ := by
   refine ⟨?inj, ?exB, ?exC, ?exA⟩
   case inj =>
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro h hh
     obtain ⟨x, hx, rfl⟩ := cls_surj A 0 h
     rw [H_cls, cls_eq_zero, mem_B_zero] at hh

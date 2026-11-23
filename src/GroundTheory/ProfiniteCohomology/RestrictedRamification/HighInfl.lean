@@ -242,7 +242,7 @@ noncomputable def coindInvQuotToInvariants :
 
 omit [CompactSpace G] in
 theorem coindInvQuotToInvariants_injective : Function.Injective (coindInvQuotToInvariants A N).hom := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro q hq
   obtain ⟨x, rfl⟩ := Submodule.mkQ_surjective _ q
   have hx : (coindShortComplex A).g.hom x.1 = 0 := congrArg Subtype.val hq

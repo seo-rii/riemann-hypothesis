@@ -117,7 +117,7 @@ theorem reg_horizontal_pf {O A : Type} [CommRing O] [IsDomain O] [IsDiscreteValu
     rw [map_ne_zero_iff _ hinj]; rintro h; exact hws (h ▸ P.zero_mem)
 
   have hOA : Function.Injective (algebraMap O A) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra hx0
     obtain ⟨n, u, rfl⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hx0 hϖ

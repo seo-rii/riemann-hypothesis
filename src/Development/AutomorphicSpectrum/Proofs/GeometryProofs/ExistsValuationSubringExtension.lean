@@ -253,7 +253,7 @@ theorem exists_valuationSubring_extension [IsAlgClosed L] (A : Subring Ω) (φ :
   have : IsLocalRing G := isLocalRing_of_maximal hG
   have : IsLocalHom (p₂ G) := ⟨fun r hr => isUnit_of_p₂_ne_zero hG r hr.ne_zero⟩
   have hinj : Function.Injective (p₁ G) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨⟨b, l⟩, hr⟩ h0
     have hb : b = 0 := h0
     subst hb

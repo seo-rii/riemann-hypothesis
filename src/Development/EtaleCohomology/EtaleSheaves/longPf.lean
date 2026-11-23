@@ -58,7 +58,7 @@ theorem four_inj {A B C D A' B' C' D' : Type*} [AddCommGroup A] [AddCommGroup B]
     (h2 : Function.Exact α β) (h2' : Function.Exact α' β') (h3 : Function.Exact β γ)
     (s1 : ∀ x, b (α x) = α' (a x)) (s2 : ∀ x, c (β x) = β' (b x)) (s3 : ∀ x, d (γ x) = γ' (c x))
     (ha : Function.Surjective a) (hb : Function.Injective b) (hd : Function.Injective d) : Function.Injective c := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have : γ x = 0 := hd (by rw [s3, hx, map_zero, map_zero])
   obtain ⟨y, rfl⟩ := (h3 x).1 this

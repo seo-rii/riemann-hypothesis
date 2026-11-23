@@ -207,7 +207,7 @@ theorem eExp_inj {x x' : (Fin D.T.t → ℕ) × ℕ} {β β' : Fin r → ℕ} (h
 
 theorem ltot_inj : Function.Injective (Ltot (O := O) (r := r) D) := by
   classical
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro v hv
   rw [Ltot_apply] at hv
   simp only [ell_eq_tau] at hv

@@ -101,7 +101,7 @@ theorem Filt_of (h0 : Step0) : LateralTheory.E.FiltrationLevelInjectivity.Filt :
       have e : (-((((m + 1 : ℕ) : ℤ)) + 1)) = -((m : ℤ) + 1) - 1 := by push_cast; ring
       rw [e, δ_add, ← sub_sub]
       exact hc'
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨z, rfl⟩ := CohomologyClass.mk_surjective x
   obtain ⟨c, hc1, hc2⟩ := claim (n.toNat + 1) z hx

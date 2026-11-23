@@ -60,7 +60,7 @@ variable {K : Type} [Field K] {σ : K →+* ℂ} {U V W : Type} [AddCommGroup U]
 
 theorem semi_injective_of_basis {ι : Type} [Fintype ι] (b : Basis ι K U) (g : U →ₛₗ[σ] W)
     (h : LinearIndependent ℂ fun i => g (b i)) : Function.Injective g := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
 
   rw [← b.sum_repr x, map_sum] at hx

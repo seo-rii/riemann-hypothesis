@@ -63,7 +63,7 @@ private theorem norm_two_eq_one {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O]
       have hlt : ‖((2 : ℤ) : ℤ_[l])‖ < 1 := lt_of_le_of_ne (PadicInt.norm_le_one _) (by simpa using hn)
       exact PadicInt.norm_int_lt_one_iff_dvd 2 |>.1 hlt
     have hinj : Function.Injective (algebraMap ℤ_[l] O) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro x hx
       by_contra hx0
       have e := PadicInt.unitCoeff_spec hx0

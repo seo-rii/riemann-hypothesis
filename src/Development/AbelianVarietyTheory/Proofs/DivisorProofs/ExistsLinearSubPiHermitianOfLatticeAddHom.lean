@@ -62,7 +62,7 @@ theorem exists_linear_sub_pi_mul_form_of_addMonoidHom :
   intro g Λ H _ hΛ hH p
   obtain ⟨F, hF⟩ := AppellHumbert.exists_real_extension Λ hΛ p
   have hinj : Function.Injective H.vecMulLinear := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     by_contra h0
     have := hH v h0

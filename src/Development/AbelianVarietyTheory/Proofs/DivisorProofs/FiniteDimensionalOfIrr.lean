@@ -136,7 +136,7 @@ theorem coind_irreducible [Finite G] (P : Subgroup G) (σ : Representation ℂ P
       map_add' := fun a b => Representation.IntertwiningMap.ext (by simp)
       map_smul' := fun a b => Representation.IntertwiningMap.ext (by simp) }
   have hE : Function.Injective E := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro Ψ h0
     have h1 : K Ψ 1 = 0 := congrArg Representation.IntertwiningMap.toLinearMap h0
     apply hi

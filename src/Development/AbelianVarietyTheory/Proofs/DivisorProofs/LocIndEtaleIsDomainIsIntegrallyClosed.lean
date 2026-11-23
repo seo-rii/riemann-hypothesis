@@ -103,7 +103,7 @@ theorem locIndEtale_isDomain_isIntegrallyClosed :
     obtain ⟨A, _, _, _, P, _, ⟨e⟩⟩ := hloc (Classical.arbitrary ι)
     haveI : Module.Flat (Polynomial T) (Localization.AtPrime P) := inferInstance
     have hL : Function.Injective (algebraMap (Polynomial T) (Localization.AtPrime P)) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro f hf
       by_contra hne
       have hreg := Module.Flat.isSMulRegular_of_nonZeroDivisors

@@ -81,7 +81,7 @@ private theorem exists_form {O K P : Type} [CommRing O] [Field K] [Algebra O K] 
     (hi : Function.Injective (algebraMap O K)) (T : Submodule O P) (p : P) (hp : ∀ c : O, c ≠ 0 → c • p ∉ T) :
     ∃ lam : P →ₗ[O] K, lam p = 1 ∧ ∀ y ∈ T, lam y = 0 := by
   have hinj : Function.Injective (LinearMap.toSpanSingleton O (P ⧸ T) (T.mkQ p)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     by_contra h0
     apply hp c h0

@@ -65,7 +65,7 @@ theorem UpperTheory.Gal.crystallineComparison.Mod.liftPt_of :
     · rw [← Algebra.commutes, ← Algebra.smul_def] at hx
       exact (smul_eq_zero.mp hx).resolve_left hv
   have hinj : Function.Injective (algebraMap V (B ⧸ q)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     by_contra hv0
     rw [← Ideal.Quotient.mk_algebraMap, Ideal.Quotient.eq_zero_iff_mem] at hv
@@ -92,7 +92,7 @@ theorem UpperTheory.Gal.crystallineComparison.Mod.liftPt_of :
     simp only [Ideal.mem_comap, RingHom.mem_ker, Ideal.mem_bot, RingHom.coe_coe, AlgHom.commutes]
     exact map_eq_zero_iff _ hK
   have hφinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have : x ∈ RingHom.ker (φ : (B ⧸ q) →+* FractionRing V) := hx
     rwa [hker] at this

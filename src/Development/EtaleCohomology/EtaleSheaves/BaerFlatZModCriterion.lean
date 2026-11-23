@@ -97,7 +97,7 @@ theorem flat_of_baer [IsPrincipalIdealRing R]
       obtain ⟨m1, rfl⟩ := hx
       obtain ⟨m2, rfl⟩ := hy
       exact ⟨m1 + m2, by rw [tmul_add]⟩
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨m, rfl⟩ := pure x
   simp only [lift.tmul, LinearMap.coe_comp, Function.comp_apply, Submodule.coe_subtype,

@@ -399,7 +399,7 @@ def wToC : WW p →+* ℂ_[p] where
 theorem norm_wToC_le (x : WW p) : ‖wToC p x‖ ≤ 1 := norm_wFun_le p x
 
 theorem wToC_injective : Function.Injective (wToC p) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra h0
   obtain ⟨m, b, hb, rfl⟩ := WittVector.exists_eq_pow_p_mul x h0

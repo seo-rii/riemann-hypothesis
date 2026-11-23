@@ -263,7 +263,7 @@ variable {ι : Type} [Finite ι] {Js : ι → Ideal O} (hle : ∀ i, I ≤ Js i)
 
 def crt : QMod N I ≃ₗ[O] ∀ i, QMod N (Js i) :=
   LinearEquiv.ofBijective (LinearMap.pi fun i => qProj (hle i)) ⟨by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro q hq
     have := Submodule.smul_mono_left hI
       (mem_iInf_smul_top hc fun i => (qProj_eq_zero (hle i) q).1 (congrFun hq i))

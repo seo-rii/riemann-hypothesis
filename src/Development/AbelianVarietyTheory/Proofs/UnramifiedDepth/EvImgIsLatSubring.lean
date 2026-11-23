@@ -88,7 +88,7 @@ theorem _root_.GlobalTheory.evImg_isLat_subring :
     change Submodule.span _ (Set.range ⇑f) = _
     rw [← LinearMap.coe_range, Submodule.span_eq]
   have hinjΨ : Function.Injective Ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro F hF
     funext i
     apply D.fin.sep i

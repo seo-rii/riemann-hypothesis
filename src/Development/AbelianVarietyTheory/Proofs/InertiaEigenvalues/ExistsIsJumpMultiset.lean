@@ -233,7 +233,7 @@ theorem multV_twist [Algebra.IsSeparable Qp K] (hs : ∃ s ∈ PD.Fil (-1), PD.�
     rintro _ ⟨⟨y, rfl⟩, z, hz⟩
     let q := ((PD.Fil ((e : ℤ) + 1)).restrictScalars Qp).mkQ
     have hq : Function.Injective (q ∘ₗ drTwistMap PD e) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro k hk
       exact eq_zero_of_twist_mem PD hs e k ((Submodule.Quotient.mk_eq_zero _).1 hk)
     have h2 : LinearMap.lTensor LL (q ∘ₗ drTwistMap PD e) y = 0 := by

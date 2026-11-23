@@ -58,7 +58,7 @@ variable {R R₁ : Type} [CommRing R] [IsDomain R] [CommRing R₁] [Algebra R R�
 
 theorem injective_quotient (Q : Ideal R₁) (hQ : Q.comap (algebraMap R R₁) = ⊥) :
     Function.Injective (algebraMap R (R₁ ⧸ Q)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro r hr
   have : r ∈ Q.comap (algebraMap R R₁) := by
     rw [Ideal.mem_comap, ← Ideal.Quotient.eq_zero_iff_mem, Ideal.Quotient.mk_algebraMap]

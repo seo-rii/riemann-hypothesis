@@ -72,7 +72,7 @@ theorem exists_short_basis_of_ratSpan {V E ι : Type*} [AddCommGroup V] [Module 
   classical
   let ψ : H →ₗ[ℤ] E := φ.toIntLinearMap ∘ₗ H.subtype
   have hψ : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra h
     have := hφ x x.2 (fun h' => h (Subtype.ext h'))

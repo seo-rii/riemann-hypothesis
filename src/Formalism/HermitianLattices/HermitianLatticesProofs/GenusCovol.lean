@@ -524,7 +524,7 @@ theorem genusCovol_sq (h : V →ₗ⋆[K] V →ₗ[K] K)
   classical
   obtain ⟨bv, hE2, hprod⟩ := genusCovol_dualBasis h N ι hι A
   have hinj : Function.Injective ι := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra hne
     have h1 := hpos x hne

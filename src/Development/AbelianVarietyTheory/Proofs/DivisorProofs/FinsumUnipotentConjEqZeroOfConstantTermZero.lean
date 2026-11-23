@@ -273,7 +273,7 @@ theorem exists_conj (e : ι ≃ Fin a ⊕ Fin b) (γ : GL ι K) (hγ : γ ∈ bl
     change A * (X - A⁻¹ * X * B) = _
     rw [Matrix.mul_sub, ← Matrix.mul_assoc, ← Matrix.mul_assoc, mul_nonsing_inv A hA, Matrix.one_mul]
   have hinj : Function.Injective L := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro X hX
     have := hL X
     rw [hX, Matrix.mul_zero] at this

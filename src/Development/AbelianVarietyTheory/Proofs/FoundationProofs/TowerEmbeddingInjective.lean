@@ -62,7 +62,7 @@ theorem emb_injective : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Alg
   obtain ⟨b, -⟩ := GlobalTheory.K5.OnFree.on_free p n
   haveI : Module.Finite (O0 p) (On p n) := Module.Finite.of_basis b
   haveI : Algebra.IsIntegral (O0 p) (On p n) := Algebra.IsIntegral.of_finite _ _
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   have hker : RingHom.ker (ι : On p n →+* Ω) = ⊥ := by
     apply Ideal.eq_bot_of_comap_eq_bot (R := O0 p)
     rw [eq_bot_iff]

@@ -69,7 +69,7 @@ theorem exists_mul_eq_nat {a : 𝓞 E} (h : a ≠ 0) : ∃ (n : ℕ) (c : 𝓞 E
   exact h
 
 theorem emb_inj (s : 𝓞 E →+* ℂ) : Function.Injective s := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   by_contra h
   obtain ⟨n, c, hn, hc⟩ := exists_mul_eq_nat h
@@ -361,7 +361,7 @@ theorem imB_apply (x y : Fin g → ℂ) : imB R x y = (R.ip x y).im := rfl
 theorem imB_P (x y : Λ) : imB R (R.P y) (R.P x) = R.form x y := R.im x y
 
 theorem precomp_injective : Function.Injective R.P := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   apply R.unimod.1
   refine LinearMap.ext fun y => ?_

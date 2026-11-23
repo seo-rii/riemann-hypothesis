@@ -86,7 +86,7 @@ theorem summable_embAll (E m : Type) [Field E] [NumberField E] [Fintype m] (k : 
     (hk : Fintype.card m * Module.finrank ℚ E < k) :
     Summable fun w : m → 𝓞 E => ‖embAll E m w‖⁻¹ ^ k := by
   have hinj : Function.Injective (embAll E m) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro w hw
     by_contra h
     have := one_le_norm_embAll h

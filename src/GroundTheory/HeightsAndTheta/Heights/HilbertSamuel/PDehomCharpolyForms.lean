@@ -125,7 +125,7 @@ theorem injective_chart {Ω : Type} [Field Ω] [CharZero Ω] {D : ℕ} {l : Fin 
     (hgen : ∀ (d : ℕ) (F : MvPolynomial (Fin (D + 1)) ℚ), F.IsHomogeneous d → aeval l F = 0 → F = 0)
     (k : Fin (D + 1)) :
     Function.Injective (aeval (R := ℚ) (fun i : {i // i ≠ k} => l i / l k)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro G hG
   set G' : MvPolynomial (Fin (D + 1)) ℚ := rename Subtype.val G with hG'
   have h1 : aeval (fun i => l i / l k) G' = 0 := by rw [hG', aeval_rename]; exact hG

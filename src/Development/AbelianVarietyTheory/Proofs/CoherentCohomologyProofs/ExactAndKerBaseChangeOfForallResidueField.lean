@@ -150,7 +150,7 @@ theorem lTensor_liftQ_injective_of_exact (N : Type*) [AddCommGroup N] [Module R 
     {f : A →ₗ[R] B} {g : B →ₗ[R] C} (hfg : LinearMap.range f ≤ LinearMap.ker g)
     (h : Exact (f.lTensor N) (g.lTensor N)) :
     Injective (((LinearMap.range f).liftQ g hfg).lTensor N) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨y, rfl⟩ := LinearMap.lTensor_surjective N (Submodule.mkQ_surjective _) x
   rw [← LinearMap.comp_apply, ← LinearMap.lTensor_comp, Submodule.liftQ_mkQ] at hx

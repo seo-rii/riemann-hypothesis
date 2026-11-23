@@ -765,7 +765,7 @@ namespace Tr
 variable (τ : Tr R C D)
 
 theorem ηF_inj (h : ∀ T, Function.Injective (τ.fib T)) (T : C) : Function.Injective (τ.ηF.app T).hom := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro v hv
   apply (injective_iff_map_eq_zero _).1 (h T)
   funext c

@@ -143,7 +143,7 @@ theorem flat_of_dense_sat {A E : Type} [CommRing A] [IsNoetherianRing A] [CommRi
   let f : R →ₗ[R] E := Algebra.linearMap R E
   have hinj : ∀ n, Function.Injective (f.reduceModIdeal (I ^ n)) := by
     intro n
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     induction x using Submodule.Quotient.induction_on with
     | H r =>

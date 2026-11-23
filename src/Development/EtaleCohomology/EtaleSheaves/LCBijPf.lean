@@ -90,7 +90,7 @@ theorem twGenNZ_of (hAC : TwGenNZAC) : TwGenNZ := by
 
 theorem lcInj (hT : TwGenNZ) (q : ℕ) [NeZero q] (i : ℤ) m (hm : IsLCMap q i m) (B : Type) [CommRing B]
     (ζ : Prim q B) : Function.Injective (m B ζ) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro φ hφ
   by_contra hne
   obtain ⟨p, hp⟩ : ∃ p, φ p ≠ 0 := by

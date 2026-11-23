@@ -79,7 +79,7 @@ theorem ConeTrdeg.proof : ConeTrdeg.Statement := by
   classical
 
   have hinjΩ : Function.Injective (algebraMap ℤ Ω) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro n hn
     have hmem : (MvPolynomial.C n : Geo.MRing ι) ∈ Geo.mCoordIdeal y := by
       rw [Geo.mCoordIdeal, RingHom.mem_ker, Geo.mConeMap, MvPolynomial.aeval_C,

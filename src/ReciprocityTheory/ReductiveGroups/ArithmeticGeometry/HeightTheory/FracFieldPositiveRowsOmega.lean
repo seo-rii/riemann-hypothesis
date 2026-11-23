@@ -184,7 +184,7 @@ theorem compat0 (c : ι) (P : KTp K d.D d.N) :
   exact RingHom.congr_fun key P
 
 theorem psiE_injective (h : d.S1) (c : ι) : Function.Injective (d.psiE c) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro p hp
   have e := d.compat0 c ((FractionFieldVariableLift.hL K d.D d.N).symm (MvPolynomial.C p))
   rw [RingEquiv.apply_symm_apply, MvPolynomial.map_C, hp, map_zero, map_zero] at e

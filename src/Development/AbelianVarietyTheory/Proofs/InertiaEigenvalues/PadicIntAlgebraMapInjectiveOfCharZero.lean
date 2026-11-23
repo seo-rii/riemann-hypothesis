@@ -52,7 +52,7 @@ namespace GlobalTheory.CycFr
 
 theorem padicInt_algebraMap_injective_of_charZero {l : ℕ} [Fact l.Prime] (O : Type) [CommRing O]
     [IsDomain O] [CharZero O] [Algebra ℤ_[l] O] : Function.Injective (algebraMap ℤ_[l] O) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra hx0
   rw [PadicInt.unitCoeff_spec hx0, map_mul, map_pow, map_natCast] at hx
@@ -126,7 +126,7 @@ theorem injective_and_range_eq_invariants {l : ℕ} [Fact l.Prime] {O : Type} [C
     rw [e]
     exact (dvd_pow_self (X : O⟦X⟧) hd.ne').mul_right _
   have hinj : Function.Injective j := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro b hb
     by_contra hb0
     obtain ⟨m, w, rfl, hw⟩ := exists_eq_X_pow_mul_of_ne_zero hb0

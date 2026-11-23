@@ -97,7 +97,7 @@ theorem exists_inj (hϖ : Irreducible ϖ) {M : Type} [AddCommGroup M] [Module O 
     simpa using hϖ.ne_zero
   set w : FractionRing O := (algebraMap O (FractionRing O) ϖ)⁻¹ with hw
   have hinj : Function.Injective (LinearMap.toSpanSingleton O (FractionRing O) w) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     rw [LinearMap.toSpanSingleton_apply, Algebra.smul_def, mul_eq_zero] at hc
     rcases hc with hc | hc
@@ -261,7 +261,7 @@ theorem aux (hϖ : Irreducible ϖ) (k : ℕ) : ∀ {Y : Type} [AddCommGroup Y] [
       (fun t => (hp t.1).imp fun n hn => Subtype.ext hn) hf' rfl
     have hbij : Function.Bijective (i.coprod (LinearMap.ker r).subtype) := by
       constructor
-      · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      · rw [injective_iff_map_eq_zero]
         rintro ⟨s, t⟩ h
         have h1 : i s + t.1 = 0 := h
         have h2 := congrArg r h1

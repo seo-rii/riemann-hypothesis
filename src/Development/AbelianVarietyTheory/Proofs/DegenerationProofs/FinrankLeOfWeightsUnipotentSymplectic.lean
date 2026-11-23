@@ -257,7 +257,7 @@ theorem finrank_le_of_injective [FiniteDimensional 𝕜 V] (T f : Module.End �
       rintro ⟨_, x, rfl⟩
       exact h1 x)
   have hL : Function.Injective L := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨_, x, rfl⟩ hx
     exact Subtype.ext (h2 x (congrArg Subtype.val hx))
   have h5 := LinearMap.finrank_le_finrank_of_injective hL

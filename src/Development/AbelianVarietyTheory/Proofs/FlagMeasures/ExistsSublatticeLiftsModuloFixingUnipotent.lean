@@ -267,7 +267,7 @@ theorem mem_of_split {u : D.what₂.Word} {F0 : Fb D u} {Λ : LatV D} (hB : IsBa
 
 theorem iXY_injective : Function.Injective (D.sp.iXY 0) := by
   have hm := D.R.two_le_m
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   refine (D.sp.X 0).nondeg.1 x fun y => ?_
   rw [← D.sp.iXY_isom 0 (by omega), hx, map_zero, LinearMap.zero_apply]

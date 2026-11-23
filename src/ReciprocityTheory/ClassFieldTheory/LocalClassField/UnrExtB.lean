@@ -132,7 +132,7 @@ theorem comb_injective {L : IntermediateField ℚ_[p] (PadicAlgCl p)} (hKL : K �
     (ω : ι → Obar p) (hL : ∀ j, (ω j : PadicAlgCl p) ∈ L)
     (hω : LinearIndependent (resK p K) (fun i => IsLocalRing.residue (Obar p) (ω i))) :
     Function.Injective (comb hKL ω hL) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   funext i
   have h1 := norm_le_norm_sum p K ω hω a i

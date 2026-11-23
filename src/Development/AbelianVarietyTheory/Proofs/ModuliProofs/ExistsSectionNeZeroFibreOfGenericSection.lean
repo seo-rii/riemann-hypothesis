@@ -176,7 +176,7 @@ theorem exists_sec_ne_zero_of_generic : Out.Laws → ∀ (S : Scheme.{0}) [IsInt
   obtain ⟨gx, hgx⟩ := exists_ringHom t x hxr
   obtain ⟨gy, hgy⟩ := exists_ringHom t y hyr
   have hinj : Function.Injective gx := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro r hr
     by_contra hr0
     have hne : (PrimeSpectrum.basicOpen r : Set (PrimeSpectrum Γ(S, W))).Nonempty :=

@@ -184,7 +184,7 @@ theorem injective_of_smul_mem_range [IsDomain A] [Module.Free A M] [Module.Finit
     have := congrArg Matrix.det hP
     rw [Matrix.det_mul, h0, zero_mul, Matrix.det_smul, Matrix.det_one, mul_one] at this
     exact pow_ne_zero _ hx this.symm
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro m hm
   have h1 := Matrix.eq_zero_of_mulVec_eq_zero hd (v := fun j => σ (b.repr m j))
     (funext fun i => by rw [← key, hm]; simp)

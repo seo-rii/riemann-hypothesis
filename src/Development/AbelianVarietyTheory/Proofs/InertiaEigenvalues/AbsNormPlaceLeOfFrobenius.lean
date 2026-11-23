@@ -113,7 +113,7 @@ theorem normV_le_of_isFrob : ∀ (E Ω : Type) [Field E] [NumberField E] [Field 
   let f : 𝓞 E ⧸ w.asIdeal →+* k :=
     Ideal.Quotient.lift w.asIdeal (toResidue A) (fun x hx => (toResidue_eq_zero_iff A w hw x).mpr hx)
   have hf : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     obtain ⟨x, rfl⟩ := Ideal.Quotient.mk_surjective a
     rw [Ideal.Quotient.eq_zero_iff_mem]

@@ -205,7 +205,7 @@ theorem eq_zero_of_forall_affineOpens (x : Γ(X, ⊤))
 
 theorem injective_appTop_of_isPullback (H : IsPullback g q p f) [IsAffine S] [IsAffine T] [Flat p]
     (hf : Function.Injective f.appTop) : Function.Injective g.appTop := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   refine eq_zero_of_forall_affineOpens x fun U ↦ ?_
   have := mem_map_ker_of_app_eq_zero H U.2 (X.presheaf.map (homOfLE (le_top : U.1 ≤ ⊤)).op x) (by
@@ -458,7 +458,7 @@ theorem isIso_appTop_of_section_of_fiber (p : X ⟶ S) [IsAffine S] [IsLocallyNo
   have h1 : p.appTop ≫ e.appTop = 𝟙 _ := by
     rw [← Scheme.Hom.comp_appTop, he, Scheme.Hom.id_appTop]
   have h2 : Function.Injective e.appTop := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     refine eq_zero_of_forall_affineOpens x fun U ↦ ?_
     have := mem_map_of_compatible hq he ⊥

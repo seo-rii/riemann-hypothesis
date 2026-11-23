@@ -137,7 +137,7 @@ theorem exists_away_isDomain_of_etale {P A : Type} [CommRing P] [IsDomain P] [Is
     exact isUnit_one
   let ψ : Localization.Away (a i₀) →+* Ai i₀ := IsLocalization.Away.lift (a i₀) hFg
   have hψ : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨⟨y, s⟩, rfl⟩ := IsLocalization.mk'_surjective (Submonoid.powers (a i₀)) x
     have hspec := IsLocalization.mk'_spec (Localization.Away (a i₀)) y s

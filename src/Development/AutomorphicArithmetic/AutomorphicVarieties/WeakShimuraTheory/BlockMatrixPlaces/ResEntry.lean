@@ -114,7 +114,7 @@ theorem UpperTheory.V.Ws.Bl.adBij :
     exact Submodule.smul_mono le_rfl le_top
   let ψ := Submodule.mapQ _ _ φ hS
   have hψinj : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro q hq
     obtain ⟨Y, rfl⟩ := Submodule.mkQ_surjective _ q
     rw [Submodule.mkQ_apply, Submodule.mapQ_apply, Submodule.Quotient.mk_eq_zero] at hq

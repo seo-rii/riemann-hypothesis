@@ -322,7 +322,7 @@ theorem ringHom_injective_of_surjective [IsNoetherianRing A] (φ : A →+* A)
     rw [RingHom.mem_ker] at hx ⊢
     rw [pow_succ', RingHom.coe_mul, Function.comp_apply, hx, map_zero]⟩
   obtain ⟨n, hn⟩ := monotone_stabilizes_iff_noetherian.mpr ‹IsNoetherianRing A› c
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨y, rfl⟩ : ∃ y, (φ ^ n) y = x := by
     rw [RingHom.coe_pow]

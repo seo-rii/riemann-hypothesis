@@ -52,7 +52,7 @@ namespace LateralTheory.EtaleTrace.Cov
 
 lemma gub_stalk_inj {X : Scheme.{0}} [IsIntegral X] (x : X) :
     Function.Injective (algebraMap (X.presheaf.stalk x) X.functionField) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   obtain ⟨U, hxU, s, rfl⟩ := X.presheaf.exists_germ_eq a
   have : Nonempty U := ⟨⟨x, hxU⟩⟩

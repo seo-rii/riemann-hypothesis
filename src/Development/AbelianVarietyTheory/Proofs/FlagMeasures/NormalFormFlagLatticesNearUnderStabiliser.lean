@@ -517,7 +517,7 @@ theorem exists_isom [FiniteDimensional K V] (e d : Fin j → V) (M M' : Matrix (
     rw [h4, h4] at h2
     rw [h1, h2]
   have hinj : Function.Injective g := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     refine H.nondeg x fun y => ?_
     rw [← hiso, hx]; simp

@@ -5556,7 +5556,7 @@ theorem glCoordMap_inv_det : glCoordRingMap R0 n (IsLocalization.Away.invSelf (g
     _ = _ := by rw [h3, one_mul]
 
 theorem laurent_coordinate_embedding_injective : Function.Injective (glCoordRingMap R0 n) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨a, s, rfl⟩ := IsLocalization.exists_mk'_eq (Submonoid.powers (genMat R0 n).det) x
   have h1 := IsLocalization.mk'_spec (GLCoord R0 n) a s
@@ -5587,7 +5587,7 @@ theorem laurentCoordinateMap_support (x : GLLaurent R0 n) : (laurentRingMap R0 n
   exact map_ne_zero_iff _ (laurent_coordinate_embedding_injective R0 n)
 
 theorem laurentRingMap_injective : Function.Injective (laurentRingMap R0 n) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have h := laurentCoordinateMap_support R0 n x
   rw [hx] at h

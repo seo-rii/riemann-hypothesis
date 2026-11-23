@@ -74,7 +74,7 @@ theorem alpha_mk (n : ℕ) (y : A.Acr0) :
     alpha A n (A.mkAcr 1 y) = A.mkAcr (n + 1) ((l : A.Acr0) ^ n * y) := rfl
 
 theorem alpha_injective (n : ℕ) : Function.Injective (alpha A n) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨y, rfl⟩ : ∃ y, A.mkAcr 1 y = x := Ideal.Quotient.mk_surjective x
   rw [alpha_mk] at hx

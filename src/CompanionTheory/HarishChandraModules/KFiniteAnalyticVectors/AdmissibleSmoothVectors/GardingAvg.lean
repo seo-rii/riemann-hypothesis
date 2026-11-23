@@ -192,7 +192,7 @@ theorem exists_preimage {H : Type*} [NormedAddCommGroup H] [NormedSpace ℂ H] (
   intro v hv
   let L : Y →ₗ[ℂ] Y := (T : H →ₗ[ℂ] H).restrict hT
   have hL : Function.Injective L := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     exact Subtype.ext (hi y y.2 (congrArg Subtype.val hy))
   obtain ⟨u, hu⟩ := LinearMap.surjective_of_injective hL ⟨v, hv⟩

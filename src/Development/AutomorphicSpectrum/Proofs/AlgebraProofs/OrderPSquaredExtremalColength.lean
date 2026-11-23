@@ -420,7 +420,7 @@ theorem ord_split : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClos
     · rintro rfl
       simpa using hsm a k hkK
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨a, b⟩ h
     have hb : b = 0 := (hK2 (a, b)).1 (by rw [h]; exact K.zero_mem)
     subst hb

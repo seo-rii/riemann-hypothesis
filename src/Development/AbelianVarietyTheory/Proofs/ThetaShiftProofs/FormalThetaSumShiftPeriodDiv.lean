@@ -263,7 +263,7 @@ theorem shift_comm (la la' : A.La) (α : A.X) (th : (Fin A.gB → ℂ) → ℂ) 
   linear_combination (k : ℂ)⁻¹ * A.linear_part_commutator_period la la'
 
 theorem shift_injective (la : A.La) (α : A.X) : Function.Injective (A.shift k la α) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro th h
   have := A.shift_shift k (-la) la α th
   rw [h, map_zero, neg_add_cancel, shift_zero] at this

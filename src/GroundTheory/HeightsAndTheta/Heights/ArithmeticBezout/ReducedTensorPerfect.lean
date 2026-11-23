@@ -85,7 +85,7 @@ theorem isReduced_tensorProduct_of_forall_field {k : Type*} [Field k] (C : Type*
     AlgHom.pi fun P =>
       (IsScalarTower.toAlgHom k (B ⧸ P.1) (FractionRing (B ⧸ P.1))).comp (Ideal.Quotient.mkₐ k P.1)
   have hφ : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro b hb
     have hmem : b ∈ sInf (minimalPrimes B) := by
       rw [Submodule.mem_sInf]

@@ -92,7 +92,7 @@ private theorem inj_of_surj {A : Type} [CommRing A] [IsNoetherianRing A] (s : A 
     rw [RingHom.mem_ker] at ha ⊢
     rw [pow_succ', RingHom.mul_def, RingHom.comp_apply, ha, map_zero]⟩
   obtain ⟨N, hN⟩ := monotone_stabilizes_iff_noetherian.2 (inferInstance : IsNoetherian A A) K
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   have hsN : Function.Surjective (s ^ N) := by
     rw [RingHom.coe_pow]; exact hs.iterate N

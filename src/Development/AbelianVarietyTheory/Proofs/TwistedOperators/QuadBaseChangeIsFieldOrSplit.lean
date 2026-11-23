@@ -114,7 +114,7 @@ theorem quadAlg_isField_or_split {K A : Type} [Field K] [CommRing A] [Algebra K 
           linear_combination (-(a - b) * (c - f)) * hee }
     have hψ : ∀ x, ψ x = algebraMap K A x.1 * e + algebraMap K A x.2 * (1 - e) := fun _ => rfl
     have hinj : Function.Injective ψ := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro x hx
       rw [hψ] at hx
       have ha : algebraMap K A x.1 * e = 0 := by

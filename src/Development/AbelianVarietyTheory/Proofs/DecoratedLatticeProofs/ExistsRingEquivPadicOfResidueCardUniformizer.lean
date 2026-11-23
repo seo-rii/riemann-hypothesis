@@ -229,7 +229,7 @@ theorem toZModPow_toPadic (hcard : Nat.card (ResidueField 𝒪[k]) = T)
 
 theorem toPadic_injective (hcard : Nat.card (ResidueField 𝒪[k]) = T)
     (hirr : Irreducible (T : 𝒪[k])) : Function.Injective (toPadic hcard hirr) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have hdiv : ∀ n : ℕ, (T : 𝒪[k]) ^ n ∣ x := by
     intro n

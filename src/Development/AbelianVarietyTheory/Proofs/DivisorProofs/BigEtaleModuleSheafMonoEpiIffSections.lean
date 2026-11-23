@@ -83,7 +83,7 @@ theorem inj_iff_loc {F G : Shv R} (φ : F ⟶ G) :
     subst this
     exact ⟨⊤, Scheme.etaleTopology.top_mem U, fun V g _ => map_zero _⟩
   · intro h U
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     obtain ⟨S, hS, hP⟩ := h U a ha
     have hF : Presieve.IsSheaf Scheme.etaleTopology (F.obj ⋙ forget _) :=

@@ -195,7 +195,7 @@ def gen (B : Subalgebra R D) : TensorProduct R K B →ₐ[K] D :=
 
 omit [IsDomain R] [IsDiscreteValuationRing R] in
 theorem gen_injective (B : Subalgebra R D) : Function.Injective (gen R K B) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   letI : Algebra B (TensorProduct R K B) := Algebra.TensorProduct.rightAlgebra
   have hl : IsLocalization (Algebra.algebraMapSubmonoid B (nonZeroDivisors R)) (TensorProduct R K B) :=

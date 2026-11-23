@@ -64,7 +64,7 @@ theorem oLatTie_fg_span_top : ∀ {K : Type} [Field K] [NumberField K] [StarRing
     rw [map_smulₛₗ]
     simp
   have hinj : Function.Injective j := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     rw [hj] at hx
     have h0 := Fintype.linearIndependent_iff.1 hli _ hx

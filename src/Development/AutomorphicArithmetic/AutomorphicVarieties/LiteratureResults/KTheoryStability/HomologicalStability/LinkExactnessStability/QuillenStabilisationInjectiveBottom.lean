@@ -71,7 +71,7 @@ theorem injective_stabilisation_bottom_of_rows_exact : ∀ (k G : Type) [CommRin
     simpa using h1
   haveI := hiso 1 i (by omega)
   haveI := hiso 2 i (by omega)
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have hx1 : (hMap (d 0) i).hom ((e 1 i).hom x) = 0 := by
     have := congrArg (fun f => f.hom x) h0

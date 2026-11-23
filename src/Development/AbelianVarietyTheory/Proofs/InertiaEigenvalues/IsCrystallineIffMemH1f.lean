@@ -283,7 +283,7 @@ theorem eq_zero_of_incl_mem_FilV {a : ℤ} (ha : 0 < a) (z : LL ⊗[Qp] K)
     (hz : incl Qp K BdR LL z ∈ FilV PD (LL := LL) (V := LL) a) : z = 0 := by
   let q := ((PD.Fil a).restrictScalars Qp).mkQ
   have hinj : Function.Injective (q ∘ₗ (IsScalarTower.toAlgHom Qp K BdR).toLinearMap) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro k hk
     have h1 : algebraMap K BdR k ∈ PD.Fil a := (Submodule.Quotient.mk_eq_zero _).1 hk
     by_contra h0
@@ -501,7 +501,7 @@ theorem finrank_add_of_exact {A₀ A₁ A₂ : Type} [AddCommGroup A₀] [Module
     ← Submodule.finrank_map_subtype_eq, Submodule.map_comap_subtype, ← h₁, ← LinearMap.range_domRestrict,
     LinearMap.finrank_range_of_inj] at h3
   · omega
-  · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  · rw [injective_iff_map_eq_zero]
     exact fun x hx => Subtype.ext (h₀ x x.2 hx)
 
 theorem extCrysAt [CompactSpace G] [TopologicalSpace Qp] [CharZero Qp] [TopologicalSpace LL] (O : Type)

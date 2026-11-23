@@ -152,7 +152,7 @@ theorem horizontal [CharZero Ω] (y : (Σ k, ι k) → Ω) : IsHorizontal (mCoor
 omit [Fintype K] [∀ k, Fintype (ι k)] in
 theorem algebraMap_injective (I : Ideal (MRing ι)) (h : IsHorizontal I) :
     Function.Injective (algebraMap ℤ (MRing ι ⧸ I)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   rw [← Ideal.Quotient.mk_algebraMap, MvPolynomial.algebraMap_eq,
     Ideal.Quotient.eq_zero_iff_mem] at ha

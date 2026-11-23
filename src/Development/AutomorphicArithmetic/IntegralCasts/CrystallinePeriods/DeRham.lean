@@ -144,7 +144,7 @@ theorem theta_eq_zero_iff_dvd (ϖ : PFlat p R) (x : BdRPlus p R) :
   rw [← pow_one (xi ϖ), ← eval_eq_zero_iff, theta_eq_zero_iff]
   refine Iff.trans (Eq.congr_left (AdicCompletion.factorₐ_evalₐ_one _ _).symm)
     (map_eq_zero_iff _ ?_)
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   obtain ⟨y, rfl⟩ := Ideal.Quotient.mk_surjective y
   rw [Ideal.Quotient.factor_mk, Ideal.Quotient.eq_zero_iff_mem] at hy
@@ -264,7 +264,7 @@ theorem irreducible_iff (π : BdRPlus p R) : Irreducible π ↔ RingHom.ker (the
 
 theorem algebraMap_injective : Function.Injective (algebraMap (AinfInv p R) (BdRPlus p R)) := by
   obtain ⟨ϖ⟩ : Nonempty (PFlat p R) := inferInstance
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   refine AinfInv.eq_zero_of_forall_mem_kerTheta_pow ϖ fun n => ?_
   rw [← Ideal.Quotient.eq_zero_iff_mem, ← eval_algebraMap, hx, map_zero]

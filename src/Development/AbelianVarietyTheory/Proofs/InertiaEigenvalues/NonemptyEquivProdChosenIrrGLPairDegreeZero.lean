@@ -184,7 +184,7 @@ theorem nonempty_equiv_multiProd_empty {m : Fin 2 → Type} [∀ a, Fintype (m a
     L.symm.toLinearMap ∘ₗ LinearMap.proj 1 ∘ₗ (indSpace _ _).subtype ∘ₗ (smoothPart _).subtype
   have hG : ∀ f, G f = L.symm (f.1.1 1) := fun _ => rfl
   have hinj : Function.Injective G := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro f hf
     rw [hG] at hf
     apply Subtype.ext

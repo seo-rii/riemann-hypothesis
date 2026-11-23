@@ -140,7 +140,7 @@ theorem abstract_cmp
   haveI : FiniteDimensional K₀ K := Module.Finite.of_restrictScalars_finite Qp K₀ K
   let x := Module.finBasis K₀ K
   have hinj : Function.Injective (cmpMap PD ρ x) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro d hd
     funext i
     apply Subtype.ext

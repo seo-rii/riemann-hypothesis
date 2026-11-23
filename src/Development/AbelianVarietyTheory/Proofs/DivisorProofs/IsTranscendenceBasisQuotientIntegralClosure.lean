@@ -84,7 +84,7 @@ theorem isTranscendenceBasis_quotient_integralClosure
     Ideal.Quotient.lift (Ideal.span {t}) g (fun a ha => (hg a).2 ha)
   have hf : ∀ a : A, f (Ideal.Quotient.mk _ a) = Ideal.Quotient.mk Q (ι a) := fun a => rfl
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective x
     exact Ideal.Quotient.eq_zero_iff_mem.2 ((hg a).1 hx)

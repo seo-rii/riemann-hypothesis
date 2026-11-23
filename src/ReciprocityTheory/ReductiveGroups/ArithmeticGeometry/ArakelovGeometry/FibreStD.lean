@@ -201,7 +201,7 @@ theorem coord_div_isIntegral (x : ι → Ω) (e : Fin (D + 1) → ι) (h : IsPro
   change IsIntegral _ (x i / y 0)
   have hl : y 0 ≠ 0 := coord_ne_zero y h.free 0
   have hinj : Function.Injective (coneMap ℤ y) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro f hf
     have : f ∈ coordIdeal ℤ y := by rw [coordIdeal, RingHom.mem_ker]; exact hf
     rwa [h.free, Ideal.mem_bot] at this

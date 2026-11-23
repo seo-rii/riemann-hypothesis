@@ -127,7 +127,7 @@ theorem abs_main {G : Type} [Group G] (K I : Subgroup G) (hIK : I ≤ K) (hfin :
       show aOp R t (((A ^ j) v : Wsp) : G → ℂ) = _
       rw [ih]
   have hAinj : Function.Injective A := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     exact Subtype.ext (hinj a a.2 (congrArg Subtype.val ha))
   have hl0 : l v = 0 := by
@@ -252,7 +252,7 @@ theorem finiteDimensional_iwFix (hσ : ∀ x, σ (σ x) = x) (hσv : ∀ x, Valu
       map_add' := fun _ _ => rfl
       map_smul' := fun _ _ => rfl }
   refine FiniteDimensional.of_injective F ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro φ hφ
   refine Subtype.ext (funext fun g => ?_)
   obtain ⟨b, w, i, π, hb, hw, hi, rfl⟩ := GlobalTheory.T.unitary_iwasawa_bruhat_decomposition L σ n hσ hσv g

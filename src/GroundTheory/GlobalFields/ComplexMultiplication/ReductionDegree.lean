@@ -127,7 +127,7 @@ theorem degree_reduceIsogeny_le : (reduceIsogeny K W W' φ).degree ≤ φ.degree
     rw [reduceIsogeny_val, hφ, hred]
   have hx : Function.Injective (eval₂RingHom (ResidueField.map (algebraMap 𝒪 (gaussRing W)))
       (residue _ x)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro p hp
     by_contra hp0
     have hT : Transcendental (ResidueField 𝒪) (gaussResidue W (residue _ x)) := by

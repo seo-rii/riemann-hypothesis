@@ -204,7 +204,7 @@ theorem mem_of_orth (large₂ : Submodule k ((κ → k) × (κ → k)))
       (fun a b c => by simp only [Prod.fst_add, Prod.snd_add, add_dotProduct, dotProduct_add]; ring)
       (fun a b c => by simp only [Prod.smul_fst, Prod.smul_snd, smul_dotProduct, dotProduct_smul, smul_eq_mul]; ring)
   have hinj : Function.Injective Ω := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     refine Prod.ext (funext fun i => ?_) (funext fun i => ?_)
     · simpa [Ω] using LinearMap.congr_fun ha (0, Pi.single i 1)

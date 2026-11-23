@@ -91,7 +91,7 @@ theorem frK_isometric_and_one_sub_surjective (l : ℕ) [Fact l.Prime] (P : LocPr
     LinearMap.id - (LinearMap.mulLeft ℚ_[l] ((l : ↥(K0 K)) ^ j)).comp (frK P K).toLinearMap
   have hT : ∀ d, T d = d - (l : ↥(K0 K)) ^ j * frK P K d := fun d => rfl
   have hinj : Function.Injective T := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro d hd
     have := norm_sub_pow_mul_algHom _ (frK P K) hj d
     rw [← hT, hd] at this

@@ -273,7 +273,7 @@ theorem exists_complete (B : Type) [CommRing B] [IsDomain B] [IsDiscreteValuatio
     rw [Algebra.smul_def, hy]
   obtain ⟨hd, hD⟩ := dvr_of_principal W _ h1 (hr p hp.ne_zero)
   refine ⟨W, inferInstance, hd, hD, algebraMap B W, inferInstance, ?_, inferInstance⟩
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra h
   exact nonZeroDivisors.ne_zero (hr x h) hx

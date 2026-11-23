@@ -157,7 +157,7 @@ theorem LeafFinVal_of : LeafFinVal := by
     rw [map_mul, hf, hf] at this
     exact (eq_div_iff (hu b).ne_zero).mpr this
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     obtain ⟨⟨a, b⟩, hab⟩ := IsLocalization.surj P.primeCompl c
     have h1 := congrArg f hab

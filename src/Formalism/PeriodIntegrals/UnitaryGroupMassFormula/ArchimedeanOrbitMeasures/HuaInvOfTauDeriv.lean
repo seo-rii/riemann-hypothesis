@@ -156,7 +156,7 @@ theorem cplx_apply (p : lieU P Q × lieU P Q) :
     cplx p = ((p.1 : lieU P Q) : Mat) + Complex.I • ((p.2 : lieU P Q) : Mat) := rfl
 
 theorem cplx_injective : Function.Injective (cplx (P := P) (Q := Q)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   rintro ⟨⟨Y, hY⟩, ⟨Z, hZ⟩⟩ h
   have h1 : Y + Complex.I • Z = 0 := h
   have hY' : sigJ Y = -Y := (mem_lieU_iff_sigJ Y).1 hY

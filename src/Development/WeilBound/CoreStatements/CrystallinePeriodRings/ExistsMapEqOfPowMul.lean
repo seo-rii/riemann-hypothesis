@@ -89,7 +89,7 @@ theorem loc2_surj (x : Per6.Loc2 a t) : ∃ (m n : ℕ) (y : A),
 theorem loc2_lift_injective {E : Type} [CommRing E] (f : A →+* E) (ha : IsUnit (f a))
     (ht : IsUnit (f t)) (hf : Function.Injective f) :
     Function.Injective (Per6.Loc2.lift f ha ht) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨m, n, y, h⟩ := loc2_surj x
   have h1 := congrArg (Per6.Loc2.lift f ha ht) h

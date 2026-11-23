@@ -116,7 +116,7 @@ theorem finrank_eig_le [FiniteDimensional ℂ V] (τ : Representation ℂ G V) (
   let f : eig τ A χ →ₗ[ℂ] eig τ B χ :=
     ((proj τ B χ).comp (eig τ A χ).subtype).codRestrict _ fun v => proj_mem τ B χ hB v
   refine LinearMap.finrank_le_finrank_of_injective (f := f) ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   rintro ⟨v, hv⟩ h0
   have h0' : proj τ B χ v = 0 := congrArg Subtype.val h0
   have hv' := (mem_eig_iff τ A χ v).1 hv

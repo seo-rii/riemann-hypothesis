@@ -81,7 +81,7 @@ theorem tensorLift_injective_of_flat {R S A K L : Type} [CommRing R] [CommRing S
     (isLocalizedModule_iff_isBaseChange (nonZeroDivisors R) K _).mpr (TensorProduct.isBaseChange R S K)
   haveI : Nontrivial R := (algebraMap R K).domain_nontrivial
   have hHinj : Function.Injective H := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     obtain ⟨⟨s, r⟩, hr⟩ := IsLocalizedModule.surj (nonZeroDivisors R) (TensorProduct.mk R K S 1) y
     have hs : s = 0 := by

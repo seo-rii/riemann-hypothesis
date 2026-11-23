@@ -157,7 +157,7 @@ theorem BlowUpLocRingIso.proof : BlowUpLocRingIso.Statement.{u} := by
     Ideal.Quotient.lift (blowUpOf P u) (aeval (blowUpSubst P u)).toRingHom
       (fun a ha => RingHom.mem_ker.mp ha)
   have hθ : Function.Injective θ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective a
     rw [Ideal.Quotient.lift_mk] at ha

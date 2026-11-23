@@ -132,7 +132,7 @@ private theorem index_val {K : Type} [Field K] [CharZero K] [ValuativeRel K] [To
         ring
       commutes' := by intro r; simp }
   have hφ : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     have hz' : algebraMap K L z.re + algebraMap K L z.im * β = 0 := hz
     have him : z.im = 0 := by

@@ -211,7 +211,7 @@ theorem UpperTheory.V.GC.inflKer :
       obtain ⟨q, hq⟩ := Set.mem_iUnion.1 h
       exact congrFun (congrArg Subtype.val (congrFun hx q)) ⟨s, hq⟩
   have hinj : Function.Injective (resH1 ρ p hp) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     obtain ⟨z, rfl⟩ := Submodule.Quotient.mk_surjective _ y
     obtain ⟨m, hm⟩ := (mem_coboundaries1 _ _).1 ((Submodule.Quotient.mk_eq_zero _).1 hy)

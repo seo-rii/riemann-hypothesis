@@ -396,7 +396,7 @@ theorem hopfOrder_of_finOpenSub : ∀ (R : Type) [CommRing R] [IsDomain R] [IsIn
     · rintro ⟨s, hs⟩
       exact ⟨s, funext fun t => inj ((hΦ s t t.2).symm.trans (hs t t.2))⟩
   have hinj : Function.Injective Φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro s hs
     have hzero := section_eq_zero_of_val_generic R T Γ U s
     refine hzero fun t h => ?_

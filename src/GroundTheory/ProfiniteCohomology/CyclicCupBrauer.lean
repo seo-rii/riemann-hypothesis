@@ -148,7 +148,7 @@ theorem galUnits_inflation_two_injective (U : OpenNormalSubgroup Gal(L/K)) :
 
 theorem galUnitsZ_inflation_two_injective (U : OpenNormalSubgroup Gal(L/K)) :
     Function.Injective (inflation (galUnitsZ K L) U 2).hom := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   induction x using H2_induction_on with
   | h z =>

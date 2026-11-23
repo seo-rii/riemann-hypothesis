@@ -92,7 +92,7 @@ theorem isField_tensor {K κ F : Type} [Field K] [CharZero K] [Field κ] [Field 
     funext i
     simp [m, b]
   have hinj : Function.Injective m := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have h2 : Finsupp.linearCombination κ (m.toLinearMap ∘ b) (b.repr x) = 0 := by
       rw [← Finsupp.apply_linearCombination, b.linearCombination_repr]

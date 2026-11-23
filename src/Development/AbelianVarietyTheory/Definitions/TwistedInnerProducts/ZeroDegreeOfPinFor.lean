@@ -95,7 +95,7 @@ theorem covered_of_allPlaces (hL : Rl.toRealDat.toLevCh.Is A3.A.μ0) (hA : Rl.Al
 
 theorem j_injective (hU : Rl.toRealDat.LUnif) (i : Fin D.R.m) (σ : D.what₂.LL →+* ℂ) :
     Function.Injective ((Rl.FW i).j σ) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra h0
   have := (hU i σ).1 1 (fun _ => x) (by rw [linearIndependent_unique_iff]; exact h0)

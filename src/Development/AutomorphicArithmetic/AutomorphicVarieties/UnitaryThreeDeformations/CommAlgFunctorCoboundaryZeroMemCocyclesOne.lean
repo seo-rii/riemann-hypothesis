@@ -519,7 +519,7 @@ private theorem finrank_quot_le {k V U : Type} [Field k] [AddCommGroup V] [Modul
     [Module.Finite k U] (B N : Submodule k V) (φ : V →ₗ[k] U) (h1 : ∀ x, ∃ b ∈ B, x + b ∈ N)
     (h2 : ∀ x ∈ N, φ x = 0 → x = 0) : Module.finrank k (V ⧸ B) ≤ Module.finrank k U := by
   have hi : Function.Injective (φ.comp N.subtype) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     exact fun x hx => Subtype.ext (h2 x x.2 hx)
   have : Module.Finite k N := Module.Finite.of_injective _ hi
   have hs : Function.Surjective (B.mkQ.comp N.subtype) := fun q => by

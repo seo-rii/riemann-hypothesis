@@ -70,7 +70,7 @@ theorem _root_.GlobalTheory.dvr_finite_over_complete_dvr :
   intro O V _ _ _ _ _ _ _ _ _ _
   haveI : Algebra.IsIntegral O V := Algebra.IsIntegral.of_finite O V
   have hinj : Function.Injective (algebraMap O V) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     by_contra h
     push_neg at h
     obtain ⟨a, ha, ha0⟩ := h

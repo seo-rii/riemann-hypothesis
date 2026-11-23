@@ -94,7 +94,7 @@ theorem mulVdR_one (y : V ⊗[Qp] BdR) :
   | tmul v b => simp [mulVdR]
 
 theorem ιV_injective : Function.Injective (ιV PD (LL := LL) (V := V)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro d hd
   refine CrisDR.eq_zero_of_sum PD (LL := LL) (m := 1) (fun _ => (1 : K)) ?_ (fun _ => d) ?_ 0
   · intro b hb i

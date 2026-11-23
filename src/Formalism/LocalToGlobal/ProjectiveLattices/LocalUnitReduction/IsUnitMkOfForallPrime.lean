@@ -181,7 +181,7 @@ theorem finRed : FinRedStatement := by
   let Ψ : Fr ⧸ J →ₐ[K'] (∀ c, R c ⧸ Ideal.map (φ c) J) :=
     Pi.algHom _ _ fun c => Ideal.quotientMapₐ (Ideal.map (φ c) J) (φ c) Ideal.le_comap_map
   have hinjΨ : Function.Injective Ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨f, rfl⟩ := Ideal.Quotient.mk_surjective x
     rw [Ideal.Quotient.eq_zero_iff_mem]

@@ -58,7 +58,7 @@ theorem finrank_eq_one_of_isDomain_tensor {F L : Type} [Field F] [Field L] [Alge
     (Algebra.IsIntegral.isField_iff_isField hinj).1 (Field.toIsField L)
   let f : L ⊗[F] L →ₐ[L] L := Algebra.TensorProduct.lmul'' F
   have hf : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra h
     obtain ⟨y, hy⟩ := hT.mul_inv_cancel h

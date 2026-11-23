@@ -117,7 +117,7 @@ theorem linearComb_apply {n j : ℕ} {E : Type} [Field E] (b : Fin j → Fin n �
 
 theorem linear_comb_injective {n j : ℕ} {E : Type} [Field E] (b : Fin j → Fin n → E) (hb : LinearIndependent E b) :
     Function.Injective (linearCombinationOfRows b) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   rw [linearComb_apply] at ha
   funext k

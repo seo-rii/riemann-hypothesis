@@ -82,7 +82,7 @@ theorem leftIdealMulAlgHom_injective (e : Λ)
     (h : ∃ (N : ℕ) (a b : Fin N → Λ), ∑ i, a i * e * b i = 1) :
     Function.Injective (leftIdealMulAlgHom A e) := by
   obtain ⟨N, a, b, hab⟩ := h
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro l hl
   have h0 : ∀ y : Λ, l * (y * e) = 0 := by
     intro y

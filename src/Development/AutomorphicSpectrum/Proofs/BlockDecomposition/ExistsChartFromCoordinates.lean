@@ -294,7 +294,7 @@ theorem tf_tensor [Module.Flat O G] (P : Ideal R) (l : ℕ) (hl : ∀ x, (l : R)
   rw [RingHom.mem_ker] at hx ⊢
   have inj : Function.Injective (((l : O) • LinearMap.id : (R ⧸ P) →ₗ[O] (R ⧸ P)).rTensor G) := by
     refine Module.Flat.rTensor_preserves_injective_linearMap _ ?_
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     obtain ⟨z, rfl⟩ := Ideal.Quotient.mk_surjective z
     have hz' : Ideal.Quotient.mk P ((l : R) * z) = 0 := by

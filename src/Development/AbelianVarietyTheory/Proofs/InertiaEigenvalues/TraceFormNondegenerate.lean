@@ -112,7 +112,7 @@ theorem semisimple_span {Γ k : Type} [Group Γ] [Field k] {n : ℕ}
   let ψ : spanAlg ρ →ₗ[spanAlg ρ] (Fin n → Fin n → k) :=
     LinearMap.pi fun j => LinearMap.toSpanSingleton _ _ (Pi.single j 1)
   have hψ : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     ext i j
     have h1 : (a : Matrix (Fin n) (Fin n) k).mulVec ((Pi.single j 1 : Fin n → k)) i = 0 :=

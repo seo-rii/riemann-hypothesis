@@ -187,7 +187,7 @@ theorem GlobalTheory.EtC.h_zero_pull_bijective : ∀ (q : ℕ) [NeZero q] (A A' 
   have hres : Function.Bijective (Sec.res (F := tw q i) g) := by
     constructor
     · change Function.Injective ((tw q i).obj.map g.op).hom
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro y hy
       obtain ⟨c, rfl⟩ := sec_eq_nsmul _ (clopen_of_idem A hidA) ζ y
       have h0 : c • twGen i (ζ.map g.appTop.hom) = 0 := by

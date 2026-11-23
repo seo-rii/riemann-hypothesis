@@ -281,7 +281,7 @@ theorem IrreducibleGermPrimitiveForm.proof (hF : FiniteFibreGermIntegral.Stateme
 
   let _ : Algebra (holGerms (A x)) (germsAlong X x) := (alongPull X x A).toAlgebra
   have hα : Function.Injective (algebraMap (holGerms (A x)) (germsAlong X x)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro φ hφ
     obtain ⟨h, hh, hφh⟩ := φ.2
     have h1 : ((h ∘ A : (σ → ℂ) → ℂ) : Germ (𝓝[X] x) ℂ) = ((0 : (σ → ℂ) → ℂ) : Germ (𝓝[X] x) ℂ) := by

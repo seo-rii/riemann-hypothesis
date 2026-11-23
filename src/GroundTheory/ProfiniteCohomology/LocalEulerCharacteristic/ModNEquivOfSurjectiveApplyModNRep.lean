@@ -79,7 +79,7 @@ noncomputable def modNEquivOfSurjective (φ : A →+ X) (hs : Function.Surjectiv
     (((LinearMap.range (LinearMap.lsmul ℤ A n)).liftQ φ.toIntLinearMap
       fun a ha ↦ LinearMap.mem_ker.mpr ((hker a).mpr ha)).toAddMonoidHom.toZModLinearMap n)
     ⟨by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro x hx
       obtain ⟨a, rfl⟩ := Submodule.Quotient.mk_surjective _ x
       exact (Submodule.Quotient.mk_eq_zero _).mpr ((hker a).mp hx),
@@ -301,7 +301,7 @@ theorem finite_modN_maxPow (k : ℕ) : Finite (ModN (maxPow F k) p) := by
   let L := (LinearMap.range (LinearMap.lsmul ℤ (maxPow F k) p)).liftQ φ.toIntLinearMap
     fun a ha ↦ LinearMap.mem_ker.mpr ((hφ a).mpr ha)
   refine Finite.of_injective L ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨a, rfl⟩ := Submodule.Quotient.mk_surjective _ x
   exact (Submodule.Quotient.mk_eq_zero _).mpr ((hφ a).mp hx)

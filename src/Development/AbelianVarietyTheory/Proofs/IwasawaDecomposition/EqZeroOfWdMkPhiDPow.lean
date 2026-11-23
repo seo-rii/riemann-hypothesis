@@ -63,7 +63,7 @@ theorem exists_idem {LL U D R : Type} [Field LL] [Field U] [AddCommGroup D] [Mod
     have := congrArg π hae
     rwa [map_add, RingHom.mem_ker.1 ha, zero_add, map_one] at this
   have hinj : Function.Injective ((Algebra.linearMap R F) ∘ₗ q.subtype) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     have : (y : R) ∈ RingHom.ker π ⊓ q := ⟨hy, y.2⟩
     rw [hq.inf_eq_bot] at this

@@ -296,7 +296,7 @@ theorem eq_zero_of_ip {E : Fin (n ^ 2) → Matrix (Fin n) (Fin n) ℂ} (hG : ∀
     intro a j
     simp [Finset.sum_mul, hc]
   have hinj : Function.Injective (Fintype.linearCombination ℂ E) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     funext j
     rw [← hco a j, ← Fintype.linearCombination_apply, ha]; simp

@@ -155,7 +155,7 @@ theorem exists_equiv_mixedSpace :
     have h := hA' (fun w => (z.2 w).im / (w.1.embedding δ).im) w
     exact (congrArg (· * (w.1.embedding δ).im) h).trans (div_mul_cancel₀ _ (him _))
   have hinj : Function.Injective Θ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     obtain ⟨a, b, rfl⟩ := GlobalTheory.InfAdeleCM.exists_decomp hs z
     have key : ∀ v, a v = 0 ∧ b v = 0 := by

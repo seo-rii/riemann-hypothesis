@@ -107,7 +107,7 @@ theorem exists_conj_eq_add_of_isCoprime : ∀ (F : Type) [Field F] [Finite F] (V
     · rw [hD]; exact A.sub_mem (hu.1 _) (hg _ (hu.1 _))
     · rw [hD, hu.2 _ hx, hu.2 _ (hg _ hx)]; simp
   have hinj : Function.Injective (D.restrict hDN) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro u hu
     apply Subtype.ext
     refine nilRad_eq_zero_of_commute A g hg hc u.1 u.2 fun x => ?_

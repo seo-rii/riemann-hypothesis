@@ -239,7 +239,7 @@ theorem modelToFrac_mk (hJ : J.IsPrime) (hq : q ∈ zeroSet J) (h : MvPolynomial
   Ideal.Quotient.lift_mk _ _ _
 
 theorem modelToFrac_injective (hJ : J.IsPrime) (hq : q ∈ zeroSet J) : Function.Injective (modelToFrac M hJ hq) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨h, rfl⟩ := Ideal.Quotient.mk_surjective x
   rw [modelToFrac_mk, ← RingHom.mem_ker, ker_toFracModel hJ hq] at hx
@@ -265,7 +265,7 @@ theorem locToFrac_algebraMap (hJ : J.IsPrime) (hq : q ∈ zeroSet J) (r : MvPoly
   exact IsLocalization.lift_eq _ _
 
 theorem locToFrac_injective (hJ : J.IsPrime) (hq : q ∈ zeroSet J) : Function.Injective (locToFrac M hJ hq) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro z hz
   obtain ⟨⟨r, s⟩, rfl⟩ := IsLocalization.mk'_surjective (normalModelSubmonoid M q) z
   rw [locToFrac, IsLocalization.lift_mk'_spec, mul_zero] at hz

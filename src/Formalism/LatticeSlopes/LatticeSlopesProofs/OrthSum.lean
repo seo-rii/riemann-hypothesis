@@ -206,7 +206,7 @@ theorem slope_le_max_maxSlope (L₁ L₂ : Submodule ℤ E) (h1 : DiscreteTopolo
     ((P.toLinearMap.restrictScalars ℤ).comp Q.subtype) (fun y => hQmem y.1 y.2)
   have hψ : ∀ y : Q, ((ψ y : L₂) : E) = P y := fun y => rfl
   have hinj : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy0
     have hPy : P y = 0 := by
       rw [← hψ, hy0]; rfl

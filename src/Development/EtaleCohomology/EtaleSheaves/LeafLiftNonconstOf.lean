@@ -101,7 +101,7 @@ theorem key {k : Type} [Field k] {X : Scheme.{0}} [IsIntegral X] (p : X ⟶ Sp k
     ext a
     simpa [α, ψ] using congrArg (fun g => (CommRingCat.Hom.hom g) a) h2
   have hinj : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro s hs
     have hs' : (φ.appLE U ⊤ hle).hom s = 0 := by
       have := congrArg (Scheme.ΓSpecIso (CommRingCat.of Ω)).inv.hom hs

@@ -65,7 +65,7 @@ theorem Datum.algebraMap_injective (D : Datum p) (hm : D.m = 1) :
   haveI : Nontrivial D.O := by
     apply Module.nontrivial_of_finrank_pos (R := ℤ)
     rw [D.rankO, hm]; simpa using Module.finrank_pos (R := ℚ) (M := D.F)
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   by_contra ha0
   have hF : (a : D.F) ≠ 0 := by exact_mod_cast ha0

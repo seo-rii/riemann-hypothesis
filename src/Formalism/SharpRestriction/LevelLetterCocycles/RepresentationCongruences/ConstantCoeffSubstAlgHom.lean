@@ -78,7 +78,7 @@ private theorem constantCoeff_algHom_apply_of_constantCoeff_X {R : Type*} [CommR
 private theorem powerSeries_algHom_injective_of_X_ne_zero {R : Type*} [CommRing R] [IsDomain R]
     (ψ : R⟦X⟧ →ₐ[R] R⟦X⟧) (h0 : constantCoeff (ψ X) = 0) (hne : ψ X ≠ 0) :
     Function.Injective ψ := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro F hF
   by_contra hF0
   have hex : ∃ n, coeff n F ≠ 0 := by

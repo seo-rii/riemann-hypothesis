@@ -115,7 +115,7 @@ theorem rTensor_injective_of_extension {K L : Type} [AddCommGroup K] [Module B K
     (hg : Exact g₁ g₂) (hg₁ : Injective g₁) (hg₂ : Surjective g₂)
     (h₁ : Injective (i.rTensor N₁)) (h₃ : Injective (i.rTensor N₃)) :
     Injective (i.rTensor N₂) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have h2 : g₂.lTensor K x = 0 := by
     apply (injective_iff_map_eq_zero _).mp h₃

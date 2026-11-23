@@ -139,7 +139,7 @@ theorem gaussRing_completion :
   have hinj₂ := IsLocalization.injective O₂ (M := P.primeCompl) P.primeCompl_le_nonZeroDivisors
   have hginj : Function.Injective g := hinj₂.comp (MvPolynomial.map_injective _ hinj)
   have hfinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨⟨p, s⟩, h⟩ := IsLocalization.surj (laT D N la).primeCompl x
     have h1 := congrArg f h

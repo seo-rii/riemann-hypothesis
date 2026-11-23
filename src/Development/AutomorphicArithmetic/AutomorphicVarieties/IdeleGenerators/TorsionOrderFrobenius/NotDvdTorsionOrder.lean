@@ -182,7 +182,7 @@ theorem UpperTheory.V.Sd.Tw.fin :
   haveI := ringChar.charP (𝓞 K ⧸ Ideal.span {(N : 𝓞 K)})
   let j : ZMod N →+* 𝓞 K ⧸ Ideal.span {(N : 𝓞 K)} := ZMod.castHom (ringChar.dvd hN0) _
   have hj : Function.Injective j := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     obtain ⟨n, rfl⟩ := ZMod.intCast_surjective a
     rw [map_intCast, ← map_intCast (Ideal.Quotient.mk (Ideal.span {(N : 𝓞 K)})), Ideal.Quotient.eq_zero_iff_mem,

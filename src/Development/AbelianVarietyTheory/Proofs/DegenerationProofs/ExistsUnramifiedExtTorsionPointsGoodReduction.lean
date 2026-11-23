@@ -115,7 +115,7 @@ theorem exists_local_of_etale {T W Ω F : Type} [CommRing T] [IsDomain T] [IsDis
       @_root_.DivisionSemiring.to_moduleIsTorsionFree,
       @_root_.Algebra.IsIntegral.isAlgebraic, @_root_.inferInstance])
   have hj' : Function.Injective j' := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro b hb
     by_contra hb0
     have hne : (RingHom.ker j').comap (algebraMap T B) ≠ ⊥ :=

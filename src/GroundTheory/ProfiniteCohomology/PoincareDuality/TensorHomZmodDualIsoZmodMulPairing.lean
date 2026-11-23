@@ -106,7 +106,7 @@ theorem bijective_toDualDual [NeZero n] (hD : Nonempty (D ≃+ ZMod n)) [Finite 
   have : Finite (dualRep D (dualRep D M)) := finite_dualRep
   refine Function.Injective.bijective_of_nat_card_le ?_
     ((card_dualRep_le hD).trans (card_dualRep_le hD))
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro m hm
   by_contra hne
   obtain ⟨f, hf⟩ := exists_dualRep_apply_ne_zero hD hM hne
@@ -240,7 +240,7 @@ theorem dualRep_zmodRep_apply (ν : dualRep D (zmodRep.{u} G n)) (a : ZMod n) :
 include hD in
 theorem bijective_zmodDualHom : Function.Bijective (zmodDualHom n D).hom := by
   constructor
-  · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  · rw [injective_iff_map_eq_zero]
     intro ν hν
     rw [zmodDualHom_hom_apply] at hν
     refine DFunLike.ext _ _ fun a => ?_

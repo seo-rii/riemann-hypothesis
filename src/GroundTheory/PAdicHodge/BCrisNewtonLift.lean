@@ -191,7 +191,7 @@ theorem toB_algebraMap (x : AInf K p) :
   IsLocalization.lift_eq _ x
 
 theorem toB_injective : Function.Injective (toB K p) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro z hz
   obtain ⟨⟨y, s⟩, hs⟩ := IsLocalization.surj (Submonoid.powers (p : AInf K p)) z
   simp only at hs

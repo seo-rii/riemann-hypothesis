@@ -106,7 +106,7 @@ theorem exists_strictHenselian_absolutely_closed_local_ring (κ : Type) [Fintype
       (GlobalTheory.VacLn.trPair F κ).flip
   have hL : ∀ b y, L b y = Algebra.trace ℝ (mixedEmbedding.mixedSpace F) (∑ i, y i * b i) := fun b y => rfl
   have hinj : Function.Injective L := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro b hb
     apply GlobalTheory.VacLn.trPair_nondeg b
     intro y

@@ -80,7 +80,7 @@ theorem exists_emb_fractionRing_of_dominant : ∀ (o Ω : Type) [CommRing o] [Fi
     rw [GlobalTheory.Points.valR_eq ξ U h]
     exact e2
   have hinj0 : Function.Injective g0 := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨x, hx⟩ h0
     obtain ⟨U, f, hz, rfl⟩ := RatModel.mem_O.1 hx
     rw [hg0 U f hz] at h0

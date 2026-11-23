@@ -248,7 +248,7 @@ theorem exists_pseudoBasis_adapted :
   obtain ⟨s, f, c, hf, hc, hΛ, hI⟩ :=
     exists_pseudoCoords (R := 𝓞 E) (K := E) r (Fin r → E) (by simp) Λ I hfg hsp
   have hinj : Function.Injective (LinearMap.pi f) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     exact hf v fun a => congrFun hv a
   let φ : (Fin r → E) ≃ₗ[E] (Fin r → E) := LinearEquiv.ofInjectiveEndo _ hinj

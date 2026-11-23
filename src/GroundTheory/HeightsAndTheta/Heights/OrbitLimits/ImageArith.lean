@@ -73,7 +73,7 @@ theorem ImageArith.of_found (hBT : BlockTrdeg.Statement) : ReciprocityTheory.Cha
   set A' := MRing ι' ⧸ P'
   set L := FractionRing A'
   have hinj : Function.Injective (algebraMap ℤ A') := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     rw [← Ideal.Quotient.mk_algebraMap, MvPolynomial.algebraMap_eq, Ideal.Quotient.eq_zero_iff_mem] at ha
     have h' : a ∈ (P').comap (C : ℤ →+* MRing ι') := ha

@@ -1554,7 +1554,7 @@ theorem inj_of_scalars {ι : Type} [DecidableEq ι] {V W : Type} [AddCommGroup V
     (hl : ∀ σ, ∃ lam : ℂ, lam ≠ 0 ∧ ∀ f ∈ M σ, θ' (θ f) = lam • f) : Function.Injective θ := by
   classical
   choose lam hl0 hl using hl
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro f h0
   have hf : f ∈ iSup M := htop ▸ Submodule.mem_top
   obtain ⟨x, rfl⟩ := (Submodule.mem_iSup_iff_exists_dfinsupp M f).1 hf

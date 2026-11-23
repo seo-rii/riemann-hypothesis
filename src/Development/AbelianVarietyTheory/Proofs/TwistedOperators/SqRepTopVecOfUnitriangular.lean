@@ -205,7 +205,7 @@ theorem nonempty_equiv_polyRep (n n' : ℕ) :
   have hΦ : ∀ i v, Φ (DirectSum.lof ℂ _ _ i v) = φ i v := fun i v =>
     DirectSum.toModule_lof ℂ (φ := fun i => (φ i).toLinearMap) i v
   have hinj : Function.Injective Φ.toLinearMap := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     refine GlobalTheory.directSum_eq_zero_of_toModule_eq_zero _ _ hirr hdis Φ ?_ (DFinsupp.support x) x
       (fun j hj => DFinsupp.notMem_support_iff.1 hj) hx

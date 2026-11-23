@@ -145,7 +145,7 @@ theorem exists_prime_saturation_generic_section (K L : Type) [Field K] [Field L]
     (rename (fun j => ((), j)) : _ →ₐ[K] _).toRingHom
   let θ : MvPolynomial (Fin N) K →+* Ω := π.comp ((map (algebraMap K F)).comp ρ)
   have hθ : Function.Injective θ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have h1 : ρ a ∈ elimIdeal (β := Unit) P :=
       (mem_elimIdeal_iff_of_generic hξ hne).2 ((hπ _).1 ha)

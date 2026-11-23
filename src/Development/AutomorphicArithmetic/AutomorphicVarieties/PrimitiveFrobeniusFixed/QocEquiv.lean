@@ -80,7 +80,7 @@ private theorem qoc_inj : Function.Injective (algebraMap ℤ_[l] O) := by
     have h4 := (UpperTheory.V.Base.qoFacts l O).2.2.2 ϖ
     rw [IsDiscreteValuationRing.addVal_uniformizer hϖ, Module.length_eq_zero] at h4
     exact zero_ne_one h4
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra hne
   rw [PadicInt.unitCoeff_spec hne, map_mul, map_pow, map_natCast] at hx

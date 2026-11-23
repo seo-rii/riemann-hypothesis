@@ -67,7 +67,7 @@ theorem pullHyp2_restrict_injective {R : Type} [CommRing R] {C : Type} [Category
     (hf : Function.Surjective (pullGlob1 (CoefMap.restrict F G)))
     (hs : ∀ (T : C) (x : Om R (F.obj T) 2), (∀ t (u : T ⟶ G.obj t), pOm F 2 u x = 0) → x = 0) :
     Function.Injective (pullHyp2 (CoefMap.restrict F G)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨c, rfl⟩ := Hyp2.mk_surjective F x
   rw [pullHyp2_mk, Hyp2.mk_eq_zero] at hx

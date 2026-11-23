@@ -142,7 +142,7 @@ theorem FibreDim.proof : FibreDimStatement := by
     (Set.range fun q : (Σ k : FibreBlock κ, ι' k.1) => G.x' ⟨q.1.1, q.2⟩) with hEdef
 
   have hZ : Function.Injective (algebraMap ℤ G.Φ) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have hmem : (C a : MRing ι) ∈ imageZ v P' := by
       rw [← G.ker_x, RingHom.mem_ker, aeval_C]

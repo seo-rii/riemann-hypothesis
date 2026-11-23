@@ -58,7 +58,7 @@ namespace GlobalTheory.BSP
 
 theorem wq_map_injective {l : ℕ} [Fact l.Prime] {a : ℕ} [NeZero a] {O : Type} [CommRing O] [IsDomain O]
     [CharZero O] (w : Wq l a →+* O) : Function.Injective w := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra h0
   obtain ⟨n, u, rfl⟩ := WittVector.exists_eq_pow_p_mul' x h0

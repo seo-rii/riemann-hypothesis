@@ -61,7 +61,7 @@ theorem away_of_injective {R S : Type} [CommRing R] [CommRing S] [Algebra R S] (
 theorem lift_injective {R P S : Type} [CommRing R] [CommRing P] [CommRing S] [Algebra R P] (x : R)
     [IsLocalization.Away x P] (f : R →+* S) (g : P →+* S) (hg : ∀ a, g (algebraMap R P a) = f a)
     (hf : Function.Injective f) : Function.Injective g := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro z hz
   obtain ⟨n, a, ha⟩ := IsLocalization.Away.surj x z
   have h1 : f a = 0 := by rw [← hg, ← ha, map_mul, hz, zero_mul]

@@ -95,7 +95,7 @@ theorem lTensor_map_injective {R A M : Type*} [CommRing R] [CommRing A] [Algebra
     induction y with
     | add a b ha hb => simp only [map_add (f := _), ha, hb]
     | tmul m r => simp [hφ, c]
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨y, rfl⟩ := hsurj x
   have h0 := hcomp y
@@ -131,7 +131,7 @@ theorem lTensor_injective_of_le_range {I : Ideal A} (hrel : RelationsLift I M)
     (hI : Function.Injective (I.subtype.lTensor M)) {F : Type} [AddCommGroup F] [Module A F]
     (f : F →ₗ[A] A) (hf : Function.Injective f) (hle : I ≤ range f) :
     Function.Injective (f.lTensor M) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨y, rfl⟩ := hrel F f x (by rw [hx]; simp)
   let e₀ : Submodule.comap f I →ₗ[A] I := f.restrict fun _ h => h
@@ -165,7 +165,7 @@ theorem lTensor_injective_of_pow_le [IsNoetherianRing A] {I : Ideal A} (hrel : R
       obtain ⟨j, hj, c, hc, rfl⟩ := Submodule.mem_sup.mp hb
       obtain ⟨c, rfl⟩ := Ideal.mem_span_singleton'.mp hc
       exact ⟨(⟨j, hj⟩, c), rfl⟩
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have hfx : f.lTensor M x = 0 := by
       apply h'
@@ -175,7 +175,7 @@ theorem lTensor_injective_of_pow_le [IsNoetherianRing A] {I : Ideal A} (hrel : R
     have hinj : Function.Injective
         ((snd A J A ∘ₗ (ker (f.coprod g)).subtype).lTensor M) := by
       refine lTensor_injective_of_le_range hrel hI _ ?_ fun i hi => ?_
-      · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      · rw [injective_iff_map_eq_zero]
         rintro ⟨⟨j, c⟩, hjc⟩ hc
         have hc' : c = 0 := hc
         subst hc'

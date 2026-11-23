@@ -177,7 +177,7 @@ lemma ker_le_span_of_spanFinrank_le {κ : Type} [Fintype κ] (f : κ → P)
     IsRegularLocalRing.of_spanFinrank_maximalIdeal_le _ (h3.trans (hdim.trans h1))
   have : IsDomain (P ⧸ J) := GroundTheory.Arith.SchemeCoh.IsRegularLocalRing.isDomain
   have hinj : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     by_contra hz0
     have h5 := ringKrullDim_quotient_succ_le_of_nonZeroDivisor (mem_nonZeroDivisors_of_ne_zero hz0)

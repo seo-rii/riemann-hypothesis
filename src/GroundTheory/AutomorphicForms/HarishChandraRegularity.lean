@@ -97,7 +97,7 @@ theorem exists_ball_sqSymbol_ne_zero {ι : Type*} [Fintype ι]
     exact Finset.sum_eq_zero fun i hi => by
       rw [pow_eq_zero_iff two_ne_zero |>.1 (hall i hi), zero_smul]
   have hinj : Function.Injective (Q 0) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro ξ hξ
     apply hspan
     have h0 : ∑ i, (inner ℝ (c i 0) ξ) ^ 2 = 0 := by rw [← hquad, hξ, inner_zero_left]

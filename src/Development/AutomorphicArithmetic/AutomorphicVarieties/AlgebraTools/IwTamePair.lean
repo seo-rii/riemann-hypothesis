@@ -140,7 +140,7 @@ private theorem tamePair_nil {K A : Type} [Field K] [Ring A] [Algebra K A]
     intro p
     rw [hψ, h2, map_sub, map_mul, map_natCast, Nat.cast_smul_eq_nsmul, nsmul_eq_mul]
   have hψi : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro Y hY
     apply hinj
     rw [hψ, sub_eq_zero] at hY

@@ -185,7 +185,7 @@ theorem main : Out.Laws → Out.Laws2 → ∀ (o : Type) [CommRing o] (g k : ℕ
   have hle : Submonoid.powers f ≤ nonZeroDivisors R := powers_le_nonZeroDivisors_of_noZeroDivisors hf
   have : IsDomain (Localization.Away f) := IsLocalization.isDomain_localization hle
   have hψi : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨⟨r, m⟩, h⟩ := IsLocalization.surj (Submonoid.powers f) x
     have h₁ := congrArg ψ h

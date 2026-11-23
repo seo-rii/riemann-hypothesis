@@ -246,7 +246,7 @@ def toDual_of_pairing [FiniteDimensional LL V] [FiniteDimensional LL V']
     (h3 : finrank LL V = finrank LL V') : V' ≃ₗ[LL] Module.Dual LL V :=
   LinearMap.linearEquivOfInjective P.flip
     (by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro y hy
       exact h2 y fun x => by
         have := LinearMap.congr_fun hy x

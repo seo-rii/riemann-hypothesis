@@ -134,7 +134,7 @@ theorem finrank_kaehler_eq_of_formallyUnramified (R V L : Type*) [CommRing R] [C
     Module.finrank L Ω[L⁄R] = Module.finrank L Ω[L⁄V] := by
   refine (LinearEquiv.ofBijective (KaehlerDifferential.map R V L L)
     ⟨?_, KaehlerDifferential.map_surjective R V L⟩).finrank_eq
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨y, rfl⟩ := (KaehlerDifferential.exact_mapBaseChange_map R V L x).mp hx
   rw [Subsingleton.elim y 0, map_zero]

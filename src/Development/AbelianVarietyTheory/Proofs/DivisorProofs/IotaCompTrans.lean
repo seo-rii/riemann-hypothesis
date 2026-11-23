@@ -59,7 +59,7 @@ theorem iota_comp_mk (hI : RingHom.ker π = I) (S : Subring R) :
     (iota I π hI S).comp (Ideal.Quotient.mk _) = π.comp S.subtype := rfl
 
 theorem iota_injective (hI : RingHom.ker π = I) (S : Subring R) : Function.Injective (iota I π hI S) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   obtain ⟨x, rfl⟩ := Ideal.Quotient.mk_surjective a
   rw [Ideal.Quotient.eq_zero_iff_mem]

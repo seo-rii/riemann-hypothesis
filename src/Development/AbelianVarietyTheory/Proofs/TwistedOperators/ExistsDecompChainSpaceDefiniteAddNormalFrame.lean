@@ -70,7 +70,7 @@ theorem exists_decomp {K X Y : Type} [Field K] [AddCommGroup X] [Module K X] [Ad
     ∃ (x : X) (t : Fin c → K), y = ι x + ∑ n, t n • a n := by
   let Ψ : (X × (Fin c → K)) →ₗ[K] Y := ι.coprod (Fintype.linearCombination K a)
   have hinj : Function.Injective Ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨x, t⟩ h
     have h' : ι x + ∑ n, t n • a n = 0 := h
     have ht : t = 0 := funext fun n => by
@@ -126,7 +126,7 @@ theorem exists_decomp_chainSpace_definite_add_normalFrame {j : ℕ} (hj : j < D.
       omega
   refine exists_decomp (D.sp.iXY j) ?_ ?_ (fun n : Fin (nAux D j) => normalFr D j E Ev z n)
     (fun n => (D.sp.Y j).hT (b n)) (fun n x => ?_) (fun n n' hn => ?_) (fun n => ?_) y
-  · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  · rw [injective_iff_map_eq_zero]
     intro x hx
     refine (D.sp.X j).nondeg.1 x fun x' => ?_
     rw [← D.sp.iXY_isom j hj, hx, map_zero, LinearMap.zero_apply]

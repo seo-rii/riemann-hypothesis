@@ -168,7 +168,7 @@ theorem CurveSectionQuotLocal.proof : CurveSectionQuotLocal.Statement := by
   have hΦ : ∀ q (r : S), Φ (LocalizedModule.mk q r) = LocalizedModule.mk (ψ q) r :=
     fun q r => IsLocalizedModule.map_LocalizedModules S _ q r
   have hinj : Function.Injective Φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z
     refine LocalizedModule.induction_on (β := fun z => Φ z = 0 → z = 0) (fun q r hz => ?_) z
     rw [hΦ, ← LocalizedModule.zero_mk r, LocalizedModule.mk_eq] at hz

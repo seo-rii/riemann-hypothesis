@@ -249,7 +249,7 @@ lemma zdual_relIndex {V : Type*} [AddCommGroup V] [Module ℚ V] [FiniteDimensio
     intro x i
     rw [hS2, Module.Basis.repr_sum_self]
   have hinj : Function.Injective S := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     apply hnd
     have h0 : t x = 0 := by

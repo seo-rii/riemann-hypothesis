@@ -108,7 +108,7 @@ theorem finite_divLat_quot_mulLat_homAt :
       map_add' := by intro x y; funext g; simp
       map_smul' := by intro r x; funext g; simp [smul_comm r] }
   have ev_inj : Function.Injective ev := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have hsp : Submodule.span E (G : Set (Sp E a)) = ⊤ := by
       rw [← hN.span_eq_top, ← hG, Submodule.span_span_of_tower]

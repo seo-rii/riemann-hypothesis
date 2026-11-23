@@ -1039,7 +1039,7 @@ theorem span_of_fin {R K V : Type} [CommRing R] [IsDedekindDomain R] [Field K] [
     by_contra hc
     push Not at hc
     apply hni
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro d hd
     by_contra h0
     exact hc d h0 hd

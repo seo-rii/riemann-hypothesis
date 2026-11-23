@@ -186,7 +186,7 @@ def segreQuotMap (q : Ideal (MRing ι F)) :
 
 omit [DecidableEq K] [∀ k, Fintype (ι k)] in
 theorem segreQuotMap_injective (q : Ideal (MRing ι F)) : Function.Injective (segreQuotMap F q) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   obtain ⟨x, rfl⟩ := Ideal.Quotient.mk_surjective a
   change Ideal.Quotient.mk q (segreMap F x) = 0 at ha

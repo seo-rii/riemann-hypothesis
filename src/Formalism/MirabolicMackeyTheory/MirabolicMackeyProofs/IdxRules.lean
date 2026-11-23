@@ -275,7 +275,7 @@ theorem idxRules_cut_le (p : Ideal R) [p.IsPrime] (W' : Submodule K V) (A B : Su
       rintro ⟨x, hx⟩ hxB
       exact locBasic_locS_mono _ inf_le_left hxB)
   refine Module.length_le_of_injective f ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x
   induction x using Submodule.Quotient.induction_on with
   | H x =>

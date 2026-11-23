@@ -78,7 +78,7 @@ theorem finrank_add_finrank_orthogonal [FiniteDimensional E W] {h : W →ₗ[E] 
     · intro H s hs
       exact hrefl _ _ (H _ ⟨s, hs, rfl⟩)
   have hinj : Function.Injective h.flip := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     exact hn x fun y => hrefl _ _ (LinearMap.congr_fun hx y)
   let j : S →+ S.map h.flip := (h.flip.submoduleMap S).toAddMonoidHom
@@ -289,7 +289,7 @@ omit hσ hh hn hd in
 theorem map_prodMap_transvection {ξ : W} (hξ : ξ ∈ left I) (b : E) {u : W →ₗ[E] W}
     (hu : ∀ v, u v = v + (b * h v ξ) • ξ) : I.map (u.prodMap LinearMap.id) = I := by
   refine map_prodMap_left hI ?_ fun x _ => ?_
-  · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  · rw [injective_iff_map_eq_zero]
     intro v hv
     have h0 : h (u v) ξ = 0 := by simp [hv]
     rw [hu, map_add (f := _), LinearMap.add_apply, map_smul, LinearMap.smul_apply,

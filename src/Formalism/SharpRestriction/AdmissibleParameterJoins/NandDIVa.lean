@@ -86,7 +86,7 @@ theorem injective_of_scalars {ι V W : Type*} [DecidableEq ι] [AddCommGroup V] 
     | add a b ha hb =>
       intro k
       simp only [map_add (f := _), DirectSum.decompose_add, DirectSum.add_apply, Submodule.coe_add, smul_add, ha k, hb k]
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro v hv
   have hz : DirectSum.decompose S v = 0 := by
     ext k

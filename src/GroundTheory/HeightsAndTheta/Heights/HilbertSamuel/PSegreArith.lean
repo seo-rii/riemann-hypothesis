@@ -86,7 +86,7 @@ omit [Fintype K] [DecidableEq K] in
 theorem charZero_of_horizontal (y : (Σ k, ι k) → Ω)
     (h : IsHorizontal (mCoordIdeal y)) : CharZero Ω := by
   refine charZero_of_injective_algebraMap (R := ℤ) (A := Ω) ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro n hn
   have hmem : n ∈ (mCoordIdeal y).comap (C : ℤ →+* MRing ι) := by
     rw [Ideal.mem_comap, mCoordIdeal, RingHom.mem_ker, ← algebraMap_eq, AlgHom.commutes,

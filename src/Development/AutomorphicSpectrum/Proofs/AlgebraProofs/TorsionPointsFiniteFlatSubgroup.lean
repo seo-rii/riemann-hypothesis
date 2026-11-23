@@ -135,7 +135,7 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.torsion_points_finite_flat_sub
   have hΛR : ∀ k1 k2, (Λ k1 k2).comp Algebra.TensorProduct.includeRight = evbar k2 := fun k1 k2 =>
     AlgHom.ext fun b => by simp [hΛt]
   have hι : Function.Injective (Pi.algHom R (fun _ : K => R) evbar).toLinearMap := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro b hb
     exact hsep1 b fun k => by simpa using congrFun hb k
   have key : ∀ (w : TensorProduct R (T.A ⧸ I) (T.A ⧸ I)) (k1 k2 : K),

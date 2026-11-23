@@ -269,7 +269,7 @@ private theorem rank_of_oneOdd : ∀ {O Γ : Type} [CommRing O] [Group Γ] [Topo
       map_add' := fun x y => Prod.ext rfl (funext fun z => by simp [mul_add, add_mul])
       map_smul' := fun t x => Prod.ext rfl (funext fun z => by simp) }
   have hF : Function.Injective F := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have hx1 : ∀ g i j, i ≤ j.rev → x.1.1.1 g i j = 0 := fun g i j h =>
       congrFun (congrArg Subtype.val (congrFun (congrArg Prod.fst hx) ⟨(i, j), h⟩)) g

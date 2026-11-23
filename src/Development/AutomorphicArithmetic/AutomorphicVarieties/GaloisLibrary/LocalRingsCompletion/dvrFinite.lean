@@ -119,7 +119,7 @@ theorem UpperTheory.V.abelian₂.dvr_finite :
   intro l hl O _ _ _ _ _ _
   have hl0 : (l : O) ≠ 0 := Nat.cast_ne_zero.2 hl.out.ne_zero
   have hinj : Function.Injective (algebraMap ℤ_[l] O) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra h0
     rw [PadicInt.unitCoeff_spec h0, map_mul, map_pow, map_natCast] at hx

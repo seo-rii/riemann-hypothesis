@@ -187,7 +187,7 @@ theorem vO_l (D : D7) (i : D.nd.Loc) : vO (D.nd.O i) (D.nd.l i) (D.nd.l i : D.nd
   have hu : ¬ IsUnit (D.nd.l i : D.nd.O i) := by
     intro hu
     have hinj : Function.Injective (algebraMap ℤ_[D.nd.l i] (D.nd.O i)) := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro z hz
       by_contra hz0
       rw [PadicInt.unitCoeff_spec hz0, map_mul, map_pow, map_natCast] at hz

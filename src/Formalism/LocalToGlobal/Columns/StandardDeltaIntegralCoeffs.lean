@@ -181,7 +181,7 @@ theorem transpose_action_inv_left (g : ι → GL (Fin n) K) (F : Pol K ι n) : t
   rfl
 
 theorem cfMap_injective (lam : ι → DomWeight n) (g : ι → GL (Fin n) K) : Function.Injective (cfMap lam g) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have h0 : trAct g x.1 = 0 := by
     ext m

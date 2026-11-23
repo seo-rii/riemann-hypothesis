@@ -269,7 +269,7 @@ lemma zeroL_smul {k : ℤ} (a : A) (c : cechH (twistAb A n k) (cover A n) 0) :
   rw [smul_cls, zeroL_cls, zeroL_cls, lval_push_smul]
 
 lemma zeroL_injective {k : ℤ} : Function.Injective (zeroL (A := A) (n := n) k) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro c hc
   obtain ⟨σ, hσ, rfl⟩ := exists_cls c
   rw [zeroL_cls] at hc

@@ -73,7 +73,7 @@ theorem exists_mul_eq_one_mem {B : Type} [Ring B] [Algebra K B] (S : Subalgebra 
     ∃ b ∈ S, a * b = 1 := by
   let f : S →ₗ[K] S := LinearMap.mulLeft K (⟨a, ha⟩ : S)
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     apply Subtype.ext
     exact hc x.1 (by simpa [f] using congrArg Subtype.val hx)

@@ -64,7 +64,7 @@ theorem flat_quotient_range_of_lTensor_injective
     Module.Flat R (B ⧸ LinearMap.range f) := by
   rw [Module.Flat.iff_rTensor_injective']
   intro I
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro z hz
   have hRrow := lTensor_exact R (LinearMap.exact_map_mkQ_range f)
     (Submodule.mkQ_surjective (LinearMap.range f))

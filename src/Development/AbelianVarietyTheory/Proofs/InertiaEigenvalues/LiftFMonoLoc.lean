@@ -128,7 +128,7 @@ theorem sub_props (P : LocPrime l) (K K' LL : FinExt l) (h : K.1 ≤ K'.1) (hN :
   have hsub : IsSubOfSums W'.ρ (fun x => ⇑(Ms' x)) := by
     obtain ⟨a, x, p, hp, hinj⟩ := hW
     refine ⟨a, x, LinearMap.pi p, ?_, fun g v => funext fun j => hp j (incl g) v⟩
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     exact hinj v fun j => congrFun hv j
   have hW' : IsCrys (P.PD K') W'.ρ :=

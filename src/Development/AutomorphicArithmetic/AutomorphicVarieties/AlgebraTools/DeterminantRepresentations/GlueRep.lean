@@ -74,7 +74,7 @@ theorem UpperTheory.V.AlgebraTools.Det.glueRep :
   let ι : A →+* (∀ x, K x) := Pi.ringHom f
   have hιc : Continuous ι := continuous_pi fun x => hf x
   have hιi : Function.Injective ι := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     exact hinj a fun x => congrFun ha x
   let R := UpperTheory.V.AlgebraTools.Det.piRep K ρ

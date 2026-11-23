@@ -87,7 +87,7 @@ noncomputable def RecCyc.charBar [(subG p K L).Normal] (χ : charGrp (GK p K)) (
 theorem RecCyc.charBar_injective [(subG p K L).Normal] (χ : charGrp (GK p K))
     (hχ : ∀ g, χ.1 (Additive.ofMul g) = 0 ↔ g ∈ subG p K L) :
     Injective (RecCyc.charBar χ (fun g hg => (hχ g).2 hg)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   obtain ⟨g, hg⟩ := QuotientGroup.mk_surjective (Additive.toMul a)
   have ha' : a = Additive.ofMul (QuotientGroup.mk g) := by rw [hg]; rfl

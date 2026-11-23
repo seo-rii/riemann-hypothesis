@@ -78,7 +78,7 @@ private lemma isDomain_away {A L B : Type*} [CommRing A] [CommRing L] [IsDomain 
   have hφ : ∀ a, φ (algebraMap A B a) = algebraMap A L a := fun a =>
     IsLocalization.Away.lift_eq s hu a
   have hinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro b hb
     obtain ⟨⟨a, m⟩, hm⟩ := IsLocalization.surj (Submonoid.powers s) b
     have h0 : algebraMap A L a = 0 := by

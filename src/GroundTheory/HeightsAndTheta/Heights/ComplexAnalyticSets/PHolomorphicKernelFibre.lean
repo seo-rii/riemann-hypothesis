@@ -105,7 +105,7 @@ theorem HolomorphicKernelFibre.proof : HolomorphicKernelFibre.Statement := by
 
   let M : (Fin k → ℂ) →ₗ[ℂ] Fin k → ℂ := (A : (Fin k → ℂ) →ₗ[ℂ] Fin k → ℂ) + (E.comp lam : _)
   have hMinj : Function.Injective M := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     have hv' : A v + E (lam v) = 0 := hv
     have hAv : A v = 0 := by

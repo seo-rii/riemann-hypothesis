@@ -83,7 +83,7 @@ theorem lA_pow_mem (j : ℕ) : lA W ^ j ∈ W.AΔ := by
 
 include W in
 theorem alg_inj : Function.Injective (algebraMap O LL) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro d hd
   obtain ⟨e, he, hL⟩ := W.one_line
   haveI := W.one.L.free

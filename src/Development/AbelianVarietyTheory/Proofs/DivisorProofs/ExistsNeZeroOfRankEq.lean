@@ -155,7 +155,7 @@ theorem rank_hom_le_killed [IsSimpleModule Rg S] {s : S} (hs : s ≠ 0) (hI : �
     { toFun := fun g => ⟨g s, map_mem_killed I g hI⟩
       map_add' := fun a b => rfl
       map_smul' := fun c a => rfl } ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   by_contra h
   have h0 : a s = 0 := congrArg Subtype.val ha

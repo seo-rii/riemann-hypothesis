@@ -57,7 +57,7 @@ namespace GlobalTheory.KZ.H3.LamInj
 
 theorem algebraMap_injective (l : ℕ) [Fact l.Prime] (E : Type) [Field E] [Algebra ℤ_[l] E] [CharZero E] :
     Function.Injective (algebraMap ℤ_[l] E) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra h0
   have e := PadicInt.unitCoeff_spec h0

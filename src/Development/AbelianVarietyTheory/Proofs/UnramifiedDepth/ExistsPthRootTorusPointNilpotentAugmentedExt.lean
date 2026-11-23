@@ -75,7 +75,7 @@ theorem exists_root_one (Ω : Type) [Field Ω] (p : ℕ) [hp : Fact p.Prime] [Ch
   let f : A →ₐ[Ω] AdjoinRoot P := IsScalarTower.toAlgHom Ω A (AdjoinRoot P)
   have hf : ∀ x, f x = AdjoinRoot.of P x := fun x => rfl
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     rw [hf, ← AdjoinRoot.mk_C, AdjoinRoot.mk_eq_zero] at hx
     by_contra hx0

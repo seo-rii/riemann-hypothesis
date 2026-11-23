@@ -59,7 +59,7 @@ theorem map_MjSig_eq (D : D7) (i : D.nd.Loc) (hInt : Rows.IsotInternal D.what₂
       Module.finrank ℂ ↥(MjSig D.nd D.naut i Sig) :=
     (LinearEquiv.finrank_eq (Submodule.equivMapOfInjective _ hinj (MjSig D.nd D.naut i Sig))).symm
   have hfi : Function.Injective ((D.what₂.thetaP (D.nd.mu i) (D.nd.j i)).domRestrict (eigC D.nd D.naut i x)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro F hF
     exact Subtype.ext (hNZ x hx F.1 F.2 hF)
   have h2 : Module.finrank ℂ ↥(eigC D.nd D.naut i x) =

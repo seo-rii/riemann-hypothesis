@@ -124,7 +124,7 @@ theorem spDualMap_apply {n : ℕ} (f : Dual ℂ (Fin n → ℂ)) (i : Fin n) :
     spDualMap n f i = (-1 : ℂ) ^ (i : ℕ) * f (Pi.single i.rev 1) := rfl
 
 theorem spDualMap_injective (n : ℕ) : Function.Injective (spDualMap n) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro f hf
   refine LinearMap.pi_ext fun j x => ?_
   have := congrFun hf j.rev

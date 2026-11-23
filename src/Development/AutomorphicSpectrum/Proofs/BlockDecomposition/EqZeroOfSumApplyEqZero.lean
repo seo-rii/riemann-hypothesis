@@ -77,7 +77,7 @@ theorem eq_zero_of_sum_apply_eq_zero (σ : Representation ℂ G S) (π : Represe
       have hΦ : ∀ f : J → S, Φ f = ∑ j : J, b j.1 (f j) := fun f => by
         simp [Φ, LinearMap.sum_apply]
       have hinj : Function.Injective Φ := by
-        set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+        rw [injective_iff_map_eq_zero]
         intro f hf
         rw [hΦ] at hf
         funext j
@@ -150,7 +150,7 @@ theorem lift_flip_subtype_injective : ∀ {G S V : Type} [Group G] [AddCommGroup
   let β := Module.Basis.ofVectorSpace ℂ M
   have hli : LinearIndependent ℂ (fun i => ((β i : M) : S →ₗ[ℂ] V)) :=
     β.linearIndependent.map' M.subtype (Submodule.ker_subtype M)
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   let E := TensorProduct.equivFinsuppOfBasisRight (M := S) β
   have hxs : x = (E x).sum fun i s => s ⊗ₜ[ℂ] β i := by

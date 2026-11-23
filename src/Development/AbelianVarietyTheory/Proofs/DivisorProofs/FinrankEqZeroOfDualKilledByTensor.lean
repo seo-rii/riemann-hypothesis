@@ -60,7 +60,7 @@ namespace GlobalTheory
 theorem ringOfIntegers_action_injective (F : Type) [Field F] [NumberField F] (X : Type)
     [AddCommGroup X] [Module.Free ℤ X] [Nontrivial X] (ρ : 𝓞 F →+* Module.End ℤ X) :
     Function.Injective ρ := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   have hmem : a ∈ RingHom.ker ρ := ha
   have hn : ((Ideal.absNorm (RingHom.ker ρ) : ℕ) : 𝓞 F) ∈ RingHom.ker ρ := Ideal.absNorm_mem _

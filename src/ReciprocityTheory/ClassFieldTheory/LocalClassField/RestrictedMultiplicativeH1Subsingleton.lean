@@ -236,7 +236,7 @@ theorem multiplicative_inflation_h2_injective (N : Subgroup (GK p K)) [N.Normal]
   have hs := restricted_multiplicative_h1_subsingleton p K N
   obtain ⟨tg, -, hex⟩ := fiveTerm_holds ℤ (GK p K) (kbarT p K) N hN Q P hP ⊤
     (fun x => ⟨fun _ s c _ _ => Subsingleton.elim _ _, fun _ => Submodule.mem_top⟩)
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   obtain ⟨x, rfl⟩ := (hex y).1 hy
   have hx : x = 0 := Subsingleton.elim _ _

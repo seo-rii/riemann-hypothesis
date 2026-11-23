@@ -351,7 +351,7 @@ theorem prime_pow_dvd_of_dvd_completedLocalization (a : R⟦X⟧) (k : ℕ) (h :
   rw [hc, coeff_C_mul, coeff_mk, ← coeff_C_mul, ← hc, ← h3, coeff_mul_X_pow]
 
 theorem ιE_injective [IsHausdorff (Ideal.span {(l : R)}) R] : Function.Injective (ιE l R) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   ext n
   refine eq_zero_of_l_pow_dvd (l := l) _ fun k => ?_

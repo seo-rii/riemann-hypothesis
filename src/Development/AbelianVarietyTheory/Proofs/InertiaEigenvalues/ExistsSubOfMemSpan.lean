@@ -197,7 +197,7 @@ theorem flat_of_letters {E M ι : Type} [CommRing E] [AddCommGroup M] [Module E 
     | succ k ih => intro m h; rw [pow_succ, mul_smul] at h; exact hM _ (ih _ h)
   rw [Module.Flat.iff_lift_lsmul_comp_subtype_injective]
   intro I _
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro t ht
   have key : ∀ i, e i • t = 0 := by
     intro i

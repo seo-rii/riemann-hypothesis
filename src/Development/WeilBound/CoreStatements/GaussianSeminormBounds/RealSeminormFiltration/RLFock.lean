@@ -500,7 +500,7 @@ theorem exists_sec : ∃ s : V →L[ℝ] (L → ℂ), (∀ y, H.v (s y) = 0) ∧
   let T : LinearMap.ker H.v →ₗ[ℝ] V := (H.v.comp (mulI L)).comp (LinearMap.ker H.v).subtype
   have hT : ∀ k, T k = H.v (I • k.1) := fun k => rfl
   have hi : Function.Injective T := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro k hk
     by_contra hne
     have := H.lam_neg k.2 (fun e => hne (Subtype.ext e))

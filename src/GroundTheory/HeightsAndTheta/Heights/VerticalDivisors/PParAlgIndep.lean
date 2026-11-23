@@ -70,7 +70,7 @@ theorem ParAlgIndep.proof : ParAlgIndep.Statement := by
   rw [algebraicIndependent_iff_injective_aeval]
   change Function.Injective (eval₂Hom (kToFrac K e n) (parYF K e n))
   let M : Submonoid (MvPolynomial (Par e n) (𝓞 K)) := (nonZeroDivisors (𝓞 K)).map C
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro z hz
   obtain ⟨⟨a, s⟩, rfl⟩ := IsLocalization.mk'_surjective M z
   have h := IsLocalization.mk'_spec (MvPolynomial (Par e n) K) a s

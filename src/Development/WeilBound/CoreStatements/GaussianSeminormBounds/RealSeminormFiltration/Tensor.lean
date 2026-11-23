@@ -93,7 +93,7 @@ theorem schur_countable {B V : Type} [Ring B] [Algebra ℂ B] [AddCommGroup V] [
       map_add' := fun _ _ => rfl
       map_smul' := fun _ _ => rfl }
   have hev : Function.Injective ev := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro T hT
     by_contra h0
     exact hv ((LinearMap.injective_of_ne_zero h0) (by rw [map_zero]; exact hT))

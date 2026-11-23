@@ -85,7 +85,7 @@ theorem isFractionRing_residueField {X : Scheme.{0}} {U : X.Opens} (hU : IsAffin
   have hmk : ∀ a, algebraMap (Γ(X, U) ⧸ q) (X.residueField x) (Ideal.Quotient.mk q a) =
       X.evaluation U x hx a := fun a => Ideal.Quotient.lift_mk _ _ _
   have hinj : Function.Injective (algebraMap (Γ(X, U) ⧸ q) (X.residueField x)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective c
     rw [hmk] at hc

@@ -264,7 +264,7 @@ private theorem level [Finite (ResidueField O)] (hs : Seps rbar s) (hc : IsLocal
     rw [AlgHom.comp_apply, hy, map_zero]
   have heq : J ≤ RingHom.ker FC := hJmin.2 hkC hle
   have hinj : Function.Injective p1 := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨y, rfl⟩ := hFCs x
     have hy : y ∈ RingHom.ker FB := by

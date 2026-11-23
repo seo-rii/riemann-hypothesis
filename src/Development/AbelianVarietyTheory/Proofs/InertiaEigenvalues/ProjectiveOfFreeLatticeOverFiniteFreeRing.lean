@@ -67,7 +67,7 @@ theorem projective_compHom_of_free_of_finite_free :
         simp only [Pi.smul_apply, smul_eq_mul, map_mul, RingHom.id_apply, Finset.smul_sum,
           smul_smul, mul_assoc, ← Finset.mul_sum] }
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     have h1 := hli (fun i => ∑ m, z (c i m) * w m) (congrArg Subtype.val hc)
     funext i

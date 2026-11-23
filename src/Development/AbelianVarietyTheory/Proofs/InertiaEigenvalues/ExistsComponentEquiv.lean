@@ -219,7 +219,7 @@ theorem isDR_of_isCrys (h : TensInj PD) (ρ : Representation LL G V) [FiniteDime
     rw [hΘ₀]
     exact Submodule.sum_mem _ fun i _ => mulR_mem_DdR PD ρ _ (ιV_mem_DdR PD ρ (x i).2)
   have hi : Function.Injective Θ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     funext i
     exact Subtype.ext (h.tensor (LL := LL) _ c c.linearIndependent (fun i => (x i : V ⊗[Qp] B))
@@ -272,7 +272,7 @@ theorem exists_component_equiv (h : TensInj PD) (ρ : Representation LL G V)
       τ c • sm Qp F LL V (idem F τ) z := fun c z => by
     rw [← sm_one_tmul, sm_comm, sm_one_tmul, mulR_sm_idem]
   refine ⟨LinearEquiv.ofBijective Θ ⟨?_, ?_⟩, fun x => rfl⟩
-  · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  · rw [injective_iff_map_eq_zero]
     rintro ⟨x, hx⟩ h0
     have h0 : sm Qp F LL V (idem F τ) (ιV PD (LL := LL) (V := V) x) = 0 := congrArg Subtype.val h0
     let β := Module.finBasis K₀ K

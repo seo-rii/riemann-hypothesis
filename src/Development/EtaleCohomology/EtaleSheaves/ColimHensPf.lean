@@ -239,7 +239,7 @@ theorem ColimHens_of : LateralTheory.E.HensCut.ColimHens := by
     · have := KofI β c I ha2
       rwa [map_sub, iota_nat, hb, iota_nat, hb3a] at this
   ·
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha0
     obtain ⟨b, rfl⟩ := Ideal.Quotient.mk_surjective a
     rw [Ideal.quotientMap_mk, Ideal.Quotient.eq_zero_iff_mem] at ha0

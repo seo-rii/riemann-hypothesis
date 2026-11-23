@@ -247,7 +247,7 @@ theorem exists_nhds_subset_range {d : ℕ} {A W : Type*} [CommRing A] [Algebra �
   have hus : HasStrictFDerivAt u (fderiv ℂ u w₀) w₀ :=
     (GlobalTheory.SCV.analyticOnNhd_of_differentiable hu Set.univ w₀ trivial).hasStrictFDerivAt
   have hinj : Function.Injective (fderiv ℂ u w₀) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro ξ hξ
     refine himm ξ fun b => derivation_eq_zero j a p q hp hb (Φ w₀) hq hp'
       (fun b => fderiv ℂ (fun w => Φ w b) w₀ ξ) ?_ ?_ ?_ ?_ b

@@ -202,7 +202,7 @@ theorem proof (hFP : PrimeGermFiniteProjection.Statement) (hIC : HolGermsIntegra
     rw [hcompA, toGerm_rep]
 
   have hRB : Function.Injective (algebraMap R B) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro r hr
     rw [← hcomp, hcl0] at hr
     have hev := hinj (rep r).1 (rep r).2 hr

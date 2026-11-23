@@ -85,7 +85,7 @@ theorem span_basis_eq (c0 : V0 →ₛₗ[e] W0) (b : Module.Basis ι LL V0) :
 
 theorem inj_of_li (c0 : V0 →ₛₗ[e] W0) (b : Module.Basis ι LL V0)
     (hli : LinearIndependent Kf fun i => c0 (b i)) : Function.Injective c0 := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   have h1 := linearIndependent_iff.1 hli _ ((lc_repr_lemma c0 b x).trans hx)
   have h2 : b.repr x = 0 := by

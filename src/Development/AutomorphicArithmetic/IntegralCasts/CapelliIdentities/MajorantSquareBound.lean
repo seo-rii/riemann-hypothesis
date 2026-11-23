@@ -317,7 +317,7 @@ private theorem ext_hom {B S C : Type} [CommRing B] [CommRing S] [Algebra B S] [
     exact hb
   let f1 : B ⧸ q →+* C := Ideal.Quotient.lift q f hqk
   have hf1 : Function.Injective f1 := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     obtain ⟨b, rfl⟩ := Ideal.Quotient.mk_surjective a
     have : b ∈ q := by rw [hq]; exact ha

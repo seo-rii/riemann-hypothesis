@@ -85,7 +85,7 @@ def embHom (φ : I → K →+* ℂ) : 𝓞 K →+ (I → ℂ) where
   map_add' a b := by funext i; simp [GlobalTheory.HeckeTheta.emb]
 
 theorem embHom_injective {φ : I → K →+* ℂ} (hφ : GlobalTheory.CMVal.IsCMType φ) : Function.Injective (embHom φ) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   by_contra h0
   obtain ⟨i, hi⟩ := exists_one_le_norm hφ h0

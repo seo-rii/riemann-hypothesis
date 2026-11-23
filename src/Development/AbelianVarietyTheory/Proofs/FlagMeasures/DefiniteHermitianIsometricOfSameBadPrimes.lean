@@ -404,7 +404,7 @@ theorem cancel {W : Type} [AddCommGroup W] [Module K W] [FiniteDimensional K V] 
     rw [ext_apply, ext_apply, z y] at this
     simpa [f] using this
   have inj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     refine (nondeg_of_PD h hh).1 x fun y => ?_
     rw [← hf, hx]; simp

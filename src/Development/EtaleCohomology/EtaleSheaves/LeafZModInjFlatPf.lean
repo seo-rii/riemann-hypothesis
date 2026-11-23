@@ -73,7 +73,7 @@ theorem flat_of_injective_of_ann {R : Type v} [CommRing R] [IsPrincipalIdealRing
       obtain ⟨m1, rfl⟩ := hx
       obtain ⟨m2, rfl⟩ := hy
       exact ⟨m1 + m2, (tmul_add _ _ _).symm⟩
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨m, rfl⟩ := key x
   simp at hx

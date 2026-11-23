@@ -237,7 +237,7 @@ theorem FlatLocalRegularElement.proof : FlatLocalRegularElement.Statement := by
         (Submodule.smul_mem_pointwise_smul m y ⊤ Submodule.mem_top)
     refine Function.Injective.of_comp (f := TensorProduct.lid A (QuotSMulTop y M)) ?_
     change Function.Injective μN
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro t ht
     have hπs : Function.Surjective π := Submodule.mkQ_surjective (y • (⊤ : Submodule B M))
     obtain ⟨s, rfl⟩ := LinearMap.lTensor_surjective I hπs t

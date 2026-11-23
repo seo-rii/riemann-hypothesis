@@ -113,7 +113,7 @@ theorem riesz_hermitian_holds : RieszH := by
 
     simp [Φ, map_sum, LinearMap.map_smulₛₗ, starRingEnd_apply, star_star]
   have hinj : Function.Injective Φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     have hx : (∑ i, star (c i) • b i) = 0 := by
       apply hnd

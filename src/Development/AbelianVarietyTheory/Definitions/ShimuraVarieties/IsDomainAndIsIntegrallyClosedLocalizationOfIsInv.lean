@@ -145,7 +145,7 @@ theorem isDomain_and_isIntegrallyClosed_localization_of_isInvariant (B : Type*) 
   have hφa (b : B) : φ (algebraMap B _ b) = algebraMap A _ (algebraMap B A b) :=
     Localization.localRingHom_to_map ..
   have hφ : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨⟨b, s⟩, hbs⟩ := IsLocalization.surj p.primeCompl x
     have := congrArg φ hbs

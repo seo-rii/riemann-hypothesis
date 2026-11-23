@@ -442,7 +442,7 @@ theorem chg_of_orth {e f f' : Fin r → S.V} (h' : IsHyp e f') {x : S.V} (hx : �
 theorem exists_chg {e f f' : Fin r → S.V} (h : IsHyp e f) (h' : IsHyp e f') :
     ∃ n : S.V ≃ₗ[E] S.V, n ∈ Formalism.HermitianLatticesTheory.isom S.hT ∧ ∀ v, n v = chg e f f' v := by
   have hi : Function.Injective (chg e f f') := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     refine S.nondeg.2 x fun y => ?_
     rw [← chg_isom h h', hx, map_zero]

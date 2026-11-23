@@ -85,7 +85,7 @@ theorem exists_smul_eq_bilin_of_anisotropic {X : Type} [AddCommGroup X] [Module.
   let BL : X →ₗ[ℤ] Module.Dual ℤ X := Bh.toIntLinearMap
   have hBL : ∀ x m, BL x m = B x m := fun _ _ => rfl
   have hinj : Function.Injective BL := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     apply hB
     rw [← hBL, ha]; rfl

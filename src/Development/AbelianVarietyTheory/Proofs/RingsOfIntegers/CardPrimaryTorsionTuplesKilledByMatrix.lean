@@ -176,7 +176,7 @@ theorem det_mact [IsDomain O] [CharZero O] [Module.Free ℤ O] [Module.Finite �
       map_add' c d := by ext j; simp [add_smul, Finset.sum_add_distrib]
       map_smul' a c := by ext j; simp [Finset.smul_sum, mul_smul] }
   have hi : Function.Injective i := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     ext s j
     have h1 : ∑ s, c s j • v s = 0 := congrFun hc j
@@ -219,7 +219,7 @@ theorem card_kills [IsDomain O] [CharZero O] [Module.Free ℤ O] [Module.Finite 
     exact sub_eq_zero.1 ((smul_eq_zero.1 h2).resolve_left hdet)
   have hQG : ∀ w, mact L q (mact L g w) = (k * M) • w := fun w => by rw [mact_mul, hqg, mact_nat]
   have hinj : Function.Injective ((mact L q).restrictScalars ℤ) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro w hw
     refine tf _ w hc ?_
     rw [← hGQ, show mact L q w = 0 from hw, map_zero]

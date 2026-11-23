@@ -84,7 +84,7 @@ theorem UpperTheory.exists_injective_lattice_hom_ringOfIntegers_of_finrank_ge :
   let ψ : 𝓞 E →ₗ[ℤ] Λ := ψ'.toIntLinearMap
   have hψ : ∀ s, (ψ s : Fin g → ℂ) = α s x0 := fun s => rfl
   have hinj : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro s hs0
     by_contra hne
     have hz : α s x0 = 0 := by rw [← hψ, hs0]; rfl

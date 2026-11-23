@@ -238,7 +238,7 @@ theorem evalAtPoint_injective (P : Ω c →+* ℂ) (hP : P ∈ d.ST c sg (fun i 
   obtain ⟨hPT, hPeq⟩ := hP
   have hcomp : (d.evP c P pt).comp (d.sHp c).toRingHom = eval₂Hom sg pt :=
     RingHom.ext fun q => d.evP_sHp c sg pt hd P hPT hPeq q
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro F hF
   by_contra hF0
   let : Algebra (KTf K d.D d.N) (OmS (Ω c) d.D d.N) := (d.KTtoS h c).toAlgebra

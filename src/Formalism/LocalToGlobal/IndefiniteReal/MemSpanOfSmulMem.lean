@@ -167,7 +167,7 @@ theorem Tr.rank [FiniteDimensional K V] (h : Tr p₀ p x y c) :
       LinearMap.pi fun i => LinearMap.codRestrict _ (y i ∘ₗ (LinearMap.range p).subtype)
         fun a => ⟨_, h.2.2.2.1 i a (hfix a)⟩
     refine LinearMap.finrank_le_finrank_of_injective (f := Y) ?_
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     apply Subtype.ext
     refine h.inj_y a (hfix a) fun i => ?_
@@ -178,7 +178,7 @@ theorem Tr.rank [FiniteDimensional K V] (h : Tr p₀ p x y c) :
           rw [LinearMap.sum_apply]
           exact Submodule.sum_mem _ fun j _ => ⟨_, h.2.2.1 j (a j) (hfix0 _)⟩
     refine LinearMap.finrank_le_finrank_of_injective (f := X) ?_
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have h1 := congrArg Subtype.val ha
     simp only [X, LinearMap.codRestrict_apply, LinearMap.sum_apply, LinearMap.comp_apply,

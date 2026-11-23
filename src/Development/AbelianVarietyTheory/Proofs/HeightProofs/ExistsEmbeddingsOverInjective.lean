@@ -231,7 +231,7 @@ theorem generic_points_dense : (∀ (K : Type) [Field K] [Countable K] (sg : K �
   obtain ⟨η, hη, hball⟩ := Metric.eventually_nhds_iff.1 hev
   obtain ⟨z, hz, hzg⟩ := hgen K sg D z₀ η hη
   have hτ : Function.Injective (MvPolynomial.eval₂Hom sg z) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro p hp
     by_contra h
     exact hzg p h hp

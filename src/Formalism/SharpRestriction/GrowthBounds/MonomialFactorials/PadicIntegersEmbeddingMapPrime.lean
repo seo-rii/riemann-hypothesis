@@ -84,7 +84,7 @@ theorem padic_integers_embedding_map_prime (hpm : (p : O) ∈ IsLocalRing.maxima
 
 theorem padic_integers_embedding_injective (hpm : (p : O) ∈ IsLocalRing.maximalIdeal O) (hp0 : (p : O) ≠ 0)
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] : Function.Injective (iota0 p O hpm) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra hne
   have hspec := PadicInt.unitCoeff_spec hne

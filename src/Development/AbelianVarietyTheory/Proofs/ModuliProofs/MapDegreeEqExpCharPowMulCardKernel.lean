@@ -79,7 +79,7 @@ theorem finrank_eq_pow_mul_card (R S Ω : Type) [CommRing R] [CommRing S] [IsDom
       exact IsFractionRing.ringHom_ext (A := S) fun x => DFunLike.congr_fun h x
     · intro g
       have hg : Function.Injective g := by
-        set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+        rw [injective_iff_map_eq_zero]
         have : RingHom.ker g = ⊥ := by
           refine Ideal.eq_bot_of_comap_eq_bot (R := R) (eq_bot_iff.mpr fun x hx => ?_)
           have hx' : g (algebraMap R S x) = 0 := hx

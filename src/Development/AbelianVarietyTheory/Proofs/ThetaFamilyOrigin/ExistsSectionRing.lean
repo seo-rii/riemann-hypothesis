@@ -105,7 +105,7 @@ theorem coeff_coe (x : DirectSum ℕ fun e => piece M e) (n : ℕ) :
 
 theorem isInternal : DirectSum.IsInternal (piece M) := by
   constructor
-  · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  · rw [injective_iff_map_eq_zero]
     intro x hx
     ext1 n
     have h := coeff_coe M x n
@@ -132,7 +132,7 @@ def grading : GradedAlgebra (piece M) where
 theorem isDomain {B : Type} [CommRing B] [IsDomain B] (π : A →+* B)
     (hπ : ∀ n, ∀ a ∈ M n, π a = 0 → a = 0) : IsDomain (polyAlg M) := by
   refine Function.Injective.isDomain ((mapRingHom π).comp (polyAlg M).val.toRingHom) ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro r hr
   apply Subtype.ext
   ext n

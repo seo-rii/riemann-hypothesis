@@ -89,7 +89,7 @@ theorem mCoordIdeal_comp_v {κ : K → K'} {v : (Σ k, ι k) → (Σ k', ι' k')
 omit [Fintype K] [∀ k, Fintype (ι k)] in
 theorem algebraMap_int_injective (y : (Σ k, ι k) → Ω) (h : IsHorizontal (mCoordIdeal y)) :
     Function.Injective (algebraMap ℤ Ω) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   have hm : a ∈ (mCoordIdeal y).comap (C : ℤ →+* MRing ι) := by
     rw [Ideal.mem_comap, mCoordIdeal, RingHom.mem_ker, ← algebraMap_eq, AlgHom.commutes,

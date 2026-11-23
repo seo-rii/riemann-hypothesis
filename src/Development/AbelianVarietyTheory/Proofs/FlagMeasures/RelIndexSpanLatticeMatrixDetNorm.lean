@@ -87,7 +87,7 @@ theorem relIndex_span_matrix : ∀ {F : Type} [Field F] [ValuativeRel F] [Topolo
   let e : (Fin m → E) →+ (Fin n → E) := (Fintype.linearCombination E b).toAddMonoidHom
   have he : ∀ x, e x = ∑ i, x i • b i := fun x => Fintype.linearCombination_apply E b x
   have hei : Function.Injective e := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     exact funext (Fintype.linearIndependent_iff.1 hb x ((he x).symm.trans hx))
   have h1 : Q.toAddSubgroup = W0.map e := by

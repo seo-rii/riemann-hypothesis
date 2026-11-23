@@ -109,7 +109,7 @@ theorem ellT_separates (M : DSModel V S) (x : ⨂[ℂ] τ, M.H τ) (hx : ∀ w, 
 
 theorem inclT_injective (M : DSModel V S) : Function.Injective (inclT M) := by
   unfold inclT
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   obtain ⟨F, hF, hy'⟩ := exists_finite_support y
   obtain ⟨z, rfl⟩ := LinearMap.mem_range.mp (hy' F fun _ => le_rfl)

@@ -99,7 +99,7 @@ theorem encard_between (h1 : Module.finrank K W = 1) {B : Submodule (𝓞 K) W}
   set D : Submodule (𝓞 K) W := B.comap (LinearMap.lsmul (𝓞 K) W T) with hD
   have hTK : algebraMap (𝓞 K) K T ≠ 0 := by simpa using hT
   have hinj : Function.Injective (LinearMap.lsmul (𝓞 K) W T) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have : algebraMap (𝓞 K) K T • x = 0 := by rw [algebraMap_smul]; exact hx
     exact (smul_eq_zero.1 this).resolve_left hTK

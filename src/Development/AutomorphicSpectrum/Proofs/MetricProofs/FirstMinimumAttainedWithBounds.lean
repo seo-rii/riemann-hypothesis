@@ -113,7 +113,7 @@ theorem finite_short [Module.Free ℤ L] [Module.Finite ℤ L]
 
 theorem period_injective (him : ∀ x y, ((f x y : ℤ) : ℝ) = (inner ℂ (p y) (p x)).im)
     (hi : Function.Injective f) : Function.Injective p := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   apply hi
   rw [map_zero]
@@ -247,7 +247,7 @@ theorem exists_mul_eq_int {a : 𝓞 E} (ha : a ≠ 0) : ∃ (c : 𝓞 E) (N : �
   exact_mod_cast this
 
 theorem ringHom_injective (s : 𝓞 E →+* ℂ) : Function.Injective s := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   by_contra h
   obtain ⟨c, N, hN, hc⟩ := exists_mul_eq_int h

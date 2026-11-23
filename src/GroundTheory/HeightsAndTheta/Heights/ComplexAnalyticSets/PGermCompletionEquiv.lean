@@ -172,7 +172,7 @@ theorem psi_surjective (hH : HolGermPointIdealSpan.Statement) (k : ℕ) : Functi
 
 theorem psi_injective (hH : HolGermPointIdealSpan.Statement) (hP : PolyGermPointPow.Statement) (k : ℕ) :
     Function.Injective (psi w I k) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective y
   obtain ⟨q, rfl⟩ := Ideal.Quotient.mk_surjective a

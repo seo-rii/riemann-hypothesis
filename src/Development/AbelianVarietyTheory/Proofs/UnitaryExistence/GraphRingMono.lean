@@ -156,7 +156,7 @@ lemma indep_insert {p : ℕ} (hp : p.Prime) (h0 : (p : k) = 0) {B : Set k} (hB :
     exact ⟨s, s.2, rfl⟩
   let ψ : S →+* K := ((RingHom.fst k Q).comp S.subtype).codRestrict K hK
   have hψ : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro s hs
     have h1 : (s : k × Q).1 = 0 := congrArg Subtype.val hs
     exact Subtype.ext (Prod.ext h1 (hI s s.2 h1))
@@ -220,7 +220,7 @@ theorem exists_pBasis : ∀ (k : Type) [Field k] (p : ℕ), p.Prime → (p : k) 
   let φ : S →+* k := (RingHom.fst k Q).comp S.subtype
   have hφ : Function.Bijective φ := by
     constructor
-    · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    · rw [injective_iff_map_eq_zero]
       intro s hs
       exact Subtype.ext (Prod.ext hs (hI s s.2 hs))
     · intro x

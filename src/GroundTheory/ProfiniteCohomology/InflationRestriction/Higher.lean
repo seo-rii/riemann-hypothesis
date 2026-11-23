@@ -66,7 +66,7 @@ section Complex
 variable {R : Type u} [Ring R] (K : CochainComplex (ModuleCat.{u} R) ℕ)
 
 theorem homologyπ_zero_injective : Function.Injective (K.homologyπ 0).hom := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro z hz
   obtain ⟨w, hw⟩ := (homologyπ_eq_zero_iff K z).1 hz
   have hd : K.d ((ComplexShape.up ℕ).prev 0) 0 = 0 := K.shape _ _ (by simp)

@@ -76,7 +76,7 @@ theorem proj_coker (R P₀ P₁ : Type) [CommRing R] [AddCommGroup P₀] [Module
   have hflat : Module.Flat R (P₁ ⧸ LinearMap.range ((Submodule.span R {u}).liftQ a₀ hle)) := by
     apply GlobalTheory.T.flat_quotient_of_universally_injective
     intro M _ _
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     obtain ⟨x, rfl⟩ := LinearMap.lTensor_surjective M (Submodule.mkQ_surjective (Submodule.span R {u})) z
     have hx : a₀.lTensor M x = 0 := by

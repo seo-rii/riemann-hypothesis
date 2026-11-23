@@ -91,7 +91,7 @@ theorem UpperTheory.Gal.W2.tanChart_of :
     LinearMap.pi (fun l => ((ψ (KaehlerDifferential.D ℂ (Sec s' W) (e₁ l)) : E →L[ℂ] ℂ) : E →ₗ[ℂ] ℂ))
   have hτ : ∀ w l, τ w l = ψ (KaehlerDifferential.D ℂ (Sec s' W) (e₁ l)) w := fun w l => rfl
   have hinj : Function.Injective τ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro w hw
     apply hflat
     refine hFA E Y B s v₀ w hB hv hs W hW hv₀N.2 (fun f => ?_)

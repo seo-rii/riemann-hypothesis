@@ -158,7 +158,7 @@ def endMap : isogEnd E →+* isogEnd (E.map σ) where
   map_add' := map_add _
 
 theorem homMap_injective : Function.Injective (homMap σ : isogHom E E' → _) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro Q hQ
   by_contra h
   rw [← isogOfHom_toHom Q h, homMap_toHom] at hQ

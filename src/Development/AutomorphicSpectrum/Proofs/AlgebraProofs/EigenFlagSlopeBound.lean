@@ -65,7 +65,7 @@ theorem dot_bijective (K : Type) [Field K] (d : ℕ) :
       (dotProductBilin K K : (Fin d → K) →ₗ[K] (Fin d → K) →ₗ[K] K) := by
   have hi : Function.Injective
       (dotProductBilin K K : (Fin d → K) →ₗ[K] (Fin d → K) →ₗ[K] K) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     funext r
     have := LinearMap.congr_fun hx (Pi.single r 1)

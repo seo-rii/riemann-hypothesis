@@ -157,7 +157,7 @@ theorem pairing_dual_bidual (G : PDivGroup p O) (t : G.Tate) (χ : G.dual.Tate) 
 
 theorem algebraMap_injective [IsDomain O] [Algebra ℤ_[p] O] (hp : (p : O) ≠ 0) :
     Function.Injective (algebraMap ℤ_[p] O) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   by_contra h
   have h2 := congrArg (algebraMap ℤ_[p] O) (PadicInt.unitCoeff_spec h)

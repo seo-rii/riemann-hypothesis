@@ -295,7 +295,7 @@ theorem mem_int_of_map {y : AfE F E} (hy : ι y ∈ intAd E) : y ∈ RInt F E :=
   exact add_mem (levelaf_tmul_mem o (one_mem _)) hr
 
 theorem map_injective : Function.Injective ι := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   refine eq_zero_of_divisible y fun N hN => ⟨(N : E)⁻¹ ⊗ₜ[F] 1 * y, mem_int_of_map hι ?_, ?_⟩
   · rw [map_mul, hy, mul_zero]; exact zero_mem _

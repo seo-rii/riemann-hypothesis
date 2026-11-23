@@ -109,7 +109,7 @@ theorem finrank_skewPart (B : Submodule ℂ (Matrix (Fin n) (Fin n) ℂ)) (hB : 
         simp only [Prod.smul_fst, Prod.smul_snd, Submodule.coe_smul_of_tower, Submodule.coe_smul, RingHom.id_apply, smul_add]
         rw [smul_comm] }
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨⟨X, hX⟩, ⟨Y, hY⟩⟩ h
     have h1 : X + Complex.I • Y = 0 := congrArg Subtype.val h
     have h2 : -X + Complex.I • Y = 0 := by

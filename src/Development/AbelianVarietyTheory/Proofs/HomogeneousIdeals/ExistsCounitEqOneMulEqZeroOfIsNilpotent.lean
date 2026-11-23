@@ -441,7 +441,7 @@ theorem isHopfIdeal_closureIdeal_of_flat [Module.Flat V (H ⧸ closureIdeal K J)
       ((J.restrictScalars K).mkQ.restrictScalars V ∘ₗ TensorProduct.mk V K H 1)
       (fun y hy ↦ (Submodule.Quotient.mk_eq_zero _).2 hy)
     have hι : Function.Injective ι := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro y hy
       obtain ⟨y, rfl⟩ := Ideal.Quotient.mk_surjective y
       exact Ideal.Quotient.eq_zero_iff_mem.2

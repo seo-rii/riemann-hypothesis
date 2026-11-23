@@ -137,7 +137,7 @@ theorem exists_dual (T : Submodule O V) (hfg : T.FG) (hfree : Module.Free O T)
   let bV : Basis ι LL V := Basis.mk hliL hsp
   have hbV : ∀ i, bV i = e i := fun i => Basis.mk_apply hliL hsp i
   have hinj : Function.Injective P.flip := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     exact hr y fun x => by simpa using congrArg (fun f => f x) hy
   let φ : V' ≃ₗ[LL] Dual LL V := LinearMap.linearEquivOfInjective P.flip hinj
@@ -270,7 +270,7 @@ theorem exists_stable (hO : IsOpen (Set.range (algebraMap O LL)))
     | smul c x _ hx => rw [smul_comm]; exact T0.smul_mem c hx
   let φ : T →ₗ[O] T0 := (a • (LinearMap.id : V →ₗ[O] V)).restrict hTa
   have hφ : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have h1 : a • (x : V) = 0 := congrArg Subtype.val hx
     rw [← algebraMap_smul LL a, smul_eq_zero] at h1

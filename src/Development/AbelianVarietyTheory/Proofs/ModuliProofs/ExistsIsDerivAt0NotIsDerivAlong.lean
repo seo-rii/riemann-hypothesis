@@ -104,7 +104,7 @@ theorem trace_eq_of_pos {W : Type} [AddCommGroup W] [Module ℝ W] [FiniteDimens
     (hA : J ∘ₗ A = A ∘ₗ J) (hA' : J' ∘ₗ A = A ∘ₗ J') :
     LinearMap.trace ℝ W (J ∘ₗ A) = LinearMap.trace ℝ W (J' ∘ₗ A) := by
   have hinj : Function.Injective (J + J') := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra h0
     have h1 := hp x h0
@@ -237,7 +237,7 @@ theorem isPeriod_of_presents {D : Datum H} {g : ℕ} {ty : Fin g → (E →+* �
   refine ⟨fun a x i => ?_, ?_, ?_, ?_, ?_⟩
   · rw [← hP, ← hP]
     exact congrFun (heρ a (1 ⊗ₜ x)) i
-  · set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  · rw [injective_iff_map_eq_zero]
     intro x hx
     rw [← hP, e.map_eq_zero_iff] at hx
     apply b.ext_elem

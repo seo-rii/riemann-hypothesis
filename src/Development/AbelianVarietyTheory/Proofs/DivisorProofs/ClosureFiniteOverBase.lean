@@ -74,7 +74,7 @@ theorem _root_.GlobalTheory.T.closure_finite_over_base : ∀ (A R : Type) [CommR
   have : IsScalarTower R GF K' :=
     IsScalarTower.of_algebraMap_eq (fun r => (IsLocalization.lift_eq (M := S) hS r).symm)
   have hg : Function.Injective (algebraMap GF K') := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨⟨r, s⟩, rfl⟩ := IsLocalization.mk'_surjective S x
     change g (IsLocalization.mk' GF r s) = 0 at hx

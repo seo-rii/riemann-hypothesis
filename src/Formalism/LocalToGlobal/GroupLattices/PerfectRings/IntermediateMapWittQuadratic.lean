@@ -177,7 +177,7 @@ theorem gO_mem (z : OO p n) : gO p n z ∈ Oc p := by
   exact (Oc p).add_mem (gW_mem p n _) ((Oc p).mul_mem (gW_mem p n _) (sqrtPrime_mem p))
 
 theorem gO_injective : Function.Injective (gO p n) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro z hz
   rw [gO_apply] at hz
   by_cases hb : z.im = 0
